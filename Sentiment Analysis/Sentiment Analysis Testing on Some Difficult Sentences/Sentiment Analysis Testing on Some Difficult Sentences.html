@@ -1,0 +1,206 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        }); 
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>We are going to test three sentiment analyzers:
+1. TextBlob
+2. BERT Based Sentiment Analyzer
+3. vaderSentiment
+
+The sentences are shown below (and link to Excel is given at the bottom):
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-hLBumO1vsX8/X2pV99NflVI/AAAAAAAAFkY/_K1LrtWTPxAVYdQbtCEzd-vxD1PQOCATQCLcBGAsYHQ/s3900/Sentiment%2BAnalysis%2BTest%2BSentences%2B%252823%2BSep%2B2020%2529.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="3900" data-original-width="807" src="https://1.bp.blogspot.com/-hLBumO1vsX8/X2pV99NflVI/AAAAAAAAFkY/_K1LrtWTPxAVYdQbtCEzd-vxD1PQOCATQCLcBGAsYHQ/s600/Sentiment%2BAnalysis%2BTest%2BSentences%2B%252823%2BSep%2B2020%2529.png"/></a></div>
+
+Note: vaderSentiment could not be found in "conda-forge". "conda install vaderSentiment -c conda-forge" failed.
+
+(temp) C:\Users\Ashish Jain>pip install vaderSentiment
+<i style="color: green;">Collecting vaderSentiment
+  Downloading vaderSentiment-3.3.2-py2.py3-none-any.whl (125 kB)
+     |████████████████████████████████| 125 kB 1.6 MB/s
+Requirement already satisfied: requests in e:\programfiles\anaconda3\envs\temp\lib\site-packages (from vaderSentiment) (2.24.0)
+Requirement already satisfied: idna&lt;3,>=2.5 in e:\programfiles\anaconda3\envs\temp\lib\site-packages (from requests->vaderSentiment) (2.10)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,>=1.21.1 in e:\programfiles\anaconda3\envs\temp\lib\site-packages (from requests->vaderSentiment) (1.25.10)
+Requirement already satisfied: chardet&lt;4,>=3.0.2 in e:\programfiles\anaconda3\envs\temp\lib\site-packages (from requests->vaderSentiment) (3.0.4)
+Requirement already satisfied: certifi>=2017.4.17 in e:\programfiles\anaconda3\envs\temp\lib\site-packages (from requests->vaderSentiment) (2020.6.20)
+Installing collected packages: vaderSentiment
+Successfully installed vaderSentiment-3.3.2 </i>
+
+"vaderSentiment"
+As of 23-Sep-2020, new changes in current version: Refactoring for Python 3 compatibility, improved modularity, and incorporation into [NLTK: current version 3.5].
+
+Ref: <a href="https://www.nltk.org/_modules/nltk/sentiment/vader.html" target="_blank">nltk.org</a>
+
+About the Scoring of 'vaderSentiment':
+
+1.The compound score is computed by summing the valence scores of each word in the lexicon, adjusted according to the rules, and then normalized to be between -1 (most extreme negative) and +1 (most extreme positive). This is the most useful metric if you want a single unidimensional measure of sentiment for a given sentence. Calling it a 'normalized, weighted composite score' is accurate.
+
+  It is also useful for researchers who would like to set standardized thresholds for classifying sentences as either positive, neutral, or negative. Typical threshold values (used in the literature cited on this page) are:
+
+  % positive sentiment: compound score >= 0.05
+  % neutral sentiment: (compound score > -0.05) and (compound score &lt; 0.05)
+  % negative sentiment: compound score &lt;= -0.05
+
+2. The pos, neu, and neg scores are ratios for proportions of text that fall in each category (so these should all add up to be 1... or close to it with float operation). These are the most useful metrics if you want multidimensional measures of sentiment for a given sentence.
+
+For example:
+Not bad at all >> {'pos': 0.487, 'compound': 0.431, 'neu': 0.513, 'neg': 0.0}
+
+This scoring can modified to taking the maximum of 'pos', 'neu' or 'neg'.
+
+<b>Python Code </b>
+
+<i style="color: blue;">import pandas as pd
+from textblob import TextBlob
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import f1_score
+from collections import Counter
+import requests
+import DrawConfusionMatrix as dcm
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+df = pd.read_excel('files_1/Sentences for Sentiment Analysis.xlsx')
+
+df_1 = df.drop_duplicates(subset='Sentence', keep="last")
+df_2 = df_1[df_1.Sentiment.isin(['Positive', 'Negative', 'Neutral'])]
+
+def get_sentiment_textblob(sentence):
+    blob = TextBlob(sentence)
+    sentiment = 'Positive'
+    if blob.sentiment.polarity &lt; 0:
+        sentiment = 'Negative'
+    elif blob.sentiment.polarity == 0:
+        sentiment = 'Neutral'
+    return sentiment
+	
+df_2['textblob'] = df_2.Sentence.apply(lambda x: get_sentiment_textblob(x))
+
+cm = confusion_matrix(df_2['Sentiment'], df_2['textblob'])
+
+print("Accuracy: {:.3f}".format(accuracy_score(df_2['Sentiment'], df_2['textblob'])))
+print(Counter(df_2['textblob'])) </i>
+
+<i style="color: green;">Accuracy: 0.519
+Counter({'Positive': 33, 'Neutral': 28, 'Negative': 18}) </i>
+
+<i style="color: blue;">classes = ['Negative', 'Neutral', 'Positive']
+dcm.plot_confusion_matrix(cm, classes = classes, use_seaborn = True)  </i>
+
+<i style="color: green">For TextBlob:</i>
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-Ui4_ZRmt7m0/X2pWm8dZQ1I/AAAAAAAAFkg/atFof9LPaaAbSsCruBbAnsH46bxaI7mugCLcBGAsYHQ/s474/TextBlob.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="469" data-original-width="474" src="https://1.bp.blogspot.com/-Ui4_ZRmt7m0/X2pWm8dZQ1I/AAAAAAAAFkg/atFof9LPaaAbSsCruBbAnsH46bxaI7mugCLcBGAsYHQ/s600/TextBlob.png"/></a></div>
+
+For BERT based code, we have to start a Flask server and get sentiment output from there (Ref 1):
+Note: BERT based Sentiment Analyzer, we get only 'Positive' or 'Negative':
+
+<i style="color: blue;">def get_sentiment_bert(sentence):
+    return requests.get("http://127.0.0.1:5000/?text=" + sentence).json()['sentiment']
+	
+df_2['bert_sentiment'] = df_2.Sentence.apply(lambda x: get_sentiment_bert(x))
+
+cm = confusion_matrix(df_2['Sentiment'], df_2['bert_sentiment'])
+print("Accuracy: {:.3f}".format(accuracy_score(df_2['Sentiment'], df_2['bert_sentiment'])))
+print(Counter(df_2['bert_sentiment'])) </i>
+
+<i style="color: green;">Accuracy: 0.722
+Counter({'Negative': 43, 'Positive': 36}) </i>
+
+<i style="color: blue;">classes = ['Negative', 'Neutral', 'Positive']
+dcm.plot_confusion_matrix(cm, classes = classes, use_seaborn = True) </i>
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-4qkcR7ZDKm4/X2pXjTshJgI/AAAAAAAAFks/hk_UFOx6h1YkDyUo6nXnfScISDPVAOsnACLcBGAsYHQ/s468/BERT.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="468" data-original-width="460" src="https://1.bp.blogspot.com/-4qkcR7ZDKm4/X2pXjTshJgI/AAAAAAAAFks/hk_UFOx6h1YkDyUo6nXnfScISDPVAOsnACLcBGAsYHQ/s600/BERT.png"/></a></div>
+
+<i style="color: blue;">print(f1_score(df_2['Sentiment'], df_2['bert_sentiment'], average='macro'))
+print(f1_score(df_2['Sentiment'], df_2['bert_sentiment'], average='micro'))
+print(f1_score(df_2['Sentiment'], df_2['bert_sentiment'], average='weighted')) </i>
+
+<i style="color: green;">macro: 0.5029855988760098
+micro: 0.7215189873417721
+weighted: 0.6898667484760773 </i>
+
+<b># vaderSentiment</b>
+<i style="color: blue;">analyzer = SentimentIntensityAnalyzer()
+def get_sentiment_vader(sentence):
+    vs = analyzer.polarity_scores(sentence)
+    if vs['compound'] >= 0.05:
+        rtn_val = 'Positive'
+    elif vs['compound'] > -0.05 and vs['compound'] &lt; 0.05:
+        rtn_val = 'Neutral'
+    else:
+        rtn_val = 'Negative'
+    return rtn_val
+
+df_2['vader_sentiment'] = df_2.Sentence.apply(lambda x: get_sentiment_vader(x)) </i>
+
+<i style="color: green;">Accuracy: 0.557
+Counter({'Positive': 41, 'Neutral': 23, 'Negative': 15})
+
+Confusion matrix, without normalization
+[[11 10  9]
+ [ 0  4  3]
+ [ 4  9 29]] </i>
+ 
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-n9K_s5fk-rQ/X2pYyYLSRWI/AAAAAAAAFk0/3ltVlaOilgEzsJG-S2SQPB4CTKrMoUyxwCLcBGAsYHQ/s456/vaderSentiment.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="382" data-original-width="456" src="https://1.bp.blogspot.com/-n9K_s5fk-rQ/X2pYyYLSRWI/AAAAAAAAFk0/3ltVlaOilgEzsJG-S2SQPB4CTKrMoUyxwCLcBGAsYHQ/s600/vaderSentiment.png"/></a></div>
+
+<b>BERT based code is performing the best with accuracy of about .72 </b>
+
+The link to Excel containining the setences: <a href="https://github.com/ashishjain1547/PublicDatasets/blob/master/Sentences%20for%20Sentiment%20Analysis.xlsx?raw=true">GitHub</a>
+
+Ref 1: <a href="http://survival8.blogspot.com/2020/09/sentiment-analysis-using-bert.html" target="_blank">Sentiment Analysis using BERT, DistilBERT and ALBERT</a>
+
+Ref 2: <a href="https://github.com/ashishjain1547/PublicResearchPapers/blob/master/Sentiment%20Analysis%20Tutorial%20(2014%2C%20Bing%20Liu).pdf" target="_blank">Sentiment Analysis Tutorial (2014, Bing Liu)</a>
+
+</pre>

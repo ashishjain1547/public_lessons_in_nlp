@@ -1,0 +1,369 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        i.ib {
+            color: blue;
+        }
+
+        i.ig {
+            color: green;
+        }
+
+        i.ir {
+            color: red;
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/pubML/blob/main/e5_sentiment_analysis_using_rnn_lstm_and_bidirectional_lstm/1_eda.ipynb" target="_blank">Download Code and Data</a>
+<br>
+<pre>
+<i class="ib">
+import pandas as pd
+import seaborn as sns
+</i>
+
+<h2>1. Amazon Reviews</h2>
+
+<i class="ib">
+amazon_reviews = pd.read_csv('input/amazonReviewSnippets_GroundTruth.txt', sep = '\t')
+
+amazon_reviews['dataset'] = 'amazon'
+
+def get_sentiment_label(sentiment_score):
+    if (sentiment_score &lt; 0):
+        return 'Negative'
+    else:
+        return 'Positive'
+
+amazon_reviews['sentiment_label'] = amazon_reviews['sentiment'].apply(get_sentiment_label)
+
+amazon_reviews['length'] = amazon_reviews['text'].apply(len)
+
+def get_word_count(text):
+    text = text.split()
+    return len(text)
+
+amazon_reviews['word_count'] = amazon_reviews['text'].apply(get_word_count)
+
+amazon_reviews.head()
+</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi44lWdPQpwNlq0vszGN4Q8RFvo9jJ7IU1KUPkONxnBarkjIyxNaatzFeJLjz93XdRuSUlDdillMSpxNH1iufwBlxZJVsR9wNF3VLmwTwI7n3lShnniutyYCycteX1wTsETii8CgX7IWgEDID4-fWODUx00lW358uV_mMs9wdesI6V8x8Yz3XoB8dKaCA/s760/Screenshot%20from%202022-10-03%2017-13-06.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="185" data-original-width="760"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi44lWdPQpwNlq0vszGN4Q8RFvo9jJ7IU1KUPkONxnBarkjIyxNaatzFeJLjz93XdRuSUlDdillMSpxNH1iufwBlxZJVsR9wNF3VLmwTwI7n3lShnniutyYCycteX1wTsETii8CgX7IWgEDID4-fWODUx00lW358uV_mMs9wdesI6V8x8Yz3XoB8dKaCA/s600/Screenshot%20from%202022-10-03%2017-13-06.png" /></a>
+</div>
+
+<i class="ib">
+sns.countplot(x ='sentiment_label', data = amazon_reviews)
+</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEguMGlia7OUzBR9IYE3znJL3x-_XYiFYGrLpzyKbdPaxJL1zbCCA61MDEu-R7rxu_yVrQYyb8-WtqDXzb_GbdVzFD09IW8bCiFUkyJGbeq7a53q0co3iCqMN6-mshfBsXJVl5zPWeQkPD_Wk3VSIuxhy3wBEcmlyeY59gCDccv0kkpxotNp4cguHSqubg/s641/Screenshot%20from%202022-10-03%2017-13-54.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="461" data-original-width="641"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEguMGlia7OUzBR9IYE3znJL3x-_XYiFYGrLpzyKbdPaxJL1zbCCA61MDEu-R7rxu_yVrQYyb8-WtqDXzb_GbdVzFD09IW8bCiFUkyJGbeq7a53q0co3iCqMN6-mshfBsXJVl5zPWeQkPD_Wk3VSIuxhy3wBEcmlyeY59gCDccv0kkpxotNp4cguHSqubg/s600/Screenshot%20from%202022-10-03%2017-13-54.png" /></a>
+</div>
+
+<i class="ib">amazon_reviews['word_count'].describe()</i>
+
+<i class="ig">
+count    3546.000000
+mean       17.300056
+std        31.449383
+min         1.000000
+25%         9.000000
+50%        15.000000
+75%        21.000000
+max      1220.000000
+Name: word_count, dtype: float64
+</i>
+
+<h2>If number of max number of tokens in a text exceeds 512, plain BERT embedding cannot be used and we have to use SentenceBERT as the embedding technique.</h2>
+
+<h2>2. Movie Reviews </h2>
+
+<i class="ib">
+movie_reviews = pd.read_csv('input/movieReviewSnippets_GroundTruth.txt', sep = '\t')
+
+movie_reviews['dataset'] = 'movie reviews'
+
+movie_reviews['sentiment_label'] = movie_reviews['sentiment'].apply(get_sentiment_label)
+movie_reviews['word_count'] = movie_reviews['text'].apply(get_word_count)
+
+movie_reviews.head(5)
+</i>
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjR3XMoRRj_yEazkmMEX190d2HdS3DtkhuN93c8jzVR-ulUslj7Qw6rvTaiOh9-EwHx2e4Vgw_eaZQMn3QtAQx3KXwmlScVNs6FY5uRHU0iJtg2aKPfIzxqXLdjNGzhWyEVYjXN7dh9UujApGaIm-sMQpsKwGSAq769i0U1JuERfUlfKRMsqWcH4j1vLw/s732/Screenshot%20from%202022-10-03%2017-21-39.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="179" data-original-width="732"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjR3XMoRRj_yEazkmMEX190d2HdS3DtkhuN93c8jzVR-ulUslj7Qw6rvTaiOh9-EwHx2e4Vgw_eaZQMn3QtAQx3KXwmlScVNs6FY5uRHU0iJtg2aKPfIzxqXLdjNGzhWyEVYjXN7dh9UujApGaIm-sMQpsKwGSAq769i0U1JuERfUlfKRMsqWcH4j1vLw/s600/Screenshot%20from%202022-10-03%2017-21-39.png" /></a>
+</div>
+
+<i class="ib">sns.countplot(x ='sentiment_label', data = movie_reviews)</i>
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6I7F0UJ0_K_yM3En7UV8hDbPlPromzgGiiaOrRthrSBJ_--_v5h2-6NLkDLhMg3yHHj9sNVYYc7iZZpcIhRrdDyOjppr5nrK1XDpyamVf2fFiI_g1aGxs_x5U159UV3t3BtDRxqXFhYnB34DSWRESW6nJWB8T9ApdyDEJEDLC36TS76u__-TqC4kY-A/s632/Screenshot%20from%202022-10-03%2017-21-58.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="470" data-original-width="632"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh6I7F0UJ0_K_yM3En7UV8hDbPlPromzgGiiaOrRthrSBJ_--_v5h2-6NLkDLhMg3yHHj9sNVYYc7iZZpcIhRrdDyOjppr5nrK1XDpyamVf2fFiI_g1aGxs_x5U159UV3t3BtDRxqXFhYnB34DSWRESW6nJWB8T9ApdyDEJEDLC36TS76u__-TqC4kY-A/s600/Screenshot%20from%202022-10-03%2017-21-58.png" /></a>
+</div>
+
+<i class="ib">movie_reviews['word_count'].describe()</i>
+
+<i class="ig">
+count    10605.000000
+mean        18.864875
+std          8.702398
+min          1.000000
+25%         12.000000
+50%         18.000000
+75%         25.000000
+max         51.000000
+Name: word_count, dtype: float64
+</i>
+
+<h2>3. New York Editorial Snippets</h2>
+
+<i class="ib">
+nyt_editorial_snippets = pd.read_csv('input/nytEditorialSnippets_GroundTruth.txt', sep = '\t')
+nyt_editorial_snippets['dataset'] = 'nyt_editorial_snippets'
+
+nyt_editorial_snippets['sentiment_label'] = nyt_editorial_snippets['sentiment'].apply(get_sentiment_label)
+nyt_editorial_snippets['word_count'] = nyt_editorial_snippets['text'].apply(get_word_count)
+
+nyt_editorial_snippets.head()
+</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0T4u8f7cO27AA1CaXlhD9LVCqehaY5q_dDKE647MFVEUxCJQDYxFAbuQGSe05-Mq3dA0pnbAyH9dPL14q1DgZv7CdCNDpjMV7bww-ZJJJETwE5e5LutiWhKv-rt6VQP3LRGRBFxVck76_Aso1-YTB5sI3f9lI7JyyIil9vuJvUjLHkBMjQKIa9gPgZg/s790/Screenshot%20from%202022-10-03%2017-25-13.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="181" data-original-width="790"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg0T4u8f7cO27AA1CaXlhD9LVCqehaY5q_dDKE647MFVEUxCJQDYxFAbuQGSe05-Mq3dA0pnbAyH9dPL14q1DgZv7CdCNDpjMV7bww-ZJJJETwE5e5LutiWhKv-rt6VQP3LRGRBFxVck76_Aso1-YTB5sI3f9lI7JyyIil9vuJvUjLHkBMjQKIa9gPgZg/s600/Screenshot%20from%202022-10-03%2017-25-13.png" /></a>
+</div>
+
+<i class="ib">sns.countplot(x ='sentiment_label', data = nyt_editorial_snippets)</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjNb3oPGVGdlVdgahO2S-zYbabKTE6WeOdVnAjxNHKhovaoLMpKgSk_TVl_4nGsbFUCVSsS-DHl43ge4ynJiADhK24mz04Uc9CAoUtq8UxjMwu0O1G2dwvngj7zANdpUWt40MNw8UNY-K15yWIKzThgo1nBvt9xEuk-m45sc6amJAFrw-vbevthA9GUoA/s625/Screenshot%20from%202022-10-03%2017-25-23.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="466" data-original-width="625"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjNb3oPGVGdlVdgahO2S-zYbabKTE6WeOdVnAjxNHKhovaoLMpKgSk_TVl_4nGsbFUCVSsS-DHl43ge4ynJiADhK24mz04Uc9CAoUtq8UxjMwu0O1G2dwvngj7zANdpUWt40MNw8UNY-K15yWIKzThgo1nBvt9xEuk-m45sc6amJAFrw-vbevthA9GUoA/s600/Screenshot%20from%202022-10-03%2017-25-23.png" /></a>
+</div>
+
+<i class="ib">nyt_editorial_snippets['word_count'].describe()</i>
+
+<i class="ig">
+count    5183.000000
+mean       17.482925
+std         8.767046
+min         1.000000
+25%        11.000000
+50%        17.000000
+75%        23.000000
+max        91.000000
+Name: word_count, dtype: float64
+</i>
+
+<h2>4. General Twitter Data (Tweets)</h2>
+
+<i class="ib">
+tweets_groud_truth = pd.read_csv('input/tweets_GroundTruth.txt', sep = '\t')
+
+tweets_groud_truth['dataset'] = 'tweets_groud_truth'
+
+tweets_groud_truth['sentiment_label'] = tweets_groud_truth['sentiment'].apply(get_sentiment_label)
+tweets_groud_truth['word_count'] = tweets_groud_truth['text'].apply(get_word_count)
+
+tweets_groud_truth.head()
+</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEis8tWojfq3OC11LPr1zUOUPD5kMHK8wkpXPRvDq2OKGNac0BYJT1qHlddYO_lzJBIuwmcsy--2TSmtnyWuQv0fz4ug27CEmynT3NYmbX6fxuNCeXY_1adkzLBf-U4NKrTA5HHjrwu59i5u4CzjnHvzfwJG36T3JnuPvGyUcyHORaU9QkAKAWRNepZl2Q/s776/Screenshot%20from%202022-10-03%2017-28-23.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="180" data-original-width="776"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEis8tWojfq3OC11LPr1zUOUPD5kMHK8wkpXPRvDq2OKGNac0BYJT1qHlddYO_lzJBIuwmcsy--2TSmtnyWuQv0fz4ug27CEmynT3NYmbX6fxuNCeXY_1adkzLBf-U4NKrTA5HHjrwu59i5u4CzjnHvzfwJG36T3JnuPvGyUcyHORaU9QkAKAWRNepZl2Q/s600/Screenshot%20from%202022-10-03%2017-28-23.png" /></a>
+</div>
+
+<i class="ib">sns.countplot(x ='sentiment_label', data = tweets_groud_truth)</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjswtYAYbquHuKEW59O1kd0_iiIWq84UEbaCearyxzxp1Pa_K0Ri-cYX01-H-Ym3S5Tuvo4t2V8krcexloiv3XXhSy8ykCrVdwTud5TmnIz2frPGNybgwqyN7GXjz0K-Nk4-Mg56imEyXur7VcpJQgwGKzJnGor5JD6GRMFI2EsRrNGF-qPUvd0p_H4iw/s629/Screenshot%20from%202022-10-03%2017-28-35.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="461" data-original-width="629"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjswtYAYbquHuKEW59O1kd0_iiIWq84UEbaCearyxzxp1Pa_K0Ri-cYX01-H-Ym3S5Tuvo4t2V8krcexloiv3XXhSy8ykCrVdwTud5TmnIz2frPGNybgwqyN7GXjz0K-Nk4-Mg56imEyXur7VcpJQgwGKzJnGor5JD6GRMFI2EsRrNGF-qPUvd0p_H4iw/s600/Screenshot%20from%202022-10-03%2017-28-35.png" /></a>
+</div>
+
+<i class="ib">tweets_groud_truth['word_count'].describe()</i>
+
+<i class="ig">
+count    4200.000000
+mean       13.619286
+std         6.720463
+min         1.000000
+25%         8.000000
+50%        13.000000
+75%        19.000000
+max        32.000000
+Name: word_count, dtype: float64
+</i>
+
+<h2>5. US Presidential Election of 2016</h2>
+
+<i class="ib">
+us_presidential_election_2016 = pd.read_csv('input/us_politics_presidential_election_2016.csv', sep = ',')
+
+us_presidential_election_2016 = us_presidential_election_2016[['id', 'sentiment', 'text']]
+
+us_presidential_election_2016['dataset'] = 'us_presidential_election_2016'
+us_presidential_election_2016.head()
+</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQX_CzGIh-rByctPUusCQ2aH4QPd0gCvgk77Gs0hWtw1n5M45TySNlbum_spCsD8Ze0RN2y34wwqGJWb2rTFUIr1of93_r782-geqIiCz48KcDsX8cE-iRBd-tM1UxyuEAX_3fkMQ5hxCBfWdyIfPvDglD0Ip8eogjnyRV6WupTWTt6QTvHCIJOY7p6A/s676/Screenshot%20from%202022-10-03%2017-32-34.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="184" data-original-width="676"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQX_CzGIh-rByctPUusCQ2aH4QPd0gCvgk77Gs0hWtw1n5M45TySNlbum_spCsD8Ze0RN2y34wwqGJWb2rTFUIr1of93_r782-geqIiCz48KcDsX8cE-iRBd-tM1UxyuEAX_3fkMQ5hxCBfWdyIfPvDglD0Ip8eogjnyRV6WupTWTt6QTvHCIJOY7p6A/s600/Screenshot%20from%202022-10-03%2017-32-34.png" /></a>
+</div>
+
+<i class="ib">
+sns.countplot(x ='sentiment', data = us_presidential_election_2016)
+</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-M2nLLP2Mfx2gs2OPKebr90tt7_p-XhPaAmkDi5k074Qh2zsSP19WZM4IBBlu608aeNd8ThQoTp_vLtbhrlLqAglu7aB_i-xjirgoC6Cykg8wfhxvNqW9aVnDAOgnvSXZ6hz-or68Sj9CHam1NsEKEjoj8WLGttEW9dbq-eUxmqX36eRydMgJTNmuTQ/s631/Screenshot%20from%202022-10-03%2017-32-48.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="461" data-original-width="631"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-M2nLLP2Mfx2gs2OPKebr90tt7_p-XhPaAmkDi5k074Qh2zsSP19WZM4IBBlu608aeNd8ThQoTp_vLtbhrlLqAglu7aB_i-xjirgoC6Cykg8wfhxvNqW9aVnDAOgnvSXZ6hz-or68Sj9CHam1NsEKEjoj8WLGttEW9dbq-eUxmqX36eRydMgJTNmuTQ/s600/Screenshot%20from%202022-10-03%2017-32-48.png" /></a>
+</div>
+
+<i class="ib">
+us_presidential_election_2016['word_count'] = us_presidential_election_2016['text'].apply(get_word_count)
+us_presidential_election_2016['word_count'].describe()
+</i>
+
+<i class="ig">
+count    13871.000000
+mean        16.943912
+std          5.224908
+min          2.000000
+25%         13.000000
+50%         18.000000
+75%         21.000000
+max         29.000000
+Name: word_count, dtype: float64
+</i>
+
+<h2>6. Stock Market Related Tweets</h2>
+
+<i class="ib">
+stock_market_tweets = pd.read_csv('input/stock_market_twitter_data.csv')
+stock_market_tweets['sentiment_label'] = stock_market_tweets['Sentiment'].apply(get_sentiment_label)
+stock_market_tweets['word_count'] = stock_market_tweets['Text'].apply(get_word_count)
+
+stock_market_tweets.head()
+</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4VPYFD6aK8wSirzx5mAhLYNuDxt7xXZw-yXeG_OWY0VCXr2WOvOSnVO95SJwgUEy7cvlYyK2yxzDCDvPcXmCXLzRq9kO4LLIxq_hsA_-M_lDZmGeuRGbzG8_wV0ZFg1yxK3XYceh5U3JCidBPX-TLZmzwY24ymu0a4zNNUo1ZmJxZr9Lodr5dtiqU0g/s622/Screenshot%20from%202022-10-03%2017-36-11.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="181" data-original-width="622"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi4VPYFD6aK8wSirzx5mAhLYNuDxt7xXZw-yXeG_OWY0VCXr2WOvOSnVO95SJwgUEy7cvlYyK2yxzDCDvPcXmCXLzRq9kO4LLIxq_hsA_-M_lDZmGeuRGbzG8_wV0ZFg1yxK3XYceh5U3JCidBPX-TLZmzwY24ymu0a4zNNUo1ZmJxZr9Lodr5dtiqU0g/s600/Screenshot%20from%202022-10-03%2017-36-11.png" /></a>
+</div>
+
+<i class="ib">sns.countplot(x ='sentiment_label', data = stock_market_tweets)</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjD_BORl-__HvJDokHVvAzxGfIsDKuR61BCDNWLrzJ4NS5GwM65ptQvEBviywTYFI5I7IwaVEFQaNt1mmeVF0vOKtOvoAsD9cJ6M6BETR1Im6Mx79N_wby7VFPRfNDYDTFP6gZO0N6f23lo6prm3ZGRzlPjIBGZC-_HdwT02leJAt1B7kcMGME9e7R4xQ/s627/Screenshot%20from%202022-10-03%2017-36-25.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="459" data-original-width="627"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjD_BORl-__HvJDokHVvAzxGfIsDKuR61BCDNWLrzJ4NS5GwM65ptQvEBviywTYFI5I7IwaVEFQaNt1mmeVF0vOKtOvoAsD9cJ6M6BETR1Im6Mx79N_wby7VFPRfNDYDTFP6gZO0N6f23lo6prm3ZGRzlPjIBGZC-_HdwT02leJAt1B7kcMGME9e7R4xQ/s600/Screenshot%20from%202022-10-03%2017-36-25.png" /></a>
+</div>
+
+<i class="ib">stock_market_tweets['word_count'].describe()</i>
+
+<i class="ig">
+count    5791.000000
+mean       14.006562
+std         6.595463
+min         2.000000
+25%         9.000000
+50%        14.000000
+75%        19.000000
+max        32.000000
+Name: word_count, dtype: float64
+</i>
+</pre>
+<span style="display: none">Tags: Technology,Natural Language Processing,</span>

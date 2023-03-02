@@ -1,0 +1,183 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .ib {
+            color: blue
+        }
+
+        .ig {
+            color: green
+        }
+
+        .ir {
+            color: red
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/pubML/blob/main/e6_peformance%20testing%20of%20Sentence%20Transformers%20for%20sentence%20encoding/p1.ipynb" target="_blank">Download Code</a>
+
+<pre>
+<i class="ib">
+import pandas as pd
+from sentence_transformers import SentenceTransformer
+
+sbert_model = SentenceTransformer('bert-base-nli-mean-tokens')
+
+df = pd.read_csv('nytEditorialSnippets_GroundTruth.txt', sep = '\t')
+
+df_10 = df[0:10]
+df_100 = df[0:100]
+
+<b># 1. Using Sentence Encoder in a function on every record</b>
+
+def get_embedding(input_sentence):
+    return sbert_model.encode([input_sentence])[0]
+
+%%timeit
+df_out_1 = df_100['text'].apply(get_embedding)
+</i>
+
+<i class="ig">
+9.15 s ± 317 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</i>
+
+<i class="ib">
+%%time
+df_out_1 = df_100['text'].apply(get_embedding)
+</i>
+
+<i class="ig">
+CPU times: user 18.3 s, sys: 112 ms, total: 18.5 s
+Wall time: 9.25 s
+</i>
+
+<i class="ib">
+%%time
+df_out_1 = df_10['text'].apply(get_embedding)
+</i>
+
+<i class="ig">
+CPU times: user 1.97 s, sys: 7.88 ms, total: 1.98 s
+Wall time: 997 ms
+</i>
+
+<i class="ib">
+df_out_1
+</i>
+
+<i class="ig">
+0     [-0.7970602, 0.47616163, 0.2621567, 0.38846374...
+1     [-0.32450542, -0.10945253, 0.6443658, 0.212320...
+2     [-0.2602994, -0.0036350375, 1.2917686, 0.12602...
+3     [0.5173101, -0.86385506, 1.5003084, 0.76273316...
+4     [-0.19630705, 1.611963, 0.8502133, 0.059544455...
+                            ...                        
+95    [-0.7843676, 0.70446295, -0.86373883, 0.096476...
+96    [-0.047543377, -1.0461698, 0.9984542, 0.776394...
+97    [-0.5863306, 0.38590172, -0.15509816, 0.275745...
+98    [0.22616625, 0.33843663, 0.030288033, 0.191214...
+99    [0.40268317, 1.1528935, 0.3597172, 0.16918863,...
+Name: text, Length: 100, dtype: object
+</i>
+
+<i class="ib">
+type(df_out_1)
+</i>
+
+<i class="ig">
+pandas.core.series.Series
+</i>
+
+<i class="ib">
+<b># 2. Using Sentence Encoder on entire array of sentences at once</b>
+
+%%timeit
+df_out_2 = sbert_model.encode(df_100['text'].values)
+</i>
+
+<i class="ig">
+9.25 s ± 275 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</i>
+
+<i class="ib">
+%%time
+df_out_2 = sbert_model.encode(df_100['text'].values)
+</i>
+
+<i class="ig">
+CPU times: user 17.8 s, sys: 1 s, total: 18.8 s
+Wall time: 9.41 s
+</i>
+
+<i class="ib">
+df_out_2
+</i>
+
+<i class="ig">
+array([[-0.7970604 ,  0.4761617 ,  0.262157  , ..., -0.2437577 ,
+1.1380528 ,  0.28697717],
+[-0.32450542, -0.10945235,  0.64436567, ...,  0.14436643,
+-0.24656864, -0.18447737],
+[-0.26029944, -0.00363465,  1.2917686 , ...,  1.1463983 ,
+-1.0714562 , -0.09548129],
+...,
+[-0.5863306 ,  0.38590172, -0.15509816, ..., -0.2937488 ,
+-0.3724223 ,  0.1826524 ],
+[ 0.22616649,  0.33843663,  0.03028765, ...,  0.66338176,
+-0.6620043 ,  0.09410357],
+[ 0.40268335,  1.152894  ,  0.35971704, ..., -0.9203086 ,
+0.17893644,  0.71039814]], dtype=float32)
+</i>
+
+<i class="ib">
+type(df_out_2)
+</i>
+
+<i class="ig">numpy.ndarray</i>
+
+<i class="ib">df_out_2.shape</i>
+
+<i class="ig">(100, 768)</i>
+</pre>
+
+<span style="display: none">Tags: Technology,Natural Language Processing,</span>

@@ -1,0 +1,162 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<style>
+    i.black {
+        display: block;
+        background-color: black;
+        color: white;
+    }
+
+    i.red {
+        display: block;
+        background-color: red;
+        color: white;
+    }
+    
+    i.green {
+        display: block;
+        background-color: green;
+        color: white;
+    }
+</style>
+
+<pre>
+<i class="black">
+from sentence_transformers import SentenceTransformer
+</i>
+<i class="black">
+sbert_model = SentenceTransformer('bert-base-nli-mean-tokens')
+</i>
+
+<i class="red">
+# timeout                                   Traceback (most recent call last)
+# timeout: The read operation timed out
+# ConnectionError: HTTPSConnectionPool(host='cdn-lfs.huggingface.co', port=443): Read timed out.
+
+<strong>bert-base-nli-mean-tokens model size is roughly: 450 MB.</strong>
+</i>
+
+<i class="black">
+model = SentenceTransformer('distilbert-base-nli-mean-tokens')
+</i>
+
+<i class="green">
+Downloading: 100%
+265M/265M [55:31&lt;00:00, 75.6kB/s]
+Downloading: 100%
+53.0/53.0 [00:00&lt;00:00, 1.41kB/s]
+Downloading: 100%
+112/112 [00:00&lt;00:00, 2.99kB/s]
+Downloading: 100%
+466k/466k [00:11&lt;00:00, 80.0kB/s]
+Downloading: 100%
+450/450 [00:00&lt;00:00, 14.5kB/s]
+Downloading: 100%
+232k/232k [00:03&lt;00:00, 76.7kB/s]
+</i>
+
+<i class="black">
+query = "I had pizza and pasta"
+query_vec = model.encode([query])[0]
+</i>
+
+<i class="black">
+len(query_vec)
+</i>
+
+<i class="green">
+768
+</i>
+
+<i class="black">
+input_sentence_1 = "In recent years, a lot of hype has developed around the promise of neural networks and their ability to classify and identify input data, and more recently the ability of certain network architectures to generate original content. Companies large and small are using them for everything from image captioning and self-driving car navigation to identifying solar panels from satellite images and recognizing faces in security camera videos. And luckily for us, many NLP applications of neural nets exist as well. While deep neural networks have inspired a lot of hype and hyperbole, our robot overlords are probably further off than any clickbait cares to admit. Neural networks are, however, quite powerful tools, and you can easily use them in an NLP chatbot pipeline to classify input text, summarize documents, and even generate novel works. This chapter is intended as a primer for those with no experience in neural networks. We don’t cover anything specific to NLP in this chapter, but gaining a basic understanding of what is going on under the hood in a neural network is important for the upcoming chapters. If you’re familiar with the basics of a neural network, you can rest easy in skipping ahead to the next chapter, where you dive back into processing text with the various flavors of neural nets. Although the mathematics of the underlying algorithm, backpropagation, are outside this book’s scope, a high-level grasp of its basic functionality will help you understand language and the patterns hidden within. As the availability of processing power and memory has exploded over the course of the decade, an old technology has come into its own again. First proposed in the 1950s by Frank Rosenblatt, the perceptron1 offered a novel algorithm for finding patterns in data. The basic concept lies in a rough mimicry of the operation of a living neuron cell. As electrical signals flow into the cell through the dendrites (see figure 5.1) into the nucleus, an electric charge begins to build up. When the cell reaches a certain level of charge, it fires, sending an electrical signal out through the axon. However, the dendrites aren’t all created equal. The cell is more “sensitive” to signals through certain dendrites than others, so it takes less of a signal in those paths to fire the axon. The biology that controls these relationships is most certainly beyond the scope of this book, but the key concept to notice here is the way the cell weights incoming signals when deciding when to fire. The neuron will dynamically change those weights in the decision making process over the course of its life. You are going to mimic that process."
+print("Char count in input_sentence_1:", len(input_sentence_1))
+print("Word Count in input_sentence_1:", len(input_sentence_1.split(" ")))
+</i>
+
+<i class="green">
+Char count in input_sentence_1: 2658
+Word Count in input_sentence_1: 442
+</i>
+
+<i class="black">
+input_sentence_1_vec = model.encode([input_sentence_1])[0]
+</i>
+
+<i class="black">
+type(input_sentence_1_vec)
+</i>
+
+<i class="green">
+numpy.ndarray
+</i>
+
+<i class="black">
+input_sentence_1_vec.shape
+</i>
+
+<i class="green">
+(768,)
+</i>
+</pre>
+
+<span style="display: none">Tags: Machine Learning, Natural Language Processing, Python, Technology</span>

@@ -1,0 +1,209 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .ib {
+            color: blue
+        }
+
+        .ig {
+            color: green
+        }
+
+        .ir {
+            color: red
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>
+This project is being developed by: <a href="https://github.com/MaartenGr" target="_blank">Maarten Grootendorst</a>
+Project Link: <a href="https://github.com/MaartenGr/soan" target="_blank">SOAN: GitHub</a>    
+
+In this post, we share a minimal YAML file to setup an environment for running SOAN project.
+
+<i class="ib">
+name: soan
+channels:
+  - conda-forge
+dependencies:
+  - pandas
+  - seaborn
+  - scikit-learn
+  - matplotlib
+  - emoji
+  - pattern
+  - wordcloud
+  - palettable
+  - ipykernel
+  - jupyter
+    
+</i>
+
+<h2>Run Logs</h2>
+
+<i class="ig">
+(base) ashish@ashish-Lenovo-ideapad-130-15IKB:~/Desktop$ conda env create -f env.yml
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+Downloading and Extracting Packages
+contourpy-1.0.5      | 234 KB    | ### | 100% 
+idna-3.4             | 55 KB     | ### | 100% 
+libiconv-1.17        | 1.4 MB    | ### | 100% 
+stack_data-0.5.1     | 24 KB     | ### | 100% 
+pyopenssl-22.0.0     | 120 KB    | ### | 100% 
+scipy-1.9.1          | 26.2 MB   | ### | 100% 
+jack-1.9.18          | 647 KB    | ### | 100% 
+mysqlclient-2.0.3    | 82 KB     | ### | 100% 
+mysql-libs-8.0.30    | 1.9 MB    | ### | 100% 
+fontconfig-2.14.0    | 318 KB    | ### | 100% 
+glib-tools-2.74.0    | 108 KB    | ### | 100% 
+fonttools-4.37.4     | 2.0 MB    | ### | 100% 
+qtpy-2.2.1           | 49 KB     | ### | 100% 
+python-fastjsonschem | 242 KB    | ### | 100% 
+libcap-2.65          | 97 KB     | ### | 100% 
+ca-certificates-2022 | 150 KB    | ### | 100% 
+gstreamer-1.20.3     | 2.0 MB    | ### | 100% 
+jaraco.context-4.1.2 | 9 KB      | ### | 100% 
+repoze.lru-0.7       | 13 KB     | ### | 100% 
+matplotlib-3.6.0     | 7 KB      | ### | 100% 
+jaraco.classes-3.2.2 | 10 KB     | ### | 100% 
+glib-2.74.0          | 438 KB    | ### | 100% 
+qtconsole-5.3.2      | 6 KB      | ### | 100% 
+qtconsole-base-5.3.2 | 91 KB     | ### | 100% 
+executing-1.1.0      | 23 KB     | ### | 100% 
+pyzmq-24.0.1         | 510 KB    | ### | 100% 
+nest-asyncio-1.5.6   | 10 KB     | ### | 100% 
+qt-main-5.15.6       | 61.5 MB   | ### | 100% 
+fftw-3.3.10          | 2.2 MB    | ### | 100% 
+sqlite-3.39.4        | 789 KB    | ### | 100% 
+libzlib-1.2.12       | 65 KB     | ### | 100% 
+routes-2.5.1         | 35 KB     | ### | 100% 
+portaudio-19.6.0     | 132 KB    | ### | 100% 
+regex-2022.9.13      | 386 KB    | ### | 100% 
+zc.lockfile-2.0      | 12 KB     | ### | 100% 
+nbconvert-pandoc-7.1 | 5 KB      | ### | 100% 
+cherrypy-18.8.0      | 504 KB    | ### | 100% 
+widgetsnbextension-4 | 1.6 MB    | ### | 100% 
+jaraco.collections-3 | 14 KB     | ### | 100% 
+pdfminer.six-2022052 | 4.9 MB    | ### | 100% 
+jupyterlab_widgets-3 | 222 KB    | ### | 100% 
+pcre2-10.37          | 1.1 MB    | ### | 100% 
+setuptools-65.4.1    | 776 KB    | ### | 100% 
+pytz-2022.4          | 232 KB    | ### | 100% 
+certifi-2022.9.24    | 155 KB    | ### | 100% 
+nbconvert-core-7.1.0 | 189 KB    | ### | 100% 
+expat-2.4.9          | 189 KB    | ### | 100% 
+libdeflate-1.14      | 81 KB     | ### | 100% 
+tzdata-2022d         | 118 KB    | ### | 100% 
+numpy-1.23.3         | 7.0 MB    | ### | 100% 
+ipywidgets-8.0.2     | 109 KB    | ### | 100% 
+future-0.18.2        | 738 KB    | ### | 100% 
+terminado-0.16.0     | 18 KB     | ### | 100% 
+gettext-0.19.8.1     | 3.6 MB    | ### | 100% 
+simplejson-3.17.6    | 104 KB    | ### | 100% 
+nbformat-5.6.1       | 106 KB    | ### | 100% 
+nbconvert-7.1.0      | 6 KB      | ### | 100% 
+mysql-common-8.0.30  | 1.9 MB    | ### | 100% 
+pulseaudio-14.0      | 1.7 MB    | ### | 100% 
+libsqlite-3.39.4     | 803 KB    | ### | 100% 
+cryptography-38.0.1  | 1.6 MB    | ### | 100% 
+libglib-2.74.0       | 3.1 MB    | ### | 100% 
+alsa-lib-1.2.7.2     | 581 KB    | ### | 100% 
+jaraco.text-3.9.1    | 21 KB     | ### | 100% 
+ipykernel-6.16.0     | 100 KB    | ### | 100% 
+gst-plugins-base-1.2 | 2.8 MB    | ### | 100% 
+prompt_toolkit-3.0.3 | 5 KB      | ### | 100% 
+libtiff-4.4.0        | 651 KB    | ### | 100% 
+libxml2-2.10.2       | 727 KB    | ### | 100% 
+joblib-1.2.0         | 205 KB    | ### | 100% 
+matplotlib-base-3.6. | 7.5 MB    | ### | 100% 
+wordcloud-1.8.2.2    | 184 KB    | ### | 100% 
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+#
+# To activate this environment, use
+#
+#     $ conda activate soan
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Retrieving notices: ...working... done
+</i>
+
+<h2>Setup the Jupyter Lab Kernel</h2>
+
+<i class="ib">
+(base) ashish@ashish-Lenovo-ideapad-130-15IKB:~/Desktop$ conda activate soan
+(soan) ashish@ashish-Lenovo-ideapad-130-15IKB:~/Desktop$ python -m ipykernel install --user --name soan</i>
+
+<i class="ig">Installed kernelspec soan in /home/ashish/.local/share/jupyter/kernels/soan</i>
+
+<i class="ib">(soan) ashish@ashish-Lenovo-ideapad-130-15IKB:~/Desktop$ jupyter kernelspec list</i>
+<i class="ig">
+Available kernels:
+  mongodb                    /home/ashish/.local/share/jupyter/kernels/mongodb
+  rasa_py38                  /home/ashish/.local/share/jupyter/kernels/rasa_py38
+  soan                       /home/ashish/.local/share/jupyter/kernels/soan
+  stock_market_prediction    /home/ashish/.local/share/jupyter/kernels/stock_market_prediction
+  python3                    /home/ashish/anaconda3/envs/soan/share/jupyter/kernels/python3</i>
+
+</pre>
+<span style="display: none">Tags: Technology,Natural Language Processing,</span>

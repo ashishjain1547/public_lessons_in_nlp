@@ -1,0 +1,12 @@
+Session 2 - Normalizing Vocabulary and Intro to Sentiment Analysis package VADER
+
+---
+
+
+
+- Normalizing Vocabulary (Lexicon) as Part of NLP Pipeline
+  - Case folding
+  - Stemming
+  - Lemmatization
+- Introduction to Sentiment Analysis package VADER
+

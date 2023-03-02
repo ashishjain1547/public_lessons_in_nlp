@@ -1,0 +1,235 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        i.ibb {
+            display: block;
+            background-color: black;
+            color: white;
+        }
+
+        i.ibg {
+            display: block;
+            background-color: rgb(50, 50, 50);
+            color: white;
+        }
+
+
+        ul.no-bullets {
+            list-style-type: none;
+            /* Remove bullets */
+            padding: 0;
+            /* Remove padding */
+            margin: 0;
+            /* Remove margins */
+        }
+
+        li.customLi {
+            float: left;
+        }
+
+        li.customLi>span.customSpan {
+            display: block;
+            padding: 8px;
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+    
+<style>
+    i.black {
+        display: block;
+        background-color: black;
+        color: white;
+    }
+
+    i.green {
+        display: block;
+        background-color: green;
+        color: white;
+    }
+
+    i.red {
+        display: block;
+        background-color: red;
+        color: white;
+    }
+</style>
+
+<pre>
+<i class="black">
+import pandas as pd
+import numpy as np
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import re
+import nltk
+from nltk.tokenize import word_tokenize
+
+import sys
+
+import gensim
+from gensim import corpora
+from gensim.models.lsimodel import LsiModel, stochastic_svd
+from gensim.models.coherencemodel import CoherenceModel
+from gensim.models import RpModel
+from gensim.matutils import corpus2dense, Dense2Corpus
+from gensim.test.utils import common_texts
+from gensim.corpora.dictionary import Dictionary
+from gensim.models.ldamodel import LdaModel # Latent Dirichlet Allocation and not 'Latent Discriminant Analysis'
+
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.preprocessing import normalize
+from sklearn.decomposition import LatentDirichletAllocation, PCA
+from sklearn.cluster import KMeans
+from sklearn.random_projection import SparseRandomProjection, johnson_lindenstrauss_min_dim
+from sklearn.random_projection import GaussianRandomProjection
+from sklearn.metrics.pairwise import euclidean_distances
+import string
+
+from collections import Counter
+from preprocess import preprocess_text
+
+import spacy
+
+from time import time </i>
+
+<i class="black">nlp = spacy.load("en_core_web_sm")</i>
+
+<i class="black">
+def remove_verbs_and_adjectives(text):
+    doc = nlp(text)
+
+    additional_stopwords = ["new", "like", "many", "also", "even", "get", "say", "according", "would", "could",
+                            "know", "made", "make", "come", "didnt", "dont", "doesnt", "go", "may", "back", 
+                            "going", "including", "added", "set", "take", "want", "use",
+                            "000", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "20", "u",
+                           "one", "two", "three", "year", "first", "last", "good", "best", "well", "told", "said"]
+    days_of_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    
+    additional_stopwords += days_of_week
+    
+    words = [token.text for token in doc if (token.pos_ not in ["VERB", "NUM", "ADJ", "ADV", "ADP", "SCONJ", "DET",
+                                                                "X", "INTJ", "CCONJ", "AUX", 'PART', 'PRON', 'PUNCT', 'SYM'])]
+
+                                                            
+    <b class=""># Only Noun and (PROPN) Proper Noun allowed.</b>
+    
+    words = [x for x in words if len(x) > 2]
+    words = [x for x in words if x not in additional_stopwords]
+        
+    doc = " ".join(words)
+    return doc
+</i>
+
+<i class="black">
+df1 = pd.read_csv('bbc_news_train.csv')
+</i>
+
+<i class="black">
+%%time
+df1['Preprocess_text'] = df1['Text'].apply(preprocess_text)
+df1['Preprocess_text'] = df1['Preprocess_text'].apply(remove_verbs_and_adjectives)
+</i>
+
+<i class="green">
+CPU times: total: 2min 3s
+Wall time: 2min 8s
+</i>
+
+<i class="black">
+df1[['Text', 'Preprocess_text']].head()
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJM6MuaNDanB-003czccn_d5uMJzNfpenIOkzbPbKKW7YOtCAmoZeKN7Wyo5ZF36ueQ8chjzADMNlwCfpS3fbRU6AYrC_-dobtPVyzTnxNCt_uC5VbtubiJXIIvIJ285OzZAH9Itu0DVbYyKJztqbL5IWXqOJiFCbNys-Nef1U-fRQIjx3ph-nxPYCrQ/s743/1.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="214" data-original-width="743" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJM6MuaNDanB-003czccn_d5uMJzNfpenIOkzbPbKKW7YOtCAmoZeKN7Wyo5ZF36ueQ8chjzADMNlwCfpS3fbRU6AYrC_-dobtPVyzTnxNCt_uC5VbtubiJXIIvIJ285OzZAH9Itu0DVbYyKJztqbL5IWXqOJiFCbNys-Nef1U-fRQIjx3ph-nxPYCrQ/s600/1.png"/></a></div>
+
+<i class="black">
+Counter(df1['Category'])
+</i>
+
+<i class="green">
+Counter({'business': 336,
+'tech': 261,
+'politics': 274,
+'sport': 346,
+'entertainment': 273})
+</i>
+
+<i class="black">
+from gensim.test.utils import common_texts
+from gensim.corpora.dictionary import Dictionary
+
+# Create a corpus from a list of texts
+clean_corpus = [doc.split() for doc in df1['Preprocess_text'].values.tolist()]
+common_dictionary = Dictionary(clean_corpus)
+common_corpus = [common_dictionary.doc2bow(text) for text in clean_corpus]
+</i>
+
+<i class="black">
+%%time
+NO_OF_TOPICS_FOR_TRAINING = 5
+NO_OF_WORDS_IN_TOPIC = 20
+lda = LdaModel(common_corpus, num_topics = NO_OF_TOPICS_FOR_TRAINING, id2word = common_dictionary)
+</i>
+
+<i class="green">
+CPU times: total: 9.39 s
+Wall time: 8.27 s
+</i>
+
+<i class="black">
+ldamodel_topics = lda.print_topics(NO_OF_TOPICS_FOR_TRAINING, NO_OF_WORDS_IN_TOPIC)
+</i>
+
+<i class="black">
+for (topic_id, probabilities) in ldamodel_topics:
+    topic_string = "\n\nTopic Id: " + str(topic_id) + "\n Probabilities: " + str(probabilities)
+    print(topic_string)
+</i>
+
+<i class="green">
+Topic Id: 0
+Probabilities: 0.006*"government" + 0.004*"film" + 0.004*"time" + 0.004*"labour" + 0.004*"people" + 0.004*"service" + 0.004*"election" + 0.004*"minister" + 0.003*"award" + 0.003*"blair" + 0.003*"market" + 0.003*"week" + 0.003*"party" + 0.003*"game" + 0.003*"number" + 0.003*"director" + 0.003*"brown" + 0.002*"actor" + 0.002*"company" + 0.002*"star"
+
+
+Topic Id: 1
+Probabilities: 0.008*"game" + 0.007*"time" + 0.006*"people" + 0.005*"world" + 0.005*"film" + 0.004*"service" + 0.003*"player" + 0.003*"bbc" + 0.003*"company" + 0.003*"home" + 0.003*"day" + 0.003*"plan" + 0.003*"show" + 0.003*"country" + 0.003*"music" + 0.003*"week" + 0.003*"team" + 0.003*"number" + 0.003*"firm" + 0.003*"party"
+
+
+Topic Id: 2
+Probabilities: 0.009*"film" + 0.008*"people" + 0.005*"time" + 0.005*"game" + 0.005*"phone" + 0.004*"world" + 0.004*"company" + 0.004*"month" + 0.003*"firm" + 0.003*"award" + 0.003*"market" + 0.003*"government" + 0.003*"bbc" + 0.003*"mobile" + 0.003*"day" + 0.003*"software" + 0.003*"sale" + 0.003*"director" + 0.003*"number" + 0.002*"service"
+
+
+Topic Id: 3
+Probabilities: 0.008*"people" + 0.006*"government" + 0.006*"country" + 0.006*"world" + 0.005*"company" + 0.005*"firm" + 0.004*"time" + 0.004*"month" + 0.004*"number" + 0.004*"market" + 0.004*"tax" + 0.004*"week" + 0.003*"way" + 0.003*"service" + 0.003*"deal" + 0.003*"group" + 0.003*"minister" + 0.003*"sale" + 0.003*"plan" + 0.003*"music"
+
+
+Topic Id: 4
+Probabilities: 0.006*"people" + 0.006*"game" + 0.006*"time" + 0.005*"election" + 0.004*"player" + 0.004*"england" + 0.004*"number" + 0.003*"world" + 0.003*"party" + 0.003*"music" + 0.003*"company" + 0.003*"group" + 0.003*"report" + 0.003*"bbc" + 0.003*"part" + 0.003*"service" + 0.003*"month" + 0.003*"sale" + 0.003*"government" + 0.003*"way"
+</i>
+</pre>
+<span style="display: none">Tags: Machine Learning, Natural Language Processing, Technology</span>

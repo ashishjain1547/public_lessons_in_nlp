@@ -1,0 +1,224 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+        }); 
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+       pre {
+           white-space: pre-wrap;
+           white-space: -moz-pre-wrap;
+           white-space: -pre-wrap;
+           white-space: -o-pre-wrap;
+           word-wrap: break-word;
+       }
+   </style>
+ </head>
+ <nav class="customDynamicNav">
+ </nav>
+ <div class="customTemporaryCodeHolder">
+ </div>
+ <br />
+ <!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+ 
+<pre>
+We are going to explore Word2Vec for an application related to ten Wikipedia documents in the docx format around the technologies:
+Java, C, C++, C#, JavaScript, HTML, CSS, Python, R and SQL.
+
+Objective is to find out which entity is closest to which other entities.
+
+Note:
+spaCy supports the following entity types:
+PERSON, NORP (nationalities, religious and political groups), FAC (buildings, airports etc.), ORG (organizations), GPE (countries, cities etc.), LOC (mountain ranges, water bodies etc.), PRODUCT (products), EVENT (event names), WORK_OF_ART (books, song titles), LAW (legal document titles), LANGUAGE (named languages), DATE, TIME, PERCENT, MONEY, QUANTITY, ORDINAL and CARDINAL. (Ref: 1)
+
+The Python code is as follows:
+
+<i style="color: darkgreen">from gensim.models import Word2Vec
+from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
+import spacy
+
+nlp = spacy.load('en_core_web_sm') 
+
+import os
+from os import listdir
+from os.path import isfile, join
+
+mypath = 'files_1'
+# The ".docx" files to be kept in the "files_1" directory can be downloaded from here:
+# https://drive.google.com/open?id=1mKmyQTi4AtztzDII_vGKNM-6rOXbp3Xp
+
+onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+
+import docx
+from nltk.tokenize import sent_tokenize, word_tokenize 
+def getText(filename):
+    doc = docx.Document(filename)
+    fullText = []
+    for para in doc.paragraphs:
+        fullText.append(para.text)
+    return word_tokenize('\n'.join(fullText))
+
+doc_content = [getText(mypath + os.sep + i) for i in onlyfiles]
+
+model = Word2Vec(doc_content)
+
+joined_docs = ""
+for i in doc_content:
+    joined_docs += ' '.join(i)
+
+doc = nlp(joined_docs) 
+
+print([(X.text, X.label_) for X in doc.ents]) </i>
+# OUTPUT: 
+# [('Wikipedia', 'GPE'), ('around 2000', 'DATE'), ('ISO/IEC 23270:2018', 'ORG'), ('CLI', 'ORG'), 
+# ('8', 'CARDINAL'), ('2019', 'DATE'), ('16.3', 'CARDINAL'), ('Contents Design', 'PERSON'), ('Ecma', 'PERSON'),
+# ('Software', 'ORG'), ('the .NET Framework', 'ORG'), ("'' Simple Managed C ''", 'WORK_OF_ART'), ('SMC', 'ORG'),
+# ('January 1999', 'DATE'), ('Cool', 'ORG'), ("`` Object Oriented Language ''", 'ORG'), ('Microsoft', 'ORG'), 
+# ('Cool', 'ORG'), ('the July 2000', 'DATE'), ('Hejlsberg', 'PERSON'), ('Microsoft', 'ORG'), ('Delphi', 'ORG'), 
+# ('Inprise Delphi', 'PERSON'), ('Borland', 'GPE'), ('e.g', 'ORG'), ('CLR', 'ORG'), ('1994', 'DATE'), 
+# ('Java', 'ORG'), ('Java', 'ORG'), ('Gosling', 'ORG'), ('Java', 'ORG'), ('Klaus Kreft', 'PERSON'), 
+# ('Angelika Langer', 'PERSON'), ('C++', 'NORP'), ('Java and C #', 'WORK_OF_ART')... ... ... ...]
+
+# GPE: Geopolitical entity
+# LOC: Location
+# NORP: “Nationalities or religious or political groups”
+
+# Entities to be excluded: 'DATE', 'PERSON', 'CARDINAL', 'MONEY', 'ORDINAL', 'PERCENT', 'TIME', 'GPE', 'NORP'
+# 'FAC', 'PRODUCT', 'EVENT'
+
+<i style="color: darkgreen">entities_list = []
+excluded_entities = ['DATE', 'PERSON', 'CARDINAL', 'MONEY', 'ORDINAL', 'PERCENT', 'TIME', 'GPE', 'NORP', 'FAC', 'PRODUCT']
+# Cannot keep 'ORG' in it, most programming languages fall out if this entity type is excluded
+for ent in doc.ents: 
+    if len(ent.text.strip()) > 0 and ent.label_ not in excluded_entities:
+        entities_list.append(ent.text.strip()) 
+		
+keys = []
+vectors = []
+entities_list = set(entities_list)
+for i in entities_list:
+    if i in model.wv.vocab:
+        keys.append(i)
+        vectors.append(model.wv[i]) </i>
+		
+# Here is the main problem that we need to solve:
+# Not all entities present in the documents are being captured in the Word2Vec model.
+
+len(set(entities_list))
+OUTPUT: 600
+
+len(set(keys))
+OUTPUT: 70
+
+# Finding the closest entities
+
+<i style="color: darkgreen">from sklearn.neighbors import NearestNeighbors
+
+nbrs = NearestNeighbors(n_neighbors=15, algorithm='ball_tree').fit(vectors)
+
+distances, indices = nbrs.kneighbors(vectors)
+
+for i in indices:
+    matched_keys = [keys[k] for k in i]
+    print(keys[i[0]] + ": " + str(matched_keys[1:]))</i>
+	
+OUTPUT: Not all records are shown here!
+
+Android: ['Google', 'WYSIWYG', 'DOM', 'HTTP', 'RFC', 'XSS', 'Static', 'MIME', 'CERN', 'CPython', 'DOCTYPE', 'IETF', 'IBM', 'String']
+SEQUEL: ['ANSI', 'Software', '||', 'ActionScript', 'Exception', 'PEP', 'JS', 'IDE', 'GUI', 'CRAN', 'CLI', 'Unicode', 'JVM', 'Array']
+Java: ['C++', 'XHTML', 'SQL', 'ISO/IEC', 'JavaScript', 'Python', '#', 'one', 'W3C', 'CSS', 'HTML5', 'two', 'HTML', 'Netscape']
+two: ['HTML5', 'W3C', 'Netscape', 'one', 'Microsoft', 'ECMAScript', 'Sun', 'XML', 'XHTML', 'Java', 'SGML', '%', 'Explorer', 'ISO/IEC']
+MIME: ['CPython', 'IBM', 'Semantic', 'Functions', 'Mono', 'HTTP', 'Program', 'DOCTYPE', 'WYSIWYG', 'DOM', 'Android', 'Google', 'Array', 'JVM']
+IDE: ['PEP', '||', 'Software', 'ANSI', 'SEQUEL', 'Exception', 'ActionScript', 'JS', 'GUI', 'CRAN', 'CLI', 'Unicode', 'JVM', 'Array']
+String: ['LCMCalculator', 'IETF', 'CERN', 'C.', 'Static', 'XSS', 'RFC', 'ISO', 'Google', 'API', 'Android', 'DOM', 'WYSIWYG', 'HTTP']
+Static: ['CERN', 'XSS', 'IETF', 'RFC', 'String', 'Google', 'C.', 'LCMCalculator', 'Android', 'WYSIWYG', 'DOM', 'HTTP', 'ISO', 'API']
+DTD: ['Document', 'See', 'WHATWG', 'Transitional', 'e.g', 'Frameset', 'Explorer', '%', 'SGML', 'Style', 'Markup', 'Oracle', 'API', 'ISO']
+SQL: ['C++', 'ISO/IEC', 'Python', 'Java', 'XHTML', 'JavaScript', '#', 'CSS', 'one', 'W3C', 'HTML5', 'HTML', 'two', 'Netscape']
+JS: ['ActionScript', 'GUI', 'CRAN', 'Exception', 'SEQUEL', 'ANSI', 'Software', 'CLI', '||', 'Unicode', 'JVM', 'PEP', 'IDE', 'Array']
+GUI: ['CRAN', 'CLI', 'JS', 'Unicode', 'ActionScript', 'JVM', 'Array', 'Exception', 'SEQUEL', 'ANSI', 'Software', '||', 'Program', 'PEP']
+Frameset: ['e.g', 'Style', 'Transitional', 'Markup', 'Oracle', 'Document', 'API', 'ISO', 'DTD', 'C.', 'LCMCalculator', 'See', 'String', 'IETF']
+Software: ['ANSI', 'PEP', '||', 'SEQUEL', 'IDE', 'ActionScript', 'Exception', 'JS', 'GUI', 'CRAN', 'CLI', 'Unicode', 'JVM', 'Array']
+SGML: ['Explorer', '%', 'WHATWG', 'See', 'DTD', 'XML', 'Sun', 'Document', 'Transitional', 'e.g', 'Frameset', 'Style', 'Markup', 'ECMAScript']
+RFC: ['XSS', 'Google', 'Static', 'Android', 'CERN', 'DOM', 'WYSIWYG', 'IETF', 'String', 'HTTP', 'LCMCalculator', 'C.', 'DOCTYPE', 'MIME']
+Python: ['JavaScript', 'C++', 'SQL', 'ISO/IEC', 'Java', 'XHTML', '#', 'CSS', 'one', 'HTML', 'W3C', 'HTML5', 'two', 'Netscape']
+DOM: ['WYSIWYG', 'Android', 'HTTP', 'Google', 'RFC', 'XSS', 'DOCTYPE', 'MIME', 'CPython', 'Static', 'IBM', 'CERN', 'Semantic', 'IETF']
+DOCTYPE: ['HTTP', 'IBM', 'CPython', 'MIME', 'DOM', 'Semantic', 'Functions', 'WYSIWYG', 'Mono', 'Android', 'Program', 'Google', 'RFC', 'XSS']
+IBM: ['Functions', 'CPython', 'Semantic', 'Mono', 'MIME', 'Program', 'DOCTYPE', 'HTTP', 'Array', 'WYSIWYG', 'DOM', 'JVM', 'Android', 'Unicode']
+WYSIWYG: ['DOM', 'HTTP', 'Android', 'Google', 'RFC', 'XSS', 'MIME', 'CPython', 'DOCTYPE', 'Static', 'IBM', 'CERN', 'Semantic', 'Functions']
+XML: ['Sun', 'ECMAScript', 'Microsoft', 'SGML', 'Netscape', '%', 'Explorer', 'WHATWG', 'See', 'DTD', 'two', 'Document', 'Transitional', 'e.g']
+Array: ['Unicode', 'JVM', 'CLI', 'Program', 'CRAN', 'Mono', 'GUI', 'Functions', 'Semantic', 'IBM', 'CPython', 'JS', 'MIME', 'ActionScript']
+CLI: ['Unicode', 'CRAN', 'JVM', 'GUI', 'Array', 'JS', 'ActionScript', 'Program', 'Exception', 'Mono', 'SEQUEL', 'Functions', 'Semantic', 'ANSI']
+ECMAScript: ['Microsoft', 'Netscape', 'Sun', 'XML', 'two', 'SGML', '%', 'Explorer', 'HTML5', 'WHATWG', 'See', 'W3C', 'DTD', 'one']
+PEP: ['IDE', 'Software', '||', 'ANSI', 'SEQUEL', 'Exception', 'ActionScript', 'JS', 'GUI', 'CRAN', 'CLI', 'Unicode', 'JVM', 'Array']
+Markup: ['Style', 'Oracle', 'Frameset', 'e.g', 'Transitional', 'API', 'ISO', 'Document', 'LCMCalculator', 'C.', 'String', 'DTD', 'IETF', 'CERN']
+LCMCalculator: ['String', 'C.', 'IETF', 'CERN', 'Static', 'XSS', 'ISO', 'RFC', 'API', 'Google', 'Android', 'DOM', 'WYSIWYG', 'Oracle']
+Functions: ['IBM', 'Mono', 'Semantic', 'CPython', 'Program', 'MIME', 'Array', 'DOCTYPE', 'HTTP', 'JVM', 'Unicode', 'WYSIWYG', 'DOM', 'CLI']
+Style: ['Markup', 'Frameset', 'e.g', 'Oracle', 'Transitional', 'Document', 'API', 'ISO', 'DTD', 'LCMCalculator', 'C.', 'String', 'IETF', 'CERN']
+e.g: ['Transitional', 'Frameset', 'Style', 'Document', 'Markup', 'Oracle', 'DTD', 'API', 'ISO', 'See', 'WHATWG', 'C.', 'LCMCalculator', 'String']
+one: ['W3C', 'HTML5', 'two', 'XHTML', 'Java', 'ISO/IEC', 'C++', 'SQL', 'Netscape', 'Python', 'JavaScript', 'Microsoft', '#', 'ECMAScript']
+API: ['ISO', 'Oracle', 'C.', 'LCMCalculator', 'String', 'Markup', 'IETF', 'CERN', 'Style', 'Static', 'XSS', 'Frameset', 'RFC', 'e.g']
+HTML5: ['W3C', 'one', 'two', 'Netscape', 'Microsoft', 'ECMAScript', 'XHTML', 'Java', 'ISO/IEC', 'C++', 'SQL', 'Sun', 'XML', 'Python']
+Mono: ['Functions', 'Program', 'Semantic', 'IBM', 'CPython', 'MIME', 'Array', 'JVM', 'Unicode', 'DOCTYPE', 'CLI', 'HTTP', 'CRAN', 'GUI']
+ISO: ['API', 'C.', 'Oracle', 'LCMCalculator', 'String', 'IETF', 'CERN', 'Markup', 'Static', 'XSS', 'Style', 'RFC', 'Frameset', 'Google']
+Document: ['Transitional', 'DTD', 'e.g', 'Frameset', 'Style', 'Markup', 'See', 'WHATWG', 'Oracle', 'Explorer', 'API', '%', 'SGML', 'ISO']
+ActionScript: ['JS', 'SEQUEL', 'Exception', 'GUI', 'Software', 'ANSI', 'CRAN', '||', 'PEP', 'CLI', 'Unicode', 'IDE', 'JVM', 'Array']
+WHATWG: ['Explorer', 'See', 'SGML', '%', 'DTD', 'Document', 'Transitional', 'e.g', 'Frameset', 'Style', 'Markup', 'XML', 'Sun', 'Oracle']
+CSS: ['HTML', 'Python', 'JavaScript', 'SQL', '#', 'C++', 'ISO/IEC', 'Java', 'XHTML', 'one', 'W3C', 'HTML5', 'two', 'Netscape']
+IETF: ['CERN', 'String', 'Static', 'C.', 'XSS', 'LCMCalculator', 'RFC', 'Google', 'Android', 'ISO', 'DOM', 'WYSIWYG', 'API', 'HTTP']
+See: ['WHATWG', 'DTD', 'Explorer', '%', 'SGML', 'Document', 'Transitional', 'e.g', 'Frameset', 'Style', 'Markup', 'Oracle', 'XML', 'Sun']
+Semantic: ['Functions', 'IBM', 'Mono', 'CPython', 'MIME', 'Program', 'Array', 'DOCTYPE', 'HTTP', 'JVM', 'DOM', 'Unicode', 'WYSIWYG', 'CLI']
+XSS: ['Static', 'CERN', 'RFC', 'IETF', 'Google', 'String', 'Android', 'C.', 'LCMCalculator', 'DOM', 'WYSIWYG', 'HTTP', 'ISO', 'DOCTYPE']
+JVM: ['Unicode', 'CLI', 'Array', 'CRAN', 'GUI', 'Program', 'Mono', 'JS', 'ActionScript', 'Functions', 'Semantic', 'IBM', 'Exception', 'CPython']
+ANSI: ['Software', 'SEQUEL', 'PEP', '||', 'IDE', 'ActionScript', 'Exception', 'JS', 'GUI', 'CRAN', 'CLI', 'Unicode', 'JVM', 'Array']
+Oracle: ['Markup', 'Style', 'API', 'ISO', 'Frameset', 'e.g', 'Transitional', 'C.', 'LCMCalculator', 'String', 'Document', 'IETF', 'CERN', 'Static']
+W3C: ['HTML5', 'one', 'two', 'XHTML', 'Netscape', 'Java', 'ISO/IEC', 'Microsoft', 'C++', 'SQL', 'ECMAScript', 'Python', 'JavaScript', '#']
+JavaScript: ['Python', 'C++', 'SQL', 'Java', 'ISO/IEC', 'XHTML', '#', 'CSS', 'one', 'W3C', 'HTML', 'HTML5', 'two', 'Netscape']
+Google: ['Android', 'WYSIWYG', 'DOM', 'RFC', 'HTTP', 'XSS', 'Static', 'CERN', 'IETF', 'String', 'DOCTYPE', 'MIME', 'CPython', 'C.']
+HTML: ['CSS', 'Python', 'JavaScript', '#', 'SQL', 'C++', 'ISO/IEC', 'Java', 'XHTML', 'one', 'W3C', 'HTML5', 'two', 'Netscape']
+XHTML: ['Java', 'ISO/IEC', 'C++', 'SQL', 'Python', 'JavaScript', '#', 'one', 'W3C', 'HTML5', 'CSS', 'two', 'HTML', 'Netscape']
+Unicode: ['CLI', 'JVM', 'Array', 'CRAN', 'GUI', 'Program', 'JS', 'Mono', 'ActionScript', 'Exception', 'Functions', 'Semantic', 'IBM', 'SEQUEL']
+Program: ['Mono', 'Functions', 'Semantic', 'IBM', 'Array', 'CPython', 'MIME', 'JVM', 'Unicode', 'CLI', 'DOCTYPE', 'CRAN', 'GUI', 'HTTP']
+Sun: ['XML', 'ECMAScript', 'Microsoft', 'Netscape', 'SGML', '%', 'Explorer', 'WHATWG', 'See', 'DTD', 'two', 'Document', 'Transitional', 'e.g']
+C.: ['String', 'IETF', 'LCMCalculator', 'CERN', 'Static', 'XSS', 'ISO', 'API', 'RFC', 'Google', 'Android', 'WYSIWYG', 'DOM', 'Oracle']
+||: ['Software', 'PEP', 'ANSI', 'SEQUEL', 'IDE', 'Exception', 'ActionScript', 'JS', 'GUI', 'CRAN', 'CLI', 'Unicode', 'JVM', 'Array']
+HTTP: ['WYSIWYG', 'DOM', 'Android', 'Google', 'MIME', 'CPython', 'DOCTYPE', 'IBM', 'RFC', 'Semantic', 'Functions', 'XSS', 'Mono', 'Static']
+CERN: ['IETF', 'Static', 'String', 'XSS', 'C.', 'LCMCalculator', 'RFC', 'Google', 'Android', 'DOM', 'WYSIWYG', 'ISO', 'HTTP', 'API']
+#: ['ISO/IEC', 'SQL', 'C++', 'Python', 'XHTML', 'Java', 'JavaScript', 'CSS', 'one', 'W3C', 'HTML', 'HTML5', 'two', 'Netscape']
+
+Transitional: ['e.g', 'Frameset', 'Document', 'Style', 'Markup', 'DTD', 'Oracle', 'See', 'API', 'ISO', 'WHATWG', 'C.', 'LCMCalculator', 'Explorer']
+ISO/IEC: ['SQL', 'C++', 'XHTML', 'Java', 'Python', 'JavaScript', '#', 'CSS', 'one', 'W3C', 'HTML5', 'HTML', 'two', 'Netscape']
+Microsoft: ['ECMAScript', 'Netscape', 'Sun', 'XML', 'two', 'SGML', '%', 'Explorer', 'HTML5', 'WHATWG', 'W3C', 'See', 'one', 'DTD']
+Exception: ['SEQUEL', 'ActionScript', 'JS', '||', 'ANSI', 'Software', 'GUI', 'PEP', 'CRAN', 'IDE', 'CLI', 'Unicode', 'JVM', 'Array']
+%: ['SGML', 'Explorer', 'WHATWG', 'See', 'DTD', 'Document', 'XML', 'Sun', 'Transitional', 'e.g', 'Frameset', 'Style', 'Markup', 'Oracle']
+C++: ['SQL', 'ISO/IEC', 'Java', 'Python', 'XHTML', 'JavaScript', '#', 'CSS', 'one', 'W3C', 'HTML5', 'HTML', 'two', 'Netscape']
+CRAN: ['CLI', 'GUI', 'Unicode', 'JS', 'JVM', 'ActionScript', 'Array', 'Exception', 'SEQUEL', 'ANSI', 'Software', 'Program', '||', 'Mono']
+CPython: ['MIME', 'IBM', 'Semantic', 'Functions', 'Mono', 'Program', 'HTTP', 'DOCTYPE', 'WYSIWYG', 'DOM', 'Android', 'Array', 'Google', 'JVM']
+Netscape: ['Microsoft', 'ECMAScript', 'Sun', 'two', 'XML', 'HTML5', 'W3C', 'SGML', '%', 'Explorer', 'one', 'WHATWG', 'See', 'DTD']
+Explorer: ['SGML', 'WHATWG', '%', 'See', 'DTD', 'Document', 'XML', 'Sun', 'Transitional', 'e.g', 'Frameset', 'Style', 'Markup', 'Oracle']
+
+References:
+1. https://www.geeksforgeeks.org/python-named-entity-recognition-ner-using-spacy/
+2. https://spacy.io/usage/training#ner
+3. https://towardsdatascience.com/custom-named-entity-recognition-using-spacy-7140ebbb3718
+4. https://towardsdatascience.com/named-entity-recognition-with-nltk-and-spacy-8c4a7d88e7da
+
+</pre>

@@ -1,0 +1,327 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        i.ibb {
+            display: block;
+            background-color: black;
+            color: white;
+        }
+
+        i.ibg {
+            display: block;
+            background-color: rgb(50, 50, 50);
+            color: white;
+        }
+
+
+        ul.no-bullets {
+            list-style-type: none;
+            /* Remove bullets */
+            padding: 0;
+            /* Remove padding */
+            margin: 0;
+            /* Remove margins */
+        }
+
+        li.customLi {
+            float: left;
+        }
+
+        li.customLi>span.customSpan {
+            display: block;
+            padding: 8px;
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<!-- Latent Dirichlet Allocation (Algorithm for Topic Modeling of Text Data) -->
+<pre>Here is the problem:
+We have a collection or corpus of documents and you can think of them as news articles if you would like.
+Each news article has a topic. Some of them are science, some are politics or sports.
+Some of them are allowed to have two topics. A article may have multiple topics: science and politics, or sports and science.
+
+But the problem is we don't know the topics to begin with. We only know the text of the articles.
+We would like to have an algorithm that will help us sort these documents into topics.
+
+So here is a small example.
+Let's say our collection of documents has these four documents and each document has only five words. Vocabulary of words is: ball, referendum, planet and galaxy.
+
+Doc 1: ball ball ball planet galaxy
+Doc 2: referendum planet planet referendum referendum
+Doc 3: planet planet galaxy planet ball 
+Doc 4: planet galaxy referendum planet ball 
+
+And, we have three possibilities for topics: Science, Politics and Sports.
+
+Let me show you what I did.
+
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6AbI84l3_1n7HiYr1YUHKAby-tTBk4yvWbUf1eWr5vFMUL-llFlPMZ9cQqLSSdiUNw5lEscCfkLtoL7j7OYezM4XH9t_uaUe7cNkPhtS2YLzbjT09_BKpHC6dgC3SCbG4C0hay-5WnwrhEW8WSBtfbnZ-qYm7NPgMjWmJ9pRTf7hNYkAiR9ya-4ykqw/s1689/1.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="858" data-original-width="1689"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6AbI84l3_1n7HiYr1YUHKAby-tTBk4yvWbUf1eWr5vFMUL-llFlPMZ9cQqLSSdiUNw5lEscCfkLtoL7j7OYezM4XH9t_uaUe7cNkPhtS2YLzbjT09_BKpHC6dgC3SCbG4C0hay-5WnwrhEW8WSBtfbnZ-qYm7NPgMjWmJ9pRTf7hNYkAiR9ya-4ykqw/s600/1.png" /></a>
+</div>
+
+But I want you to ask youselves this:
+We are able to understand words and topics and hence able to do it.
+We know what words mean, but the computer doesn't.
+Computer only knows if two words are different or two words appear in a document or not.
+
+LATENT DIRICHLET ALLOCATION
+
+The Problem: We have a collection of documents or news articles and we want to sort them into topics. This is where LDA comes into picture.
+
+What LDA does is: it takes a geometric approach. If you have 3 topics, then it builds a triangle. Corners represent the topics. Then it puts the documents inside the triangle. The documents are close to the corner if they belong to the topic representing that corner.
+
+Question is: How do we put the documents in the triangle in a perfect way.
+
+I like to think of LDA as a machine that generates articles. This machine has some settings to play with and it also has a button.
+
+When we push the button, the machine starts and it's two gears start spinning and generate a document.
+
+Most likely, the document you would produce would be gibberish. It is just a bunch of words put together.
+With some very, very, very low probability, you could get a Shakespeare novel or declaration of indepedence.
+
+Let's say we have two machines and they both output two documents. We compare those two documents with the original document. The document that matches better with the original document, the one that matches better was from a machine with better settings.
+
+We do this activity to figure out the best setting that is most likely to give us our document.
+
+Those settings will give us the topics.
+
+<H2>BLUEPRINT OF THE LDA</H2>
+
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBFlLsKf3WiAGJTszLgvGEhz5CEyOd9BLOD72vWwO2n4msRy4_F72Qj8evk2sLOISaadulu9tsbo6a9LoeQ_CC8nSN1aRqLse9npdVPFOuQczvAduS4iQtFVNbDnIi5VLLxuIbAldg2ajSmaJVwjEK0sujMFsBf5xFUS4SbVMyd348AL1T9XJB2TiIQQ/s1069/2.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="693" data-original-width="1069"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBFlLsKf3WiAGJTszLgvGEhz5CEyOd9BLOD72vWwO2n4msRy4_F72Qj8evk2sLOISaadulu9tsbo6a9LoeQ_CC8nSN1aRqLse9npdVPFOuQczvAduS4iQtFVNbDnIi5VLLxuIbAldg2ajSmaJVwjEK0sujMFsBf5xFUS4SbVMyd348AL1T9XJB2TiIQQ/s600/2.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWxV2rTZsSx6wPmwh5gpaOKO1EmN3bUqyWI6iOLXjCd9p-fdVNoWr4OdGtXhNxcWiKG39ZXevpN7crZHJlBX_lrKGsiQnbvMabyZ-1IpqeYA27InCJ_li45g6wvNv8t7eWjmrgiEGRdgrc7XT4-NGmYaMcXdUkqr3rvghAPCVX9-TI6rk9MWu87HNoXg/s1185/3.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="707" data-original-width="1185"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWxV2rTZsSx6wPmwh5gpaOKO1EmN3bUqyWI6iOLXjCd9p-fdVNoWr4OdGtXhNxcWiKG39ZXevpN7crZHJlBX_lrKGsiQnbvMabyZ-1IpqeYA27InCJ_li45g6wvNv8t7eWjmrgiEGRdgrc7XT4-NGmYaMcXdUkqr3rvghAPCVX9-TI6rk9MWu87HNoXg/s600/3.png" /></a>
+</div>
+
+<h2>LET US LOOK AT THE EQUATION</h2>
+
+On the left we have the probability of getting back the original article:
+
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGtD59v2EMknSFD_t8lBcAfZ2FdF5OuuvMcv_yIBQvWnlfDT_Q686-7iVC1B5JRRQH4LoEngPx5bnMI8eZcLtilodvjlO1WZitVurUaC68plbbDHFYWT5dtyxaxNNKmYBi_lidsUJqsRdQZbjAgLPd68gZvovWCT5RIEM6xSCJybsUB01gnMvJrm3ZtA/s1511/4.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="543" data-original-width="1511"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjGtD59v2EMknSFD_t8lBcAfZ2FdF5OuuvMcv_yIBQvWnlfDT_Q686-7iVC1B5JRRQH4LoEngPx5bnMI8eZcLtilodvjlO1WZitVurUaC68plbbDHFYWT5dtyxaxNNKmYBi_lidsUJqsRdQZbjAgLPd68gZvovWCT5RIEM6xSCJybsUB01gnMvJrm3ZtA/s600/4.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKPJq3MUVO5e9QCib02GzEWQBDlQMtR_AGYimAMXMW5ImFlnKv6c9jIZxxI1UDewoZmX2n1lPOHxVs3Y2diGLjOawkbS0kuc9L9v0O3OE4RLkBDR-1ExVtO5YFszTyCSj7nxKYAyZ2lhx4DkPFD_doYZE8QCSUF1jrNCGXzmtHwNndosMZbWlU9XOTQw/s1529/5.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="513" data-original-width="1529"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKPJq3MUVO5e9QCib02GzEWQBDlQMtR_AGYimAMXMW5ImFlnKv6c9jIZxxI1UDewoZmX2n1lPOHxVs3Y2diGLjOawkbS0kuc9L9v0O3OE4RLkBDR-1ExVtO5YFszTyCSj7nxKYAyZ2lhx4DkPFD_doYZE8QCSUF1jrNCGXzmtHwNndosMZbWlU9XOTQw/s600/5.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgweTKVCei2gYe9QqGZfxUV6ALph44uG6UVIynjTOY3TQkJ4YyQCHvU3FPnG3ax9qGJx4W1iJfiFPfgyrW9KL94eRDXJaAizGNbIMpjSkS_Da6Tm46zbmorQoY2bdYCgGTTGc5yYKUi3jlSmf8oJLtHASmSRStRPW8ctgK94I3lH0wqUs7QpL-zqFl-nQ/s1509/6.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="807" data-original-width="1509"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgweTKVCei2gYe9QqGZfxUV6ALph44uG6UVIynjTOY3TQkJ4YyQCHvU3FPnG3ax9qGJx4W1iJfiFPfgyrW9KL94eRDXJaAizGNbIMpjSkS_Da6Tm46zbmorQoY2bdYCgGTTGc5yYKUi3jlSmf8oJLtHASmSRStRPW8ctgK94I3lH0wqUs7QpL-zqFl-nQ/s600/6.png" /></a>
+</div>
+
+<H2>DIRICHLET DISTRIBUTIONS </H2>
+
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCISPlP81YEBatyAlrFQBj4wGWCHkH6fyR-KUoV2bpT37It0QujxDzAUGtfPduSNK8v3UAQy-Wk_qXhb-ZU2gZEv8MxwI4n5tgsdVR5FE5q6nquumTypj4rpUZfxBJqsAYbqCHEMY0_fyCyf9lPMNDd99zhCpbFkSXKqWS5D7hrx8_KqhThegxRmav6g/s678/7.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600"
+            data-original-height="678" data-original-width="560"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiCISPlP81YEBatyAlrFQBj4wGWCHkH6fyR-KUoV2bpT37It0QujxDzAUGtfPduSNK8v3UAQy-Wk_qXhb-ZU2gZEv8MxwI4n5tgsdVR5FE5q6nquumTypj4rpUZfxBJqsAYbqCHEMY0_fyCyf9lPMNDd99zhCpbFkSXKqWS5D7hrx8_KqhThegxRmav6g/s600/7.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGFEzOzbqZACaLnyFlwfhtoNk1FuHTvluxlajgD9CWPvSZ03ZvAN99I5YspFCEhLyvKlRY1WMsE3Z2XRu1WOtI7ARDN5rSAbTKHAw6DscFzCG6n5dOzj0zby2j0uYLzZqeWK8ST03ERZzN9cqEqXzYsMzxvhZz7CME3fNPzjPeEs5G_xaEYDlt-aycuA/s981/8.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="743" data-original-width="981"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGFEzOzbqZACaLnyFlwfhtoNk1FuHTvluxlajgD9CWPvSZ03ZvAN99I5YspFCEhLyvKlRY1WMsE3Z2XRu1WOtI7ARDN5rSAbTKHAw6DscFzCG6n5dOzj0zby2j0uYLzZqeWK8ST03ERZzN9cqEqXzYsMzxvhZz7CME3fNPzjPeEs5G_xaEYDlt-aycuA/s600/8.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivl-cCLt_asn8AJvYpNAAnSm_qY1ufoawzTBZ78ARR8sFOmp-SGCPN8kgjNeNQaVZzHXANXk4zen39-wwG9ECrlDrPde-JJviFUGrBKawlo9RJB2wNX1AjUjZgrVo2K72p9zKjoWB6as6Daw22vc3JXQYoGNebQOm_d05aGq3FyJAKkP56xtXbKvFTXg/s970/9.1.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="704" data-original-width="970"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivl-cCLt_asn8AJvYpNAAnSm_qY1ufoawzTBZ78ARR8sFOmp-SGCPN8kgjNeNQaVZzHXANXk4zen39-wwG9ECrlDrPde-JJviFUGrBKawlo9RJB2wNX1AjUjZgrVo2K72p9zKjoWB6as6Daw22vc3JXQYoGNebQOm_d05aGq3FyJAKkP56xtXbKvFTXg/s600/9.1.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgnYr3QVTPDlN7wpOnVsnZKupOBFsvjXDDy0nhD8zzGBUqRbXPEfEOi8_JQ5UpkNfN7uhcJyaC0qq4LRpLAKz2F7vG6c8tCd2dQT-Hfb6gJp1uVr8HB7MOYoqLXIAmSsB46p2BJUrCDND-grZ51pYMA_Co28v5CMEs7F7YgBuHYJxNjmV_r8JYvK8jomQ/s1525/9.2.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="743" data-original-width="1525"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgnYr3QVTPDlN7wpOnVsnZKupOBFsvjXDDy0nhD8zzGBUqRbXPEfEOi8_JQ5UpkNfN7uhcJyaC0qq4LRpLAKz2F7vG6c8tCd2dQT-Hfb6gJp1uVr8HB7MOYoqLXIAmSsB46p2BJUrCDND-grZ51pYMA_Co28v5CMEs7F7YgBuHYJxNjmV_r8JYvK8jomQ/s600/9.2.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizWCOrxbdMZgHp7k18BEtx2__86ptvU8cncRSRVijnmJJFwsaurJ2AR22_NNS38ydXkuEIwaPMJjvLyrHfgVBn02HKWMYFPkX-5aRntYVW0IJgccyvoS4ZVezQLW8D007WVpEp9FAeepR4LsoomgJ8rnNGuEEb8_Iq3deIdTA0JMwdu2__-6eFT0A1hg/s1365/10.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="721" data-original-width="1365"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizWCOrxbdMZgHp7k18BEtx2__86ptvU8cncRSRVijnmJJFwsaurJ2AR22_NNS38ydXkuEIwaPMJjvLyrHfgVBn02HKWMYFPkX-5aRntYVW0IJgccyvoS4ZVezQLW8D007WVpEp9FAeepR4LsoomgJ8rnNGuEEb8_Iq3deIdTA0JMwdu2__-6eFT0A1hg/s600/10.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhwDZkec7j0NVuVR6eAxI66EIHQ0YptyPco0x757HiRCD7eimfCu1FePxqUEoyODA_K0FmVE_Tc6Qh-43sKmW7wGxlB1LuPcsSd3jqzszc91iyX3tEA1KkJD7nJObPp9vVto3eiuDEKpf4pXmk1L0ZdfrHNkwSrlbFfZj8G29l1iC2Wn_iEdc8R4BQSpA/s1523/11.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="649" data-original-width="1523"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhwDZkec7j0NVuVR6eAxI66EIHQ0YptyPco0x757HiRCD7eimfCu1FePxqUEoyODA_K0FmVE_Tc6Qh-43sKmW7wGxlB1LuPcsSd3jqzszc91iyX3tEA1KkJD7nJObPp9vVto3eiuDEKpf4pXmk1L0ZdfrHNkwSrlbFfZj8G29l1iC2Wn_iEdc8R4BQSpA/s600/11.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBhycmMFmVuCs1zz0-UMK_cnBvd2gfxzU7Nj9r9eJejyBJgdNp-5XhN5_kBlle-c40d6ZK2QIQFf14xdg3Ny_ugktNAk3xvwUoik2g6fbZreh13dvQLkOeMAV8maA_OynAwcPoo1ImnjI7-v8GU_WZUNfcPhLMuj1IEshDhszWps8CG4YvUThzDxcPCQ/s1201/12.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="777" data-original-width="1201"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBhycmMFmVuCs1zz0-UMK_cnBvd2gfxzU7Nj9r9eJejyBJgdNp-5XhN5_kBlle-c40d6ZK2QIQFf14xdg3Ny_ugktNAk3xvwUoik2g6fbZreh13dvQLkOeMAV8maA_OynAwcPoo1ImnjI7-v8GU_WZUNfcPhLMuj1IEshDhszWps8CG4YvUThzDxcPCQ/s600/12.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgU_XKeFlujmOock81ReniKbca-fBIaZSuqhI1pJnj5q9n0PJJxH-TmpupRCQ5c6XBjlzLnp3M0ezlpcsAnhODrROpX5GWxVKO7IivSPFSzZUKVsj2idbuzOYxNK-0Jn53lb-7Vvx7dTzojSktA-_eyf0SrQqTSmKXvdEii-XDVCmO0hlV644swYg6Vjw/s1011/13.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="731" data-original-width="1011"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgU_XKeFlujmOock81ReniKbca-fBIaZSuqhI1pJnj5q9n0PJJxH-TmpupRCQ5c6XBjlzLnp3M0ezlpcsAnhODrROpX5GWxVKO7IivSPFSzZUKVsj2idbuzOYxNK-0Jn53lb-7Vvx7dTzojSktA-_eyf0SrQqTSmKXvdEii-XDVCmO0hlV644swYg6Vjw/s600/13.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-To6mafBECzuwiclt4k-LTRrEPBCBRV9U_bVdXKz0HUkR1pFaVdcbf842t8Rdnt1UZ7i9Iu_NttyEn5H6LOLL7_r4WChblR3sZqy5FckIq3kc1hoCTRaYML8fOBbCmoULTioaC8dzXZ9CsKVLtzWy8WQzp5Wjmh_lhQBInJjaR_peFcGzH4mMQhWN_g/s1453/14.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="651" data-original-width="1453"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-To6mafBECzuwiclt4k-LTRrEPBCBRV9U_bVdXKz0HUkR1pFaVdcbf842t8Rdnt1UZ7i9Iu_NttyEn5H6LOLL7_r4WChblR3sZqy5FckIq3kc1hoCTRaYML8fOBbCmoULTioaC8dzXZ9CsKVLtzWy8WQzp5Wjmh_lhQBInJjaR_peFcGzH4mMQhWN_g/s600/14.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMdCbKBUbshQ03fBvUghr9CvWOXsEUbfWuqytptiyXjfA8wt9amAMFCjP2iLxRVwtL9O1fKMIoFpKKi4ocbEzuiZoMw0AGU0EL9xnBxr5R8BfFoP-VbAbDxdTMaJ4Lo8WeOqVwfqfiDW52WqcFnzbdEAe970TrawMeIghzwyoC7l5hXPCgnwpErsQvuw/s1078/15.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="684" data-original-width="1078"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjMdCbKBUbshQ03fBvUghr9CvWOXsEUbfWuqytptiyXjfA8wt9amAMFCjP2iLxRVwtL9O1fKMIoFpKKi4ocbEzuiZoMw0AGU0EL9xnBxr5R8BfFoP-VbAbDxdTMaJ4Lo8WeOqVwfqfiDW52WqcFnzbdEAe970TrawMeIghzwyoC7l5hXPCgnwpErsQvuw/s600/15.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFD57NWUzz9kfFTgxACIcH4RusnWyR9WoGAdTE-mnaF7byPMYdSF98xCA60awcdHhiWIPHy_L1vR0dOWmqtKr8VkV5QHUc-v-S0pg4jFaFlEcSOTvSnTGnOuKSa2oIq3Jw1IO1q67qKImR3NWELeiF91fRRypekYw2gnM_1N4kQvwusAJNA6KBA8E_Gw/s1121/16.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="717" data-original-width="1121"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFD57NWUzz9kfFTgxACIcH4RusnWyR9WoGAdTE-mnaF7byPMYdSF98xCA60awcdHhiWIPHy_L1vR0dOWmqtKr8VkV5QHUc-v-S0pg4jFaFlEcSOTvSnTGnOuKSa2oIq3Jw1IO1q67qKImR3NWELeiF91fRRypekYw2gnM_1N4kQvwusAJNA6KBA8E_Gw/s600/16.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivs2lisOVFlSqY8ATc4A5RSaAh-Xv9-6SIo8ANGD30rBBndTp8k0WChuhSSySIxHVZVEhCL1V5l0IL1jQLqQRmDytmWKOk_rFPI5JHAIJcRrKARuswwPnt4knj_y4ujsOL9c4B6Wr0VREeK_6H9ngB_H47vN1Jv5fMaYyMrNdUD5uI7f3lWb8j0GTaXw/s1535/17.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="717" data-original-width="1535"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEivs2lisOVFlSqY8ATc4A5RSaAh-Xv9-6SIo8ANGD30rBBndTp8k0WChuhSSySIxHVZVEhCL1V5l0IL1jQLqQRmDytmWKOk_rFPI5JHAIJcRrKARuswwPnt4knj_y4ujsOL9c4B6Wr0VREeK_6H9ngB_H47vN1Jv5fMaYyMrNdUD5uI7f3lWb8j0GTaXw/s600/17.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgILOIYO1D-jURSKW5drZ5XidpBAtAuwhHAQl0GllNPjliLFS-l6OdHg9oVADB0Qqy4m0ku88NHTXYCf3Q5594OYcwjVglTRSzM6GCJubkoRVcmoBBTB7mxDxOOocSkRj3BqNiSJaCFdD-kTgWoH1CizGqiZp4guM8ImecZUg2NVgPgcyf30HnC2jEOaQ/s1285/18.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="711" data-original-width="1285"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgILOIYO1D-jURSKW5drZ5XidpBAtAuwhHAQl0GllNPjliLFS-l6OdHg9oVADB0Qqy4m0ku88NHTXYCf3Q5594OYcwjVglTRSzM6GCJubkoRVcmoBBTB7mxDxOOocSkRj3BqNiSJaCFdD-kTgWoH1CizGqiZp4guM8ImecZUg2NVgPgcyf30HnC2jEOaQ/s600/18.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1A0E0oWhT4WGaAUPMabhYN8X1WemYutP-RauYcxVhvGA37oRSQnSAJCXnRP05f3E9PuWR0rP_mtBPqZ74HPzP9fPqN6-lj85_rU7w6OOR6T6N9zeYcvNbNlZT8QWR2exxaDRjsSzv8uKtuKFVmcH6SSkj2p-Hl6zJXp0euuO12OWT9LWLad9QZCuoYQ/s1061/19.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="677" data-original-width="1061"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1A0E0oWhT4WGaAUPMabhYN8X1WemYutP-RauYcxVhvGA37oRSQnSAJCXnRP05f3E9PuWR0rP_mtBPqZ74HPzP9fPqN6-lj85_rU7w6OOR6T6N9zeYcvNbNlZT8QWR2exxaDRjsSzv8uKtuKFVmcH6SSkj2p-Hl6zJXp0euuO12OWT9LWLad9QZCuoYQ/s600/19.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDrP6V4xvWZUadc00AwTEDilkMGMqG29Px9K7f8TZYKfGAJlANWBXjd7COlTmvF6V_7AIQEpohU9OC2YvmbYkaucu47j6h1hxZ7aw_O_Rcy1FCWknkh2QqV-8xx8vezRjT-L2O4usoX1dkyhcriorcerxVqGE4sbK5YV9Qlasa10t1WyT3Sf3Zz8Gh_A/s1543/20.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="539" data-original-width="1543"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgDrP6V4xvWZUadc00AwTEDilkMGMqG29Px9K7f8TZYKfGAJlANWBXjd7COlTmvF6V_7AIQEpohU9OC2YvmbYkaucu47j6h1hxZ7aw_O_Rcy1FCWknkh2QqV-8xx8vezRjT-L2O4usoX1dkyhcriorcerxVqGE4sbK5YV9Qlasa10t1WyT3Sf3Zz8Gh_A/s600/20.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjdUuOuzXeI97zITzfmescImoz3Q54_H9ScoFkr_RX5hOVzVCdRGYaVOanL6aIFKp1IoW72LAZsO4QRT6DCUSwfiaqLjleiteT89q2YJlfq-JARnSQWVEP4FYLg83oeOuQ6CZsDJubYHxDkGHtHFwqReLZPv0PvupOakLJHUD5b4cFAIs4cBuH8mR7Kw/s1581/21.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="863" data-original-width="1581"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjdUuOuzXeI97zITzfmescImoz3Q54_H9ScoFkr_RX5hOVzVCdRGYaVOanL6aIFKp1IoW72LAZsO4QRT6DCUSwfiaqLjleiteT89q2YJlfq-JARnSQWVEP4FYLg83oeOuQ6CZsDJubYHxDkGHtHFwqReLZPv0PvupOakLJHUD5b4cFAIs4cBuH8mR7Kw/s600/21.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9gURXHjQNwXKm3bq2nS8d8sA6iM42PZlJ2lNpmiZ_3ACNoyKIuLHdQjqMdXFaXdetNpEfxqArY7exz00iwL7HmvA9QhfasB-VNs6Tv8_IopEnUfBBmSm8p1W_3qem3FcYSTl2bAyWp6AZ_dVXztELn-OwwScvMDKshFGPxg3RzNzqYWvZnyRDoMBnCg/s1537/22.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="863" data-original-width="1537"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9gURXHjQNwXKm3bq2nS8d8sA6iM42PZlJ2lNpmiZ_3ACNoyKIuLHdQjqMdXFaXdetNpEfxqArY7exz00iwL7HmvA9QhfasB-VNs6Tv8_IopEnUfBBmSm8p1W_3qem3FcYSTl2bAyWp6AZ_dVXztELn-OwwScvMDKshFGPxg3RzNzqYWvZnyRDoMBnCg/s600/22.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4XHQDueiZxQMEtYSp7k-k96NAiL2jk806c8ntB8obK61d-O8ow7wh3fNLb9UE1GJZyurbhK3y02clijBEgj0UWZvMu3BnbLxYWQXVtK8rjpZFrGRJ9X4GwbIHEyXfa8Dq6YCKmytu2B1ZKP-SiiYipsW0uVFzlbEQu341PJ_Y5iqSXCigtZGcTfgKRQ/s1575/23.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="855" data-original-width="1575"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4XHQDueiZxQMEtYSp7k-k96NAiL2jk806c8ntB8obK61d-O8ow7wh3fNLb9UE1GJZyurbhK3y02clijBEgj0UWZvMu3BnbLxYWQXVtK8rjpZFrGRJ9X4GwbIHEyXfa8Dq6YCKmytu2B1ZKP-SiiYipsW0uVFzlbEQu341PJ_Y5iqSXCigtZGcTfgKRQ/s600/23.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi66NDz6zC5bU7mKcx0JXStQnHfIckuHvkviVmNTIx7BJnnm1uS-QQsH1_Q1wlcaq6n9djgvl0KMGZ1mYtb14XUwyEILM8GKriR6KSRbEQ0HlaaKQPaatP_XxMsLh9EVqOGXAn4jh3Fd7kb15IWqNZljyTYPimEaDX2DNNwz2X-xtXLCN3YKPuu0GIPCg/s1581/24.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="873" data-original-width="1581"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi66NDz6zC5bU7mKcx0JXStQnHfIckuHvkviVmNTIx7BJnnm1uS-QQsH1_Q1wlcaq6n9djgvl0KMGZ1mYtb14XUwyEILM8GKriR6KSRbEQ0HlaaKQPaatP_XxMsLh9EVqOGXAn4jh3Fd7kb15IWqNZljyTYPimEaDX2DNNwz2X-xtXLCN3YKPuu0GIPCg/s600/24.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxA0DU87DkMVzeZgL4ObzNEkVQTzJiiAKS_tfDUouEMC1RuEIe7nsnsBSrTUBtDIt7oUKHO50HqItQw-gHYUcozz7zEr5Vw59ARO-9b9Qn4riN2wIff8F0MhqO7q6V3Od6dnYNvpmBMzpn9ayY8Kf39-tNKXmF37QnI_ZioORXt3S39jDaqkeB8Wm_FQ/s1577/25.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="883" data-original-width="1577"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxA0DU87DkMVzeZgL4ObzNEkVQTzJiiAKS_tfDUouEMC1RuEIe7nsnsBSrTUBtDIt7oUKHO50HqItQw-gHYUcozz7zEr5Vw59ARO-9b9Qn4riN2wIff8F0MhqO7q6V3Od6dnYNvpmBMzpn9ayY8Kf39-tNKXmF37QnI_ZioORXt3S39jDaqkeB8Wm_FQ/s600/25.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg7ssaRcAYMHmYQjUIGSdKXYgz5hxEi26TGRS9OA4buCkciXEJ7AN7B0Cu5Fw5pT8Qkljdzbjg4LuIKn3hoD7AyO_xcuJDSgXRbul_nVCw_-bRyJg89veZ10x9XmDz5wjP3vcMzxoJ8-J3Ya0m0KSxP_b44odZsVZFgCyiF0deea1fkwRd4Orzj4PPt5Q/s1497/26.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="873" data-original-width="1497"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg7ssaRcAYMHmYQjUIGSdKXYgz5hxEi26TGRS9OA4buCkciXEJ7AN7B0Cu5Fw5pT8Qkljdzbjg4LuIKn3hoD7AyO_xcuJDSgXRbul_nVCw_-bRyJg89veZ10x9XmDz5wjP3vcMzxoJ8-J3Ya0m0KSxP_b44odZsVZFgCyiF0deea1fkwRd4Orzj4PPt5Q/s600/26.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhGWeA9Gj-mGJRhLT238OHs0xM8H-M-zsmPZEywo-MR1S4z-F1DEoQ1YsCBVRfYDU_nRx602baJ_sUYuQ9NUlmqaAHLEyb2U0qYTiGUOwmPXyxnj3i33mIeAG74uGHJCLXhkAe4QAloxa3I5sIWMrwOEg5B-J4loT7SyIy58U32wEhr19X8GV-Jg5SADw/s1496/27.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="858" data-original-width="1496"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhGWeA9Gj-mGJRhLT238OHs0xM8H-M-zsmPZEywo-MR1S4z-F1DEoQ1YsCBVRfYDU_nRx602baJ_sUYuQ9NUlmqaAHLEyb2U0qYTiGUOwmPXyxnj3i33mIeAG74uGHJCLXhkAe4QAloxa3I5sIWMrwOEg5B-J4loT7SyIy58U32wEhr19X8GV-Jg5SADw/s600/27.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBQi90oBmIwQzD5gB8C0PO2DjTH8GLqmVaZKcU9dUakt2yCSamhl_VmBzGYkqEmG49hL6op3F45Vtfsk0AOJBunXCaw-_fn044uKQOnr4mlG2aQiWtkvIj5noRi1NkHlk7tnYMM02bE5cfNQYTtNawNoj5vbQtp52N0jqShyvp3ffESEfAVr6qhLzZ6g/s1567/28.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="701" data-original-width="1567"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiBQi90oBmIwQzD5gB8C0PO2DjTH8GLqmVaZKcU9dUakt2yCSamhl_VmBzGYkqEmG49hL6op3F45Vtfsk0AOJBunXCaw-_fn044uKQOnr4mlG2aQiWtkvIj5noRi1NkHlk7tnYMM02bE5cfNQYTtNawNoj5vbQtp52N0jqShyvp3ffESEfAVr6qhLzZ6g/s600/28.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQ_XPbp_gwNHrqkP8bwi-4FcQr0-HJay9vHRUJRXy1-cme3ZKHwRD23Yor6f1TKGZIbqwe_ojTbsltgv4P5OZEPGSK40ssBAJ6gfgX1hgdnTEb9pDU1RhimEuOIZs8cpPhXhd-B5JU4wwaL2UGujRHy4ooPKZQ6Q8edUt88g_eN_8AS8bvwFVkHx8Ozw/s1573/29.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="725" data-original-width="1573"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQ_XPbp_gwNHrqkP8bwi-4FcQr0-HJay9vHRUJRXy1-cme3ZKHwRD23Yor6f1TKGZIbqwe_ojTbsltgv4P5OZEPGSK40ssBAJ6gfgX1hgdnTEb9pDU1RhimEuOIZs8cpPhXhd-B5JU4wwaL2UGujRHy4ooPKZQ6Q8edUt88g_eN_8AS8bvwFVkHx8Ozw/s600/29.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0dtOiNJg9BTk4DxD1zN8RW7r_5VheIglYXI2VDyIElCiUZuvTU-mhZ6J_0ppqp2Z42CYHX6kfAOwi9wfpxEdEiTIgwKPU08LzVr-H7aGPG2-bhs-_p8E1T1ikGVdd0nAmW_mvpeaJ1GvSIEbIyUwC7hLxwQqV4qchf6WRMpdun10jTwLDDrmQ51qWYw/s901/30.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="655" data-original-width="901"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0dtOiNJg9BTk4DxD1zN8RW7r_5VheIglYXI2VDyIElCiUZuvTU-mhZ6J_0ppqp2Z42CYHX6kfAOwi9wfpxEdEiTIgwKPU08LzVr-H7aGPG2-bhs-_p8E1T1ikGVdd0nAmW_mvpeaJ1GvSIEbIyUwC7hLxwQqV4qchf6WRMpdun10jTwLDDrmQ51qWYw/s600/30.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMGtTos4XFWiPjy5e7NDD7Qg2HOD6pqGbHepMNSOS6vcVAkoJkHSfznPyRrg5PQwEC0C7APW6NmmXP1nemh14ATr_2TlYV1EOJt3eE1tw6aHc-qA9-WbvnoKRZedjzjCNWTcDZzXIIt83SXVtYSn_kST3k0J0cBZ7-fMF5d1OdrexydgJM6x9UL8h-7Q/s1499/31.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="629" data-original-width="1499"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMGtTos4XFWiPjy5e7NDD7Qg2HOD6pqGbHepMNSOS6vcVAkoJkHSfznPyRrg5PQwEC0C7APW6NmmXP1nemh14ATr_2TlYV1EOJt3eE1tw6aHc-qA9-WbvnoKRZedjzjCNWTcDZzXIIt83SXVtYSn_kST3k0J0cBZ7-fMF5d1OdrexydgJM6x9UL8h-7Q/s600/31.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyjRIfJK8bTZLhQpJZNN-xYGQ6-RkPWg4YYIPk_CGsamuJfZCvKQtB0PjNpSLX8-86IHOrnQQkFIdhsbkYEerXzZT1wuFN7w8EYq2yj9F7n3WnPajJNlEG4R09-fIwnH1aHxpDurM4wyfHjuwQrhAoXP8gdP5nKX11l3LsU8PdA_jPsa7rFF3H6GIMvQ/s1300/32.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="730" data-original-width="1300"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyjRIfJK8bTZLhQpJZNN-xYGQ6-RkPWg4YYIPk_CGsamuJfZCvKQtB0PjNpSLX8-86IHOrnQQkFIdhsbkYEerXzZT1wuFN7w8EYq2yj9F7n3WnPajJNlEG4R09-fIwnH1aHxpDurM4wyfHjuwQrhAoXP8gdP5nKX11l3LsU8PdA_jPsa7rFF3H6GIMvQ/s600/32.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhoCv-m2glw9QhPiI2NGIBi9wE5UELxGk1cmaa9h__eY_j1KGv7OsNrMItJHzzTy0Wj13oU70wOGJV_zxZ-Ya5QfH1mcOCf-xffxpQe--gB4ct303VScUhxoNtIXQ44XD6mOzYDsM29N2zn-LXxxtd79DDOoXD03zQKdZgILY7hD1JsUkqft_ZN9YADtA/s1513/33.png"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="773" data-original-width="1513"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhoCv-m2glw9QhPiI2NGIBi9wE5UELxGk1cmaa9h__eY_j1KGv7OsNrMItJHzzTy0Wj13oU70wOGJV_zxZ-Ya5QfH1mcOCf-xffxpQe--gB4ct303VScUhxoNtIXQ44XD6mOzYDsM29N2zn-LXxxtd79DDOoXD03zQKdZgILY7hD1JsUkqft_ZN9YADtA/s600/33.png" /></a>
+</div>
+</pre>
+<span style="display: none">Tags: Natural Language Processing,Mathematical Foundations for Data Science,Technology,</span>

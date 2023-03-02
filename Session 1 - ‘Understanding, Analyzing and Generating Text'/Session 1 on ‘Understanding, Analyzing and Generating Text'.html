@@ -1,0 +1,382 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        });
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div> <br />
+
+<pre class=""><i class="">Here, we focus on only one natural language, English and only one programming language, Python.</i>
+
+<h3>The Way We Understand Language and How Machines See it is Quite Different</h3>
+
+Natural languages have an additional “decoding” challenge (apart from the ‘Information Extraction’ from it) that is even harder to solve. Speakers and writers of natural languages assume that a human is the one doing the processing (listening or reading), not a machine. So when I say “good morning”, I assume that you have some knowledge about what makes up a morning, including not only that mornings come before noons and afternoons and evenings but also after midnights. And you need to know they can represent times of day as well as general experiences of a period of time. The interpreter is assumed to know that “good morning” is a common greeting that doesn’t contain much information at all about the morning. Rather it reflects the state of mind of the speaker and her readiness to speak with others.
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-ABfkJqf9be4/YPa9_yQNBNI/AAAAAAAAHC8/hrwJowhCDmo6iEIYjCIX4QR_3v4cY54MgCLcBGAsYHQ/s994/1.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="232" data-original-width="994"
+        src="https://1.bp.blogspot.com/-ABfkJqf9be4/YPa9_yQNBNI/AAAAAAAAHC8/hrwJowhCDmo6iEIYjCIX4QR_3v4cY54MgCLcBGAsYHQ/s600/1.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-w2qfsMP3isc/YPa-CkatM8I/AAAAAAAAHDo/yQrheU66MDoWQVc6nWf90wGNpJhM5-SygCLcBGAsYHQ/s1004/2.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="438" data-original-width="1004"
+        src="https://1.bp.blogspot.com/-w2qfsMP3isc/YPa-CkatM8I/AAAAAAAAHDo/yQrheU66MDoWQVc6nWf90wGNpJhM5-SygCLcBGAsYHQ/s600/2.png" /></a>
+</div>
+
+TIP: The “r” before the quote specifies a raw string, not a regular expression.
+
+With a Python raw string, you can send backslashes directly to the regular expression compiler without having to double-backslash ("\\") all the special regular expression characters such as spaces ("\\ ") and curly braces or handlebars("\\{ \\}").
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-q8AtrwNdSrQ/YPa-D6fieUI/AAAAAAAAHD4/Iw0I4ak4FXcXsBqisAiU2NmQMsXgPgbJgCLcBGAsYHQ/s817/3.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="512" data-original-width="817"
+        src="https://1.bp.blogspot.com/-q8AtrwNdSrQ/YPa-D6fieUI/AAAAAAAAHD4/Iw0I4ak4FXcXsBqisAiU2NmQMsXgPgbJgCLcBGAsYHQ/s600/3.png" /></a>
+</div>
+
+<h3>Architecture of a Chatbot</h3>
+
+A chatbot requires four kinds of processing as well as a database to maintain a memory of past statements and responses. Each of the four processing stages can contain one or more processing algorithms working in parallel or in series (see figure 1.3):
+
+1. Parse—Extract features, structured numerical data, from natural language text.
+
+2. Analyze—Generate and combine features by scoring text for sentiment, grammaticality, and semantics.
+
+3. Generate—Compose possible responses using templates, search, or language models.
+
+4. Execute—Plan statements based on conversation history and objectives, and select the next response.
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-xLCyzZe2U2Y/YPa-DzoaHLI/AAAAAAAAHD8/qZzsCUtHoDEDmOmsR-gLcCCPOUbrD16XACLcBGAsYHQ/s762/4.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="720" data-original-width="762"
+        src="https://1.bp.blogspot.com/-xLCyzZe2U2Y/YPa-DzoaHLI/AAAAAAAAHD8/qZzsCUtHoDEDmOmsR-gLcCCPOUbrD16XACLcBGAsYHQ/s600/4.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-TGjL6gn057k/YPa-ELAhomI/AAAAAAAAHEA/4g7jtj1d2TA500BdGCfZpyu_Ow9fTwSvwCLcBGAsYHQ/s908/5.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="682" data-original-width="908"
+        src="https://1.bp.blogspot.com/-TGjL6gn057k/YPa-ELAhomI/AAAAAAAAHEA/4g7jtj1d2TA500BdGCfZpyu_Ow9fTwSvwCLcBGAsYHQ/s600/5.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-95MP1qNcRuk/YPa-EmJwamI/AAAAAAAAHEE/rJ5WX_wVapMrrU-kU1d96PLWPHeaX8UpQCLcBGAsYHQ/s676/6.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="561" data-original-width="676"
+        src="https://1.bp.blogspot.com/-95MP1qNcRuk/YPa-EmJwamI/AAAAAAAAHEE/rJ5WX_wVapMrrU-kU1d96PLWPHeaX8UpQCLcBGAsYHQ/s600/6.png" /></a>
+</div>
+
+<h3>The Way Rasa Identifies a Greeting or Good-bye</h3>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-PQldQDrjwv8/YPa-EvE57HI/AAAAAAAAHEI/VwCNTLcbhN8CvyVSUuGdbPA6WwS1RGvdwCLcBGAsYHQ/s604/7.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="510" data-original-width="604"
+        src="https://1.bp.blogspot.com/-PQldQDrjwv8/YPa-EvE57HI/AAAAAAAAHEI/VwCNTLcbhN8CvyVSUuGdbPA6WwS1RGvdwCLcBGAsYHQ/s600/7.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-2A43whi206A/YPa-Eyz7b6I/AAAAAAAAHEM/9gvYSgNf_AMcirWp5i-altXdxEQNDiybwCLcBGAsYHQ/s340/8.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="314" data-original-width="340"
+        src="https://1.bp.blogspot.com/-2A43whi206A/YPa-Eyz7b6I/AAAAAAAAHEM/9gvYSgNf_AMcirWp5i-altXdxEQNDiybwCLcBGAsYHQ/s600/8.png" /></a>
+</div>
+
+<h3>How does Rasa understand your greetings?</h3>
+
+An image taken from “rasa interactive” command output of our conversation.
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-2jT7Sp-8YyE/YPa-FMTXGVI/AAAAAAAAHEQ/CYBg_e-13tkoxUX3MXOWAxHr1SBbXJe7gCLcBGAsYHQ/s556/9.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="297" data-original-width="556"
+        src="https://1.bp.blogspot.com/-2jT7Sp-8YyE/YPa-FMTXGVI/AAAAAAAAHEQ/CYBg_e-13tkoxUX3MXOWAxHr1SBbXJe7gCLcBGAsYHQ/s600/9.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-2sNvFD92wCI/YPa9_-1w91I/AAAAAAAAHDE/AoHBGGOq-j4BnaunUUg2Wt6T_kk7iC3kQCLcBGAsYHQ/s607/10.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="426" data-original-width="607"
+        src="https://1.bp.blogspot.com/-2sNvFD92wCI/YPa9_-1w91I/AAAAAAAAHDE/AoHBGGOq-j4BnaunUUg2Wt6T_kk7iC3kQCLcBGAsYHQ/s600/10.png" /></a>
+</div>
+
+<h3>IQ of some Natural Language Processing systems</h3>
+We see that bots working at depth in this image are: Domain Specific Bots.
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-9Xsl_BySvQg/YPa9_9TH2jI/AAAAAAAAHDA/7tr_4gxIeSkfzD6iqZa0oKrQxeH6yf8OwCLcBGAsYHQ/s515/11.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="463" data-original-width="515"
+        src="https://1.bp.blogspot.com/-9Xsl_BySvQg/YPa9_9TH2jI/AAAAAAAAHDA/7tr_4gxIeSkfzD6iqZa0oKrQxeH6yf8OwCLcBGAsYHQ/s600/11.png" /></a>
+</div>
+
+<h3>For the fundamental building blocks of NLP, there are equivalents in a computer language compiler</h3>
+
+# tokenizer  --  scanner, lexer, lexical analyzer
+
+# vocabulary  --  lexicon
+
+# parser  --  compiler 
+
+# token, term, word, or n-gram  --  token, symbol, or terminal symbol
+
+<h3>An quick-and-dirty example of ‘Tokenizer’ using the str.split()</h3>
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-ciytaBW1-Pg/YPa-Ay1vw1I/AAAAAAAAHDI/v6sZu3pX5wsL69CtnBDafZGA_AarEIYLQCLcBGAsYHQ/s894/12.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="667" data-original-width="894"
+        src="https://1.bp.blogspot.com/-ciytaBW1-Pg/YPa-Ay1vw1I/AAAAAAAAHDI/v6sZu3pX5wsL69CtnBDafZGA_AarEIYLQCLcBGAsYHQ/s600/12.png" /></a>
+</div>
+
+<i>>>> import numpy as np
+>>> token_sequence = str.split(sentence)
+>>> vocab = sorted(set(token_sequence))
+>>> ', '.join(vocab)
+'26., Jefferson, Monticello, Thomas, age, at, began, building, of, the'
+>>> num_tokens = len(token_sequence)
+>>> vocab_size = len(vocab)
+>>> onehot_vectors = np.zeros((num_tokens,
+... vocab_size), int)
+>>> for i, word in enumerate(token_sequence):
+... onehot_vectors[i, vocab.index(word)] = 1
+>>> ' '.join(vocab)
+'26. Jefferson Monticello Thomas age at began building of the'
+>>> onehot_vectors</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-3cf_4wDc4oY/YPa-A36ZmiI/AAAAAAAAHDM/egoKBmfb-UwAz2C-Vq44873WeiJXb5MdACLcBGAsYHQ/s941/13.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="413" data-original-width="941"
+        src="https://1.bp.blogspot.com/-3cf_4wDc4oY/YPa-A36ZmiI/AAAAAAAAHDM/egoKBmfb-UwAz2C-Vq44873WeiJXb5MdACLcBGAsYHQ/s600/13.png" /></a>
+</div>
+
+<h3>One-Hot Vectors and Memory Requirement</h3>
+
+Let’s run through the math to give you an appreciation for just how big and unwieldy these “player piano paper rolls” are. In most cases, the vocabulary of tokens you’ll use in an NLP pipeline will be much more than 10,000 or 20,000 tokens. Sometimes it can be hundreds of thousands or even millions of tokens. Let’s assume you have a million tokens in your NLP pipeline vocabulary. And let’s say you have a meager 3,000 books with 3,500 sentences each and 15 words per sentence—reasonable averages for short books. That’s a whole lot of big tables (matrices):
+
+The example below is assuming that we have a million tokens (words in our vocabulary):
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-5mRmxqRPx8M/YPa-AwfNRXI/AAAAAAAAHDQ/RI_XDlE4sAsDATMkKwkPIIzRIOxV2xeGgCLcBGAsYHQ/s905/14.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="313" data-original-width="905"
+        src="https://1.bp.blogspot.com/-5mRmxqRPx8M/YPa-AwfNRXI/AAAAAAAAHDQ/RI_XDlE4sAsDATMkKwkPIIzRIOxV2xeGgCLcBGAsYHQ/s600/14.png" /></a>
+</div>
+
+<h3>Document-Term Matrix</h3>
+
+The One-Hot Vector Based Representation of Sentences in the previous slide is a concept very similar to “Document-Term” matrix.
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-h8W8trpWqUk/YPa-BmMgjqI/AAAAAAAAHDU/3xC11hQ3m7ITuwuMhZ0RJGqsMpK6_Fk6gCLcBGAsYHQ/s345/15.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="207" data-original-width="345"
+        src="https://1.bp.blogspot.com/-h8W8trpWqUk/YPa-BmMgjqI/AAAAAAAAHDU/3xC11hQ3m7ITuwuMhZ0RJGqsMpK6_Fk6gCLcBGAsYHQ/s600/15.png" /></a>
+</div>
+
+<h3>For Tokenization: Use NLTK (Natural Language Toolkit)</h3>
+
+You can use the NLTK function RegexpTokenizer to replicate your simple tokenizer example like this:
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-QnkQ849lqbc/YPa-Bj7fl3I/AAAAAAAAHDY/oKw2R2bdQnIn9yJaRyGXt9OVP57hFZD3gCLcBGAsYHQ/s661/16.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="214" data-original-width="661"
+        src="https://1.bp.blogspot.com/-QnkQ849lqbc/YPa-Bj7fl3I/AAAAAAAAHDY/oKw2R2bdQnIn9yJaRyGXt9OVP57hFZD3gCLcBGAsYHQ/s600/16.png" /></a>
+</div>
+
+An even better tokenizer is the Treebank Word Tokenizer from the NLTK package. It incorporates a variety of common rules for English word tokenization. For example, it separates phrase-terminating punctuation (?!.;,) from adjacent tokens and retains decimal numbers containing a period as a single token. In addition it contains rules for English contractions. For example “don’t” is tokenized as ["do", "n’t"]. This tokenization will help with subsequent steps in the NLP pipeline, such as stemming.
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/--3V9BcDNPqo/YPa-B0MhY-I/AAAAAAAAHDc/joSCGQ2RaC8lHuaO_XfyUs1TW3JsYYV7wCLcBGAsYHQ/s910/17.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="574" data-original-width="910"
+        src="https://1.bp.blogspot.com/--3V9BcDNPqo/YPa-B0MhY-I/AAAAAAAAHDc/joSCGQ2RaC8lHuaO_XfyUs1TW3JsYYV7wCLcBGAsYHQ/s600/17.png" /></a>
+</div>
+
+<h3>Stemming and lemmatization</h3>
+
+For grammatical reasons, documents are going to use different forms of a word, such as <i>organize, organizes, and organizing</i>. Additionally, there are families of derivationally related words with similar meanings, such as <i>democracy, democratic, and democratization</i>. In many situations, it seems as if it would be useful for a search for one of these words to return documents that contain another word in the set. 
+The goal of both stemming and lemmatization is to reduce inflectional forms and sometimes derivationally related forms of a word to a common base form. For instance: 
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-qsLENDALEEU/YPa-Cea-wGI/AAAAAAAAHDg/EiIn1Ugpwwg8ti0GY7kWx9N2zUQT716EgCLcBGAsYHQ/s231/18.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="54" data-original-width="231"
+        src="https://1.bp.blogspot.com/-qsLENDALEEU/YPa-Cea-wGI/AAAAAAAAHDg/EiIn1Ugpwwg8ti0GY7kWx9N2zUQT716EgCLcBGAsYHQ/s600/18.png" /></a>
+</div>
+
+The result of this mapping of text will be something like:
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-1SARMmynUMY/YPa-CXCddFI/AAAAAAAAHDk/uKdpRGl4HH0PTt9MYGssj6RIjHGd0k8ZwCLcBGAsYHQ/s315/19.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="56" data-original-width="315"
+        src="https://1.bp.blogspot.com/-1SARMmynUMY/YPa-CXCddFI/AAAAAAAAHDk/uKdpRGl4HH0PTt9MYGssj6RIjHGd0k8ZwCLcBGAsYHQ/s600/19.png" /></a>
+</div>
+
+However, the two words differ in their flavor. <b>Stemming</b> usually refers to a crude heuristic process that chops off the ends of words in the hope of achieving this goal correctly most of the time, and often includes the removal of derivational affixes. 
+
+<b>Lemmatization</b> usually refers to doing things properly with the use of a vocabulary and morphological analysis of words, normally aiming to remove inflectional endings only and to return the base or dictionary form of a word, which is known as the lemma. If confronted with the token saw, stemming might return just s, whereas lemmatization would attempt to return either see or saw depending on whether the use of the token was as a verb or a noun. The two may also differ in that stemming most commonly collapses derivationally related words, whereas lemmatization commonly only collapses the different inflectional forms of a lemma. Linguistic processing for stemming or lemmatization is often done by an additional plug-in component to the indexing process, and a number of such components exist, both commercial and open-source.
+
+Ref: <a href="https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html" target="_blank">nlp.stanford.edu</a> 
+
+<h3>CONTRACTIONS</h3>
+
+You might wonder why you would split the contraction wasn’t into was and n’t. For some applications, like grammar-based NLP models that use syntax trees, it’s important to separate the words was and not to allow the syntax tree parser to have a consistent, predictable set of tokens with known grammar rules as its input. There are a variety of standard and nonstandard ways to contract words. By reducing contractions to their constituent words, a dependency tree parser or syntax parser only need be programmed to anticipate the various spellings of individual words rather than all possible contractions.
+
+<h3>Tokenize informal text from social networks such as Twitter and Facebook</h3>
+
+The NLTK library includes a tokenizer—casual_tokenize—that was built to deal with short, informal, emoticon-laced texts from social networks where grammar and spelling conventions vary widely.
+The casual_tokenize function allows you to strip usernames and reduce the number of repeated characters within a token:
+
+<i>>>> from nltk.tokenize.casual import casual_tokenize
+>>> message = """RT @TJMonticello Best day everrrrrrr at Monticello.\
+... Awesommmmmmeeeeeeee day :*)"""
+
+>>> casual_tokenize(message)
+['RT', '@TJMonticello’, 'Best', 'day','everrrrrrr', 'at', 'Monticello', '.’, 'Awesommmmmmeeeeeeee', 'day', ':*)’]
+
+>>> casual_tokenize(message, reduce_len=True, strip_handles=True)
+['RT’, 'Best', 'day', 'everrr', 'at', 'Monticello', '.’, 'Awesommmeee', 'day', ':*)']</i>
+
+<h3>n-gram tokenizer from nltk in action</h3>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-BQoAwQgoFyo/YPa-DHBO-EI/AAAAAAAAHDs/4N2wmtqxiswBKKR7nIQQE2x3Twv041ZVgCLcBGAsYHQ/s510/20.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600"
+        data-original-height="510" data-original-width="468"
+        src="https://1.bp.blogspot.com/-BQoAwQgoFyo/YPa-DHBO-EI/AAAAAAAAHDs/4N2wmtqxiswBKKR7nIQQE2x3Twv041ZVgCLcBGAsYHQ/s600/20.png" /></a>
+</div>
+
+You might be able to sense a problem here. Looking at your earlier example, you can imagine that the token “Thomas Jefferson” will occur across quite a few documents.
+
+However the 2-grams “of 26” or even “Jefferson began” will likely be extremely rare. If tokens or n-grams are extremely rare, they don’t carry any correlation with other words that you can use to help identify topics or themes that connect documents or classes of documents. So rare n-grams won’t be helpful for classification problems. You can imagine that most 2-grams are pretty rare—even more so for 3- and 4-grams.
+
+<h3>Problem of rare n-grams</h3>
+
+Because word combinations are rarer than individual words, your vocabulary size is exponentially approaching the number of n-grams in all the documents in your corpus. If your feature vector dimensionality exceeds the length of all your documents, your feature extraction step is counterproductive. It’ll be virtually impossible to avoid overfitting a machine learning model to your vectors; your vectors have more dimensions than there are documents in your corpus. In chapter 3, you’ll use document frequency statistics to identify n-grams so rare that they are not useful for machine learning. Typically, n-grams are filtered out that occur too infrequently (for example, in three or fewer different documents). This scenario is represented by the “rare token” filter in the coin-sorting machine of chapter 1.
+
+<h3>Problem of common n-grams</h3>
+
+Now consider the opposite problem. Consider the 2-gram “at the” in the previous phrase. That’s probably not a rare combination of words. In fact it might be so common, spread among most of your documents, that it loses its utility for discriminating between the meanings of your documents. It has little predictive power. Just like words and other tokens, n-grams are usually filtered out if they occur too often. For example, if a token or n-gram occurs in more than 25% of all the documents in your corpus, you usually ignore it. This is equivalent to the “stop words” filter in the coin-sorting machine of chapter 1. These filters are as useful for n-grams as they are for individual tokens. In fact, they’re even more useful.
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-plPcOqmdwek/YPa-DIvtMxI/AAAAAAAAHDw/LRs7nu4wf3EE3TCybPhmdi0rb5yYJDYigCLcBGAsYHQ/s720/21.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600"
+        data-original-height="720" data-original-width="367"
+        src="https://1.bp.blogspot.com/-plPcOqmdwek/YPa-DIvtMxI/AAAAAAAAHDw/LRs7nu4wf3EE3TCybPhmdi0rb5yYJDYigCLcBGAsYHQ/s600/21.png" /></a>
+</div>
+
+<h3>STOP WORDS</h3>
+Stop words are common words in any language that occur with a high frequency but carry much less substantive information about the meaning of a phrase. Examples of some common stop words include:
+ a, an
+ the, this
+ and, or
+ of, on
+
+A more comprehensive list of stop words for various languages can be found in NLTK’s corpora ( <a href="https://
+raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/stopwords.zip" target="_blank">stopwords.zip</a> ).
+
+Historically, stop words have been excluded from NLP pipelines in order to reduce the computational effort to extract information from a text. Even though the words themselves carry little information, the stop words can provide important relational information as part of an n-gram. Consider these two examples:
+
+ Mark reported to the CEO
+ Suzanne reported as the CEO to the board
+
+Also, some stop words lists also contain the word ‘not’, which means “feeling cold” and “not feeling cold” would both be reduced to “feeling cold” by a stop words filter.
+
+Ref: <a href="https://survival8.blogspot.com/2020/12/stop-words-removal-nltk-spacy-gensim.html" target="_blank">stop words removal using nltk, spacy and gensim</a>
+
+<h3>Stop Words Removal</h3>
+<b>Designing a filter for stop words depends on your application.</b> Vocabulary size will drive the computational complexity and memory requirements of all subsequent steps in the NLP pipeline. But stop words are only a small portion of your total vocabulary size. A typical stop word list has only 100 or so frequent and unimportant words listed in it. But a vocabulary size of 20,000 words would be required to keep track of 95% of the words seen in a large corpus of tweets, blog posts, and news articles.9 And that’s just for 1-grams or single-word tokens. A 2-gram vocabulary designed to catch 95% of the 2-grams in a large English corpus will generally have more than 1 million unique 2-gram tokens in it.
+
+You may be worried that vocabulary size drives the required size of any training set you must acquire to avoid overfitting to any particular word or combination of words. And you know that the size of your training set drives the amount of processing required to process it all. However, getting rid of 100 stop words out of 20,000 isn’t going to significantly speed up your work. And for a 2-gram vocabulary, the savings you’d achieve by removing stop words is minuscule. In addition, for 2-grams you lose a lot more information when you get rid of stop words arbitrarily, without checking for the frequency of the 2-grams that use those stop words in your text. For example, you might miss mentions of “The Shining” as a unique title and instead treat texts about that violent, disturbing movie the same as you treat documents that mention “Shining Light” or “shoe shining.”
+
+<b>So if you have sufficient memory and processing bandwidth to run all the NLP steps in your pipeline on the larger vocabulary, you probably don’t want to worry about ignoring a few unimportant words here and there.</b> And if you’re worried about overfitting a small training set with a large vocabulary, there are better ways to select your vocabulary or reduce your dimensionality than ignoring stop words. Including stop words in your vocabulary allows the document frequency filters (discussed in chapter 3) to more accurately identify and ignore the words and n-grams with the least information content within your particular domain.
+
+<h3>Stop Words in Code</h3>
+
+<i>>>> stop_words = ['a', 'an', 'the', 'on', 'of', 'off', 'this', 'is']
+>>> tokens = ['the', 'house', 'is', 'on', 'fire']
+>>> tokens_without_stopwords = [x for x in tokens if x not in stop_words]
+>>> print(tokens_without_stopwords)
+['house', 'fire’]</i>
+
+<h3>Stop Words From NLTK and Scikit-Learn</h3>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-XWsXvDAL6-w/YPa-DHCB5VI/AAAAAAAAHD0/jkYNRGG6GcABYLjMtZN6GagF-wne0U5dgCLcBGAsYHQ/s902/22.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="334" data-original-width="902"
+        src="https://1.bp.blogspot.com/-XWsXvDAL6-w/YPa-DHCB5VI/AAAAAAAAHD0/jkYNRGG6GcABYLjMtZN6GagF-wne0U5dgCLcBGAsYHQ/s600/22.png" /></a>
+</div>
+
+Code for “Stop Words From NLTK and Scikit-Learn”:
+
+<i>>>> import nltk
+>>> nltk.download('stopwords')
+>>> stop_words = nltk.corpus.stopwords.words('english’)
+>>> len(stop_words)
+179
+
+>>> from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS as sklearn_stop_words
+>>> len(sklearn_stop_words)
+318
+
+>>> len(stop_words.union(sklearn_stop_words))
+378
+
+>>> len(stop_words.intersection(sklearn_stop_words))
+119</i>
+
+<span class="" style="display: none;">Labels: Artificial Intelligence,Natural Language Processing,Python,Technology,</span>
+</pre>
+

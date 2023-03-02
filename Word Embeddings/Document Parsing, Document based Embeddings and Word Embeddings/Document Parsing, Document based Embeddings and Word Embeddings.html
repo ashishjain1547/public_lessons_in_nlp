@@ -1,0 +1,257 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        });
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div> <br />
+
+<pre>For our examples in this post, we would use the following sentence as input:
+
+sentence = "Thomas Jefferson began building Monticello at the age of 26."
+
+-----
+
+For the fundamental building blocks of NLP, there are equivalents in a computer language compiler:
+
+# <i>tokenizer</i> — scanner, lexer, lexical analyzer
+# <i>vocabulary</i> — lexicon
+# <i>parser</i> — compiler
+# <i>token, term, word, sentence, or n-gram</i> — token, symbol, or terminal symbol
+
+N-gram: two-gram, three-gram or four-gram... so on.
+
+For sentence: Thomas Jefferson began building Monticello at the age of 26.
+
+Two-grams: “Thomas Jefferson”, “Jefferson began”, “began building”, ...
+
+Three-grams: “Thomas Jefferson began”, “Jefferson began building”, ...
+
+-----
+
+<h3>One Hot Vector</h3>
+
+Each row of the table is a binary row vector, and you can see why it’s also called a one-hot vector: all but one of the positions (columns) in a row are 0 or blank. Only one column, or position in the vector, is “hot” (“1”). A one (1) means on, or hot. A zero (0) means off, or absent. And you can use the vector: 
+[0, 0, 0, 0, 0, 0, 1, 0, 0, 0]
+to represent the word “began” in your NLP pipeline.
+
+-----
+
+<h3>One-hot vector Representation of a Document</h3>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-PnPdAlRDumk/YRUn82A4K4I/AAAAAAAAHOI/8iYp3JyqTTAqzT0gvDrVuwm1aD63s00vgCLcBGAsYHQ/s885/i1.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="656" data-original-width="885"
+        src="https://1.bp.blogspot.com/-PnPdAlRDumk/YRUn82A4K4I/AAAAAAAAHOI/8iYp3JyqTTAqzT0gvDrVuwm1aD63s00vgCLcBGAsYHQ/s600/i1.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-DyfljpXqh6M/YRUn8-Ik6YI/AAAAAAAAHOM/YJaowoC523sbMJocVDvxQQlE-XRmjxCZACLcBGAsYHQ/s1247/i2.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="530" data-original-width="1247"
+        src="https://1.bp.blogspot.com/-DyfljpXqh6M/YRUn8-Ik6YI/AAAAAAAAHOM/YJaowoC523sbMJocVDvxQQlE-XRmjxCZACLcBGAsYHQ/s600/i2.png" /></a>
+</div>
+
+-----
+
+<h3>One hot encoding of a categorical column</h3>
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-_CCVTrNoUGo/YR0aEOHhXLI/AAAAAAAAHPY/BCRtYiqDe1UtwxONz1Ng-oxToEfdebongCLcBGAsYHQ/s797/One%2Bhot%2Bencoding%2Bof%2Ba%2Bcategorical%2Bcolumn.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="697" data-original-width="797" src="https://1.bp.blogspot.com/-_CCVTrNoUGo/YR0aEOHhXLI/AAAAAAAAHPY/BCRtYiqDe1UtwxONz1Ng-oxToEfdebongCLcBGAsYHQ/s600/One%2Bhot%2Bencoding%2Bof%2Ba%2Bcategorical%2Bcolumn.png"/></a></div>
+
+-----
+
+<h3>Word Frequency Vector Representation of the Corpus</h3>
+
+If you summed all these one-hot vectors together, rather than “replaying” them one at a time, you’d get a bag-of-words vector. This is also called a word frequency vector, because it only counts the frequency of words, not their order.
+
+<h3>Ex 1:</h3>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-yBa2P4bA1Ws/YRUn8t_kzBI/AAAAAAAAHOE/cpDM4OKL0fEZG_spOw288XCs5c9RsYfmACLcBGAsYHQ/s432/i3.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="360" data-original-width="432"
+        src="https://1.bp.blogspot.com/-yBa2P4bA1Ws/YRUn8t_kzBI/AAAAAAAAHOE/cpDM4OKL0fEZG_spOw288XCs5c9RsYfmACLcBGAsYHQ/s600/i3.png" /></a>
+</div>
+
+<h3>Ex 2:</h3>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-dnwn_C868vQ/YRUn9PJ4mJI/AAAAAAAAHOQ/hywPzYa2HnYfzELp6Gq5ZNWcOHwr0pGuwCLcBGAsYHQ/s956/i4.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="166" data-original-width="956"
+        src="https://1.bp.blogspot.com/-dnwn_C868vQ/YRUn9PJ4mJI/AAAAAAAAHOQ/hywPzYa2HnYfzELp6Gq5ZNWcOHwr0pGuwCLcBGAsYHQ/s600/i4.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-z1KopcKms3A/YRUn-ZmZt1I/AAAAAAAAHOY/oLfSJi0vXJUXLjoINRgTo5jPCIioT7rFQCLcBGAsYHQ/s1189/i5.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="702" data-original-width="1189"
+        src="https://1.bp.blogspot.com/-z1KopcKms3A/YRUn-ZmZt1I/AAAAAAAAHOY/oLfSJi0vXJUXLjoINRgTo5jPCIioT7rFQCLcBGAsYHQ/s600/i5.png" /></a>
+</div>
+
+-----
+
+<h3 class="">Explaining Construction of "Word Frequence Vector Representation"</h3>
+
+1) Thomas Jefferson began building Monticello at the age of 26.
+
+2) Construction was done mostly by local masons and carpenters.
+
+3) He moved into the South Pavilion in 1770.
+
+4) Turning Monticello into a neoclassical masterpiece was Jefferson's obsession.
+
+We have 26 and 1770 as Numbers.
+
+First step to building vocabulary is sorting the words:
+
+Sorting the words:
+
+1770, 26, Construction, He...
+
+-----
+
+<h3>Dot product / Inner product / Scalar product</h3>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-4SSd3KMhTfs/YRUn9xoY25I/AAAAAAAAHOU/r4x_uLtIXuEseEJ-xVRQXSN1uVUtRYTQgCLcBGAsYHQ/s1230/i6.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="399" data-original-width="1230"
+        src="https://1.bp.blogspot.com/-4SSd3KMhTfs/YRUn9xoY25I/AAAAAAAAHOU/r4x_uLtIXuEseEJ-xVRQXSN1uVUtRYTQgCLcBGAsYHQ/s600/i6.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-lKkzgAA3U7o/YRUn-XjirJI/AAAAAAAAHOc/V55kGl0WU1ob_Yt3xwdHk6-FFyTgAbFGgCLcBGAsYHQ/s1240/i7.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="556" data-original-width="1240"
+        src="https://1.bp.blogspot.com/-lKkzgAA3U7o/YRUn-XjirJI/AAAAAAAAHOc/V55kGl0WU1ob_Yt3xwdHk6-FFyTgAbFGgCLcBGAsYHQ/s600/i7.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-zpAV7LXWZ2M/YR0b8I_hYMI/AAAAAAAAHPg/jzjjmQi79skh-EjFn7TYyNkVVjkwgyeaACLcBGAsYHQ/s1140/Dot%2Bproduct%2B-%2Balgebraic%2Bdefinition.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="683" data-original-width="1140" src="https://1.bp.blogspot.com/-zpAV7LXWZ2M/YR0b8I_hYMI/AAAAAAAAHPg/jzjjmQi79skh-EjFn7TYyNkVVjkwgyeaACLcBGAsYHQ/s600/Dot%2Bproduct%2B-%2Balgebraic%2Bdefinition.png"/></a></div>
+
+<h3>Geometric Definition</h3>
+
+In Euclidean space, a Euclidean vector is a geometric object that possesses both a magnitude and a direction. A vector can be pictured as an arrow. Its magnitude is its length, and its direction is the direction to which the arrow points. The magnitude of a vector “a” is denoted by ||a||. The dot product of two Euclidean vectors a and b is defined by:
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-_SbO1SIIvXQ/YR0cRPAY42I/AAAAAAAAHPo/QDUrKQeBayQ73evNOAdMtsBF3CAVh5tqwCLcBGAsYHQ/s1111/Dot%2Bproduct%2B-%2Bgeometric%2Bdefinition.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="504" data-original-width="1111" src="https://1.bp.blogspot.com/-_SbO1SIIvXQ/YR0cRPAY42I/AAAAAAAAHPo/QDUrKQeBayQ73evNOAdMtsBF3CAVh5tqwCLcBGAsYHQ/s600/Dot%2Bproduct%2B-%2Bgeometric%2Bdefinition.png"/></a></div>
+
+<h3>An application of dot product</h3>
+    
+Sent0 = I am Ashish.
+Sent1 = Maybe am not.
+
+Words:  I   am    Ashish   Maybe   not
+
+Sent0   1    1      1         0      0
+Sent1   0    1      0         1      1
+
+SENT0.SENT1 = (1 * 0) + (1 * 1) + (1 * 0) + (0 * 1) + (0 * 1)
+= 1
+
+Number of common words in these two sentences is “1”.
+
+-----
+
+<h3>Several Python libraries implement tokenizers, each with its own advantages and disadvantages</h3>
+
+# spaCy — Accurate , flexible, fast, Python
+
+# Stanford CoreNLP — More accurate, less flexible, fast, depends on Java 8
+
+# NLTK — Standard used by many NLP contests and comparisons, popular, Python
+
+-----
+
+<h3>Treebank Word Tokenizer</h3>
+
+An even better tokenizer is the Treebank Word Tokenizer from the NLTK package. It incorporates a variety of common rules for English word tokenization. For example, it separates phrase-terminating punctuation (?!.;,) from adjacent tokens and retains decimal numbers containing a period as a single token. In addition, it contains rules for English contractions. For example, “don’t” is tokenized as ["do", "n’t"]. This tokenization will help with subsequent steps in the NLP pipeline, such as stemming. You can find all the rules for the Treebank Tokenizer at: <a href="http://www.nltk.org/api/nltk.tokenize.html#module-nltk.tokenize.treebank" target="_blank">nltk.tokenize.treebank</a>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-O8d5hEPpS10/YRUn-9jNL6I/AAAAAAAAHOg/ALjMrvqsA4clDQ4wbZIcccxpQwIwnk5AgCLcBGAsYHQ/s882/i8.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="426" data-original-width="882"
+        src="https://1.bp.blogspot.com/-O8d5hEPpS10/YRUn-9jNL6I/AAAAAAAAHOg/ALjMrvqsA4clDQ4wbZIcccxpQwIwnk5AgCLcBGAsYHQ/s600/i8.png" /></a>
+</div>
+
+-----
+
+<h3>Stop Words</h3>
+
+Stop words are common words in any language that occur with a high frequency but carry much less substantive information about the meaning of a phrase. Examples of some common stop words include:
+
+ a, an
+ the, this
+ and, or
+ of, on
+
+Historically, stop words have been excluded from NLP pipelines in order to reduce the computational effort to extract information from a text. Even though the words themselves carry little information, the stop words can provide important relational information as part of an n-gram. Consider these two examples:
+
+ Mark reported to the CEO
+ Suzanne reported as the CEO to the board
+
+-----
+
+<h3>Document Parsing Ends Here And: Word Embeddings Begin.</h3>
+<h3>Word Embeddings</h3>
+
+One of the most exciting recent advancements in NLP is the “discovery” of word vectors. This chapter will help you understand what they are and how to use them to do some surprisingly powerful things. You’ll learn how to recover some of the fuzziness and subtlety of word meaning that was lost in the approximations of earlier chapters.
+
+In the previous chapters, we ignored the nearby context of a word. We ignored the words around each word. We ignored the effect the neighbors of a word have on its meaning and how those relationships affect the overall meaning of a statement. Our bag-of-words concept jumbled all the words from each document together into a statistical bag. In this chapter, you’ll create much smaller bags of words from a “neighborhood” of only a few words, typically fewer than 10 tokens. You’ll also ensure that these neighborhoods of meaning don’t spill over into adjacent sentences. This process will help focus your word vector training on the relevant words.
+
+<h3>Word Vectors or Word Embeddings</h3>
+
+Word vectors are numerical vector representations of word semantics, or meaning, including literal and implied meaning. So word vectors can capture the connotation of words, like “peopleness,” “animalness,” “placeness,” “thingness,” and even “conceptness.” And they combine all that into a dense vector (no zeros) of floating point values. This dense vector enables queries and logical reasoning.
+<span class="" style="display: none;">Labels: Artificial Intelligence,Natural Language Processing,Python,Technology,</span>
+</pre>
+
+
+
+

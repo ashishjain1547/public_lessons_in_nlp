@@ -1,0 +1,294 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .ib {
+            color: blue
+        }
+
+        .ig {
+            color: green
+        }
+
+        .ir {
+            color: red
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/PublicDatasets/tree/master/Sentiment%20Analysis/labeled%20data" target="_blank">Download Data</a> &nbsp; 
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/pubML/blob/main/e5_sentiment_analysis_using_rnn_lstm_and_bidirectional_lstm/2_Sentiment_Analysis_RNN%20with%20BOW%20indexing%20of%20words.ipynb" target="_blank">Download Code</a>
+
+<pre>
+
+import numpy as np 
+import pandas as pd 
+from sklearn.metrics import classification_report
+
+df = pd.read_csv('input/sentences_and_phrases_150k/train.csv')
+
+test_df = pd.read_csv('input/sentences_and_phrases_150k/test.csv')
+
+from numpy import random
+ix = list(range(df.shape[0]))
+ix = random.permutation(ix)
+div = int(df.shape[0] * 0.7)
+train_df = df.iloc[ix[0:div]]
+validation_df = df.iloc[ix[div:]]
+
+import seaborn as sns
+sns.countplot(x ='Sentiment', data = train_df)
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJiZvDPDaYELL_qZfqQf-al0K-EM_J4DE7A02HaHLODEL8jrkaRkQR3FzHd1FSmjc159YuUSkdWRJEs_6ebyxO7Ky49b7zNNH3fvK8NW5bSdO3-59LaGVlt9b4Sm5bPaoWYzI8i8-Pk7bYr923sf9rXF08SQ2f3Uw1LF5TXHA7VhGHEu6RbquTIn87zw/s652/1.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="466" data-original-width="652" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJiZvDPDaYELL_qZfqQf-al0K-EM_J4DE7A02HaHLODEL8jrkaRkQR3FzHd1FSmjc159YuUSkdWRJEs_6ebyxO7Ky49b7zNNH3fvK8NW5bSdO3-59LaGVlt9b4Sm5bPaoWYzI8i8-Pk7bYr923sf9rXF08SQ2f3Uw1LF5TXHA7VhGHEu6RbquTIn87zw/s600/1.png"/></a></div>
+
+train_df['Sentiment'].value_counts()
+
+<i class="ig">
+2    55723
+3    22917
+1    19105
+4     6492
+0     5005
+</i>
+
+The below function is used to preprocess the train and test data.
+    1.fillna(0) -fills NaN values (if any )with zero
+    2.Regular expression is used to match only the text data from the phrase
+    3. The text is the split to get the sentence.
+    4. every sentence is appended to Corpus for next use
+    
+Note: Stemming or leematization or stop word removal is not applied here. Practioners can consider doing it for better result.
+
+<i class="ib">
+
+import nltk, re
+
+def func(X):
+    X=X.fillna(0)
+    messages = X.copy()
+    messages.reset_index(inplace=True)
+    corpus=[]
+    for i in range(len(messages)):
+        review = re.sub('[^a-zA-Z]',' ',str(messages['Phrase'][i]))
+        review = review.split()
+        review = ' '.join(review)
+        corpus.append(review)
+        
+    return corpus
+
+corpus_train = func(train_df)
+corpus_validation = func(validation_df)
+corpus_test = func(test_df)
+
+def get_wordlist(corpus1):
+    words = []
+    for phrase in corpus1:
+        for word in phrase.split():
+            words.append(word)       
+             
+    words.sort()
+    return set(words)
+
+word_set_train = get_wordlist(corpus_train)
+word_set_validation = get_wordlist(corpus_validation)
+word_set_test = get_wordlist(corpus_test)
+
+def get_dicts(word_set):
+    word_to_index = {}
+    for i, word in enumerate(word_set):
+        word_to_index[word] = i  
+        
+    index_to_word = {index:word for (word, index) in word_to_index.items()}
+    
+    return word_to_index, index_to_word
+
+word_to_index_train, index_to_word_train = get_dicts(word_set_train)
+word_to_index_validation, index_to_word_validation = get_dicts(word_set_validation)
+word_to_index_test, index_to_word_test = get_dicts(word_set_test)
+
+def token(corpus, word_to_index):
+    tokenized_list = []
+    
+    for phrase in corpus:
+        tokenized_format = []
+        for word in phrase.split():
+            index = word_to_index[word]
+            tokenized_format.append(index)
+            
+        tokenized_list.append(tokenized_format)
+        
+    return np.array(tokenized_list, dtype='object')
+
+from tensorflow import keras
+
+X_train = token(corpus_train, word_to_index_train)
+X_validation = token(corpus_validation, word_to_index_validation)
+X_test = token(corpus_test, word_to_index_test)
+</i>
+<b>In order to train the RNN on the tokenized data, all text input must have the same length.
+We will limit the maximum review length to maxlen=30 by truncating longer reviews and padding shorter reviews with a null value (0).
+Keras pad_sequences() function is used to accomplish this.</b>
+
+<i class="ib">
+maxlen = 30
+X_train_padded = keras.preprocessing.sequence.pad_sequences(X_train, maxlen=maxlen, padding='post')
+X_validation_padded = keras.preprocessing.sequence.pad_sequences(X_validation, maxlen=maxlen, padding='post')
+X_test_padded = keras.preprocessing.sequence.pad_sequences(X_test, maxlen=maxlen, padding='post')
+
+y_train = train_df.iloc[:,-1].values
+y_validation = validation_df.iloc[:,-1].values
+
+from sklearn.preprocessing import OneHotEncoder
+encoder = OneHotEncoder(sparse=False)
+y_train_encoded = encoder.fit_transform(y_train.reshape(-1, 1))
+
+#import the Keras layers
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding,Dense, Dropout, LSTM, Dropout
+
+vocabulary_size = len(word_to_index_train) + 1
+embedding_size=30
+</i>
+
+<b>A simple RNN model is built with 1 embedding layer, 1 simple RNN layer, 1 dense layer as hidden layer and one dense layer as output layer.
+1.A Sequential model is appropriate for a plain stack of layers where each layer has exactly one input tensor and one output tensor.
+2.Keras Embedding Layer takes encoded text data as input. Embedding layer is used as the first hidden layer of a network.
+It takes 3 arguments.Embedding(input dimension, out_dimension=embedding_size, trainable=True).Embedding layer has weights that are learned.
+3.Simple RNN () class is a complete RNN layer in Keras with input unit = 32 neurons. It is a Fully-connected RNN where the output is to be fed back to input. for more detials visit the website: https://keras.io/api/layers/recurrent_layers/simple_rnn/
+3.A dense layer which is deeply connected with its preceding layer. The dense layer’s neuron in a model receives output from every neuron of its preceding layer, where neurons of the dense layer perform matrix-vector multiplication. Row vector of the output from the preceding layers (RNN layer) is equal to the column vector of the dense layer. 
+4. Last dense layer is the Output layer with 5 nodes indicating the probabilities of sentiment calculated.</b>
+
+<i class="ib">
+import tensorflow as tf
+model = tf.keras.Sequential([   
+    tf.keras.layers.Embedding(vocabulary_size, embedding_size, trainable=True),
+    tf.keras.layers.SimpleRNN(32),
+    tf.keras.layers.Dense(10, activation='relu'),
+    tf.keras.layers.Dense(5, activation='sigmoid')
+])
+
+model.summary()
+</i>
+    
+<i class="ig">
+Model: "sequential_2"
+_________________________________________________________________
+    Layer (type)                Output Shape              Param #   
+=================================================================
+    embedding_2 (Embedding)     (None, None, 30)          503430    
+                                                                    
+    simple_rnn_2 (SimpleRNN)    (None, 32)                2016      
+                                                                    
+    dense_4 (Dense)             (None, 10)                330       
+                                                                    
+    dense_5 (Dense)             (None, 5)                 55        
+                                                                    
+=================================================================
+Total params: 505,831
+Trainable params: 505,831
+Non-trainable params: 0
+_________________________________________________________________
+</i>
+
+<b>Hyper Parameter
+We first need to compile our model by specifying the loss function and optimizer we want to use while training, as well as any evaluation metrics we’d like to measure.
+Specify the appropriate parameters, including at least one metric ‘accuracy’.
+Optimizer used:Adam optimizer is used as it has the most beneficial nature of  its adaptive learning rate. It can compute adaptive learning rates for different parameters.
+Loss Function: Since, the label is one-hot encoded, categorical_crossentropy is used as loss function. suppose, the label is not one hot enocded, one can use Sparse_categorical_crossentropy as loss function.</b>
+
+<i class="ib">
+model.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
+
+model.fit(X_train_padded, y_train_encoded, batch_size=256, epochs=5 )
+</i>
+
+<i class="ig">
+Epoch 1/5
+427/427 [==============================] - 9s 19ms/step - loss: 1.2401 - accuracy: 0.5143
+Epoch 2/5
+427/427 [==============================] - 8s 18ms/step - loss: 1.0842 - accuracy: 0.5567
+Epoch 3/5
+427/427 [==============================] - 8s 18ms/step - loss: 1.0129 - accuracy: 0.5849
+Epoch 4/5
+427/427 [==============================] - 8s 18ms/step - loss: 0.9300 - accuracy: 0.6288
+Epoch 5/5
+427/427 [==============================] - 8s 18ms/step - loss: 0.8159 - accuracy: 0.6783
+</i>
+
+<i class="ib">
+pred_validation = model.predict(X_validation_padded)
+pred1_validation = (pred_validation > 0.5).astype(int)
+labels = [0, 1, 2, 3, 4]
+LABELS_validation = [labels[i] for i in model.predict(X_validation_padded).argmax(axis=-1)]
+
+print(classification_report(validation_df['Sentiment'], y_pred = LABELS_validation, labels = labels))
+</i>
+
+<i class="ig">
+        precision    recall  f1-score   support
+
+        0       0.06      0.03      0.04      2067
+        1       0.21      0.14      0.17      8168
+        2       0.56      0.64      0.60     23859
+        3       0.22      0.22      0.22     10010
+        4       0.08      0.11      0.09      2714
+
+accuracy                            0.40     46818
+macro avg       0.23      0.23      0.22     46818
+weighted avg    0.38      0.40      0.39     46818
+</i>
+
+<i class="ib">
+pred = model.predict(X_test_padded)
+pred1=(pred > 0.5).astype(int)
+
+labels = ['negative', 'somewhat negative', 'neutral','somewhat positive','positive']
+LABELS=[labels[i] for i in model.predict(X_test_padded).argmax(axis=-1)]
+
+predicted = pd.DataFrame({'Phrase': test_df.iloc[:,0].values, 'Sentiment': LABELS})
+
+print(predicted)
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjU-s7kUs3Es2WzIo6YBm8NHkskPmd_mHP_qAPjw_Q9xIhHgSTy9kj5jFxVBvT8kZzFU-ndvh7_xLDgbE4wVe9-cyJ22GqPzlZhKJ2hpvZpcGs9chA1GQZ5iKnF8V8W_BA2Wnv4uFMOrALZs9jEv2_S0TN8Kf7qxwJ6h_ays3rds7mXVzpDZlM0uiZzTA/s482/2.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="373" data-original-width="482" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjU-s7kUs3Es2WzIo6YBm8NHkskPmd_mHP_qAPjw_Q9xIhHgSTy9kj5jFxVBvT8kZzFU-ndvh7_xLDgbE4wVe9-cyJ22GqPzlZhKJ2hpvZpcGs9chA1GQZ5iKnF8V8W_BA2Wnv4uFMOrALZs9jEv2_S0TN8Kf7qxwJ6h_ays3rds7mXVzpDZlM0uiZzTA/s600/2.png"/></a></div>
+</pre>
+
+<span style="display: none">Tags: Technology,Natural Language Processing,</span>

@@ -1,0 +1,220 @@
+<head>
+  <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <!-- Google AdSense Using Machine Learning Code -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3071098372371409",
+          enable_page_level_ads: true
+      });
+  </script>
+  <style>
+      pre {
+          white-space: pre-wrap;
+          white-space: -moz-pre-wrap;
+          white-space: -pre-wrap;
+          white-space: -o-pre-wrap;
+          word-wrap: break-word;
+      }
+
+      .dot {
+          height: 12px;
+          width: 12px;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+      }
+  
+      .arrow {
+          border: solid black;
+          border-width: 0 3px 3px 0;
+          display: inline-block;
+          padding: 3px;
+      }
+
+      .right {
+          transform: rotate(-45deg);
+          -webkit-transform: rotate(-45deg);
+      }
+
+      .left {
+          transform: rotate(135deg);
+          -webkit-transform: rotate(135deg);
+      }
+
+      .up {
+          transform: rotate(-135deg);
+          -webkit-transform: rotate(-135deg);
+      }
+
+      .down {
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+      }
+
+      .customLink {
+          background-color: #4CAF50;
+          border: none;
+          color: white !important;
+          padding: 8px 13px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          margin: 4px 2px;
+          cursor: pointer;
+      }
+
+      .customLink:hover {
+          text-decoration: none;
+      }
+  </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>
+Single Choice Correct
+
+Ques 1. 
+
+Which of the following models gives higher weightage to stop words?
+
+- Bag of words model (Correct)
+- TF-IDF model 
+
+Ques 2. 
+
+Suppose you want to create a TF-IDF vector and you learn that it is possible that your current data doesn't contain all the words you are likely to see in real life. You then decide to use the dictionary of the language as the features for the vector.
+Which of these problems are you likely to run into?
+
+- TF-IDF values for some words will be 0.
+- TF-IDF vectorization throws divide by zero error for words not in the corpus (Theoretically Correct)
+- TF-IDF values for all words will be less than 1.
+
+
+<h2>Practically, feature_extraction module does not produce feature out of words during testing time that it did not see during training time.</h2>
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+import sklearn
+print(sklearn.__version__) # 0.24.1
+corpus = [
+    'This is the first document.',
+    'This document is the second document.',
+    'And this is the third one.',
+    'Is this the first document?',
+]
+
+vectorizer = TfidfVectorizer(smooth_idf = False, min_df = 0)
+X = vectorizer.fit_transform(corpus)
+
+# array(['and', 'document', 'first', 'is', 'one', 'second', 'the', 'third', 'this'], ...)
+print("X:")
+print(X)
+print()
+print("X.shape: " + str(X.shape))
+# (4, 9)
+print()
+
+corpus_test = ['This is Ashish Jain speaking.']
+X_test = vectorizer.transform(corpus_test)
+print("X_test:")
+print(X_test)
+print("X_test.shape: ")
+print(X_test.shape)
+
+print("type(X_test): " + str(type(X_test)))
+
+<h2>Output</h2>
+
+(base) $ python "tfidf - experimenting with parameters.py"
+0.24.1
+X:
+  (0, 1)        0.4694172843223779
+  (0, 2)        0.6172273175654565
+  (0, 6)        0.3645443967613799
+  (0, 3)        0.3645443967613799
+  (0, 8)        0.3645443967613799
+  (1, 5)        0.6095324555037936
+  (1, 1)        0.6578266523342082
+  (1, 6)        0.25543053926412473
+  (1, 3)        0.25543053926412473
+  (1, 8)        0.25543053926412473
+  (2, 4)        0.5324851898636142
+  (2, 7)        0.5324851898636142
+  (2, 0)        0.5324851898636142
+  (2, 6)        0.223143128752028
+  (2, 3)        0.223143128752028
+  (2, 8)        0.223143128752028
+  (3, 1)        0.4694172843223779
+  (3, 2)        0.6172273175654565
+  (3, 6)        0.3645443967613799
+  (3, 3)        0.3645443967613799
+  (3, 8)        0.3645443967613799
+
+X.shape: (4, 9)
+
+X_test:
+  (0, 8)        0.7071067811865475
+  (0, 3)        0.7071067811865475
+X_test.shape:
+(1, 9)
+type(X_test): &lt;class 'scipy.sparse.csr.csr_matrix'>
+
+Ques 3.
+
+Single Choice Correct
+
+Which of these lexical resources are not available as part of NLTK?
+
+a. List of names 
+b. Pronunciations
+c. French to English dictionary
+d. None of the above (Correct)
+
+Ques 4.
+
+Using WordNet, match the following for the word 'dusk'.
+
+Col A -- Col B
+a. Synonyms other than the word itself -- 1. Night
+b. Hypernym -- 2. Fall 
+c. Hyponym -- 3. Hour
+d. Lemmas -- 4. Twilight and 
+NA -- 5. Crepuscle
+
+Correct Answer: a - 4, b - 3, c - 1, d - 2,4,5
+
+Ques 5:
+
+Single Choice Correct 
+
+Arrange the below steps in the correct order based on the NLP pipeline.
+1. Apply machine learning techniques to build models.
+2. Cleaning the input text data.
+3. Deploying the model and making prediction on new data.
+4. Normalizing the data.
+5. Validating the model built.
+6. Feature engineering
+7. Collecting textual data 
+
+a. 7 2 4 6 1 5 3 (Correct)
+b. 7 4 2 6 1 3 5
+c. 7 1 5 2 6 3 4
+
+Ques 6.
+
+Single Choice Correct 
+
+Which of these applications is unlikely to use a TF-IDF model during implementation:
+
+a. chatbot
+b. sentiment analyzer
+c. information extraction (Correct)
+d. topic modeling
+
+
+</pre>
+<span style="display: none">Tags: Natural Language Processing,</span>

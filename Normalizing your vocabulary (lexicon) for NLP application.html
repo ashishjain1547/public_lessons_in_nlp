@@ -1,0 +1,165 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        });
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div> <br />
+
+<pre class=""><h3>Why normalize our vocabulary:</h3>
+
+1. To reduce the vocabulary size as vocabulary size is important to the performance of an NLP pipeline.
+2. So that tokens that mean similar things are combined into a single, normalized form.
+3. It improves the association of meaning across those different “spellings” of a token or n-gram in your corpus.
+4. Reducing your vocabulary can reduce the likelihood of overfitting.
+
+Vocabulary is normalized in the following ways:
+
+<h3>a) CASE FOLDING (aka case normalization)</h3>
+
+Case folding is when you consolidate multiple “spellings” of a word that differ only in their capitalization.
+To preserve the meaning of proper nouns:
+A better approach for case normalization is to lowercase only the first word of a sentence and allow all other words to retain their capitalization such as “Joe” and “Smith” in “Joe Smith”. 
+
+<h3>b) STEMMING</h3>
+
+Another common vocabulary normalization technique is to eliminate the small meaning differences of pluralization or possessive endings of words, or even various verb forms. This normalization, identifying a common stem among various forms of a word, is called stemming. For example, the words housing and houses share the same stem, house. Stemming removes suffixes from words in an attempt to combine words with similar meanings together under their common stem. A stem isn’t required to be a properly spelled word, but merely a token, or label, representing several possible spellings of a word.
+
+Stemming is important for keyword search or information retrieval. It allows you to search for “developing houses in Portland” and get web pages or documents that use both the word “house” and “houses” and even the word “housing.”
+
+<h4># How does stemming affect precision and recall of a search engine?</h4>
+
+This broadening of your search results would be a big improvement in the “recall” score for how well your search engine is doing its job at returning all the relevant documents. But stemming could greatly reduce the “precision” score for your search engine, because it might return many more irrelevant documents along with the relevant ones. In some applications this “false-positive rate” (proportion of the pages returned that you don’t find useful) can be a problem. 
+
+So most search engines allow you to turn off stemming and even case normalization by putting quotes around a word or phrase. Quoting indicates that you only want pages containing the exact spelling of a phrase, such as “‘Portland Housing Development software.’” 
+
+That would return a different sort of document than one that talks about a “‘a Portland software developer’s house’”.
+
+<h3>c) LEMMATIZATION</h3>
+
+If you have access to information about connections between the meanings of various words, you might be able to associate several words together even if their spelling is quite different. This more extensive normalization down to the semantic root of a word—its lemma—is called lemmatization.
+
+<h4># Lemmatization and it’s use in the chatbot pipeline:</h4>
+
+Any NLP pipeline that wants to “react” the same for multiple different spellings of the same basic root word can benefit from a lemmatizer. It reduces the number of words you have to respond to, the dimensionality of your language model. Using it can make your model more general, but it can also make your model less precise, because it will treat all spelling variations of a given root word the same. 
+
+For example, “chat,” “chatter,” “chatty,” “chatting,” and perhaps even “chatbot” would all be treated the same in an NLP pipeline with lemmatization, even though they have different meanings. 
+
+Likewise, “bank,” “banked,” and “banking” would be treated the same by a stemming pipeline, despite the river meaning of “bank,” the motorcycle meaning of “banked,” and the finance meaning of “banking.”
+
+Lemmatization is a potentially more accurate way to normalize a word than stemming or case normalization because it takes into account a word’s meaning. A lemmatizer uses a knowledge base of word synonyms and word endings to ensure that only words that mean similar things are consolidated into a single token.
+
+<h4># Lemmatization and POS (Part of speech) Tagging</h4>
+
+Some lemmatizers use the word’s part of speech (POS) tag in addition to its spelling to help improve accuracy. 
+
+The POS tag for a word indicates its role in the grammar of a phrase or sentence. For example, the noun POS is for words that refer to “people, places, or things” within a phrase. An adjective POS is for a word that modifies or describes a noun. A verb refers to an action. The POS of a word in isolation cannot be determined. The context of a word must be known for its POS to be identified.
+
+So some advanced lemmatizers can’t be run-on words in isolation.
+
+<i style="background-color: black; color: white; display: block;">>>> import nltk
+>>> nltk.download('wordnet')
+>>> from nltk.stem import WordNetLemmatizer
+>>> lemmatizer = WordNetLemmatizer()
+
+# Default 'pos' is noun.
+>>> lemmatizer.lemmatize("better") 
+'better’
+
+# "a" --> adjective
+>>> lemmatizer.lemmatize("better", pos="a") 
+'good’
+
+>>> lemmatizer.lemmatize("goods", pos="n")
+'good’
+
+>>> lemmatizer.lemmatize("goods", pos="a")
+'goods’
+
+>>> lemmatizer.lemmatize("good", pos="a")
+'good’
+
+>>> lemmatizer.lemmatize("goodness", pos="n")
+'goodness'
+
+>>> lemmatizer.lemmatize("best", pos="a")
+'best'</i>
+
+<h3>Difference between stemming and lemmatization:</h3>
+
+For grammatical reasons, documents are going to use different forms of a word, such as <i>organize, organizes, and organizing</i>. Additionally, there are families of derivationally related words with similar meanings, such as <i>democracy, democratic, and democratization</i>. In many situations, it seems as if it would be useful for a search for one of these words to return documents that contain another word in the set. 
+The goal of both stemming and lemmatization is to reduce inflectional forms and sometimes derivationally related forms of a word to a common base form. For instance: 
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-qsLENDALEEU/YPa-Cea-wGI/AAAAAAAAHDg/EiIn1Ugpwwg8ti0GY7kWx9N2zUQT716EgCLcBGAsYHQ/s231/18.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="54" data-original-width="231"
+        src="https://1.bp.blogspot.com/-qsLENDALEEU/YPa-Cea-wGI/AAAAAAAAHDg/EiIn1Ugpwwg8ti0GY7kWx9N2zUQT716EgCLcBGAsYHQ/s600/18.png" /></a>
+</div>
+
+The result of this mapping of text will be something like:
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-1SARMmynUMY/YPa-CXCddFI/AAAAAAAAHDk/uKdpRGl4HH0PTt9MYGssj6RIjHGd0k8ZwCLcBGAsYHQ/s315/19.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="56" data-original-width="315"
+        src="https://1.bp.blogspot.com/-1SARMmynUMY/YPa-CXCddFI/AAAAAAAAHDk/uKdpRGl4HH0PTt9MYGssj6RIjHGd0k8ZwCLcBGAsYHQ/s600/19.png" /></a>
+</div>
+
+However, the two words differ in their flavor. 
+<b>Stemming</b> usually refers to a crude heuristic process that chops off the ends of words in the hope of achieving this goal correctly most of the time, and often includes the removal of derivational affixes. 
+
+<b>Lemmatization</b> usually refers to doing things properly with the use of a vocabulary and morphological analysis of words, normally aiming to remove inflectional endings only and to return the base or dictionary form of a word, which is known as the lemma. If confronted with the token saw, stemming might return just s, whereas lemmatization would attempt to return either see or saw depending on whether the use of the token was as a verb or a noun. The two may also differ in that stemming most commonly collapses derivationally related words, whereas lemmatization commonly only collapses the different inflectional forms of a lemma. Linguistic processing for stemming or lemmatization is often done by an additional plug-in component to the indexing process, and a number of such components exist, both commercial and open-source.
+
+Ref: <a href="https://nlp.stanford.edu/IR-book/html/htmledition/stemming-and-lemmatization-1.html" target="_blank">nlp.stanford.edu</a> 
+<span class="" style="display: none;">Labels: Technology,Natural Language Processing,Python,</span>
+</pre>

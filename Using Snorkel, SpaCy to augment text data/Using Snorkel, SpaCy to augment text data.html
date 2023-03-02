@@ -1,0 +1,170 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        }); 
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre><div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-1JhKX2xYeic/X0AGm06sCqI/AAAAAAAAFYE/jD6gqQu-Tgg2Y-d9m40d71WmnaTTpB8cgCLcBGAsYHQ/s0/Snorkel.png" style="display: block; padding: 1em 0; text-align: center;"><img alt="" border="0" data-original-height="198" data-original-width="480" src="https://1.bp.blogspot.com/-1JhKX2xYeic/X0AGm06sCqI/AAAAAAAAFYE/jD6gqQu-Tgg2Y-d9m40d71WmnaTTpB8cgCLcBGAsYHQ/s0/Snorkel.png"/></a></div>
+
+We have some data that looks like this in a file "names.csv":
+
+<i style="color: green;">names,text
+Harry Potter,Harry Potter is the protagonist.
+Ronald Weasley,Ronald Weasley is the chess expert.
+Hermione Granger,Hermione is the super witch.
+Hermione Granger,Hermione Granger weds Ron.</i>
+
+We augment this data by replacing the names in the "text" column with new randomly selected different names.
+
+For this we write Python code as given below:
+
+<i style="color: blue;">import pandas as pd
+from collections import OrderedDict
+import numpy as np
+import names
+from snorkel.augmentation import transformation_function
+
+from snorkel.preprocess.nlp import SpacyPreprocessor
+spacy = SpacyPreprocessor(text_field="text", doc_field="doc", memoize=True)
+
+df = pd.read_csv('names.csv', encoding='cp1252')
+print(df.head())
+print()
+
+# Pregenerate some random person names to replace existing ones with for the transformation strategies below
+replacement_names = [names.get_full_name() for _ in range(50)]
+
+# Replace a random named entity with a different entity of the same type.
+@transformation_function(pre=[spacy])
+def change_person(x):
+    person_names = [ent.text for ent in x.doc.ents if ent.label_ == "PERSON"]
+    # If there is at least one person name, replace a random one. Else return None.
+    if person_names:
+        name_to_replace = np.random.choice(person_names)
+        replacement_name = np.random.choice(replacement_names)
+        x.text = x.text.replace(name_to_replace, replacement_name)
+        return x
+
+tfs = [ change_person ]
+
+from snorkel.augmentation import RandomPolicy
+
+random_policy = RandomPolicy(
+    len(tfs), sequence_length=2, n_per_original=1, keep_original=True
+)
+
+from snorkel.augmentation import PandasTFApplier
+
+tf_applier = PandasTFApplier(tfs, random_policy)
+df_train_augmented = tf_applier.apply(df)
+
+print(f"Original training set size: {len(df)}")
+print(f"Augmented training set size: {len(df_train_augmented)}")
+
+print(df_train_augmented)
+
+print("\nDebugging for 'Hermione':\n")
+import spacy 
+nlp = spacy.load('en_core_web_sm')   
+
+def format_str(str, max_len = 25):
+    str = str + " " * max_len
+    return str[:max_len]
+
+for i, row in df.iterrows():
+    doc = nlp(row.text)   
+    for ent in doc.ents: 
+        # print(ent.text, ent.start_char, ent.end_char, ent.label_) 
+        print(format_str(ent.text), ent.label_) </i>    
+
+The Snorkel we are running is:
+<i style="color: blue;">(temp) E:\>conda list snorkel </i>
+
+<i style="color: green;"># packages in environment at E:\programfiles\Anaconda3\envs\temp:
+#
+# Name                    Version                   Build  Channel
+snorkel                   0.9.3                      py_0    conda-forge </i>
+
+Now, we run it in "Anaconda Prompt":
+
+<i style="color: green;">(temp) E:\>python script.py
+              names                                 text
+0      Harry Potter     Harry Potter is the protagonist.
+1    Ronald Weasley  Ronald Weasley is the chess expert.
+2  Hermione Granger         Hermione is the super witch.
+3  Hermione Granger           Hermione Granger weds Ron.
+
+100%|██████████| 4/4 [00:00&lt;00:00, 34.58it/s]
+Original training set size: 4
+Augmented training set size: 7
+              names                                 text
+0      Harry Potter     Harry Potter is the protagonist.
+0      Harry Potter  Donald Gregoire is the protagonist.
+1    Ronald Weasley  Ronald Weasley is the chess expert.
+1    Ronald Weasley       John Hill is the chess expert. </i>
+<i style="color: red;">2  Hermione Granger         Hermione is the super witch.</i>
+<i style="color: green;">3  Hermione Granger            Hermione Granger weds Ron.
+3  Hermione Granger           Jonathan Humphrey weds Ron.
+
+Debugging for 'Hermione':
+
+Harry Potter              PERSON
+Ronald Weasley            PERSON
+Hermione                  ORG
+Hermione Granger          PERSON
+Ron                       PERSON</i>
+
+There is an error with the name "Hermione" (the red row above). Upon debugging we see that it is recognized as an 'Organization' and not a 'Person'.
+</pre>

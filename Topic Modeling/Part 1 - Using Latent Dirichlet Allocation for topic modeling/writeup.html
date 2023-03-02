@@ -1,0 +1,355 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        i.ibb {
+            display: block;
+            background-color: black;
+            color: white;
+        }
+
+        i.ibg {
+            display: block;
+            background-color: rgb(50, 50, 50);
+            color: white;
+        }
+
+
+        ul.no-bullets {
+            list-style-type: none;
+            /* Remove bullets */
+            padding: 0;
+            /* Remove padding */
+            margin: 0;
+            /* Remove margins */
+        }
+
+        li.customLi {
+            float: left;
+        }
+
+        li.customLi>span.customSpan {
+            display: block;
+            padding: 8px;
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+    
+<style>
+    i.black {
+        display: block;
+        background-color: black;
+        color: white;
+    }
+
+    i.green {
+        display: block;
+        background-color: green;
+        color: white;
+    }
+
+    i.red {
+        display: block;
+        background-color: red;
+        color: white;
+    }
+</style>
+
+<pre>
+<i class="black">
+import pandas as pd
+import numpy as np
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import re
+import nltk
+from nltk.tokenize import word_tokenize
+
+import sys
+
+import gensim
+from gensim import corpora
+from gensim.models.lsimodel import LsiModel, stochastic_svd
+from gensim.models.coherencemodel import CoherenceModel
+from gensim.models import RpModel
+from gensim.matutils import corpus2dense, Dense2Corpus
+from gensim.test.utils import common_texts
+from gensim.corpora.dictionary import Dictionary
+from gensim.models.ldamodel import LdaModel # Latent Dirichlet Allocation and not 'Latent Discriminant Analysis'
+
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.preprocessing import normalize
+from sklearn.decomposition import LatentDirichletAllocation, PCA
+from sklearn.cluster import KMeans
+from sklearn.random_projection import SparseRandomProjection, johnson_lindenstrauss_min_dim
+from sklearn.random_projection import GaussianRandomProjection
+from sklearn.metrics.pairwise import euclidean_distances
+import string
+
+from collections import Counter
+from preprocess import preprocess_text
+</i>
+
+<h2>Latent Dirichlet Allocation is a statistical technique to identify topics in textual data.</h2>
+
+This below is a snapshot of few results we were getting till we trimmed and trimmed our words from the "probability" equations.
+Doing this to a great extent will lead to over-fitting.
+<i class="red">
+#1
+
+Topic Id: 0
+    Probabilities: 0.006*"people" + 0.003*"mobile" + 0.003*"film" + 0.003*"phone" + 0.003*"music" + 0.003*"service" + 0.002*"party" + 0.002*"game" + 0.002*"time" + 0.002*"election" + 0.002*"government" + 0.002*"firm" + 0.002*"million" + 0.002*"way" + 0.002*"number" + 0.002*"take" + 0.002*"win" + 0.002*"player" + 0.002*"well" + 0.002*"next"
+
+
+Topic Id: 1
+    Probabilities: 0.004*"game" + 0.003*"time" + 0.003*"government" + 0.003*"people" + 0.003*"service" + 0.003*"company" + 0.003*"world" + 0.002*"month" + 0.002*"firm" + 0.002*"bbc" + 0.002*"phone" + 0.002*"film" + 0.002*"take" + 0.002*"home" + 0.002*"way" + 0.002*"week" + 0.002*"show" + 0.002*"market" + 0.002*"second" + 0.002*"well"
+
+
+Topic Id: 2
+    Probabilities: 0.006*"people" + 0.003*"world" + 0.003*"time" + 0.003*"game" + 0.003*"number" + 0.003*"government" + 0.003*"company" + 0.003*"firm" + 0.002*"month" + 0.002*"market" + 0.002*"many" + 0.002*"country" + 0.002*"film" + 0.002*"play" + 0.002*"sale" + 0.002*"tax" + 0.002*"take" + 0.002*"minister" + 0.002*"player" + 0.002*"award"
+
+
+Topic Id: 3
+    Probabilities: 0.005*"film" + 0.004*"time" + 0.003*"game" + 0.003*"labour" + 0.003*"world" + 0.002*"sale" + 0.002*"week" + 0.002*"election" + 0.002*"month" + 0.002*"people" + 0.002*"country" + 0.002*"show" + 0.002*"party" + 0.002*"firm" + 0.002*"want" + 0.002*"government" + 0.002*"since" + 0.002*"service" + 0.002*"many" + 0.002*"good"
+
+
+Topic Id: 4
+    Probabilities: 0.004*"time" + 0.003*"people" + 0.003*"game" + 0.003*"government" + 0.003*"world" + 0.002*"number" + 0.002*"company" + 0.002*"music" + 0.002*"win" + 0.002*"blair" + 0.002*"right" + 0.002*"labour" + 0.002*"show" + 0.002*"mobile" + 0.002*"england" + 0.002*"firm" + 0.002*"country" + 0.002*"next" + 0.002*"day" + 0.002*"plan"
+    
+    
+#2
+
+Topic Id: 0
+    Probabilities: 0.005*"people" + 0.004*"time" + 0.003*"sale" + 0.003*"film" + 0.003*"mobile" + 0.003*"game" + 0.002*"company" + 0.002*"show" + 0.002*"firm" + 0.002*"million" + 0.002*"party" + 0.002*"world" + 0.002*"country" + 0.002*"labour" + 0.002*"way" + 0.002*"service" + 0.002*"week" + 0.002*"2004" + 0.002*"top" + 0.002*"music"
+
+
+Topic Id: 1
+    Probabilities: 0.004*"film" + 0.004*"time" + 0.003*"people" + 0.003*"government" + 0.003*"award" + 0.003*"game" + 0.002*"world" + 0.002*"music" + 0.002*"party" + 0.002*"player" + 0.002*"country" + 0.002*"blair" + 0.002*"labour" + 0.002*"win" + 0.002*"bbc" + 0.002*"home" + 0.002*"number" + 0.002*"service" + 0.002*"election" + 0.002*"top"
+
+
+Topic Id: 2
+    Probabilities: 0.006*"game" + 0.003*"people" + 0.003*"world" + 0.003*"time" + 0.003*"company" + 0.003*"firm" + 0.002*"phone" + 0.002*"film" + 0.002*"month" + 0.002*"number" + 0.002*"service" + 0.002*"player" + 0.002*"england" + 0.002*"market" + 0.002*"minister" + 0.002*"right" + 0.002*"home" + 0.002*"government" + 0.002*"next" + 0.002*"british"
+
+
+Topic Id: 3
+    Probabilities: 0.005*"people" + 0.004*"government" + 0.004*"time" + 0.003*"world" + 0.003*"election" + 0.002*"game" + 0.002*"week" + 0.002*"company" + 0.002*"labour" + 0.002*"plan" + 0.002*"service" + 0.002*"next" + 0.002*"minister" + 0.002*"win" + 0.002*"work" + 0.002*"technology" + 0.002*"way" + 0.002*"film" + 0.002*"day" + 0.002*"bbc"
+
+
+Topic Id: 4
+    Probabilities: 0.004*"people" + 0.003*"government" + 0.003*"firm" + 0.003*"time" + 0.003*"world" + 0.003*"market" + 0.003*"number" + 0.002*"month" + 0.002*"country" + 0.002*"price" + 0.002*"group" + 0.002*"film" + 0.002*"company" + 0.002*"lord" + 0.002*"show" + 0.002*"economy" + 0.002*"2004" + 0.002*"london" + 0.002*"report" + 0.002*"use"
+</i>
+
+<i class="black">
+import re
+import string
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+from nltk.stem import WordNetLemmatizer
+nltk.download('wordnet')
+from nltk.tokenize import word_tokenize
+nltk.download('punkt')
+
+def cleanup_text(text):
+    # Remove tags
+    remove = re.compile(r'')
+    text = re.sub(remove, '', text)
+    text = re.sub("&#[0-9]+;", '', text)
+    
+    # Remove special characters
+    reviews = ''
+    for x in text:
+        if x.isalnum():
+            reviews = reviews + x
+        else:
+            reviews = reviews + ' '
+    
+    #Convert to lower
+    text = reviews.lower()
+    
+    return text
+
+def remove_punctuations(text):
+    exclude = set(string.punctuation)
+    exclude.remove("-")
+    text = ''.join(ch for ch in text if ch not in exclude)
+    return text
+
+def remove_stopwords(text):
+    stop_words = set(stopwords.words('english'))
+    
+    days_of_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    stop_words.update(days_of_week)
+    words = word_tokenize(text)
+    words = [x for x in words if len(x) > 2]
+    words = [x for x in words if x not in stop_words]
+    return words
+
+def lemmatize_word(text):
+    le = WordNetLemmatizer()
+    text = [le.lemmatize(w) for w in text]
+    return text
+
+def preprocess_text(doc):
+    doc = cleanup_text(doc)
+    doc = remove_punctuations(doc)
+    words = remove_stopwords(doc)
+    words = lemmatize_word(words)
+    doc = " ".join(words)
+    return doc
+</i>
+
+<i class="black">
+def remove_additional_words(text):
+    additional_stopwords = ["new", "like", "many", "also", "even", "get", "say", "according", "would", "could",
+                            "know", "made", "make", "come", "didnt", "dont", "doesnt", "go", "may", "back", 
+                            "going", "including", "added", "set", "take", "want", "use",
+                            "000", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "20", "u",
+                           "one", "two", "three", "year", "first", "last", "good", "best", "well", "told", "said"]
+    days_of_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    
+    additional_stopwords += days_of_week
+    
+    words = word_tokenize(text)
+    words = [x for x in words if len(x) > 2]
+    words = [x for x in words if x not in additional_stopwords]
+    doc = " ".join(words)
+    return doc
+
+df1 = pd.read_csv('bbc_news_train.csv')
+
+df1['Preprocess_text'] = df1['Text'].apply(preprocess_text)
+df1['Preprocess_text'] = df1['Preprocess_text'].apply(remove_additional_words)
+
+print(Counter(df1['Category']))
+</i>
+
+<i class="green">
+Counter({'business': 336,
+'tech': 261,
+'politics': 274,
+'sport': 346,
+'entertainment': 273})
+</i>
+
+<i class="black">
+from gensim.test.utils import common_texts
+from gensim.corpora.dictionary import Dictionary
+
+# Create a corpus from a list of texts
+clean_corpus = [doc.split() for doc in df1['Preprocess_text'].values.tolist()]
+common_dictionary = Dictionary(clean_corpus)
+common_corpus = [common_dictionary.doc2bow(text) for text in clean_corpus]
+</i>
+
+<i class="black">
+%%time
+NO_OF_TOPICS_FOR_TRAINING = 5
+NO_OF_WORDS_IN_TOPIC = 20
+lda = LdaModel(common_corpus, num_topics = NO_OF_TOPICS_FOR_TRAINING, id2word = common_dictionary)
+</i>
+
+<i class="black">
+ldamodel_topics = lda.print_topics(NO_OF_TOPICS_FOR_TRAINING, NO_OF_WORDS_IN_TOPIC)
+</i>
+
+<i class="black">
+for (topic_id, probabilities) in ldamodel_topics:
+    topic_string = "\n\nTopic Id: " + str(topic_id) + "\n Probabilities: " + str(probabilities)
+    print(topic_string)
+</i>
+
+<i class="green">
+Topic Id: 0
+Probabilities: 0.004*"people" + 0.003*"time" + 0.003*"government" + 0.003*"film" + 0.003*"game" + 0.003*"sale" + 0.003*"company" + 0.002*"world" + 0.002*"music" + 0.002*"player" + 0.002*"country" + 0.002*"month" + 0.002*"show" + 0.002*"2004" + 0.002*"market" + 0.002*"group" + 0.002*"next" + 0.002*"bbc" + 0.002*"second" + 0.002*"technology"
+
+
+Topic Id: 1
+Probabilities: 0.004*"people" + 0.004*"time" + 0.003*"world" + 0.003*"game" + 0.002*"party" + 0.002*"firm" + 0.002*"day" + 0.002*"service" + 0.002*"show" + 0.002*"way" + 0.002*"think" + 0.002*"company" + 0.002*"market" + 0.002*"next" + 0.002*"music" + 0.002*"win" + 0.002*"award" + 0.002*"british" + 0.002*"still" + 0.002*"phone"
+
+
+Topic Id: 2
+Probabilities: 0.004*"game" + 0.004*"film" + 0.004*"government" + 0.003*"people" + 0.003*"time" + 0.003*"firm" + 0.003*"sale" + 0.003*"labour" + 0.002*"number" + 0.002*"market" + 0.002*"country" + 0.002*"company" + 0.002*"service" + 0.002*"tax" + 0.002*"way" + 0.002*"plan" + 0.002*"week" + 0.002*"technology" + 0.002*"blair" + 0.002*"minister"
+
+
+Topic Id: 3
+Probabilities: 0.005*"people" + 0.004*"time" + 0.003*"world" + 0.003*"game" + 0.003*"labour" + 0.003*"week" + 0.003*"party" + 0.002*"month" + 0.002*"election" + 0.002*"win" + 0.002*"way" + 0.002*"show" + 0.002*"company" + 0.002*"old" + 0.002*"number" + 0.002*"play" + 0.002*"music" + 0.002*"group" + 0.002*"net" + 0.002*"mobile"
+
+
+Topic Id: 4
+Probabilities: 0.006*"people" + 0.004*"time" + 0.003*"film" + 0.003*"world" + 0.003*"service" + 0.003*"government" + 0.003*"mobile" + 0.003*"company" + 0.003*"game" + 0.002*"win" + 0.002*"firm" + 0.002*"number" + 0.002*"election" + 0.002*"month" + 0.002*"phone" + 0.002*"home" + 0.002*"party" + 0.002*"country" + 0.002*"minister" + 0.002*"england"
+</i>
+
+<i class="black">
+for i in range (1, len(df1)):
+    tagged_topic = df1.iloc[i]["Category"]
+    text_for_inference = df1.iloc[i]["Text"].split()
+    
+    bow = common_dictionary.doc2bow(text_for_inference)
+    document_topics = lda.get_document_topics(bow, minimum_probability=None, minimum_phi_value=None, per_word_topics=False)
+    
+    document_topics.sort(key=lambda elem: elem[1], reverse=True)
+    
+    document_topics_string = "\n\nArticle ID: " + tagged_topic + " : "
+    for (topic_id, probability) in document_topics:
+        document_topics_string = document_topics_string + " Topic ID: " + str(topic_id) + ", Probability: " + str(probability) + ","
+        
+    print(document_topics_string)
+    
+    for topic, prob in document_topics:
+        topic_terms_string = "\n   Topic ID: " + str(topic) + " : " + lda.print_topic(topic)
+        print(topic_terms_string)
+</i>
+
+<i class="green">
+Article ID: business :  Topic ID: 0, Probability: 0.97704554, Topic ID: 4, Probability: 0.018701652,
+
+    Topic ID: 0 : 0.004*"people" + 0.003*"time" + 0.003*"government" + 0.003*"film" + 0.003*"game" + 0.003*"sale" + 0.003*"company" + 0.002*"world" + 0.002*"music" + 0.002*"player"
+ 
+    Topic ID: 4 : 0.006*"people" + 0.004*"time" + 0.003*"film" + 0.003*"world" + 0.003*"service" + 0.003*"government" + 0.003*"mobile" + 0.003*"company" + 0.003*"game" + 0.002*"win"
+ 
+ 
+ Article ID: business :  Topic ID: 4, Probability: 0.7235847, Topic ID: 0, Probability: 0.27315685,
+ 
+    Topic ID: 4 : 0.006*"people" + 0.004*"time" + 0.003*"film" + 0.003*"world" + 0.003*"service" + 0.003*"government" + 0.003*"mobile" + 0.003*"company" + 0.003*"game" + 0.002*"win"
+ 
+    Topic ID: 0 : 0.004*"people" + 0.003*"time" + 0.003*"government" + 0.003*"film" + 0.003*"game" + 0.003*"sale" + 0.003*"company" + 0.002*"world" + 0.002*"music" + 0.002*"player"
+ 
+ 
+ Article ID: tech :  Topic ID: 4, Probability: 0.9569476, Topic ID: 3, Probability: 0.040294025,
+ 
+    Topic ID: 4 : 0.006*"people" + 0.004*"time" + 0.003*"film" + 0.003*"world" + 0.003*"service" + 0.003*"government" + 0.003*"mobile" + 0.003*"company" + 0.003*"game" + 0.002*"win"
+ 
+    Topic ID: 3 : 0.005*"people" + 0.004*"time" + 0.003*"world" + 0.003*"game" + 0.003*"labour" + 0.003*"week" + 0.003*"party" + 0.002*"month" + 0.002*"election" + 0.002*"win"
+...
+... 
+... 
+</i>
+</pre>
+
+<span style="opacity: 0;">Tags: Machine Learning,Natural Language Processing,Technology,</span>

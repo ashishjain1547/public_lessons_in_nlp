@@ -1,0 +1,198 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+        }); 
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<nav class="customDynamicNav"> </nav>
+<div class="customTemporaryCodeHolder"> </div>
+</br>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>We have generated data for the task "Creating custom NER using SpaCy for programming languages" in this post:
+
+<a href="https://survival8.blogspot.com/p/scrapy-spiders-for-getting-data-about.html" target="_blank">Scrapy spiders for getting data about programming languages from Wikipedia</a>
+
+Reason we are developing an NER for programming languages is because we do not a category for programming languages in SpaCy. We have following 18 types of named entities (Ref 1):
+
+TYPE   ---   DESCRIPTION
+1. PERSON   ---   People, including fictional.
+2. NORP   ---   Nationalities or religious or political groups.
+3. FAC   ---   Buildings, airports, highways, bridges, etc.
+4. ORG   ---   Companies, agencies, institutions, etc.
+5. GPE   ---   Countries, cities, states. (Geo-political entities)
+6. LOC   ---   Non-GPE locations, mountain ranges, bodies of water.
+7. PRODUCT   ---   Objects, vehicles, foods, etc. (Not services.)
+8. EVENT   ---   Named hurricanes, battles, wars, sports events, etc.
+9. WORK_OF_ART   ---   Titles of books, songs, etc.
+10. LAW   ---   Named documents made into laws.
+11. LANGUAGE   ---   Any named language.
+12. DATE   ---   Absolute or relative dates or periods.
+13. TIME   ---   Times smaller than a day.
+14. PERCENT   ---   Percentage, including ”%“.
+15. MONEY   ---   Monetary values, including unit.
+16. QUANTITY   ---   Measurements, as of weight or distance.
+17. ORDINAL   ---   “first”, “second”, etc.
+18. CARDINAL   ---   Numerals that do not fall under another type.
+
+We have generated two data files that we are going to use:
+
+1. 'List of ProgLangs.txt'
+
+Google drive link: https://drive.google.com/open?id=1YiZwLFQyuCEvmij95X_4v3v_NrWyjebt
+
+2. 'Python, Java, C, C++, C#, ECMAScript.txt'
+
+Google drive link: https://drive.google.com/open?id=1tGCg-272VCoHZBTLBWNizge_2XIXLlpq
+
+Code from Jupyter Notebook:
+
+<i style="color: darkgreen">import json
+import spacy
+import random
+
+with open('files_1/Python, Java, C, C++, C#, ECMAScript.txt') as f:
+    data = f.readlines()
+
+lines = []
+for i in data:
+    lines += list(set([j.strip() for j in i.split(".")]))
+
+with open('files_1/List of ProgLangs.txt') as f:
+    proglangs = f.read()
+proglangs = list(set(proglangs.split(";")))
+
+#('what is the price of polo?', {'entities': [(21, 25, 'PrdName')]})
+
+def getAnnotatedStrings(textStr):
+    textStr = textStr.replace("'", "").replace("^ ", "")
+    haveMoreEntities = True
+    
+    lang_pos = []
+    lang_titles = []
+    for entityStr in proglangs:
+
+        start = textStr.find(entityStr)
+        end = start + len(entityStr)
+        if start != -1 and (not textStr[start - 1].isalnum()):
+            try:
+                if (not textStr[end].isalnum()):
+                    lang_pos += ["(" + str(start) + ',' + str(end) + ", 'PL')"]
+                    lang_titles += [entityStr]
+            except:
+                lang_pos += ["(" + str(start) + ',' + str(end) + ", 'PL')"]
+                lang_titles += [entityStr]
+    if len(lang_titles) > 0:
+        print("('" + str(textStr) + "', {'entities': [" + ",".join(lang_pos) + "]}), ### " + str(lang_titles))
+
+for l in lines:
+    getAnnotatedStrings(l) # Prints the data we have copy-pasted in annotated_strings_for_ner.py file.
+
+import annotated_strings_for_ner_for_proglangs_1800 as ann_strs
+
+TRAIN_DATA = ann_strs.TRAIN_DATA
+
+def train_spacy(data,iterations):
+    TRAIN_DATA = data
+    nlp = spacy.blank('en')  # create blank Language class
+    # create the built-in pipeline components and add them to the pipeline
+    # nlp.create_pipe works for built-ins that are registered with spaCy
+    if 'ner' not in nlp.pipe_names:
+        ner = nlp.create_pipe('ner')
+        nlp.add_pipe(ner, last=True)
+       
+
+    # add labels
+    for _, annotations in TRAIN_DATA:
+         for ent in annotations.get('entities'):
+            ner.add_label(ent[2])
+
+    # get names of other pipes to disable them during training
+    other_pipes = [pipe for pipe in nlp.pipe_names if pipe != 'ner']
+    with nlp.disable_pipes(*other_pipes):  # only train NER
+        optimizer = nlp.begin_training()
+        for itn in range(iterations):
+            print("Starting iteration " + str(itn))
+            random.shuffle(TRAIN_DATA)
+            losses = {}
+            for text, annotations in TRAIN_DATA:
+                nlp.update(
+                    [text],  # batch of texts
+                    [annotations],  # batch of annotations
+                    drop=0.2,  # dropout - make it harder to memorise data
+                    sgd=optimizer,  # callable to update weights
+                    losses=losses)
+            print(losses)
+    return nlp
+
+
+prdnlp = train_spacy(TRAIN_DATA, 5) # Second argument is: number of iterations
+
+# Save our trained Model
+# modelfile = input("Enter your Model Name: ")
+prdnlp.to_disk("modelfile")
+
+# Test your text
+# test_text = input("Enter your testing text: ")
+doc = prdnlp("test_text: C, Java, Python, Lisp, R, Scala, SQL")
+for ent in doc.ents:
+    print(ent.text, ent.start_char, ent.end_char, ent.label_)
+</i>
+
+OUTPUT:
+<i style="color: darkblue">Warning: Unnamed vectors -- this won't allow multiple vectors models to be loaded. (Shape: (0, 0))
+Starting iteration 0
+{'ner': 1229.6862901370462}
+Starting iteration 1
+{'ner': 668.7398758489603}
+Starting iteration 2
+{'ner': 534.7071213261057}
+Starting iteration 3
+{'ner': 435.9182753272785}
+Starting iteration 4
+{'ner': 302.6540548671125}
+
+C 11 12 PL
+Java 14 18 PL
+Python 20 26 PL
+Lisp 28 32 PL
+R 34 35 PL
+Scala 37 42 PL
+SQL 44 47 PL</i>
+
+The annotated strings for training the model are present in the file "annotated_strings_for_ner_for_proglangs_1800.py" [ Google drive link: https://drive.google.com/open?id=1AJhYyva-z26XKZ_qKgGnVyH47eYKBWXq ]
+
+Ref 1: https://spacy.io/api/annotation#named-entities
+Ref 2: https://medium.com/@manivannan_data/how-to-train-ner-with-custom-training-data-using-spacy-188e0e508c6
+Ref 3: Software-specific Named Entity Recognition: http://yedeheng.weebly.com/uploads/5/0/3/9/50390459/saner2016.pdf
+
+
+</pre>

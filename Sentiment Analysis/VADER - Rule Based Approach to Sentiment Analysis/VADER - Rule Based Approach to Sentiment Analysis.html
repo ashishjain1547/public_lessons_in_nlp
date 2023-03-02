@@ -1,0 +1,154 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        });
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div> <br />
+
+<style>
+    .ib {
+        color: blue
+    }
+
+    .ig {
+        color: green
+    }
+
+    .ir {
+        color: red
+    }
+</style>
+<pre class=""># VADER: for Valence Aware Dictionary for sEntiment Reasoning.
+
+# VADER is a rule-based approach towards doing sentiment analysis.
+
+# As of NLTK version 3.6 [20210721], it uses VADER for sentiment analysis.
+
+<h3>VADER: In Code</h3>
+
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-ue0Fe8L6DQc/YPkcjJTI4RI/AAAAAAAAHGU/G5p-DfUZv5w1eaqceOf5AN10FKXLKvesQCLcBGAsYHQ/s1000/1.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="716" data-original-width="1000"
+        src="https://1.bp.blogspot.com/-ue0Fe8L6DQc/YPkcjJTI4RI/AAAAAAAAHGU/G5p-DfUZv5w1eaqceOf5AN10FKXLKvesQCLcBGAsYHQ/s600/1.png" /></a>
+</div>
+<div class="separator" style="clear: both;"><a
+    href="https://1.bp.blogspot.com/-rv_GNUeDQn8/YPkcjBRXJwI/AAAAAAAAHGQ/lxKXdwXHW4g9nOVe22n2sB_CO9JMzwFuQCLcBGAsYHQ/s1014/2.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="204" data-original-width="1014"
+        src="https://1.bp.blogspot.com/-rv_GNUeDQn8/YPkcjBRXJwI/AAAAAAAAHGQ/lxKXdwXHW4g9nOVe22n2sB_CO9JMzwFuQCLcBGAsYHQ/s600/2.png" /></a>
+</div>
+
+<b class="">Try following code snippets in Python CLI</b>
+<i class="ib">>>> from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+>>> sa = SentimentIntensityAnalyzer()
+>>> sa.lexicon</i>
+
+<i class="ig">{ ...
+':(': -1.9,
+':)': 2.0,
+...
+'pls': 0.3,
+'plz': 0.3,
+...
+'great': 3.1,
+... }</i>
+
+<i class="ib">>>> [(tok, score) for tok, score in sa.lexicon.items() if " " in tok]</i>
+
+<i class="ig">[("( '}{' )", 1.6),
+("can't stand", -2.0),
+('fed up', -1.8),
+('screwed up', -1.5)]</i>
+
+<i class="ib">>>> sa.polarity_scores(text="Python is very readable and it's great for NLP.")</i>
+<i class="ig">{'compound': 0.6249, 'neg': 0.0, 'neu': 0.661, 'pos': 0.339}</i>
+
+<i class="ib">>>> sa.polarity_scores(text="Python is not a bad choice for most applications.")</i>
+<i class="ig">{'compound': 0.431, 'neg': 0.0, 'neu': 0.711, 'pos': 0.289}</i>
+
+<i class="ib">>>> corpus = ["Absolutely perfect! Love it! :-) :-) :-)",
+... "Horrible! Completely useless. :(",
+... "It was OK. Some good and some bad things."]</i>
+
+<i class="ib">>>> for doc in corpus:
+... scores = sa.polarity_scores(doc)
+... print('{:+}: {}'.format(scores['compound'], doc))</i>
+
+<i class="ig">+0.9428: Absolutely perfect! Love it! :-) :-) :-)
+-0.8768: Horrible! Completely useless. :(
++0.3254: It was OK. Some good and some bad things.</i>
+
+<h3>DRAWBACK OF VADER</h3>
+
+The drawback of VADER is that it doesn’t look at all the words in a document, only about 7,500. 
+
+The questions that remained unanswered by VADER are:
+
+What if you want all the words to help add to the sentiment score? 
+
+And what if you don’t want to have to code your own understanding of the words in a dictionary of thousands of words or add a bunch of custom words to the dictionary in <i>SentimentIntensityAnalyzer.lexicon</i>? 
+
+The rule-based approach might be impossible if you don’t understand the language, because you wouldn’t know what scores to put in the dictionary (lexicon)!
+
+<h3>References</h3>
+
+# “VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text” by Hutto and Gilbert
+(http://comp.social.gatech.edu/papers/icwsm14.vader.hutto.pdf)
+
+# You can find more detailed installation instructions with the package source code on github (https://
+github.com/cjhutto/vaderSentiment).
+
+<span class="" style="display: none;">Labels: Technology,Natural Language Processing,Python,
+Title: VADER: Rule Based Approach to Sentiment Analysis</span>
+</pre>

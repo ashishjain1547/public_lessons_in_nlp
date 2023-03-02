@@ -1,0 +1,394 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        i.ib {
+            color: blue;
+        }
+
+        i.ig {
+            color: green;
+        }
+
+        .customOl {
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<pre>
+<h2>OS Information</h2>
+(base) ashish@ashishdesktop:~$ uname
+Linux
+
+(base) ashish@ashishdesktop:~$ uname -a
+Linux ashishdesktop 5.13.0-35-generic #40-Ubuntu SMP Mon Mar 7 08:03:10 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+
+(base) ashish@ashishdesktop:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description: Ubuntu 21.10
+Release: 21.10
+Codename: impish
+
+<h2>Firefox Does Not Have Text-to-Speech Support on Ubuntu as of Ubuntu 21.10</h2>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/a/AVvXsEh1A_R5hMy_QFzJIncPxLj3ZZEUJ3Z0h-zRgjjRkr4ZZIgNmwEazDXOaTia3jmK8e8exlVFMjfiXM1fnMMxa2XsieOi7n_4nvpmcxkRKfuWF9DR4k8V8Lxg_1XawgRJ5L_QC5ceEnfpqG_JvrQ1glHKNtEHnK8jg9Vbe1uj8Fqt7JHuuM3duqZAIuvj6Q=s918"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="509" data-original-width="918"
+        src="https://blogger.googleusercontent.com/img/a/AVvXsEh1A_R5hMy_QFzJIncPxLj3ZZEUJ3Z0h-zRgjjRkr4ZZIgNmwEazDXOaTia3jmK8e8exlVFMjfiXM1fnMMxa2XsieOi7n_4nvpmcxkRKfuWF9DR4k8V8Lxg_1XawgRJ5L_QC5ceEnfpqG_JvrQ1glHKNtEHnK8jg9Vbe1uj8Fqt7JHuuM3duqZAIuvj6Q=s600" /></a>
+</div>
+
+<h3>Logs From Firefox Console:</h3>
+<pre>>>> window.speechSynthesis.getVoices()
+
+Array []
+length: 0
+&lt;prototype>: Array []</pre>
+
+<h2>In Google Chrome, We Have 19 Voices Available</h2>
+
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/a/AVvXsEhKzX9n0876zaOlp_NBdYSJzXcALCINmZVf6aRmBmJkfLPn-V5AQ9ZxYKao5BCX65Qu1KzdhS2txMYfTS5E15caP5pcr9LLgY5FpLKYfgXDjzdgdtBG7ftDbPco4UHNkZ0YplUS94flCUZSfQlCytTZe1stlaSRBd4GMFv9VnGwNJMUGnn4iAQQdSuLnA=s1366"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="768" data-original-width="1366"
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEhKzX9n0876zaOlp_NBdYSJzXcALCINmZVf6aRmBmJkfLPn-V5AQ9ZxYKao5BCX65Qu1KzdhS2txMYfTS5E15caP5pcr9LLgY5FpLKYfgXDjzdgdtBG7ftDbPco4UHNkZ0YplUS94flCUZSfQlCytTZe1stlaSRBd4GMFv9VnGwNJMUGnn4iAQQdSuLnA=s600" /></a>
+</div>
+
+<h3>Logs From Chrome Console</h3>
+
+<pre><i>>>> window.speechSynthesis.getVoices()
+
+(19) [SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice]
+
+0: SpeechSynthesisVoice {voiceURI: 'Google Deutsch', name: 'Google Deutsch', lang: 'de-DE', localService: false, default: true}
+
+1: SpeechSynthesisVoice {voiceURI: 'Google US English', name: 'Google US English', lang: 'en-US', localService: false, default: false}
+
+2: SpeechSynthesisVoice {voiceURI: 'Google UK English Female', name: 'Google UK English Female', lang: 'en-GB', localService: false, default: false}
+
+3: SpeechSynthesisVoice {voiceURI: 'Google UK English Male', name: 'Google UK English Male', lang: 'en-GB', localService: false, default: false}
+
+4: SpeechSynthesisVoice {voiceURI: 'Google español', name: 'Google español', lang: 'es-ES', localService: false, default: false}
+
+5: SpeechSynthesisVoice {voiceURI: 'Google español de Estados Unidos', name: 'Google español de Estados Unidos', lang: 'es-US', localService: false, default: false}
+
+6: SpeechSynthesisVoice {voiceURI: 'Google français', name: 'Google français', lang: 'fr-FR', localService: false, default: false}
+
+7: SpeechSynthesisVoice {voiceURI: 'Google हिन्दी', name: 'Google हिन्दी', lang: 'hi-IN', localService: false, default: false}
+
+8: SpeechSynthesisVoice {voiceURI: 'Google Bahasa Indonesia', name: 'Google Bahasa Indonesia', lang: 'id-ID', localService: false, default: false}
+
+9: SpeechSynthesisVoice {voiceURI: 'Google italiano', name: 'Google italiano', lang: 'it-IT', localService: false, default: false}
+
+10: SpeechSynthesisVoice {voiceURI: 'Google 日本語', name: 'Google 日本語', lang: 'ja-JP', localService: false, default: false}
+
+11: SpeechSynthesisVoice {voiceURI: 'Google 한국의', name: 'Google 한국의', lang: 'ko-KR', localService: false, default: false}
+
+12: SpeechSynthesisVoice {voiceURI: 'Google Nederlands', name: 'Google Nederlands', lang: 'nl-NL', localService: false, default: false}
+
+13: SpeechSynthesisVoice {voiceURI: 'Google polski', name: 'Google polski', lang: 'pl-PL', localService: false, default: false}
+
+14: SpeechSynthesisVoice {voiceURI: 'Google português do Brasil', name: 'Google português do Brasil', lang: 'pt-BR', localService: false, default: false}
+
+15: SpeechSynthesisVoice {voiceURI: 'Google русский', name: 'Google русский', lang: 'ru-RU', localService: false, default: false}
+
+16: SpeechSynthesisVoice {voiceURI: 'Google 普通话（中国大陆）', name: 'Google 普通话（中国大陆）', lang: 'zh-CN', localService: false, default: false}
+
+17: SpeechSynthesisVoice {voiceURI: 'Google 粤語（香港）', name: 'Google 粤語（香港）', lang: 'zh-HK', localService: false, default: false}
+
+18: SpeechSynthesisVoice {voiceURI: 'Google 國語（臺灣）', name: 'Google 國語（臺灣）', lang: 'zh-TW', localService: false, default: false}
+
+length: 19
+[[Prototype]]: Array(0) </i></pre>
+
+<h2>Steps For Installation of Edge on Ubuntu</h2>
+
+1:
+Microsoft Edge is not available in 'Ubuntu Software Center' by default.
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/a/AVvXsEjkMNqwN6PLgMAhrHhZy1JYjm0cGU4r3zp3RxdipVjJk8YyvMW_cDE26pNkPYK8K9ZfEAX_YJ1EKoBcNj-Lj-KncmF9b6aCWQz4om_g4h6MjRhA8RVcg1uUbjSN0TX1ZX1MPWMNlvxQISK_NluJxB9c-zGTVYJO3mvTzppZPv8rneKwboDEoWwGXcsCZg=s1366"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="768" data-original-width="1366"
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEjkMNqwN6PLgMAhrHhZy1JYjm0cGU4r3zp3RxdipVjJk8YyvMW_cDE26pNkPYK8K9ZfEAX_YJ1EKoBcNj-Lj-KncmF9b6aCWQz4om_g4h6MjRhA8RVcg1uUbjSN0TX1ZX1MPWMNlvxQISK_NluJxB9c-zGTVYJO3mvTzppZPv8rneKwboDEoWwGXcsCZg=s600" /></a>
+</div>
+
+2:
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/a/AVvXsEgJPaRXVOP56hqfifBlxKHtrbI4K7RAnccw23FKUaft-Howuyz0XditGidXDr8AGYuU5TDn7UoWZGOmJxPVvcufjmpsPreYWHMEULGJ665oMl4AS2-aBaQ8efrHiH0gzoG8gK6aE71rlYM2ayjrLy3kD_GnvBLQNO5X0bVfIXpSePr1n4emCMA4VJHpQg=s1366"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="767" data-original-width="1366"
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEgJPaRXVOP56hqfifBlxKHtrbI4K7RAnccw23FKUaft-Howuyz0XditGidXDr8AGYuU5TDn7UoWZGOmJxPVvcufjmpsPreYWHMEULGJ665oMl4AS2-aBaQ8efrHiH0gzoG8gK6aE71rlYM2ayjrLy3kD_GnvBLQNO5X0bVfIXpSePr1n4emCMA4VJHpQg=s600" /></a>
+</div>
+
+3:
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/a/AVvXsEidEvxKbPvZqohxKPqy0E-VL3qxdTeo-OKka9ETTxqFwMuTQaq0HM4ZcpuarYTrViH2qKSLoZQXfr6vscaU2jLQ3p7NgSeibTvI0jZGa1mv0m3oI0shYo5FhaiqbNvl5-5EQAl-84AKi3Q07nC5JcM_UF_lHl3ti616XNVIgcvrmRs8i_-R52Flcl2J2A=s1366"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="768" data-original-width="1366"
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEidEvxKbPvZqohxKPqy0E-VL3qxdTeo-OKka9ETTxqFwMuTQaq0HM4ZcpuarYTrViH2qKSLoZQXfr6vscaU2jLQ3p7NgSeibTvI0jZGa1mv0m3oI0shYo5FhaiqbNvl5-5EQAl-84AKi3Q07nC5JcM_UF_lHl3ti616XNVIgcvrmRs8i_-R52Flcl2J2A=s600" /></a>
+</div>
+
+4:
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/a/AVvXsEgpcUHr0mlC11tTu7l_k_rf6Q64otZlZZQ1qfD4nAU1Zo1cbIKFw7Ata3nyIxg51YH3Qrm6RLZSByvv4C3iufEnnRKh5yUaIKhXC1jL_l2Nx2EnTtKsVlhXL9PsM0JoVaqSbraxYOPZESCcflfUMta0rUgf0bxsWtaQEqz8qomsd-Ss0P2pz2GG-WTm-g=s1366"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="768" data-original-width="1366"
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEgpcUHr0mlC11tTu7l_k_rf6Q64otZlZZQ1qfD4nAU1Zo1cbIKFw7Ata3nyIxg51YH3Qrm6RLZSByvv4C3iufEnnRKh5yUaIKhXC1jL_l2Nx2EnTtKsVlhXL9PsM0JoVaqSbraxYOPZESCcflfUMta0rUgf0bxsWtaQEqz8qomsd-Ss0P2pz2GG-WTm-g=s600" /></a>
+</div>
+
+5:
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/a/AVvXsEj-OGDouDS0FY84NJczrddgD4Rq_0xqhXSj-dIX9ig4fgwWzdoT2FWaQesmU_BvW0jbgwzWaenui8WTY0gaELljoBQ3PLBvICm9EcjOLeo_CTbrYFg8oZYFBVUhcn0gU1XwoHwV6d18W1eaRPeOmVx25FU-YQDix1CmjnO35ntPAKwu1rLiYz9qw-SKZg=s1366"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="768" data-original-width="1366"
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEj-OGDouDS0FY84NJczrddgD4Rq_0xqhXSj-dIX9ig4fgwWzdoT2FWaQesmU_BvW0jbgwzWaenui8WTY0gaELljoBQ3PLBvICm9EcjOLeo_CTbrYFg8oZYFBVUhcn0gU1XwoHwV6d18W1eaRPeOmVx25FU-YQDix1CmjnO35ntPAKwu1rLiYz9qw-SKZg=s600" /></a>
+</div>
+
+6:
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/a/AVvXsEjMzKqXGdUyjdGMfcZw3Tg_seNPYmH6GizT9pUm7YHpikPxPYEOT9-wySvG7CUASjJxEEj8ZCL5Ft-WAVKchmtKv2cYzVeVpdN0ZtWHXjGIgcpce6Ko3BJ7jp84YCSO5j5PJaaa4w20KK2LaxnAowstrv3g3ezD5to1omcOGHfyZqwZ20Po4xJBUXLRyQ=s1366"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="768" data-original-width="1366"
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEjMzKqXGdUyjdGMfcZw3Tg_seNPYmH6GizT9pUm7YHpikPxPYEOT9-wySvG7CUASjJxEEj8ZCL5Ft-WAVKchmtKv2cYzVeVpdN0ZtWHXjGIgcpce6Ko3BJ7jp84YCSO5j5PJaaa4w20KK2LaxnAowstrv3g3ezD5to1omcOGHfyZqwZ20Po4xJBUXLRyQ=s600" /></a>
+</div>
+
+<h2>In Microsoft Edge, We Have 93 Voices Available in Different Languages</h2>
+
+<pre><i>>>> window.speechSynthesis.getVoices()
+
+(93) [SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice, SpeechSynthesisVoice]
+
+0: SpeechSynthesisVoice {voiceURI: 'Microsoft Adri Online (Natural) - Afrikaans (South Africa)', name: 'Microsoft Adri Online (Natural) - Afrikaans (South Africa)', lang: 'af-ZA', localService: false, default: true}
+
+1: SpeechSynthesisVoice {voiceURI: 'Microsoft Mekdes Online (Natural) - Amharic (Ethiopia)', name: 'Microsoft Mekdes Online (Natural) - Amharic (Ethiopia)', lang: 'am-ET', localService: false, default: false}
+
+2: SpeechSynthesisVoice {voiceURI: 'Microsoft Salma Online (Natural) - Arabic (Egypt)', name: 'Microsoft Salma Online (Natural) - Arabic (Egypt)', lang: 'ar-EG', localService: false, default: false}
+
+3: SpeechSynthesisVoice {voiceURI: 'Microsoft Zariyah Online (Natural) - Arabic (Saudi Arabia)', name: 'Microsoft Zariyah Online (Natural) - Arabic (Saudi Arabia)', lang: 'ar-SA', localService: false, default: false}
+
+4: SpeechSynthesisVoice {voiceURI: 'Microsoft Nabanita Online (Natural) - Bangla (Bangladesh)', name: 'Microsoft Nabanita Online (Natural) - Bangla (Bangladesh)', lang: 'bn-BD', localService: false, default: false}
+
+5: SpeechSynthesisVoice {voiceURI: 'Microsoft Tanishaa Online (Natural) - Bengali (India)', name: 'Microsoft Tanishaa Online (Natural) - Bengali (India)', lang: 'bn-IN', localService: false, default: false}
+
+6: SpeechSynthesisVoice {voiceURI: 'Microsoft Kalina Online (Natural) - Bulgarian (Bulgaria)', name: 'Microsoft Kalina Online (Natural) - Bulgarian (Bulgaria)', lang: 'bg-BG', localService: false, default: false}
+
+7: SpeechSynthesisVoice {voiceURI: 'Microsoft Nilar Online (Natural) - Burmese (Myanmar)', name: 'Microsoft Nilar Online (Natural) - Burmese (Myanmar)', lang: 'my-MM', localService: false, default: false}
+
+8: SpeechSynthesisVoice {voiceURI: 'Microsoft Joana Online (Natural) - Catalan (Spain)', name: 'Microsoft Joana Online (Natural) - Catalan (Spain)', lang: 'ca-ES', localService: false, default: false}
+
+9: SpeechSynthesisVoice {voiceURI: 'Microsoft HiuMaan Online (Natural) - Chinese (Hong Kong)', name: 'Microsoft HiuMaan Online (Natural) - Chinese (Hong Kong)', lang: 'zh-HK', localService: false, default: false}
+
+10: SpeechSynthesisVoice {voiceURI: 'Microsoft Xiaoxiao Online (Natural) - Chinese (Mainland)', name: 'Microsoft Xiaoxiao Online (Natural) - Chinese (Mainland)', lang: 'zh-CN', localService: false, default: false}
+
+11: SpeechSynthesisVoice {voiceURI: 'Microsoft Yunyang Online (Natural) - Chinese (Mainland)', name: 'Microsoft Yunyang Online (Natural) - Chinese (Mainland)', lang: 'zh-CN', localService: false, default: false}
+
+12: SpeechSynthesisVoice {voiceURI: 'Microsoft HsiaoChen Online (Natural) - Chinese (Taiwan)', name: 'Microsoft HsiaoChen Online (Natural) - Chinese (Taiwan)', lang: 'zh-TW', localService: false, default: false}
+
+13: SpeechSynthesisVoice {voiceURI: 'Microsoft Gabrijela Online (Natural) - Croatian (Croatia)', name: 'Microsoft Gabrijela Online (Natural) - Croatian (Croatia)', lang: 'hr-HR', localService: false, default: false}
+
+14: SpeechSynthesisVoice {voiceURI: 'Microsoft Vlasta Online (Natural) - Czech (Czech)', name: 'Microsoft Vlasta Online (Natural) - Czech (Czech)', lang: 'cs-CZ', localService: false, default: false}
+
+15: SpeechSynthesisVoice {voiceURI: 'Microsoft Christel Online (Natural) - Danish (Denmark)', name: 'Microsoft Christel Online (Natural) - Danish (Denmark)', lang: 'da-DK', localService: false, default: false}
+
+16: SpeechSynthesisVoice {voiceURI: 'Microsoft Dena Online (Natural) - Dutch (Belgium)', name: 'Microsoft Dena Online (Natural) - Dutch (Belgium)', lang: 'nl-BE', localService: false, default: false}
+
+17: SpeechSynthesisVoice {voiceURI: 'Microsoft Colette Online (Natural) - Dutch (Netherlands)', name: 'Microsoft Colette Online (Natural) - Dutch (Netherlands)', lang: 'nl-NL', localService: false, default: false}
+
+18: SpeechSynthesisVoice {voiceURI: 'Microsoft Natasha Online (Natural) - English (Australia)', name: 'Microsoft Natasha Online (Natural) - English (Australia)', lang: 'en-AU', localService: false, default: false}
+
+19: SpeechSynthesisVoice {voiceURI: 'Microsoft Clara Online (Natural) - English (Canada)', name: 'Microsoft Clara Online (Natural) - English (Canada)', lang: 'en-CA', localService: false, default: false}
+
+20: SpeechSynthesisVoice {voiceURI: 'Microsoft Neerja Online (Natural) - English (India)', name: 'Microsoft Neerja Online (Natural) - English (India)', lang: 'en-IN', localService: false, default: false}
+
+21: SpeechSynthesisVoice {voiceURI: 'Microsoft Emily Online (Natural) - English (Ireland)', name: 'Microsoft Emily Online (Natural) - English (Ireland)', lang: 'en-IE', localService: false, default: false}
+
+22: SpeechSynthesisVoice {voiceURI: 'Microsoft Abeo Online (Natural) - English (Nigeria)', name: 'Microsoft Abeo Online (Natural) - English (Nigeria)', lang: 'en-NG', localService: false, default: false}
+
+23: SpeechSynthesisVoice {voiceURI: 'Microsoft Rosa Online (Natural) - English (Philippines)', name: 'Microsoft Rosa Online (Natural) - English (Philippines)', lang: 'en-PH', localService: false, default: false}
+
+24: SpeechSynthesisVoice {voiceURI: 'Microsoft Leah Online (Natural) - English (South Africa)', name: 'Microsoft Leah Online (Natural) - English (South Africa)', lang: 'en-ZA', localService: false, default: false}
+
+25: SpeechSynthesisVoice {voiceURI: 'Microsoft Sonia Online (Natural) - English (United Kingdom)', name: 'Microsoft Sonia Online (Natural) - English (United Kingdom)', lang: 'en-GB', localService: false, default: false}
+
+26: SpeechSynthesisVoice {voiceURI: 'Microsoft Aria Online (Natural) - English (United States)', name: 'Microsoft Aria Online (Natural) - English (United States)', lang: 'en-US', localService: false, default: false}
+
+27: SpeechSynthesisVoice {voiceURI: 'Microsoft Guy Online (Natural) - English (United States)', name: 'Microsoft Guy Online (Natural) - English (United States)', lang: 'en-US', localService: false, default: false}
+
+28: SpeechSynthesisVoice {voiceURI: 'Microsoft Jenny Online (Natural) - English (United States)', name: 'Microsoft Jenny Online (Natural) - English (United States)', lang: 'en-US', localService: false, default: false}
+
+29: SpeechSynthesisVoice {voiceURI: 'Microsoft Anu Online (Natural) - Estonian (Estonia)', name: 'Microsoft Anu Online (Natural) - Estonian (Estonia)', lang: 'et-EE', localService: false, default: false}
+
+30: SpeechSynthesisVoice {voiceURI: 'Microsoft Blessica Online (Natural) - Filipino (Philippines)', name: 'Microsoft Blessica Online (Natural) - Filipino (Philippines)', lang: 'fil-PH', localService: false, default: false}
+
+31: SpeechSynthesisVoice {voiceURI: 'Microsoft Noora Online (Natural) - Finnish (Finland)', name: 'Microsoft Noora Online (Natural) - Finnish (Finland)', lang: 'fi-FI', localService: false, default: false}
+
+32: SpeechSynthesisVoice {voiceURI: 'Microsoft Charline Online (Natural) - French (Belgium)', name: 'Microsoft Charline Online (Natural) - French (Belgium)', lang: 'fr-BE', localService: false, default: false}
+
+33: SpeechSynthesisVoice {voiceURI: 'Microsoft Sylvie Online (Natural) - French (Canada)', name: 'Microsoft Sylvie Online (Natural) - French (Canada)', lang: 'fr-CA', localService: false, default: false}
+
+34: SpeechSynthesisVoice {voiceURI: 'Microsoft Denise Online (Natural) - French (France)', name: 'Microsoft Denise Online (Natural) - French (France)', lang: 'fr-FR', localService: false, default: false}
+
+35: SpeechSynthesisVoice {voiceURI: 'Microsoft Ariane Online (Natural) - French (Switzerland)', name: 'Microsoft Ariane Online (Natural) - French (Switzerland)', lang: 'fr-CH', localService: false, default: false}
+
+36: SpeechSynthesisVoice {voiceURI: 'Microsoft Sabela Online (Natural) - Galician (Spain)', name: 'Microsoft Sabela Online (Natural) - Galician (Spain)', lang: 'gl-ES', localService: false, default: false}
+
+37: SpeechSynthesisVoice {voiceURI: 'Microsoft Ingrid Online (Natural) - German (Austria)', name: 'Microsoft Ingrid Online (Natural) - German (Austria)', lang: 'de-AT', localService: false, default: false}
+
+38: SpeechSynthesisVoice {voiceURI: 'Microsoft Katja Online (Natural) - German (Germany)', name: 'Microsoft Katja Online (Natural) - German (Germany)', lang: 'de-DE', localService: false, default: false}
+
+39: SpeechSynthesisVoice {voiceURI: 'Microsoft Leni Online (Natural) - German (Switzerland)', name: 'Microsoft Leni Online (Natural) - German (Switzerland)', lang: 'de-CH', localService: false, default: false}
+
+40: SpeechSynthesisVoice {voiceURI: 'Microsoft Athina Online (Natural) - Greek (Greece)', name: 'Microsoft Athina Online (Natural) - Greek (Greece)', lang: 'el-GR', localService: false, default: false}
+
+41: SpeechSynthesisVoice {voiceURI: 'Microsoft Dhwani Online (Natural) - Gujarati (India)', name: 'Microsoft Dhwani Online (Natural) - Gujarati (India)', lang: 'gu-IN', localService: false, default: false}
+
+42: SpeechSynthesisVoice {voiceURI: 'Microsoft Hila Online (Natural) - Hebrew (Israel)', name: 'Microsoft Hila Online (Natural) - Hebrew (Israel)', lang: 'he-IL', localService: false, default: false}
+
+43: SpeechSynthesisVoice {voiceURI: 'Microsoft Swara Online (Natural) - Hindi (India)', name: 'Microsoft Swara Online (Natural) - Hindi (India)', lang: 'hi-IN', localService: false, default: false}
+
+44: SpeechSynthesisVoice {voiceURI: 'Microsoft Noemi Online (Natural) - Hungarian (Hungary)', name: 'Microsoft Noemi Online (Natural) - Hungarian (Hungary)', lang: 'hu-HU', localService: false, default: false}
+
+45: SpeechSynthesisVoice {voiceURI: 'Microsoft Gudrun Online (Natural) - Icelandic (Iceland)', name: 'Microsoft Gudrun Online (Natural) - Icelandic (Iceland)', lang: 'is-IS', localService: false, default: false}
+
+46: SpeechSynthesisVoice {voiceURI: 'Microsoft Gadis Online (Natural) - Indonesian (Indonesia)', name: 'Microsoft Gadis Online (Natural) - Indonesian (Indonesia)', lang: 'id-ID', localService: false, default: false}
+
+47: SpeechSynthesisVoice {voiceURI: 'Microsoft Orla Online (Natural) - Irish(Ireland)', name: 'Microsoft Orla Online (Natural) - Irish(Ireland)', lang: 'ga-IE', localService: false, default: false}
+
+48: SpeechSynthesisVoice {voiceURI: 'Microsoft Elsa Online (Natural) - Italian (Italy)', name: 'Microsoft Elsa Online (Natural) - Italian (Italy)', lang: 'it-IT', localService: false, default: false}
+
+49: SpeechSynthesisVoice {voiceURI: 'Microsoft Nanami Online (Natural) - Japanese (Japan)', name: 'Microsoft Nanami Online (Natural) - Japanese (Japan)', lang: 'ja-JP', localService: false, default: false}
+
+50: SpeechSynthesisVoice {voiceURI: 'Microsoft Siti Online (Natural) - Javanese (Indonesia)', name: 'Microsoft Siti Online (Natural) - Javanese (Indonesia)', lang: 'jv-ID', localService: false, default: false}
+
+51: SpeechSynthesisVoice {voiceURI: 'Microsoft Sapna Online (Natural) - Kannada (India)', name: 'Microsoft Sapna Online (Natural) - Kannada (India)', lang: 'kn-IN', localService: false, default: false}
+
+52: SpeechSynthesisVoice {voiceURI: 'Microsoft Aigul Online (Natural) - Kazakh (Kazakhstan)', name: 'Microsoft Aigul Online (Natural) - Kazakh (Kazakhstan)', lang: 'kk-KZ', localService: false, default: false}
+
+53: SpeechSynthesisVoice {voiceURI: 'Microsoft Sreymom Online (Natural) - Khmer (Cambodia)', name: 'Microsoft Sreymom Online (Natural) - Khmer (Cambodia)', lang: 'km-KH', localService: false, default: false}
+
+54: SpeechSynthesisVoice {voiceURI: 'Microsoft SunHi Online (Natural) - Korean (Korea)', name: 'Microsoft SunHi Online (Natural) - Korean (Korea)', lang: 'ko-KR', localService: false, default: false}
+
+55: SpeechSynthesisVoice {voiceURI: 'Microsoft Keomany Online (Natural) - Lao (Laos)', name: 'Microsoft Keomany Online (Natural) - Lao (Laos)', lang: 'lo-LA', localService: false, default: false}
+
+56: SpeechSynthesisVoice {voiceURI: 'Microsoft Everita Online (Natural) - Latvian (Latvia)', name: 'Microsoft Everita Online (Natural) - Latvian (Latvia)', lang: 'lv-LV', localService: false, default: false}
+
+57: SpeechSynthesisVoice {voiceURI: 'Microsoft Ona Online (Natural) - Lithuanian (Lithuania)', name: 'Microsoft Ona Online (Natural) - Lithuanian (Lithuania)', lang: 'lt-LT', localService: false, default: false}
+
+58: SpeechSynthesisVoice {voiceURI: 'Microsoft Marija Online (Natural) - Macedonian (Republic of North Macedonia)', name: 'Microsoft Marija Online (Natural) - Macedonian (Republic of North Macedonia)', lang: 'mk-MK', localService: false, default: false}
+
+59: SpeechSynthesisVoice {voiceURI: 'Microsoft Yasmin Online (Natural) - Malay (Malaysia)', name: 'Microsoft Yasmin Online (Natural) - Malay (Malaysia)', lang: 'ms-MY', localService: false, default: false}
+
+60: SpeechSynthesisVoice {voiceURI: 'Microsoft Sobhana Online (Natural) - Malayalam (India)', name: 'Microsoft Sobhana Online (Natural) - Malayalam (India)', lang: 'ml-IN', localService: false, default: false}
+
+61: SpeechSynthesisVoice {voiceURI: 'Microsoft Grace Online (Natural) - Maltese (Malta)', name: 'Microsoft Grace Online (Natural) - Maltese (Malta)', lang: 'mt-MT', localService: false, default: false}
+
+62: SpeechSynthesisVoice {voiceURI: 'Microsoft Aarohi Online (Natural) - Marathi (India)', name: 'Microsoft Aarohi Online (Natural) - Marathi (India)', lang: 'mr-IN', localService: false, default: false}
+
+63: SpeechSynthesisVoice {voiceURI: 'Microsoft Pernille Online (Natural) - Norwegian (Bokmål, Norway)', name: 'Microsoft Pernille Online (Natural) - Norwegian (Bokmål, Norway)', lang: 'nb-NO', localService: false, default: false}
+
+64: SpeechSynthesisVoice {voiceURI: 'Microsoft Latifa Online (Natural) - Pashto (Afghanistan)', name: 'Microsoft Latifa Online (Natural) - Pashto (Afghanistan)', lang: 'ps-AF', localService: false, default: false}
+
+65: SpeechSynthesisVoice {voiceURI: 'Microsoft Dilara Online (Natural) - Persian (Iran)', name: 'Microsoft Dilara Online (Natural) - Persian (Iran)', lang: 'fa-IR', localService: false, default: false}
+
+66: SpeechSynthesisVoice {voiceURI: 'Microsoft Zofia Online (Natural) - Polish (Poland)', name: 'Microsoft Zofia Online (Natural) - Polish (Poland)', lang: 'pl-PL', localService: false, default: false}
+
+67: SpeechSynthesisVoice {voiceURI: 'Microsoft Francisca Online (Natural) - Portuguese (Brazil)', name: 'Microsoft Francisca Online (Natural) - Portuguese (Brazil)', lang: 'pt-BR', localService: false, default: false}
+
+68: SpeechSynthesisVoice {voiceURI: 'Microsoft Raquel Online (Natural) - Portuguese (Portugal)', name: 'Microsoft Raquel Online (Natural) - Portuguese (Portugal)', lang: 'pt-PT', localService: false, default: false}
+
+69: SpeechSynthesisVoice {voiceURI: 'Microsoft Alina Online (Natural) - Romanian (Romania)', name: 'Microsoft Alina Online (Natural) - Romanian (Romania)', lang: 'ro-RO', localService: false, default: false}
+
+70: SpeechSynthesisVoice {voiceURI: 'Microsoft Svetlana Online (Natural) - Russian (Russia)', name: 'Microsoft Svetlana Online (Natural) - Russian (Russia)', lang: 'ru-RU', localService: false, default: false}
+
+71: SpeechSynthesisVoice {voiceURI: 'Microsoft Sophie Online (Natural) - Serbian (Serbia)', name: 'Microsoft Sophie Online (Natural) - Serbian (Serbia)', lang: 'sr-RS', localService: false, default: false}
+
+72: SpeechSynthesisVoice {voiceURI: 'Microsoft Thilini Online (Natural) - Sinhala (Sri Lanka)', name: 'Microsoft Thilini Online (Natural) - Sinhala (Sri Lanka)', lang: 'si-LK', localService: false, default: false}
+
+73: SpeechSynthesisVoice {voiceURI: 'Microsoft Viktoria Online (Natural) - Slovak (Slovakia)', name: 'Microsoft Viktoria Online (Natural) - Slovak (Slovakia)', lang: 'sk-SK', localService: false, default: false}
+
+74: SpeechSynthesisVoice {voiceURI: 'Microsoft Petra Online (Natural) - Slovenian (Slovenia)', name: 'Microsoft Petra Online (Natural) - Slovenian (Slovenia)', lang: 'sl-SI', localService: false, default: false}
+
+75: SpeechSynthesisVoice {voiceURI: 'Microsoft Ubax Online (Natural) - Somali (Somalia)', name: 'Microsoft Ubax Online (Natural) - Somali (Somalia)', lang: 'so-SO', localService: false, default: false}
+
+76: SpeechSynthesisVoice {voiceURI: 'Microsoft Elena Online (Natural) - Spanish (Argentina)', name: 'Microsoft Elena Online (Natural) - Spanish (Argentina)', lang: 'es-AR', localService: false, default: false}
+
+77: SpeechSynthesisVoice {voiceURI: 'Microsoft Salome Online (Natural) - Spanish (Colombia)', name: 'Microsoft Salome Online (Natural) - Spanish (Colombia)', lang: 'es-CO', localService: false, default: false}
+
+78: SpeechSynthesisVoice {voiceURI: 'Microsoft Dalia Online (Natural) - Spanish (Mexico)', name: 'Microsoft Dalia Online (Natural) - Spanish (Mexico)', lang: 'es-MX', localService: false, default: false}
+
+79: SpeechSynthesisVoice {voiceURI: 'Microsoft Elvira Online (Natural) - Spanish (Spain)', name: 'Microsoft Elvira Online (Natural) - Spanish (Spain)', lang: 'es-ES', localService: false, default: false}
+
+80: SpeechSynthesisVoice {voiceURI: 'Microsoft Tuti Online (Natural) - Sundanese (Indonesia)', name: 'Microsoft Tuti Online (Natural) - Sundanese (Indonesia)', lang: 'su-ID', localService: false, default: false}
+
+81: SpeechSynthesisVoice {voiceURI: 'Microsoft Zuri Online (Natural) - Swahili (Kenya)', name: 'Microsoft Zuri Online (Natural) - Swahili (Kenya)', lang: 'sw-KE', localService: false, default: false}
+
+82: SpeechSynthesisVoice {voiceURI: 'Microsoft Sofie Online (Natural) - Swedish (Sweden)', name: 'Microsoft Sofie Online (Natural) - Swedish (Sweden)', lang: 'sv-SE', localService: false, default: false}
+
+83: SpeechSynthesisVoice {voiceURI: 'Microsoft Pallavi Online (Natural) - Tamil (India)', name: 'Microsoft Pallavi Online (Natural) - Tamil (India)', lang: 'ta-IN', localService: false, default: false}
+
+84: SpeechSynthesisVoice {voiceURI: 'Microsoft Shruti Online (Natural) - Telugu (India)', name: 'Microsoft Shruti Online (Natural) - Telugu (India)', lang: 'te-IN', localService: false, default: false}
+
+85: SpeechSynthesisVoice {voiceURI: 'Microsoft Premwadee Online (Natural) - Thai (Thailand)', name: 'Microsoft Premwadee Online (Natural) - Thai (Thailand)', lang: 'th-TH', localService: false, default: false}
+
+86: SpeechSynthesisVoice {voiceURI: 'Microsoft Emel Online (Natural) - Turkish (Turkey)', name: 'Microsoft Emel Online (Natural) - Turkish (Turkey)', lang: 'tr-TR', localService: false, default: false}
+
+87: SpeechSynthesisVoice {voiceURI: 'Microsoft Polina Online (Natural) - Ukrainian (Ukraine)', name: 'Microsoft Polina Online (Natural) - Ukrainian (Ukraine)', lang: 'uk-UA', localService: false, default: false}
+
+88: SpeechSynthesisVoice {voiceURI: 'Microsoft Uzma Online (Natural) - Urdu (Pakistan)', name: 'Microsoft Uzma Online (Natural) - Urdu (Pakistan)', lang: 'ur-PK', localService: false, default: false}
+
+89: SpeechSynthesisVoice {voiceURI: 'Microsoft Madina Online (Natural) - Uzbek (Uzbekistan)', name: 'Microsoft Madina Online (Natural) - Uzbek (Uzbekistan)', lang: 'uz-UZ', localService: false, default: false}
+
+90: SpeechSynthesisVoice {voiceURI: 'Microsoft HoaiMy Online (Natural) - Vietnamese (Vietnam)', name: 'Microsoft HoaiMy Online (Natural) - Vietnamese (Vietnam)', lang: 'vi-VN', localService: false, default: false}
+
+91: SpeechSynthesisVoice {voiceURI: 'Microsoft Nia Online (Natural) - Welsh (United Kingdom)', name: 'Microsoft Nia Online (Natural) - Welsh (United Kingdom)', lang: 'cy-GB', localService: false, default: false}
+
+92: SpeechSynthesisVoice {voiceURI: 'Microsoft Thando Online (Natural) - Zulu (South Africa)', name: 'Microsoft Thando Online (Natural) - Zulu (South Africa)', lang: 'zu-ZA', localService: false, default: false}
+
+length: 93
+[[Prototype]]: Array(0)
+</i></pre>
+
+<h2>Microsoft Edge: DevTools: Screenshots</h2>
+
+<h3>English Voices in Microsoft Edge</h3>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/a/AVvXsEiSTyqNsscOtO66Q1x2ACMPm-IBQSWVaPbG-EY9EN4fXcSHJrKqaFM0v41xJGGnCM4EEDJ-bLXappaaHAUvBuF1IYD_ukkxGkEOTRbysidigfdMFS6HapSE8BaYa6Vb-Gi157q2kbt_emqTtbWNPzXVegIXzvz_EgSapfTaGGjAHbhcn0oZgWSZvoawrQ=s1366"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="768" data-original-width="1366"
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEiSTyqNsscOtO66Q1x2ACMPm-IBQSWVaPbG-EY9EN4fXcSHJrKqaFM0v41xJGGnCM4EEDJ-bLXappaaHAUvBuF1IYD_ukkxGkEOTRbysidigfdMFS6HapSE8BaYa6Vb-Gi157q2kbt_emqTtbWNPzXVegIXzvz_EgSapfTaGGjAHbhcn0oZgWSZvoawrQ=s600" /></a>
+</div>
+
+<h3>Other Languages in Microsoft Edge</h3>
+<div class="separator" style="clear: both;"><a
+        href="https://blogger.googleusercontent.com/img/a/AVvXsEhkNDBLS-Uv1F_1ZTzxYwCzEmAdgcb4lK_pKYV2LBVohNtRCommXKQVVcqdtT4BU0j7w8ax_NOX5NvCrASr7CF-dUO9_Cl_e0ATCp6iihNml2vxXaATVsri3CUJ3AjSG9GYVUZNBKdNqhPqRvw8hzik8D8yQVaQ6Alsf10U4Vj4hyd7JThzvAV-q3-mSA=s1366"
+        style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+            data-original-height="768" data-original-width="1366"
+            src="https://blogger.googleusercontent.com/img/a/AVvXsEhkNDBLS-Uv1F_1ZTzxYwCzEmAdgcb4lK_pKYV2LBVohNtRCommXKQVVcqdtT4BU0j7w8ax_NOX5NvCrASr7CF-dUO9_Cl_e0ATCp6iihNml2vxXaATVsri3CUJ3AjSG9GYVUZNBKdNqhPqRvw8hzik8D8yQVaQ6Alsf10U4Vj4hyd7JThzvAV-q3-mSA=s600" /></a>
+</div>
+</pre>
+
+<span style="display: none;">Tags: Technology,FOSS,Web Development,Natural Language Processing,JavaScript,</span>

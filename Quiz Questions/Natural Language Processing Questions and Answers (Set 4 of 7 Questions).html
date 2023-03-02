@@ -1,0 +1,210 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+<pre>
+Course: INTRODUCTION TO NATURAL LANGUAGE PROCESSING
+
+Q1: Multiple Choice Correct
+
+Which of the following are potential use cases of NLP?
+
+a) A self driving car drawing your attentioin to an advertising billboard
+
+b) Given the audio of a song, and its lyrics generate a translated song audio       
+
+c) Understanding a cryptic language 
+
+d) Determing what are the chances that you will win a law suit based on outcomes of previous similar law suits.
+
+Answer: All four are correct.
+
+Q2: Multiple Choice Correct 
+
+Which of the below tasks can be performed effectively even without using sophisticated NLP techniques:
+
+a) Identifying the main topic of a document assuming that its title is not provided.
+
+b) Detecting the language in a document 
+
+c) Extracting the phone numer, email address and year of graduatioin from a resume.
+
+d) Substituting words like doesn't, can't, etc with does not, and can not, etc.
+
+Answer: C and D 
+
+Q3: Spam email is a persistent problem that service providers have been trying to solve for years now. One of the key tasks in building an effective spam detection system is identifying the features of an email that could be used to classify the email as spam or not.
+
+Rank the following features based on the text content of an email based on your Understanding of the feature's importance.
+
+a) Language (English, French, etc) used in the email text.
+
+b) Presence of words with spelling mistakes / non standard form.
+
+c) Emails addressed to you and contain your name.
+
+Answer:
+Correct order is: C > A > B 
+
+Q4) Identify the kind of ambiguity in the given sentences:
+
+a) Time flies like an arrow, fruit flies like a banana.
+
+b) Iraqi head seeks arms.
+
+c) A frog thought it saw a prince walk towards it. It thought it can't be true.
+
+List of ambiuities for matching with above sentences.
+
+I) Anaphoric Ambiguity 
+
+II) Semantic Ambiguity 
+
+III) Syntactic Ambiguity.
+
+Answer: 
+A -> III 
+B -> II  
+C -> I 
+
+<b>Syntactic ambiguity</b>
+Take a look at the sentence given below
+“Old men and women were taken to safe locations”
+This sentence has a syntactic ambiguity where the scope of the adjective “old” needs to be resolved.
+In this sentence, we may not know if the adjective applies only to men or to both men and women.
+
+<b>Semantic ambiguity</b>
+Semantic ambiguity refers to ambiguity in the meaning.
+For example, the sentence
+“Alice loves her mother and so does Jacob.”
+The ambiguity here is, we may not know if Jacob loves his own mother or Alice’s mother.
+
+<b>Anaphoric Ambiguity </b>
+
+In the below paragraph
+“The horse ran up the hill. It was very steep. It soon got tired.”
+In this paragraph, the pronoun ‘it’ is used to refer to the hill first and then to the horse. To interpret this sentence, we need to have knowledge of the world and context. These ambiguities are called anaphoric ambiguities.
+
+
+Q5) Consider the below review for co-sleeper sheets for a baby. What is the sentiment in this review?
+"The shipping was quick the colors are pretty but the sheets themselves are not soft."
+
+a) positive
+b) negative 
+c) Neutral
+
+Amswer: Positive 
+The user is appreciating the shipping and the colors.
+
+Q6) Do sentiment analysis of following sentence:
+
+"The parking was great, the restaurant anbience was good. But the food was utterly terrible."
+
+a) positive
+b) negative 
+c) Neutral
+
+Answer:
+Although the number of positive words is greater than the number of negative words in these sentences, the overall sentiment was negative.
+
+<b>Weighted Scores to Find The Polarity</b>
+The short coming of this dictionary based, and weighted scores for doing Sentiment Analysis is that it misses out on the order of words and hence may classify the sentiment as wrong.
+
+Q7) Assume that you have to build an NLP application that looks at a new document and estimates how similar it is to various text documents previously ingested. Consider that similarity of 2 documents is computed on the basis of presence of common words.
+
+Based on your understanding of the NLP technique discussed so far, what are various basic pre-processing steps that you will include in this application while processing the historic data and making inferences on a new document?
+
+Steps:
+
+a. Remove any unwanted spaces, numbers, special characters, etc 
+b. Convert all text into lower case.
+c. Create n-grams based on the text.
+d. Tokenize the text.
+e. Normalize data using stemming and lemmatization techniques.
+f. Determine the frequence of each word in each document and also in the whole corpus.
+g. Remove stop words from the text.
+h. Remove punctuation
+i. Perform POS tagging on the text.
+
+Options:
+
+I. All the steps listed above need to be done.
+II. a, b, d, f, g, h 
+III. b, c, d, e, h, g 
+IV. a, d, e, f, g
+
+Answer: II 
+</pre>
+
+<span style="display: none">Tags: Natural Language Processing</span>

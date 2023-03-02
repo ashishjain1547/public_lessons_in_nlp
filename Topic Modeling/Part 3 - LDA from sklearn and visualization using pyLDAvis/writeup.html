@@ -1,0 +1,262 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        i.ibb {
+            display: block;
+            background-color: black;
+            color: white;
+        }
+
+        i.ibg {
+            display: block;
+            background-color: rgb(50, 50, 50);
+            color: white;
+        }
+
+
+        ul.no-bullets {
+            list-style-type: none;
+            /* Remove bullets */
+            padding: 0;
+            /* Remove padding */
+            margin: 0;
+            /* Remove margins */
+        }
+
+        li.customLi {
+            float: left;
+        }
+
+        li.customLi>span.customSpan {
+            display: block;
+            padding: 8px;
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<style>
+    i.black {
+        display: block;
+        background-color: black;
+        color: white;
+    }
+
+    i.green {
+        display: block;
+        background-color: green;
+        color: white;
+    }
+
+    i.red {
+        display: block;
+        background-color: red;
+        color: white;
+    }
+</style>
+
+<pre>
+<i class="black">
+from __future__ import print_function
+import pyLDAvis
+import pyLDAvis.sklearn
+pyLDAvis.enable_notebook()
+from sklearn.datasets import fetch_20newsgroups
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.decomposition import LatentDirichletAllocation
+    
+import spacy
+import pandas as pd
+import warnings
+warnings.filterwarnings("ignore")
+from preprocess import preprocess_text
+import matplotlib.pyplot as plt
+
+nlp = spacy.load("en_core_web_sm")
+
+def remove_verbs_and_adjectives(text):
+    doc = nlp(text)
+
+    additional_stopwords = ["new", "like", "many", "also", "even", "get", "say", "according", "would", "could",
+                            "know", "made", "make", "come", "didnt", "dont", "doesnt", "go", "may", "back", 
+                            "going", "including", "added", "set", "take", "want", "use",
+                            "000", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "20", "u",
+                           "one", "two", "three", "year", "first", "last", "good", "best", "well", "told", "said"]
+    days_of_week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    
+    additional_stopwords += days_of_week
+    
+    words = [token.text for token in doc if (token.pos_ not in ["VERB", "NUM", "ADJ", "ADV", "ADP", "SCONJ", "DET",
+                                                                "X", "INTJ", "CCONJ", "AUX", 'PART', 'PRON', 'PUNCT', 'SYM'])]
+    
+    words = [x for x in words if len(x) > 2]
+    words = [x for x in words if x not in additional_stopwords]
+        
+    doc = " ".join(words)
+    return doc
+
+df1 = pd.read_csv('bbc_news_train.csv')
+
+%%time
+df1['Preprocess_text'] = df1['Text'].apply(preprocess_text)
+df1['Preprocess_text'] = df1['Preprocess_text'].apply(remove_verbs_and_adjectives)
+
+tf_vectorizer = CountVectorizer(strip_accents = 'unicode',
+                                stop_words = 'english',
+                                lowercase = True,
+                                token_pattern = r'\b[a-zA-Z]{3,}\b',
+                                max_df = 0.5, 
+                                min_df = 10)
+dtm_tf = tf_vectorizer.fit_transform(df1['Preprocess_text'])
+
+%%time
+lda_tf = LatentDirichletAllocation(n_components=5, random_state=0)
+lda_tf.fit(dtm_tf) # LatentDirichletAllocation(n_components=5, random_state=0)
+
+pyLDAvis.sklearn.prepare(lda_tf, dtm_tf, tf_vectorizer)
+</i>
+
+<h2>1. High Level View</h2>
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEheyyUf6TUbB75bIR3tTcKvLOedfGLWHuO-97uFe30qRUWRv1BWkE1ux-0fZvSbbytwROvCg-VjSyEVxTh1EL7dVonAuy_j-875M1SlvcPqhfpjdMImQ7LPoR194HB89wnnjpp8HJx6PPuqOO6_fs4br_nVdagA6METJJRjwYL33GqrdUGP0wICV_7RDQ/s1372/pyldavis%201.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="867" data-original-width="1372"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEheyyUf6TUbB75bIR3tTcKvLOedfGLWHuO-97uFe30qRUWRv1BWkE1ux-0fZvSbbytwROvCg-VjSyEVxTh1EL7dVonAuy_j-875M1SlvcPqhfpjdMImQ7LPoR194HB89wnnjpp8HJx6PPuqOO6_fs4br_nVdagA6METJJRjwYL33GqrdUGP0wICV_7RDQ/s600/pyldavis%201.png" /></a>
+</div>
+
+<h2>2. Exploring Sports Cluster</h2>
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8WO1xRTMvHpEQXo7xfExaqTCsSQd95csHs6SXkegL4kbAJyjo-xEJVUJvHeGFVDnHJmOyV4h-Uq6OMnFY9kGQ37CqIUQ2UeENC6EdM0UOb_SX6CQ4OwbN8WJh9EvjYKQPg_D8EGLvJTDlXQ9nZ6AgwGmswyavh5Lw-ErY5OKKNHSP-ZA-uC-kNt3RpA/s1375/pyldavis%202%20%28Sports%20cluster%29.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="795" data-original-width="1375"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8WO1xRTMvHpEQXo7xfExaqTCsSQd95csHs6SXkegL4kbAJyjo-xEJVUJvHeGFVDnHJmOyV4h-Uq6OMnFY9kGQ37CqIUQ2UeENC6EdM0UOb_SX6CQ4OwbN8WJh9EvjYKQPg_D8EGLvJTDlXQ9nZ6AgwGmswyavh5Lw-ErY5OKKNHSP-ZA-uC-kNt3RpA/s600/pyldavis%202%20%28Sports%20cluster%29.png" /></a>
+</div>
+
+<h2>3. Exploring the term "Team"</h2>
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJldRL8cki_UjPrAU8q1I8zNKxCtqTjwMefLm3vDsy6yTpABniSHrN94TT_oKbK1Rx-kSVClx8_xFuqS2emrlriK7dsLGJiNABB85EloRLHzUa8-GjXdUP-C8P-tYHBtqC1MWnrcPee79FlyYoTL3hV63ciVt2I4ou564xClxtxxwb-b3e5JwSjTBHiA/s1356/pyldavis%203.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="786" data-original-width="1356"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJldRL8cki_UjPrAU8q1I8zNKxCtqTjwMefLm3vDsy6yTpABniSHrN94TT_oKbK1Rx-kSVClx8_xFuqS2emrlriK7dsLGJiNABB85EloRLHzUa8-GjXdUP-C8P-tYHBtqC1MWnrcPee79FlyYoTL3hV63ciVt2I4ou564xClxtxxwb-b3e5JwSjTBHiA/s600/pyldavis%203.png" /></a>
+</div>
+
+<i class="black">
+def plot_top_words(model, feature_names, n_top_words, title):
+    #fig, axes = plt.subplots(2, 5, figsize=(30, 15), sharex=True)
+    fig, axes = plt.subplots(1, 5, figsize=(30, 15), sharex=True)
+    axes = axes.flatten()
+    for topic_idx, topic in enumerate(model.components_):
+        top_features_ind = topic.argsort()[: -n_top_words - 1 : -1]
+        top_features = [feature_names[i] for i in top_features_ind]
+        weights = topic[top_features_ind]
+
+        ax = axes[topic_idx]
+        ax.barh(top_features, weights, height=0.7)
+        ax.set_title(f"Topic {topic_idx +1}", fontdict={"fontsize": 30})
+        ax.invert_yaxis()
+        ax.tick_params(axis="both", which="major", labelsize=20)
+        for i in "top right left".split():
+            ax.spines[i].set_visible(False)
+        fig.suptitle(title, fontsize=40)
+
+    plt.subplots_adjust(top=0.90, bottom=0.05, wspace=0.90, hspace=0.3)
+    plt.show()
+
+n_top_words = 20
+
+plot_top_words(lda_tf, tf_vectorizer.get_feature_names(), n_top_words, "Topics in LDA model")
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEid8_0gFMVBciOPDsW45RxIT7NCm7_Fm6hy3GNSu5bKIVWN2sV0GrftOcAKV6ielkpXhPZ7u_Arj8ojVOOXecgJOeS7eejpud71vXYyCXpIFmwooQZCSO9YmvC7iST3geOOXYj2kW6xPGm8az9jO39EXoZHyAIr3sUTGpg2BKgSZBG7I1WDxQBF20SJuw/s1376/4%20-%20topics%20in%20lda%20model%20and%20words%20in%20each%20topic.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="793" data-original-width="1376" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEid8_0gFMVBciOPDsW45RxIT7NCm7_Fm6hy3GNSu5bKIVWN2sV0GrftOcAKV6ielkpXhPZ7u_Arj8ojVOOXecgJOeS7eejpud71vXYyCXpIFmwooQZCSO9YmvC7iST3geOOXYj2kW6xPGm8az9jO39EXoZHyAIr3sUTGpg2BKgSZBG7I1WDxQBF20SJuw/s600/4%20-%20topics%20in%20lda%20model%20and%20words%20in%20each%20topic.png"/></a></div>
+
+<i class="black">
+for topic_idx, topic in enumerate(lda_tf.components_):
+    top_features_ind = topic.argsort()[: -n_top_words - 1 : -1]
+    top_features = [tf_vectorizer.get_feature_names()[i] for i in top_features_ind]
+    weights = topic[top_features_ind]
+    print()
+    print(top_features)
+    print(weights)
+</i>
+
+<i class="green">
+['film', 'market', 'award', 'sale', 'growth', 'company', 'price', 'bank', 'rate', 'economy', 'share', 'director', 'month', 'actor', 'dollar', 'firm', 'china', 'star', 'profit', 'analyst']
+[782.39034709 366.28139534 322.86071389 284.59708969 273.47636047
+ 270.04200023 246.46217158 222.28393084 221.57275007 220.44223774
+ 217.44204193 217.16230918 210.70770464 208.58603001 205.89147443
+ 200.87216491 200.44549958 191.36606456 181.4342261  173.2076483 ]
+
+['music', 'band', 'company', 'court', 'club', 'album', 'number', 'group', 'chart', 'song', 'record', 'sale', 'london', 'case', 'singer', 'charge', 'drug', 'day', 'deal', 'bid']
+[252.53858311 188.25792769 185.23003226 148.14318776 145.85605702
+ 144.19663752 140.08497961 135.82856133 129.27287007 128.42244733
+ 125.84229174 116.22180106 116.07193359 109.62077913 109.5121517
+ 108.17668145 105.2106134  104.29483314 102.85209462 101.69194202]
+
+['game', 'time', 'england', 'player', 'world', 'team', 'match', 'win', 'cup', 'minute', 'season', 'champion', 'ireland', 'injury', 'wale', 'france', 'goal', 'chelsea', 'week', 'coach']
+[602.21909322 378.09944132 341.67737838 336.05299822 279.3877861
+ 255.26640777 243.15720494 242.95257795 214.19830526 191.78217721
+ 188.27405349 185.72607709 181.66983554 178.32170657 174.85059546
+ 166.49655125 159.49832106 159.12597256 156.66993433 155.74636717]
+
+['government', 'election', 'people', 'party', 'minister', 'blair', 'labour', 'country', 'tax', 'plan', 'law', 'lord', 'leader', 'issue', 'time', 'secretary', 'home', 'britain', 'campaign', 'service']
+[737.11131292 535.16527677 503.88220861 492.81224241 472.1748853
+ 405.93862213 392.08668008 377.9692403  374.10296897 321.81905251
+ 251.941626   228.98752682 224.14880061 208.55888715 194.76072149
+ 194.1927585  192.50127191 186.69009254 181.17916067 180.81032583]
+
+['people', 'phone', 'technology', 'service', 'game', 'user', 'computer', 'software', 'music', 'firm', 'site', 'time', 'network', 'video', 'mail', 'internet', 'way', 'consumer', 'number', 'virus']
+[680.17474713 452.3961128  422.18599053 392.05349486 315.97985885
+ 310.19888871 287.0726163  272.19648631 260.04783894 233.83933227
+ 229.49176761 224.82279539 219.68765596 219.425011   215.04665086
+ 214.76647326 209.25888074 202.79667119 198.7542187  197.672328  ]
+</i>
+
+<i class="black">
+df_test = pd.read_csv('bbc_news_test.csv')
+
+%%time
+df_test['Preprocess_text'] = df_test['Text'].apply(preprocess_text)
+df_test['Preprocess_text'] = df_test['Preprocess_text'].apply(remove_verbs_and_adjectives)
+
+df_test_tf = tf_vectorizer.transform(df_test['Preprocess_text'])
+
+lda_tf.transform(df_test_tf)
+</i>
+
+<i class="green">
+array([[0.128288  , 0.00543088, 0.85561882, 0.00534719, 0.00531511],
+    [0.00191148, 0.00193182, 0.00193953, 0.28883497, 0.70538221],
+    [0.00360513, 0.00360238, 0.98555182, 0.00363063, 0.00361004],
+    ...,
+    [0.11366724, 0.32884101, 0.00273285, 0.32595816, 0.22880073],
+    [0.52009706, 0.00362464, 0.03958206, 0.24591173, 0.1907845 ],
+    [0.0339508 , 0.00166348, 0.0016659 , 0.96107025, 0.00164957]])
+</i>
+
+<h3>What you are seeing above: Probability that a document contains that topic.</h3>
+</pre>
+<span style="display: none">Tags: Machine Learning, Natural Language Processing, Technology, Data Visualization,</span>
