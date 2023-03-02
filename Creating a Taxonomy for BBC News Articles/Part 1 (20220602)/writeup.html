@@ -1,0 +1,205 @@
+<!-- Title: Creating a Taxonomy for BBC News Articles (Part 1 (20220602)) -->
+
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<style>
+    i.black {
+        display: block;
+        background-color: black;
+        color: white;
+    }
+
+    i.red {
+        display: block;
+        background-color: red;
+        color: white;
+    }
+
+    i.green {
+        display: block;
+        background-color: green;
+        color: white;
+    }
+</style>
+
+<pre>
+<h2>Creating the Conda environment and the ipykernel.</h2>
+Refer this link:
+<a href="https://survival8.blogspot.com/2022/06/creating-environment-and-kernel-for.html" target="_blank">Creating environment and kernel for sentence_transformers</a>
+
+<h2>Code</h2>
+
+<i class="black">
+import pandas as pd
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+from sentence_transformers import SentenceTransformer
+
+import warnings
+warnings.filterwarnings('ignore')
+
+df1 = pd.read_csv('bbc_news_train.csv')
+</i>
+
+Note: You can download the BBC News data set from this GitHub repository:
+<a href="https://github.com/ashishjain1547/PublicDatasets/tree/master/bbc_news" target="_blank">bbc_news</a>
+
+<i class="black">
+df1.columns
+</i>
+
+<i class="green">
+Index(['ArticleId', 'Text', 'Category'], dtype='object')
+</i>
+
+<i class="black">
+SentenceTransformer._version
+</i>
+
+<i class="green">
+1
+</i>
+
+<i class="black">
+model = SentenceTransformer('distilbert-base-nli-mean-tokens')
+</i>
+
+<i class="black">
+%%time
+sentences = df1['Text'].values.tolist()
+
+sentences_df = pd.DataFrame({"sentences": sentences})
+tokenized = sentences_df['sentences'].apply(lambda x: model.encode([x])[0])
+</i>
+
+<i class="green">
+CPU times: total: 11min 6s
+Wall time: 5min 35s
+</i>
+
+<i class="black">
+tokenized_list = tokenized.values.tolist()
+</i>
+
+<i class="black">
+cols = ["feature_" + str(i) for i in range(768)]
+</i>
+
+Note: DistilBERT based SentenceTransformer produces 768 features.
+
+<i class="black">
+tokenized_df = pd.DataFrame(columns = cols, data = tokenized_list)
+</i>
+
+<i class="black">
+import numpy as np
+
+from matplotlib import pyplot as plt
+from scipy.cluster.hierarchy import dendrogram
+from sklearn.datasets import load_iris
+from sklearn.cluster import AgglomerativeClustering
+
+def plot_dendrogram(model, **kwargs):
+    # Create linkage matrix and then plot the dendrogram
+
+    # create the counts of samples under each node
+    counts = np.zeros(model.children_.shape[0])
+    n_samples = len(model.labels_)
+    for i, merge in enumerate(model.children_):
+        current_count = 0
+        for child_idx in merge:
+            if child_idx &lt; n_samples:
+                current_count += 1  # leaf node
+            else:
+                current_count += counts[child_idx - n_samples]
+        counts[i] = current_count
+
+    linkage_matrix = np.column_stack(
+        [model.children_, model.distances_, counts]
+    ).astype(float)
+
+    # Plot the corresponding dendrogram
+    dendrogram(linkage_matrix, **kwargs)
+
+    
+X = tokenized_df
+
+# setting distance_threshold=0 ensures we compute the full tree.
+model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
+
+model = model.fit(X)
+plt.title("Hierarchical Clustering Dendrogram")
+# plot the top three levels of the dendrogram
+plot_dendrogram(model, truncate_mode="level", p=3)
+plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+plt.show()
+</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjb5l0pgENwYoeU7uxbhFIYM_mpd8Z_b1ztfcWAtlWnAa1sUImf5AYl0zS1ligbxrH4A_y9PdQ2VCQvN03TaxI6bmQYtDewZEgbZPqTGw7rY2W42v8dIx58ytEV0PeioaQIZkovu6C5Zv_nUR-w6fEooRVbmj3VcfS_KgaHRcEyQA2pDyvyBlSAiOkeMw/s489/dendrogram.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="364" data-original-width="489"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjb5l0pgENwYoeU7uxbhFIYM_mpd8Z_b1ztfcWAtlWnAa1sUImf5AYl0zS1ligbxrH4A_y9PdQ2VCQvN03TaxI6bmQYtDewZEgbZPqTGw7rY2W42v8dIx58ytEV0PeioaQIZkovu6C5Zv_nUR-w6fEooRVbmj3VcfS_KgaHRcEyQA2pDyvyBlSAiOkeMw/s600/dendrogram.png" /></a>
+</div>
+</pre>
+
+<span style="display: none">Tags: Technology,Natural Language Processing,Machine Learning,Python,</span>

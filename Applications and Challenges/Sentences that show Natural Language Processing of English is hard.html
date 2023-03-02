@@ -1,0 +1,164 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>Let us try to understand why NLP (Natural Language Processing) is considered hard using a few examples:
+
+1. "There was not a single man at the party".
+
+- Does it mean that there were no men at the party? Or
+
+- Does it mean that there was no one at the party? Or
+
+- Here does man refer to the gender "man" or "mankind"?
+
+2. "The chicken is ready to eat."
+
+- Does this mean that the bird (chicken) is ready to feed on some grains? Or
+
+- Does it mean that the meat is cooked well and is ready to be eaten by a human?
+
+3. "Google is a great company" and "Google this word and find its meaning".
+
+- Google is being used as a noun in the first statement and as a verb in the second.
+Google (noun) and Google (verb) are homonyms.
+
+4. The man saw a girl with a telescope.
+
+- Did the man use a telescope to see the girl? Or 
+
+- Did the man see a girl who was holding a telescope?
+
+<b>5. Consider saying this to a voice interface like Siri and Alexa:</b>
+
+She felt... less. She felt tamped down. Dim. More faint. Feint. Feigned. Fain.
+--Patrick Rothfuss
+
+<b>6. Why we need a bidirectional parsing model for Natural Language Processing?</b>
+
+<i>Sentences where future words tell about the words spoken in the past.</i>
+
+Consider these two sentences:
+a. She says, "Teddy bears are my favorite toy."
+b. She says, "Teddy Roosevelt was the 26th President of the United States."
+
+On a high level what a unidirectional LSTM model will see:
+<i>She says, "Teddy."</i>
+
+On the other hand, a bidirectional LSTM will be able to see the information further down the road as well. See the illustration below:
+
+Forward LSTM will see: "She says, 'Teddy'."
+
+Backward LSTM will see: "was the the 26th President of the United States."
+
+<b>7. Word Sense Disambiguation</b>
+
+As an example of the contextual effect between words, consider the word "by", which has several meanings, for example: 
+
+# the book by Chesterton (agentive - Chesterton was the author of the book); 
+
+# the cup by the stove (locative - the stove is where the cup is); and 
+
+# submit by Friday (temporal - Friday is the time of the submitting). 
+
+Observe below that the meaning of the italicized word helps us interpret the meaning of by.
+
+a. The lost children were found by the <i>searchers</i> (agentive) 
+
+b. The lost children were found by the <i>mountain</i> (locative) 
+
+c. The lost children were found by the <i>afternoon</i> (temporal)
+
+<b>8. Pronoun Resolution</b>
+
+Consider three possible following sentences, and try to determine what was sold, caught, and found (one case is ambiguous).
+
+a. The thieves stole the paintings. They were subsequently sold.
+b. The thieves stole the paintings. They were subsequently caught.
+c. The thieves stole the paintings. They were subsequently found.
+
+Answering this question involves finding the antecedent of the pronoun they, either thieves or paintings. 
+
+Computational techniques for tackling this problem include: 
+
+Anaphora resolution - identifying what a pronoun or noun phrase refers to. And:
+
+Semantic role labeling - identifying how a noun phrase relates to the verb (as agent, patient, instrument, and so on).
+
+</pre>
+
+<span style="opacity: 0">Tags: Natural Language Processing,</span>

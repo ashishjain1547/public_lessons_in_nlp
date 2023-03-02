@@ -1,0 +1,196 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/PublicResearchPapers/blob/master/Negotiation-Coach/1909.13426.pdf" target="_blank">Download Research Paper</a>
+
+<pre>
+<h2>Abstract</h2>
+
+Negotiation is a complex activity involving strategic reasoning, persuasion, and psychology. An average person is often far from an expert in negotiation. Our goal is to assist humans to become better negotiators through a machine-in-the-loop approach that combines machine’s advantage at data-driven decisionmaking and human’s language generation ability. We consider a bargaining scenario where a seller and a buyer negotiate the price of an item for sale through a text-based dialog. Our negotiation coach monitors messages between them and recommends tactics in real time to the seller to get a better deal (e.g., “reject the proposal and propose a price”, “talk about your personal experience with the product”). The best strategy and tactics largely depend on the context (e.g., the current price, the buyer’s attitude). Therefore, we first identify a set of negotiation tactics, then learn to predict the best strategy and tactics in a given dialog context from a set of human–human bargaining dialogs. Evaluation on human–human dialogs shows that our coach increases the profits of the seller by almost 60%.
+
+<h2>1: Introduction</h2>
+
+Negotiation is a social activity that requires both strategic reasoning and communication skills (Thompson, 2001; Thompson et al., 2010). Even humans require years of training to become a good negotiator. Past efforts on building automated negotiation agents (Traum et al., 2008; Cuay´ahuitl et al., 2015; Keizer et al., 2017; Cao et al., 2018; Petukhova et al., 2017; Papangelis and Georgila, 2015) has primarily focused on the strategic aspect, where negotiation is formulated as a sequential decision-making process with a discrete action space, leaving aside the rhetorical aspect. Recently, there has been a growing interest in strategic goal-oriented dialog (He et al., 2017; Lewis et al., 2017; Yarats and Lewis, 2018; He et al., 2018) that aims to handle both reasoning and text generation. While the models are good at learning strategies from human–human dialog and selfplay, there is still a huge gap between machine generated text and human utterances in terms of diversity and coherence (Li et al., 2016a,b). 
+
+In this paper, we introduce a machine-in-theloop approach (cf. Clark et al., 2018) that combines the language skills of humans and the decision-making skills of machines in negotiation dialogs. Our negotiation coach assists users in real time to make good deals in a bargaining scenario between a buyer and a seller. We focus on helping the seller to achieve a better deal by providing suggestions on what to say and how to say it when responding to the buyer at each turn. As shown in Figure 1, during the (human–human) conversation, our coach analyzes the current dialog history, and makes both high-level strategic suggestions (e.g., hpropose a pricei) and low-level rhetoric suggestions (e.g., huse hedge wordsi). The seller then relies on these suggestions to formulate their response.
+
+While there exists a huge body of literature on negotiation in behavioral economics (Pruitt, 1981; Bazerman et al., 2000; Fisher and Ury, 1981; Lax and Sebenius, 2006; Thompson et al., 2010), these studies typically provide case studies and generic principles such as “focus on mutual gain”. Instead of using these abstract, static principles, we draw insights from prior negotiation literature and define actionable strategies and tactics conditioned on the negotiation scenario and the dialog context. We take a data-driven approach (§2) using human – human negotiation dialogs collected in a simulated online bargaining setting (He et al., 2018). 
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjVU0gfRym9mYJ9hJrfPvNh2ed2Xt7XRec7VbC7H40QHlTIXeVZUquJ_WxKhYAla6VZlYFGCs13NjS_RGYjEFGsmXRMlNg49rlvasBhdH3n_USACbANfj5CbOwymbsJONXHI9TksqA7Ei4HtfTFXmQzAwDd-9arGnaw-KAt-f9v4yGV35XaGFYrTZxmBA/s854/1.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="675" data-original-width="854" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjVU0gfRym9mYJ9hJrfPvNh2ed2Xt7XRec7VbC7H40QHlTIXeVZUquJ_WxKhYAla6VZlYFGCs13NjS_RGYjEFGsmXRMlNg49rlvasBhdH3n_USACbANfj5CbOwymbsJONXHI9TksqA7Ei4HtfTFXmQzAwDd-9arGnaw-KAt-f9v4yGV35XaGFYrTZxmBA/s600/1.png"/></a></div>
+
+Figure 1: Our negotiation coach monitors the conversation between the seller and the buyer, and provides suggestions of negotiation tactics to the seller in each turn dynamically, depending on the negotiation scenario, the dialog context, and examples of previous similar dialogs.
+
+First, we build detectors to extract negotiation tactics grounded in each turn, such as product embellishment (“The TV works like a champ!”) and side offers (“I can deliver it to you.”) (§3.1). 
+
+These turn-level tactics allow us to dynamically predict the tactics used in a next utterance given the dialog context. To quantify the effectiveness of each tactic, we further build an outcome predictor to predict the final deal given past tactics sequence extracted from the dialog history (§5). At test time, given the dialog history in each turn, our coach (1) predicts possible tactics in the next turn (§4); (2) uses the outcome predictor to select tactics that will lead to a good deal; (3) retrieves (lexicalized) examples exhibiting the selected tactics and displays them to the seller (§6).
+
+To evaluate the effectiveness of our negotiation coach, we integrate it into He et al.’s (2018) negotiation dialog chat interface and deploy the system on Amazon Mechanical Turk (AMT) (§7).
+
+We compare with two baselines: the default setting (no coaching) and the static coaching setting where a tutorial on effective negotiation strategies and tactics is given to the user upfront. The results show that our dynamic negotiation coach helps sellers increase profits by 59% and achieves the highest agreement rate.
+
+<h2>2: Problem Statement</h2>
+
+We follow the CraigslistBargain setting of He et al. (2018), where a buyer and a seller negotiate the price of an item for sale. The negotiation scenario is based on listings scraped from craigslist.com, including product description, product photos (if available), and the listing price. In addition, the buyer is given a private target price that they aim to achieve. Two AMT workers are randomly paired to play the role of the seller and the buyer. They negotiate through the chat interface shown in Figure 2 in a strict turn-taking manner. They are instructed to negotiate hard for a favorable price. Once an agreement is reached, either party can submit the price and the other chooses to accept or reject the deal; the task is then completed.
+
+Our goal is to help the seller achieve a better deal (i.e. higher final price) by providing suggestions on how to respond to the buyer during the conversation. At each seller’s turn, the coach takes the negotiation scenario and the current dialog history as input and predicts the best tactics to use in the next turn to achieve a higher final price. The seller has the freedom to choose whether to use the recommended tactics.
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4EvgZ4H5WfiVP1_5WueXlMyl4FzPkQEsZsFzRO0iwtJ3M-FAVfitxsYRpM7Yf1fwb_m4ikuQWIvNPfubCCNAHeuTGc52g_nTier24tpLf6gbrk7Yuv-ffs83KBk6Xfj6_o422qqgYbBJYn76jE8dUthdJO2qz84ITtvU4gweFSYgVX9pxTlD4m-sExg/s894/2.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="822" data-original-width="894" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4EvgZ4H5WfiVP1_5WueXlMyl4FzPkQEsZsFzRO0iwtJ3M-FAVfitxsYRpM7Yf1fwb_m4ikuQWIvNPfubCCNAHeuTGc52g_nTier24tpLf6gbrk7Yuv-ffs83KBk6Xfj6_o422qqgYbBJYn76jE8dUthdJO2qz84ITtvU4gweFSYgVX9pxTlD4m-sExg/s600/2.png"/></a></div>
+
+<h2>3: Approach</h2>
+
+We define a set of diverse tactics S from past study on negotiation in behavioral economics, including both high-level dialog acts (e.g., (propose a price), (describe the product) and low-level lexical features (e.g. (use hedge words). Given the negotiation scenario and the dialog history, the coach takes the following steps (Figure 3) to generate suggestions:
+
+1. The tactics detectors map each turn to a set of tactics in S.
+
+2. The tactics predictor predicts the set of possible tactics in the next turn given the dialog history. For example, if the buyer has proposed a price, possible tactics include proposing a counter price, agreeing with the price etc.
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4KUhDhYTlrUeH0FauuRfOjTZAknTd7WvN-V-o6SDDXEebaCh0qW8M5Vzg4UBtx4UQ4IhN-c9p-eXHUPSpqE2WeR1RDGL1uab5CjYhzYPEBRJvI36c-uJo30lBGE3AW1pGoabVBR2eKHF_EdafVHTdHiNJ2r6AgoNmg5DYOvrkFLPGhDeCjw3rIe8zFg/s721/3.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="721" data-original-width="642" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj4KUhDhYTlrUeH0FauuRfOjTZAknTd7WvN-V-o6SDDXEebaCh0qW8M5Vzg4UBtx4UQ4IhN-c9p-eXHUPSpqE2WeR1RDGL1uab5CjYhzYPEBRJvI36c-uJo30lBGE3AW1pGoabVBR2eKHF_EdafVHTdHiNJ2r6AgoNmg5DYOvrkFLPGhDeCjw3rIe8zFg/s600/3.png"/></a></div>
+
+3. The tactics selector takes the candidate tactics from the tactics predictor and selects those that lead to a better final deal.
+
+4. The tactics realizer converts the selected tactics to instructions and examples in natural language, which are then presented to the seller.
+
+We detail each step in the following sections.
+
+3.1 Tactics Detectors
+We focus on two broad categories of strategies in behavioral research: 
+
+(i) integrative, or win–win, negotiation, in which negotiators seek to build relationships and reach an agreement benefiting both parties; and 
+
+(ii) distributive, or win–lose, negotiation, in which negotiators adversarially promote their own interests, exert power, bluff, and demand (Walton and McKersie, 1965). In practice, effective negotiation often involves both types of strategies (Fisher and Ury, 1981; Lax and Sebenius, 2006; Pruitt, 1981; K. et al., 2000, inter alia). 
+
+Prior work typically focuses on conceptual tactics (e.g., emphasize mutual interest), rather than actionable tactics in a specific negotiation scenario (e.g., politely decline to lower the price, but offer free delivery). Therefore, we develop datadriven ways to operationalize and quantify these abstract principles.
+
+In Table 1, we list our actionable tactics motivated by various negotiation principles. To detect these tactics from turns, we use a mix of learned classifiers for turn-level tactics (e.g., propose prices) and regular expression rules for lexical tactics (e.g., use polite words). To create the training set for learning tactic predictors, we randomly selected 200 dialogs and annotated them with tactics. 
+
+The detectors use the following features: 
+
+(1) the number of words overlapping with the product description; 
+
+(2) the METEOR score (Denkowski and Lavie, 2014) of the turn given the product description as reference; 
+
+(3) the cosine distance between the turn embedding and the product description embedding. For “Address buyer’s concerns”, we additionally include lexical features indicating a question (e.g.,“why”, “how”, “does”) from the immediate previous buyer’s turns. Table 2 summarizes the number pf training examples and prediction accuracies for each learned classifier. For lexical tactics, we have the following rules:
+
+• (Do not propose first)
+Waiting for the buyer’s proposal allows the seller to better estimate the buyer’s target. The detector simply keeps track of who proposes a price first by detecting (propose a price).
+
+• (Negotiate side offers)
+The seller sometimes negotiates side offers, e.g., offering a free gift card or free delivery. To detect this strategy, we match the turn against a set of phrases, e.g., “throw in”, “throwing in”, “deliver”, “delivery”, “pick up”, “pick it up”, “in cash”.
+
+• (Use factive verbs) defined in (Hooper, 1975) (e.g. know);
+
+• (Use hedge words) defined in (Hyland, 2005) (e.g. could, would);
+
+• (Use certainty words) defined in the LIWC dictionary (Tausczik and Pennebaker, 2010).
+
+• (Communicate politely) We include several politeness-related negotiation tactics that were identified by Danescu-
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCDn_wTlXkut67lW6o9AP_zSjOJMZueUVKB0KT9KU5tQr04yaJ8urg2_ZJ576I23cEJs-M2mjEkO_qCZprqaUqixUnH4ej9K-dNDbq96J_2zeFzpUMj68kIdyuwgoF0Amc2KBz6klZIkuNzRPMgIJDs6M_qVwzDn1M4wTGoLafYF-SNqrEC85gb35EXw/s1236/4.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="643" data-original-width="1236" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjCDn_wTlXkut67lW6o9AP_zSjOJMZueUVKB0KT9KU5tQr04yaJ8urg2_ZJ576I23cEJs-M2mjEkO_qCZprqaUqixUnH4ej9K-dNDbq96J_2zeFzpUMj68kIdyuwgoF0Amc2KBz6klZIkuNzRPMgIJDs6M_qVwzDn1M4wTGoLafYF-SNqrEC85gb35EXw/s600/4.png"/></a></div>
+
+Table 1: Actionable tactics designed based on negotiation principles. Some of them are detected by learning classifiers on annotated data, and the rest are detected using pattern matching.
+
+Niculescu-Mizil et al. (2013) as most informative features. They include: gratitude, greetings, apology, “please” in the beginning of a turn, “please” later on. Keywords matching is used to detect these tactics.
+
+• (Build rapport)
+Deepening self-disclosure, e.g., “My kid really liked this bike, but he outgrew it”, is one strategy for building rapport. We implemented three tactics detectors to identify selfdisclosure. 
+
+First, we count first-person pronouns (Derlaga and Berg, 1987; Joinson, 2001). Second, we count mentions of family members and friends, respectively (Wang et al., 2016). It is done by matching lexicons from family and friend categories in LIWC.
+
+• (Talk informally)
+It is detected by matching the keywords in the informal language category in LIWC.
+
+• (Show dominance)
+To detect stubbornness (Tan et al., 2016), we measure the average dominance score of all the words from the Warriner et al.’s (2013)’s dominance ratings of 14,000 words.
+
+• (Express negative sentiment)
+We measure both positive and negative sentiment by counting words from positive and negative categories in LIWC.
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuXTVzluD_s047kWwTwNynl8ViY5XUKFQynFuR1FLN0KMin5YjwmhZMy_IWqclUXyakeURENTJBEIsMsHu5wMaaSvRVlgpKxU1rqWe8Z-rQcDlXXzJEjZhZ_Da2yHpUQzvwFY6yHZA5DqeSDe9gSpLP2ZMnJsMw7cOQcq9Od-TJEFIf0xk7w0OnqbB5w/s538/5.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="369" data-original-width="538" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuXTVzluD_s047kWwTwNynl8ViY5XUKFQynFuR1FLN0KMin5YjwmhZMy_IWqclUXyakeURENTJBEIsMsHu5wMaaSvRVlgpKxU1rqWe8Z-rQcDlXXzJEjZhZ_Da2yHpUQzvwFY6yHZA5DqeSDe9gSpLP2ZMnJsMw7cOQcq9Od-TJEFIf0xk7w0OnqbB5w/s600/5.png"/></a></div>
+
+<h2>8: Conclusion</h2>
+
+This paper presents a dynamic negotiation coach that can make measurably good recommendations to sellers that can increase their profits. It benefits from grounding in strategies and tactics within the negotiation literature and uses natural language processing and machine learning techniques to identify and score the tactics’ likelihood of being successful. We have tested this coach on human–human negotiations and shown that our techniques can substantially increase the profit of negotiators who follow our coach’s recommendations. 
+
+A key contribution of this study is a new task and a framework of an automated coach-in-theloop that provides on-the-fly autocomplete suggestions to the negotiating parties. This framework can seamlessly be integrated in goal-oriented negotiation dialog systems (Lewis et al., 2017; He et al., 2018), and it also has stand-alone educational and commercial values. For example, our coach can provide language and strategy guidance and help improve negotiation skills of non-expert negotiators. In commercial settings, it has a clear use case of assisting humans in sales and in customer service. An additional important contribution lies in aggregating negotiation strategies from economics and behavioral research, and proposing novel ways to operationalize the strategies using linguistic knowledge and resources.
+
+<h2>9: Appendix</h2>
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXovPub2d6EOfhiawqcxBdv4tCXIlHhgtZFG_CKACCXVnY0ckrSrzZb8tiYRkSw7zLM7pP04wVvGMVDqG0QWjxUIWnLutPQRHxmzMpZJcdaGj_ADlVy2z1-wOBdrEe_GSOpXfkccKxgdLdx90F6HOYceQfZG9rUAlur4MXzJ073n_iMcOyB9ERp61q5w/s1357/6.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="921" data-original-width="1357" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXovPub2d6EOfhiawqcxBdv4tCXIlHhgtZFG_CKACCXVnY0ckrSrzZb8tiYRkSw7zLM7pP04wVvGMVDqG0QWjxUIWnLutPQRHxmzMpZJcdaGj_ADlVy2z1-wOBdrEe_GSOpXfkccKxgdLdx90F6HOYceQfZG9rUAlur4MXzJ073n_iMcOyB9ERp61q5w/s600/6.png"/></a></div>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiT_4l6KJrYi1yqHzjdWiVK23vjsHVvSt1SKravW8KjIRV7rGQUh62mLfYjuZoid6uS5TJj8JvttMtkH6DQOt9eMYpM4MLzkcUpHlMFPpPdRx9hrCo35aWOJhUJ5jsIE6fTCvAD4wTB4cgUZTsAXIR8-ZSTIxEv76bTu3Kwc6-73iUJ1IeHOv8ttyRkmw/s1286/7.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="898" data-original-width="1286" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiT_4l6KJrYi1yqHzjdWiVK23vjsHVvSt1SKravW8KjIRV7rGQUh62mLfYjuZoid6uS5TJj8JvttMtkH6DQOt9eMYpM4MLzkcUpHlMFPpPdRx9hrCo35aWOJhUJ5jsIE6fTCvAD4wTB4cgUZTsAXIR8-ZSTIxEv76bTu3Kwc6-73iUJ1IeHOv8ttyRkmw/s600/7.png"/></a></div>
+</pre>
+<span style="display: none">Tags: Negotiation,Natural Language Processing,</span>

@@ -1,0 +1,46 @@
+(base) C:\Users\Ashish Jain\OneDrive\Desktop\For Blog>conda env create -f sentiment_analysis.yml
+Warning: you have pip-installed dependencies in your environment file, but you do not list pip itself as one of your conda dependencies.  Conda may not use the correct pip to install your packages, and they may end up in the wrong place.  Please add an explicit pip dependency.  I'm adding one for you, but still nagging you.
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+Downloading and Extracting Packages
+jupyter_client-6.1.6 | 83 KB     | ################################################################################################################################ | 100%
+zeromq-4.3.2         | 8.7 MB    | ################################################################################################################################ | 100%
+parso-0.7.0          | 71 KB     | ################################################################################################################################ | 100%
+ipython-7.18.1       | 1.2 MB    | ################################################################################################################################ | 100%
+traitlets-4.3.3      | 135 KB    | ################################################################################################################################ | 100%
+ipython_genutils-0.2 | 40 KB     | ################################################################################################################################ | 100%
+wcwidth-0.2.5        | 37 KB     | ################################################################################################################################ | 100%
+libsodium-1.0.18     | 666 KB    | ################################################################################################################################ | 100%
+jupyter_core-4.6.3   | 98 KB     | ################################################################################################################################ | 100%
+pyzmq-19.0.1         | 495 KB    | ################################################################################################################################ | 100%
+pickleshare-0.7.5    | 14 KB     | ################################################################################################################################ | 100%
+tornado-6.0.4        | 653 KB    | ################################################################################################################################ | 100%
+pygments-2.6.1       | 687 KB    | ################################################################################################################################ | 100%
+openssl-1.1.1g       | 5.8 MB    | ################################################################################################################################ | 100%
+prompt-toolkit-3.0.7 | 243 KB    | ################################################################################################################################ | 100%
+colorama-0.4.3       | 20 KB     | ################################################################################################################################ | 100%
+decorator-4.4.2      | 14 KB     | ################################################################################################################################ | 100%
+jedi-0.17.2          | 954 KB    | ################################################################################################################################ | 100%
+backcall-0.2.0       | 14 KB     | ################################################################################################################################ | 100%
+ipykernel-5.3.4      | 178 KB    | ################################################################################################################################ | 100%
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+Installing pip dependencies: \ Ran pip subprocess with arguments:
+['E:\\programfiles\\Anaconda3\\envs\\e20200909\\python.exe', '-m', 'pip', 'install', '-U', '-r', 'C:\\Users\\Ashish Jain\\OneDrive\\Desktop\\For Blog\\condaenv.51yrfx4a.requirements.txt']
+Pip subprocess output:
+
+Pip subprocess error:
+ERROR: Could not find a version that satisfies the requirement torch==1.3.0 (from -r C:\Users\Ashish Jain\OneDrive\Desktop\For Blog\condaenv.51yrfx4a.requirements.txt (line 1)) (from versions: 0.1.2, 0.1.2.post1, 0.1.2.post2)
+ERROR: No matching distribution found for torch==1.3.0 (from -r C:\Users\Ashish Jain\OneDrive\Desktop\For Blog\condaenv.51yrfx4a.requirements.txt (line 1))
+
+failed
+
+CondaEnvException: Pip failed
+
+
+(base) C:\Users\Ashish Jain\OneDrive\Desktop\For Blog>pip install torch==
+Collecting torch==
+  Could not find a version that satisfies the requirement torch== (from versions: 0.1.2, 0.1.2.post1, 0.1.2.post2)
+No matching distribution found for torch==

@@ -1,0 +1,157 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<style>
+    pre {
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .dot {
+        height: 12px;
+        width: 12px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+    }
+</style>
+
+<style>
+    i.black {
+        display: block;
+        background-color: black;
+        color: white;
+    }
+
+    i.green {
+        display: block;
+        background-color: green;
+        color: white;
+    }
+</style>
+<pre>
+<i class="black">
+import pandas as pd
+from sentence_transformers import SentenceTransformer
+
+from sklearn.metrics.pairwise import cosine_similarity # Expects 2D arrays as input
+from scipy.spatial.distance import cosine # Works with 1D vectors
+
+from sklearn.metrics import classification_report
+</i>
+
+<i class="black">
+smodel = SentenceTransformer('distilbert-base-nli-mean-tokens')
+</i>
+
+<i class="black">
+df1 = pd.read_csv('bbc_news_train.csv')
+</i>
+
+<i class="black">
+df1.head()
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZoNPTbg5MoBfz_HzTqT2itJB3MDwM08Z-a7IUxhlmabHCUYYUc66DfqfM_YIsDBAQCgKxKGEeZXa75hPsAEb4E4kkeYGV0NB82qzXaeoydo7OQ6AkXBC-JZkpaLZ41TIe9zYnhrdjWHnxI6p2D-ZCcSF4Xl9bRbYyl7dJ6pHe5W3UKiYrmQIHa-qyvg/s552/img1.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="219" data-original-width="552" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZoNPTbg5MoBfz_HzTqT2itJB3MDwM08Z-a7IUxhlmabHCUYYUc66DfqfM_YIsDBAQCgKxKGEeZXa75hPsAEb4E4kkeYGV0NB82qzXaeoydo7OQ6AkXBC-JZkpaLZ41TIe9zYnhrdjWHnxI6p2D-ZCcSF4Xl9bRbYyl7dJ6pHe5W3UKiYrmQIHa-qyvg/s600/img1.png"/></a></div>
+
+<i class="black">
+def get_sentence_vector(query):
+    query_vec = smodel.encode([query])[0]
+    return query_vec
+</i>
+
+<i class="black">
+%%time
+df1['textVec'] = df1['Text'].apply(lambda x: get_sentence_vector(x))
+</i>
+
+<i class="black">
+df1.head()
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgT7hDt02I2C3n3UfzHyv-bc6r6B8ET-LU8DbLXrMjWLhzJ2JK7a00HfybMbu-7yF_9BGJNfCzUYfVLG_XW-wooKLSwgaUk5qwoW7bw7J65GcOWos7IXPWYNlS6Xzru80ARw8q5VEjialQJf09nGQQ1X-5jBS2RWB0UdMuJdS8DdTXCHjpvjn84gfd8Yg/s896/img2.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="223" data-original-width="896" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgT7hDt02I2C3n3UfzHyv-bc6r6B8ET-LU8DbLXrMjWLhzJ2JK7a00HfybMbu-7yF_9BGJNfCzUYfVLG_XW-wooKLSwgaUk5qwoW7bw7J65GcOWos7IXPWYNlS6Xzru80ARw8q5VEjialQJf09nGQQ1X-5jBS2RWB0UdMuJdS8DdTXCHjpvjn84gfd8Yg/s600/img2.png"/></a></div>
+
+<i class="black">
+def std_category(x):
+    if(x == 'tech'):
+        return 'technology'
+    elif (x == 'sport'):
+        return 'sports'
+    else:
+        return x
+
+df1['Category'] = df1['Category'].apply(std_category)
+
+def get_cosine_sim(x, Y):
+    y = smodel.encode([Y])[0]
+    
+    return cosine(x, y)
+
+df1['cdist_business'] = df1['textVec'].apply(lambda x: get_cosine_sim(x, 'business'))
+
+df1['Category'].unique()
+</i>
+
+<i class="green">
+array(['business', 'technology', 'politics', 'sports', 'entertainment'], dtype=object)
+</i>
+
+<i class="black">
+df1['cdist_technology'] = df1['textVec'].apply(lambda x: get_cosine_sim(x, 'technology'))
+df1['cdist_politics'] = df1['textVec'].apply(lambda x: get_cosine_sim(x, 'politics'))
+df1['cdist_sports'] = df1['textVec'].apply(lambda x: get_cosine_sim(x, 'sports'))
+df1['cdist_entertainment'] = df1['textVec'].apply(lambda x: get_cosine_sim(x, 'entertainment'))
+
+def get_prediction(in_row):
+    min_dist = 99999999
+    label = ""
+    for i in ['cdist_business', 'cdist_technology', 'cdist_politics', 'cdist_sports', 'cdist_entertainment']:
+        d = in_row[i]
+        if d < min_dist:
+            min_dist = d
+            label = i.split('_')[1]
+    return label
+
+df1['prediction'] = df1.apply(lambda in_row: get_prediction(in_row), axis = 1)
+
+df1.head()
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjchIB-jsQ0icz_9n4OEY5FhVOt8H7EGa12n0wBeYUZB-xY3PHZ5FIIwDLmYl1bDt49iJ6E5hidcsa0yh_WO8W3YsShsgxECgyIZxhfSdwsZqlFiaewp7Bc0NDlkow7H1EMoBZrX43iFEVNvBCCO-LfSa1Lw-nfmzIDCVlX7gxNN0O_-tmJKJXBZiOQzA/s1356/img3.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="315" data-original-width="1356" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjchIB-jsQ0icz_9n4OEY5FhVOt8H7EGa12n0wBeYUZB-xY3PHZ5FIIwDLmYl1bDt49iJ6E5hidcsa0yh_WO8W3YsShsgxECgyIZxhfSdwsZqlFiaewp7Bc0NDlkow7H1EMoBZrX43iFEVNvBCCO-LfSa1Lw-nfmzIDCVlX7gxNN0O_-tmJKJXBZiOQzA/s600/img3.png"/></a></div>
+
+<i class="black">
+target_names = ['business', 'entertainment', 'politics', 'sports', 'technology']
+print(classification_report(df1['Category'], df1['prediction'], target_names=target_names))
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_vmcez-vL64q6_9l1cRTxcORJdQSTjTEwkRaPVwL2ufpsFlW-Va1Lmz42aGIHkdCskYLCJGCDvdQbYDPxyOlKDBJyfcpW-9yYw1VZPw-_NMCGND5pVcKKnzCmYa6GKcXPUNi11gsNcJv3sMoTrPY2OSxSF8PF0Y6s59mUy3O9yLyOHbGO_djeZQEgpg/s501/img4.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="251" data-original-width="501" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_vmcez-vL64q6_9l1cRTxcORJdQSTjTEwkRaPVwL2ufpsFlW-Va1Lmz42aGIHkdCskYLCJGCDvdQbYDPxyOlKDBJyfcpW-9yYw1VZPw-_NMCGND5pVcKKnzCmYa6GKcXPUNi11gsNcJv3sMoTrPY2OSxSF8PF0Y6s59mUy3O9yLyOHbGO_djeZQEgpg/s600/img4.png"/></a></div>
+
+<i class="black">
+from collections import Counter
+Counter(df1['Category'])
+</i>
+
+<i class="green">
+Counter({'business': 336,
+    'technology': 261,
+    'politics': 274,
+    'sports': 346,
+    'entertainment': 273})
+</i>
+</pre>
+<span style="display: none">Tags: Technology,Natural Language Processing,</span>

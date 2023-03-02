@@ -1,0 +1,800 @@
+<head>
+  <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <!-- Google AdSense Using Machine Learning Code -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3071098372371409",
+          enable_page_level_ads: true
+      });
+  </script>
+
+  <style>
+      .customTempCodeHolderForSocialMedia {
+          display: none;
+      }
+
+      pre {
+          white-space: pre-wrap;
+          white-space: -moz-pre-wrap;
+          white-space: -pre-wrap;
+          white-space: -o-pre-wrap;
+          word-wrap: break-word;
+      }
+
+      .ib {
+          color: blue
+      }
+
+      .ig {
+          color: green
+      }
+
+      .ir {
+          color: red
+      }
+
+      .customLink {
+          background-color: #4CAF50;
+          border: none;
+          color: white !important;
+          padding: 8px 13px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          margin: 4px 2px;
+          cursor: pointer;
+      }
+
+      .customLink:hover {
+          text-decoration: none;
+      }
+  </style>
+</head>
+
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/pubML/blob/main/e7_using%20twitter%20api%20to%20fetch%20trending%20topics%2C%20tweets%20and%20user%20posting%20them/r1.ipynb" target="_blank">Download Code</a>
+
+<pre>
+<h1>Twitter API Documentation Snippets</h1>
+Dated: 2022-Sep-20
+
+<h2>GET trends/place</h2>
+    
+Returns the top 50 trending topics for a specific id, if trending information is available for it.
+
+Note: The id parameter for this endpoint is the "where on earth identifier" or WOEID, which is a legacy identifier created by Yahoo and has been deprecated. Twitter API v1.1 still uses the numeric value to identify town and country trend locations. Reference our legacy blog post, or archived data
+
+Example WOEID locations include: 
+Worldwide: 1 
+UK: 23424975 
+Brazil: 23424768 
+Germany: 23424829 
+Mexico: 23424900 
+Canada: 23424775 
+United States: 23424977 
+New York: 2459115
+
+To identify other ids, please use the GET trends/available endpoint.
+
+The response is an array of trend objects that encode the name of the trending topic, the query parameter that can be used to search for the topic on Twitter Search, and the Twitter Search URL.
+
+The most up to date info available is returned on request. The created_at field will show when the oldest trend started trending. The as_of field contains the timestamp when the list of trends was created.
+
+The tweet_volume for the last 24 hours is also returned for many trends if this is available.
+
+Ref: https://developer.twitter.com/en/docs/twitter-api/v1/trends/trends-for-location/api-reference/get-trends-place
+
+<h2>GET trends/available</h2>
+Get locations with trending topics
+
+<i>Returns the locations that Twitter has trending topic information for.</i>
+
+The response is an array of "locations" that encode the location's WOEID and some other human-readable information such as a canonical name and country the location belongs in.
+
+Note: This endpoint uses the "where on earth identifier" or WOEID, which is a legacy identifier created by Yahoo and has been deprecated. Twitter API v1.1 still uses the numeric value to identify town and country trend locations. Reference our legacy blog post for more details. The url returned in the response, where.yahooapis.com is no longer valid.
+
+Ref: https://developer.twitter.com/en/docs/twitter-api/v1/trends/locations-with-trending-topics/api-reference/get-trends-available
+
+<h3>Resource URL</h3>
+
+https://api.twitter.com/1.1/trends/available.json
+
+<h3>Resource Information</h3>
+
+Response formats:	JSON
+
+<b>Requires authentication?	Yes</b>
+
+Rate limited?	Yes
+Requests / 15-min window (user auth):	75
+Requests / 15-min window (app auth):	75
+
+<h2>Application to get the "Elevated Access"</h2>
+
+Q: How will you use the Twitter API or Twitter Data?
+
+<i>In your words.
+
+In English, please describe how you plan to use Twitter data and/or APIs. The more detailed the response, the easier it is to review and approve. Learn what specific information to include in your use case </i>
+
+
+Ans: ... 
+<h3>The specifics</h3>
+
+<i>Please answer each of the following with as much detail and accuracy as possible. Failure to do so could result in delays to your access to Twitter developer platform or rejected applications. Need help? Get support now.</i>
+
+Q: Are you planning to analyze Twitter data? If yes, please describe how you will analyze Twitter data including any analysis of Tweets or Twitter users.
+
+Ans: No
+
+Q: Will your App use Tweet, Retweet, Like, Follow, or Direct Message functionality?
+Ans: No
+
+Q: Do you plan to display Tweets or aggregate data about Twitter content outside Twitter?
+Ans: No
+
+Q: Will your product, service, or analysis make Twitter content or derived information available to a government entity?
+In general, schools, college, and universities do not fall under this category.
+
+Ans: No
+
+Ref: URL: https://developer.twitter.com/en/portal/petition/standard/intent
+
+~ ~ ~
+
+<h2>Installation</h2>
+
+<h3>Issue with 'conda-forge' repo and 'twitter' Python package</h3>
+
+(base) ashish@ashish-Lenovo-ideapad-130-15IKB:~/Desktop/ws/gh/others_work$ conda activate rasa_py38
+(rasa_py38) ashish@ashish-Lenovo-ideapad-130-15IKB:~/Desktop/ws/gh/others_work$ conda install twitter -c conda-forge
+
+<i class="ir">
+Collecting package metadata (current_repodata.json): done
+Solving environment: failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): done
+Solving environment: failed with initial frozen solve. Retrying with flexible solve.
+
+PackagesNotFoundError: The following packages are not available from current channels:
+
+  - twitter
+
+Current channels:
+
+  - https://conda.anaconda.org/conda-forge/linux-64
+  - https://conda.anaconda.org/conda-forge/noarch
+  - https://repo.anaconda.com/pkgs/main/linux-64
+  - https://repo.anaconda.com/pkgs/main/noarch
+  - https://repo.anaconda.com/pkgs/r/linux-64
+  - https://repo.anaconda.com/pkgs/r/noarch
+
+To search for alternate channels that may provide the conda package you're
+looking for, navigate to
+
+    https://anaconda.org
+
+and use the search bar at the top of the page.
+</i>
+
+(rasa_py38) ashish@ashish-Lenovo-ideapad-130-15IKB:~/Desktop/ws/gh/others_work$ pip3 install twitter
+<i class="ig">
+Collecting twitter
+Downloading twitter-1.19.6-py2.py3-none-any.whl (50 kB)
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 50.3/50.3 kB 133.6 kB/s eta 0:00:00
+Requirement already satisfied: certifi in /home/ashish/anaconda3/envs/rasa_py38/lib/python3.8/site-packages (from twitter) (2022.9.14)
+Installing collected packages: twitter
+Successfully installed twitter-1.19.6
+(rasa_py38) ashish@ashish-Lenovo-ideapad-130-15IKB:~/Desktop/ws/gh/others_work$ 
+</i>
+
+<h2>Code</h2>
+
+<h3>File: recipe__oauth_login.py</h3>
+
+<i class="ib">
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+import twitter
+
+from twitter.oauth import write_token_file, read_token_file
+from twitter.oauth_dance import oauth_dance
+
+# Go to http://twitter.com/apps/new to create an app and get these items
+
+# Error 404 (Dated: 20220920)
+# For URL: http://dev.twitter.com/pages/oauth_single_token
+
+APP_NAME = 'e***1'
+CONSUMER_KEY = 'I***9'
+CONSUMER_SECRET = 'B***U'
+
+
+def oauth_login(app_name=APP_NAME,
+                consumer_key=CONSUMER_KEY, 
+                consumer_secret=CONSUMER_SECRET, 
+                token_file='out/twitter.oauth'):
+
+    try:
+        (access_token, access_token_secret) = read_token_file(token_file)
+        
+    except Exception as e: 
+        # FileNotFoundError, IOError
+        
+        (access_token, access_token_secret) = oauth_dance(app_name, consumer_key, consumer_secret)
+
+        if not os.path.isdir('out'):
+            os.mkdir('out')
+
+        write_token_file(token_file, access_token, access_token_secret)
+
+        print(sys.stderr, "OAuth Success. Token file stored to", token_file)
+
+    return twitter.Twitter(auth=twitter.oauth.OAuth(access_token, access_token_secret,
+                            consumer_key, consumer_secret))
+
+if __name__ == '__main__':
+
+    oauth_login(APP_NAME, CONSUMER_KEY, CONSUMER_SECRET)
+</i>
+
+<h3>File: recipe__make_twitter_request.py</h3>
+
+<i class="ib">
+# -*- coding: utf-8 -*-
+
+import sys
+import time
+
+#from urllib2 import URLError
+from urllib.error import URLError
+import twitter
+
+# See recipe__get_friends_followers.py for an example of how you might use 
+# make_twitter_request to do something like harvest a bunch of friend ids for a user
+
+def make_twitter_request(t, twitterFunction, max_errors=3, *args, **kwArgs): 
+
+    # A nested function for handling common HTTPErrors. Return an updated value 
+    # for wait_period if the problem is a 503 error. Block until the rate limit is 
+    # reset if a rate limiting issue
+
+    def handle_http_error(e, t, wait_period=2):
+
+        if wait_period > 3600: # Seconds
+            print >> sys.stderr, 'Too many retries. Quitting.'
+            raise e
+
+        if e.e.code == 401:
+            print >> sys.stderr, 'Encountered 401 Error (Not Authorized)'
+            return None
+
+        if e.e.code in (502, 503):
+            print >> sys.stderr, 'Encountered %i Error. Will retry in %i seconds' % \
+                    (e.e.code, wait_period)
+            time.sleep(wait_period)
+            wait_period *= 1.5
+            return wait_period
+
+        # Rate limit exceeded. Wait 15 mins. See https://dev.twitter.com/docs/rate-limiting/1.1/limits
+        if e.e.code == 429: 
+            now = time.time()  # UTC
+            sleep_time = 15*60 # 15 mins
+            print >> sys.stderr, 'Rate limit reached: sleeping for 15 mins'
+            time.sleep(sleep_time)
+            return 0
+
+        # What else can you do?
+        raise e
+
+    wait_period = 2
+    error_count = 0
+    while True:
+        try:
+            return twitterFunction(*args, **kwArgs)
+        except twitter.api.TwitterHTTPError as e:
+            error_count = 0
+            wait_period = handle_http_error(e, t, wait_period)
+            if wait_period is None:
+                return
+        except URLError as e:
+            error_count += 1
+            print >> sys.stderr, "URLError encountered. Continuing."
+            if error_count > max_errors:
+                print >> sys.stderr, "Too many consecutive errors...bailing out."
+                raise
+  
+</i>
+
+<h3>File: recipe__get_user_info.py</h3>
+
+<i class="ib">
+# -*- coding: utf-8 -*-
+
+from recipe__oauth_login import oauth_login
+from recipe__make_twitter_request import make_twitter_request
+
+# Assume ids have been fetched from a scenario such as the
+# one presented in recipe__get_friends_followers.py and that
+# t is an authenticated instance of twitter.Twitter
+
+def get_info_by_id(t, ids):
+
+    id_to_info = {}
+
+    while len(ids) > 0:
+
+        # Process 100 ids at a time...
+
+        ids_str = ','.join([str(_id) for _id in ids[:100]])
+        ids = ids[100:]
+
+        response = make_twitter_request(t, 
+                                      getattr(getattr(t, "users"), "lookup"),
+                                      user_id=ids_str)
+      
+        if response is None:
+            break
+
+        if type(response) is dict:  # Handle Twitter API quirk
+            response = [response]
+
+        for user_info in response:
+            id_to_info[user_info['id']] = user_info
+
+    return id_to_info
+
+# Similarly, you could resolve the same information by screen name 
+# using code that's virtually identical. These two functions
+# could easily be combined.
+
+def get_info_by_screen_name(t, screen_names):
+
+    sn_to_info = {}
+
+    while len(screen_names) > 0:
+
+        # Process 100 ids at a time...
+
+        screen_names_str = ','.join([str(sn) for sn in screen_names[:100]])
+        screen_names = screen_names[100:]
+
+        response = make_twitter_request(t, 
+                                      getattr(getattr(t, "users"), "lookup"),
+                                      screen_name=screen_names_str)
+      
+        if response is None:
+            break
+
+        if type(response) is dict:  # Handle Twitter API quirk
+            response = [response]
+
+        for user_info in response:
+            sn_to_info[user_info['screen_name']] = user_info
+
+    return sn_to_info
+
+if __name__ == '__main__':
+
+    # Be sure to pass in any necessary keyword parameters
+    # if you don't have a token already stored on file
+
+    t = oauth_login()
+
+    # Basic usage...
+
+    info = {}
+    info.update(get_info_by_screen_name(t, ['ptwobrussell', 'socialwebmining']))
+    info.update(get_info_by_id(t, ['2384071']))
+
+    # Do something useful with the profile information like store it to disk
+
+    import json
+    print(json.dumps(info, indent=1))
+</i>
+
+<h3>File: Jupyter Notebook</h3>
+
+<i class="ib">
+
+import requests
+import json
+
+headers = {'Authorization': 'Bearer A...V'}
+r = requests.get("https://api.twitter.com/1.1/trends/available.json", headers = headers)
+
+with open('trends_available_20220920.json', mode = 'w', encoding = 'utf8') as f:
+    f.write(json.dumps(r.json()))
+    
+trends_available = r.json()
+
+# WOEID for Delhi is: 20070458
+
+headers = {'Authorization': 'Bearer A...V'}
+
+url = 'https://api.twitter.com/1.1/trends/place.json?id={}'.format(20070458)
+
+r = requests.get(url, headers = headers)
+
+trends = r.json()[0]['trends']
+
+# -*- coding: utf-8 -*-
+
+import sys
+import json
+import twitter
+from recipe__oauth_login import oauth_login
+
+def search(t, q=None, max_batches=5, count=100):
+
+    # See https://dev.twitter.com/docs/api/1.1/get/search/tweets
+    search_results = t.search.tweets(q=q, count=count)
+
+    statuses = search_results['statuses']
+
+    # Iterate through more batches of results by following the cursor
+    for _ in range(max_batches):
+        try:
+            next_results = search_results['search_metadata']['next_results']
+        except KeyError as e: # No more results when next_results doesn't exist
+            break
+            # Create a dictionary from next_results, which has the following form:
+            # ?max_id=313519052523986943&q=%23MentionSomeoneImportantForYou&include_entities=1
+            kwargs = dict([ kv.split('=') for kv in next_results[1:].split("&") ])
+            search_results = twitter_api.search.tweets(**kwargs)
+            statuses += search_results['statuses']
+
+    return statuses
+
+
+if __name__ == '__main__':
+    Q = ' '.join(sys.argv[1:])
+
+    t = oauth_login()
+    statuses = search(t, q=Q)
+    print(json.dumps(statuses, indent=1))
+</i>
+
+<i class="ig">
+Hi there! We're gonna get you all set up to use exploring_twitter_api_1.
+Opening: https://api.twitter.com/oauth/authorize?oauth_token=clYlGQAAAAABfNOPAAABg1mCrT0
+
+
+In the web browser window that opens please choose to Allow
+access. Copy the PIN number that appears on the next page and paste or
+type it here:
+    
+
+Please enter the PIN:  2153380
+
+&lt;ipykernel.iostream.OutStream object at 0x7f310c1985e0> OAuth Success. Token file stored to out/twitter.oauth
+[]
+</i>
+
+<i class="ib">
+t = oauth_login()
+trends[0]
+</i>
+
+<i class="ig">
+{'name': '#StockMarketindia',
+'url': 'http://twitter.com/search?q=%23StockMarketindia',
+'promoted_content': None,
+'query': '%23StockMarketindia',
+'tweet_volume': None}
+</i>
+
+<i class="ib">
+statuses = search(t, q=trends[0]['query'])
+statuses[0]['text']
+</i>
+
+<i class="ig">
+'RT @yadav4priya: #StockMarketindia : #Nifty today may open above 17720 and move towards 17792 which is break out point.  if sustains above…'
+</i>
+
+<i class="ib">statuses[0]['id']</i>
+
+<i class="ig">1572106127546122241</i>
+
+<i class="ib">
+headers = {'Authorization': 'Bearer A...V'}
+
+url = 'https://api.twitter.com/2/tweets/{}'.format(1572106127546122241)
+
+r = requests.get(url, headers = headers)
+
+print(r.json())
+</i>
+
+<i class="ig">
+{'data': {'id': '1572106127546122241', 'text': 'RT @yadav4priya: #StockMarketindia : #Nifty today may open above 17720 and move towards 17792 which is break out point.  if sustains above…'}}
+</i>
+
+<i class="ib">
+from recipe__get_user_info import get_info_by_screen_name, get_info_by_id
+
+info = {}
+info.update(get_info_by_screen_name(t, ['ptwobrussell', 'socialwebmining']))
+info.update(get_info_by_id(t, ['2384071'])) # Tim Oreilly
+
+print(info)
+</i>
+
+<i class="ig">
+  {'ptwobrussell': {'id': 13085242,
+  'id_str': '13085242',
+  'name': 'Matthew Russell',
+  'screen_name': 'ptwobrussell',
+  'location': 'Franklin, TN',
+  'description': 'Maximizing Human Performance @ Strongest AI',
+  'url': 'https://t.co/aADFSpjQV2',
+  'entities': {'url': {'urls': [{'url': 'https://t.co/aADFSpjQV2',
+      'expanded_url': 'https://strongest.com',
+      'display_url': 'strongest.com',
+      'indices': [0, 23]}]},
+   'description': {'urls': []}},
+  'protected': False,
+  'followers_count': 1887,
+  'friends_count': 156,
+  'listed_count': 158,
+  'created_at': 'Tue Feb 05 08:16:12 +0000 2008',
+  'favourites_count': 878,
+  'utc_offset': None,
+  'time_zone': None,
+  'geo_enabled': False,
+  'verified': False,
+  'statuses_count': 1495,
+  'lang': None,
+  'status': {'created_at': 'Thu Jun 23 14:59:11 +0000 2022',
+   'id': 1539986432080609281,
+   'id_str': '1539986432080609281',
+   'text': 'This #MensHealthMonth I’m committing to helping break down stigma by supporting and talking about men’s mental heal… https://t.co/paXZ52a69F',
+   'truncated': True,
+   'entities': {'hashtags': [{'text': 'MensHealthMonth', 'indices': [5, 21]}],
+    'symbols': [],
+    'user_mentions': [],
+    'urls': [{'url': 'https://t.co/paXZ52a69F',
+      'expanded_url': 'https://twitter.com/i/web/status/1539986432080609281',
+      'display_url': 'twitter.com/i/web/status/1…',
+      'indices': [117, 140]}]},
+   'source': '&lt;a href="https://hypefury.com" rel="nofollow">Hypefury&lt;/a>',
+   'in_reply_to_status_id': 1539986423603990528,
+   'in_reply_to_status_id_str': '1539986423603990528',
+   'in_reply_to_user_id': 13085242,
+   'in_reply_to_user_id_str': '13085242',
+   'in_reply_to_screen_name': 'ptwobrussell',
+   'geo': None,
+   'coordinates': None,
+   'place': None,
+   'contributors': None,
+   'is_quote_status': True,
+   'quoted_status_id': 1539986423603990528,
+   'quoted_status_id_str': '1539986423603990528',
+   'retweet_count': 0,
+   'favorite_count': 0,
+   'favorited': False,
+   'retweeted': False,
+   'possibly_sensitive': False,
+   'lang': 'en'},
+  'contributors_enabled': False,
+  'is_translator': False,
+  'is_translation_enabled': False,
+  'profile_background_color': '888888',
+  'profile_background_image_url': 'http://abs.twimg.com/images/themes/theme1/bg.png',
+  'profile_background_image_url_https': 'https://abs.twimg.com/images/themes/theme1/bg.png',
+  'profile_background_tile': False,
+  'profile_image_url': 'http://pbs.twimg.com/profile_images/1518238159477387274/iEwIp3Rq_normal.jpg',
+  'profile_image_url_https': 'https://pbs.twimg.com/profile_images/1518238159477387274/iEwIp3Rq_normal.jpg',
+  'profile_banner_url': 'https://pbs.twimg.com/profile_banners/13085242/1650811824',
+  'profile_link_color': 'EE8336',
+  'profile_sidebar_border_color': '888888',
+  'profile_sidebar_fill_color': 'F7F7F7',
+  'profile_text_color': '333333',
+  'profile_use_background_image': True,
+  'has_extended_profile': False,
+  'default_profile': False,
+  'default_profile_image': False,
+  'following': False,
+  'follow_request_sent': False,
+  'notifications': False,
+  'translator_type': 'regular',
+  'withheld_in_countries': []},
+ 'SocialWebMining': {'id': 132373965,
+  'id_str': '132373965',
+  'name': 'MiningTheSocialWeb',
+  'screen_name': 'SocialWebMining',
+  'location': '',
+  'description': 'Get the source code at GitHub: http://t.co/U0VmWrXpB9',
+  'url': 'http://t.co/CJfJDyM6ki',
+  'entities': {'url': {'urls': [{'url': 'http://t.co/CJfJDyM6ki',
+      'expanded_url': 'http://miningthesocialweb.com',
+      'display_url': 'miningthesocialweb.com',
+      'indices': [0, 22]}]},
+   'description': {'urls': [{'url': 'http://t.co/U0VmWrXpB9',
+      'expanded_url': 'http://bit.ly/MiningTheSocialWeb2E',
+      'display_url': 'bit.ly/MiningTheSocia…',
+      'indices': [31, 53]}]}},
+  'protected': False,
+  'followers_count': 4184,
+  'friends_count': 0,
+  'listed_count': 200,
+  'created_at': 'Tue Apr 13 02:10:40 +0000 2010',
+  'favourites_count': 33,
+  'utc_offset': None,
+  'time_zone': None,
+  'geo_enabled': False,
+  'verified': False,
+  'statuses_count': 778,
+  'lang': None,
+  'status': {'created_at': 'Mon Jan 28 14:06:01 +0000 2019',
+   'id': 1089887323116969985,
+   'id_str': '1089887323116969985',
+   'text': 'What did it take to write the new edition? Well, trying to keep up with a changing social media landscape, for one.… https://t.co/vsaR6B4smZ',
+   'truncated': True,
+   'entities': {'hashtags': [],
+    'symbols': [],
+    'user_mentions': [],
+    'urls': [{'url': 'https://t.co/vsaR6B4smZ',
+      'expanded_url': 'https://twitter.com/i/web/status/1089887323116969985',
+      'display_url': 'twitter.com/i/web/status/1…',
+      'indices': [117, 140]}]},
+   'source': '&lt;a href="https://buffer.com" rel="nofollow">Buffer&lt;/a>',
+   'in_reply_to_status_id': None,
+   'in_reply_to_status_id_str': None,
+   'in_reply_to_user_id': None,
+   'in_reply_to_user_id_str': None,
+   'in_reply_to_screen_name': None,
+   'geo': None,
+   'coordinates': None,
+   'place': None,
+   'contributors': None,
+   'is_quote_status': False,
+   'retweet_count': 5,
+   'favorite_count': 19,
+   'favorited': False,
+   'retweeted': False,
+   'possibly_sensitive': False,
+   'lang': 'en'},
+  'contributors_enabled': False,
+  'is_translator': False,
+  'is_translation_enabled': False,
+  'profile_background_color': '352726',
+  'profile_background_image_url': 'http://abs.twimg.com/images/themes/theme5/bg.gif',
+  'profile_background_image_url_https': 'https://abs.twimg.com/images/themes/theme5/bg.gif',
+  'profile_background_tile': False,
+  'profile_image_url': 'http://pbs.twimg.com/profile_images/1154493071/Picture_7_normal.png',
+  'profile_image_url_https': 'https://pbs.twimg.com/profile_images/1154493071/Picture_7_normal.png',
+  'profile_link_color': 'D02B55',
+  'profile_sidebar_border_color': '829D5E',
+  'profile_sidebar_fill_color': '99CC33',
+  'profile_text_color': '3E4415',
+  'profile_use_background_image': True,
+  'has_extended_profile': False,
+  'default_profile': False,
+  'default_profile_image': False,
+  'following': False,
+  'follow_request_sent': False,
+  'notifications': False,
+  'translator_type': 'none',
+  'withheld_in_countries': []},
+ 2384071: {'id': 2384071,
+  'id_str': '2384071',
+  'name': 'timoreilly',
+  'screen_name': 'timoreilly',
+  'location': 'Oakland, CA',
+  'description': "Founder and CEO, O'Reilly Media. Watching the alpha geeks, sharing their stories, helping the future unfold.",
+  'url': 'https://t.co/gkALoGFXiQ',
+  'entities': {'url': {'urls': [{'url': 'https://t.co/gkALoGFXiQ',
+      'expanded_url': 'http://tim.oreilly.com',
+      'display_url': 'tim.oreilly.com',
+      'indices': [0, 23]}]},
+   'description': {'urls': []}},
+  'protected': False,
+  'followers_count': 1691407,
+  'friends_count': 2184,
+  'listed_count': 25717,
+  'created_at': 'Tue Mar 27 01:14:05 +0000 2007',
+  'favourites_count': 29491,
+  'utc_offset': None,
+  'time_zone': None,
+  'geo_enabled': True,
+  'verified': True,
+  'statuses_count': 48140,
+  'lang': None,
+  'status': {'created_at': 'Mon Sep 19 22:57:57 +0000 2022',
+   'id': 1571997048215605250,
+   'id_str': '1571997048215605250',
+   'text': '@Norro21 I do.',
+   'truncated': False,
+   'entities': {'hashtags': [],
+    'symbols': [],
+    'user_mentions': [{'screen_name': 'Norro21',
+      'name': 'Ben Norris',
+      'id': 57363041,
+      'id_str': '57363041',
+      'indices': [0, 8]}],
+    'urls': []},
+   'source': '&lt;a href="http://twitter.com/download/android" rel="nofollow">Twitter for Android&lt;/a>',
+   'in_reply_to_status_id': 1571994357313437697,
+   'in_reply_to_status_id_str': '1571994357313437697',
+   'in_reply_to_user_id': 57363041,
+   'in_reply_to_user_id_str': '57363041',
+   'in_reply_to_screen_name': 'Norro21',
+   'geo': None,
+   'coordinates': None,
+   'place': None,
+   'contributors': None,
+   'is_quote_status': False,
+   'retweet_count': 0,
+   'favorite_count': 0,
+   'favorited': False,
+   'retweeted': False,
+   'lang': 'und'},
+  'contributors_enabled': False,
+  'is_translator': False,
+  'is_translation_enabled': False,
+  'profile_background_color': '9AE4E8',
+  'profile_background_image_url': 'http://abs.twimg.com/images/themes/theme1/bg.png',
+  'profile_background_image_url_https': 'https://abs.twimg.com/images/themes/theme1/bg.png',
+  'profile_background_tile': False,
+  'profile_image_url': 'http://pbs.twimg.com/profile_images/1501564491670065152/aG3MNIpH_normal.jpg',
+  'profile_image_url_https': 'https://pbs.twimg.com/profile_images/1501564491670065152/aG3MNIpH_normal.jpg',
+  'profile_banner_url': 'https://pbs.twimg.com/profile_banners/2384071/1549416574',
+  'profile_link_color': '0000FF',
+  'profile_sidebar_border_color': '87BC44',
+  'profile_sidebar_fill_color': 'E0FF92',
+  'profile_text_color': '000000',
+  'profile_use_background_image': True,
+  'has_extended_profile': False,
+  'default_profile': False,
+  'default_profile_image': False,
+  'following': False,
+  'follow_request_sent': False,
+  'notifications': False,
+  'translator_type': 'none',
+  'withheld_in_countries': []}}
+</i>
+</pre>
+<span style="display: none">Tags: Python,Natural Language Processing,</span>
+<!--
+Q: How will you use the Twitter API or Twitter Data?
+
+<i>In your words.
+
+In English, please describe how you plan to use Twitter data and/or APIs. The more detailed the response, the easier it is to review and approve. Learn what specific information to include in your use case </i>
+
+Hi, I am Ashish, an industry and academic researcher in Machine Learning, Data Science and Natural Language Processing. The use case is: I have to identify bots on a social media platform by doing sentiment analysis on the conversation threads. It requires me have access to: 
+
+Written in Python:
+headers = {'Authorization': 'Bearer A***V'}
+r = requests.get("https://api.twitter.com/1.1/trends/available.json", headers = headers)
+
+But I am getting the following error:
+
+{'errors': [{'message': 'You currently have Essential access which includes access to Twitter API v2 endpoints only. If you need access to this endpoint, you’ll need to apply for Elevated access via the Developer Portal. You can learn more here: https://developer.twitter.com/en/docs/twitter-api/getting-started/about-twitter-api#v2-access-leve', 'code': 453}]}
+
+Please help in resolving this by giving me an elevated access.
+
+
+Q: Are you planning to analyze Twitter data? If yes, please describe how you will analyze Twitter data including any analysis of Tweets or Twitter users.
+Answer:
+<i>
+I aim to identify certain hot topics in which bot activity is likely. Then my goal is to identify those bots by doing sentiment analysis of tweets posted by the respective agent.
+
+It requires me have access to: 
+
+Written in Python:
+headers = {'Authorization': 'Bearer A***V'}
+r = requests.get("https://api.twitter.com/1.1/trends/available.json", headers = headers)
+
+But I am getting the following error:
+
+{'errors': [{'message': 'You currently have Essential access which includes access to Twitter API v2 endpoints only. If you need access to this endpoint, you’ll need to apply for Elevated access via the Developer Portal. You can learn more here: https://developer.twitter.com/en/docs/twitter-api/getting-started/about-twitter-api#v2-access-leve', 'code': 453}]}
+</i>
+
+-->

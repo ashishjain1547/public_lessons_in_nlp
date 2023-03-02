@@ -1,0 +1,138 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<style>
+    pre {
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .dot {
+        height: 12px;
+        width: 12px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+    }
+</style>
+
+<style>
+    i.black {
+        display: block;
+        background-color: black;
+        color: white;
+    }
+
+    i.green {
+        display: block;
+        background-color: green;
+        color: white;
+    }
+</style>
+<pre>
+<h2>The difference between Part 5 and Part 6.</h2>
+In Part 5, we were using Cosine Distance between input text and output label. 
+In Part 6, we are first finding the dot product and then getting a probability using the sigmoid function similar to Logistic Regression.
+
+A sigmoid function is a mathematical function having a characteristic "S"-shaped curve or sigmoid curve.
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhSgUWB09Q_KSF5vAA_qBYtiDNt-Dqbx-6N25QaRrgDOigK1oyIiCnWPU-CW_nmv5DUpPJ0x6nRnnQV49DJ6yG-uA8FEqKv7LekM1X5HaWDBtLVMmkLbSNWdaz-mTgidmn_OvUaDAVPbtNv4dEOXnVDzBjhc_4nWGVbGGLV033tCacX7xMpQNKvdcKsAg/s183/Logistic%20Function%20or%20Sigmoid%20Function.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="97" data-original-width="183" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhSgUWB09Q_KSF5vAA_qBYtiDNt-Dqbx-6N25QaRrgDOigK1oyIiCnWPU-CW_nmv5DUpPJ0x6nRnnQV49DJ6yG-uA8FEqKv7LekM1X5HaWDBtLVMmkLbSNWdaz-mTgidmn_OvUaDAVPbtNv4dEOXnVDzBjhc_4nWGVbGGLV033tCacX7xMpQNKvdcKsAg/s600/Logistic%20Function%20or%20Sigmoid%20Function.png"/></a></div>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5kx1ojjAfJkhD0pyVPGu3BzV2BYTTN-nLouwdf4TPGnnvBkYhlCttN9VgD7kl6aBWtPCR4NvlegtYHMMpUhhuI8Pry7djQxZxUdoC5Rq_T1S1LkJa9U3MZpLTfFCzA8K_25aw71bnmcQFwyulpRSgxmUw13oCq6AmwZh4fA-8yK9SoyzwmCTSivrmsw/s406/The%20Logistic%20Curve.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="300" data-original-width="406" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5kx1ojjAfJkhD0pyVPGu3BzV2BYTTN-nLouwdf4TPGnnvBkYhlCttN9VgD7kl6aBWtPCR4NvlegtYHMMpUhhuI8Pry7djQxZxUdoC5Rq_T1S1LkJa9U3MZpLTfFCzA8K_25aw71bnmcQFwyulpRSgxmUw13oCq6AmwZh4fA-8yK9SoyzwmCTSivrmsw/s600/The%20Logistic%20Curve.png"/></a></div>
+
+<i class="black">
+import pandas as pd
+import numpy as np
+from sentence_transformers import SentenceTransformer
+
+from sklearn.metrics.pairwise import cosine_similarity # Expects 2D arrays as input
+from scipy.spatial.distance import cosine # Works with 1D vectors
+
+from sklearn.metrics import classification_report
+
+smodel = SentenceTransformer('distilbert-base-nli-mean-tokens')
+
+df1 = pd.read_csv('bbc_news_train.csv')
+
+df1.head()
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPy4OrqdmkWOkmKN6G8aTyS11BKTrt6DoBpvay3zz46_qlM2L7E4bU4HG28BAvNem2npAPOZeBvFpx5Sdeey7HgvpvkQ1vX0KrEg8-3JWgTzE911wqKpbeY1LyX3nPpdy-xpUL8IgYotXZsOIEOzDC8M2cVNKa26HbA6_smp6BhG-Mbjby7mSs5nxXaw/s545/df%20head.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="225" data-original-width="545" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPy4OrqdmkWOkmKN6G8aTyS11BKTrt6DoBpvay3zz46_qlM2L7E4bU4HG28BAvNem2npAPOZeBvFpx5Sdeey7HgvpvkQ1vX0KrEg8-3JWgTzE911wqKpbeY1LyX3nPpdy-xpUL8IgYotXZsOIEOzDC8M2cVNKa26HbA6_smp6BhG-Mbjby7mSs5nxXaw/s600/df%20head.png"/></a></div>
+
+<i class="black">
+def get_sentence_vector(query):
+    query_vec = smodel.encode([query])[0]
+    return query_vec
+
+df1['textVec'] = df1['Text'].apply(lambda x: get_sentence_vector(x))
+
+def std_category(x):
+    if(x == 'tech'):
+        return 'technology'
+    elif (x == 'sport'):
+        return 'sports'
+    else:
+        return x
+
+df1['Category'] = df1['Category'].apply(std_category)
+
+import math
+def sigmoid(x):
+    return 1 / (1 + math.exp(-x))
+
+def get_logistic_regression_probability(x, Y):
+    y = smodel.encode([Y])[0]
+    d = np.dot(x, y)
+    
+    s = sigmoid(d)
+    
+    return s
+
+df1['proba_business'] = df1['textVec'].apply(lambda x: get_logistic_regression_probability(x, 'business')) # CPU times: total: 2min 1s. Wall time: 1min 1s
+
+df1['Category'].unique()
+
+# OUTPUT: array(['business', 'technology', 'politics', 'sports', 'entertainment'], dtype=object)
+
+df1['proba_technology'] = df1['textVec'].apply(lambda x: get_logistic_regression_probability(x, 'technology'))
+
+df1['proba_politics'] = df1['textVec'].apply(lambda x: get_logistic_regression_probability(x, 'politics'))
+
+df1['proba_sports'] = df1['textVec'].apply(lambda x: get_logistic_regression_probability(x, 'sports'))
+
+df1['proba_entertainment'] = df1['textVec'].apply(lambda x: get_logistic_regression_probability(x, 'entertainment'))
+
+def get_prediction(in_row):
+    max_proba = 0
+    label = ""
+    for i in ['proba_business', 'proba_technology', 'proba_politics', 'proba_sports', 'proba_entertainment']:
+        d = in_row[i]
+        if d > max_proba:
+            max_proba = d
+            label = i.split('_')[1]
+    return label
+
+df1['prediction'] = df1.apply(lambda in_row: get_prediction(in_row), axis = 1)
+
+target_names = ['business', 'entertainment', 'politics', 'sports', 'technology']
+print(classification_report(df1['Category'], df1['prediction'], target_names=target_names))
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-TOxHJtR-tgZ52xKYXNLwwsnVss_dYVJymKyn_u7-h5-giK0FdXMrV9EZeDiMZ_98h4cmPq470jt9XHQYvbVyvtDFI0RsRGPm3M0X-juysE_-1UELyHb_8qjXZgPaDtTSiNUgsIOaIE_7jTRhSNaFXxlBpyTM9SNuvv9jR69N5SeP1qQ9-Fosw0gxow/s518/classification%20report.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="252" data-original-width="518" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh-TOxHJtR-tgZ52xKYXNLwwsnVss_dYVJymKyn_u7-h5-giK0FdXMrV9EZeDiMZ_98h4cmPq470jt9XHQYvbVyvtDFI0RsRGPm3M0X-juysE_-1UELyHb_8qjXZgPaDtTSiNUgsIOaIE_7jTRhSNaFXxlBpyTM9SNuvv9jR69N5SeP1qQ9-Fosw0gxow/s600/classification%20report.png"/></a></div>
+</pre>
+<span style="display: none">Tags: Technology,Natural Language Processing,</span>

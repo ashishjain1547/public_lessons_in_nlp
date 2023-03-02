@@ -1,0 +1,222 @@
+<head>
+  <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+      $(document).ready(function () {
+          $.ajax({
+              url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+              success: function (result) {
+                  $("div.customTemporaryCodeHolder").html(result);
+                  $("nav.customDynamicNav").html(
+                      $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                  );
+              }
+          });
+
+          $.ajax({
+              url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+              success: function (result) {
+                  $("span.customTempCodeHolderForSocialMedia").html(result);
+                  $("div.customSocialMediaBtnsWrapper").html(
+                      $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                  );
+              }
+
+          });
+      }); 
+  </script>
+  <!-- Google AdSense Using Machine Learning Code -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-3071098372371409",
+          enable_page_level_ads: true
+      });
+  </script>
+
+  <style>
+      .customTempCodeHolderForSocialMedia {
+          display: none;
+      }
+
+      pre {
+          white-space: pre-wrap;
+          white-space: -moz-pre-wrap;
+          white-space: -pre-wrap;
+          white-space: -o-pre-wrap;
+          word-wrap: break-word;
+      }
+  </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div>
+
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>We will do Sentiment Analysis using the code from this repo: <a href="https://github.com/barissayil/SentimentAnalysis" target="_blank">GitHub</a>
+
+Check out the code from above repository to get started.
+
+For creating Conda environment, we have a file "sentiment_analysis.yml" with content:
+
+<i style="color: blue">name: e20200909
+channels:
+  - defaults
+  - conda-forge
+  - pytorch
+  
+dependencies:
+  - pytorch
+  - pandas
+  - numpy
+  - pip:
+    - transformers==3.0.1
+  - flask
+  - flask_cors
+  - scikit-learn
+  - ipykernel </i>
+
+(base) C:\>conda env create -f sentiment_analysis.yml
+
+It will install the above mentioned dependencies and the nested dependencies.
+
+(base) C:\Users\Ashish Jain><i style="color: blue">conda env list </i>
+<i style="color: green"># conda environments:
+#
+base                  *  E:\programfiles\Anaconda3
+e20200909                E:\programfiles\Anaconda3\envs\e20200909
+env_py_36                E:\programfiles\Anaconda3\envs\env_py_36
+temp                     E:\programfiles\Anaconda3\envs\temp
+temp202009               E:\programfiles\Anaconda3\envs\temp202009
+tf                       E:\programfiles\Anaconda3\envs\tf </i>
+
+(base) C:\Users\Ashish Jain><i style="color: blue">conda activate e20200909 </i>
+
+(e20200909) C:\Users\Ashish Jain><i style="color: blue">conda env export</i>
+<i style="color: green">name: e20200909
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - _pytorch_select=0.1=cpu_0
+  - backcall=0.2.0=py_0
+  - blas=1.0=mkl
+  - ca-certificates=2020.7.22=0
+  - certifi=2020.6.20=py38_0
+  - cffi=1.14.2=py38h7a1dbc1_0
+  - click=7.1.2=py_0
+  - colorama=0.4.3=py_0
+  - decorator=4.4.2=py_0
+  - flask=1.1.2=py_0
+  - flask_cors=3.0.9=pyh9f0ad1d_0
+  - icc_rt=2019.0.0=h0cc432a_1
+  - intel-openmp=2019.4=245
+  - ipykernel=5.3.4=py38h5ca1d4c_0
+  - ipython=7.18.1=py38h5ca1d4c_0
+  - ipython_genutils=0.2.0=py38_0
+  - itsdangerous=1.1.0=py_0
+  - jedi=0.17.2=py38_0
+  - jinja2=2.11.2=py_0
+  - joblib=0.16.0=py_0
+  - jupyter_client=6.1.6=py_0
+  - jupyter_core=4.6.3=py38_0
+  - libmklml=2019.0.5=0
+  - libsodium=1.0.18=h62dcd97_0
+  - markupsafe=1.1.1=py38he774522_0
+  - mkl=2019.4=245
+  - mkl-service=2.3.0=py38hb782905_0
+  - mkl_fft=1.1.0=py38h45dec08_0
+  - mkl_random=1.1.0=py38hf9181ef_0
+  - ninja=1.10.1=py38h7ef1ec2_0
+  - numpy=1.19.1=py38h5510c5b_0
+  - numpy-base=1.19.1=py38ha3acd2a_0
+  - openssl=1.1.1g=he774522_1
+  - pandas=1.1.1=py38ha925a31_0
+  - parso=0.7.0=py_0
+  - pickleshare=0.7.5=py38_1000
+  - pip=20.2.2=py38_0
+  - prompt-toolkit=3.0.7=py_0
+  - pycparser=2.20=py_2
+  - pygments=2.6.1=py_0
+  - python=3.8.5=h5fd99cc_1
+  - python-dateutil=2.8.1=py_0
+  - pytorch=1.6.0=cpu_py38h538a6d7_0
+  - pytz=2020.1=py_0
+  - pywin32=227=py38he774522_1
+  - pyzmq=19.0.1=py38ha925a31_1
+  - scikit-learn=0.23.2=py38h47e9c7a_0
+  - scipy=1.5.0=py38h9439919_0
+  - setuptools=49.6.0=py38_0
+  - six=1.15.0=py_0
+  - sqlite=3.33.0=h2a8f88b_0
+  - threadpoolctl=2.1.0=pyh5ca1d4c_0
+  - tornado=6.0.4=py38he774522_1
+  - traitlets=4.3.3=py38_0
+  - vc=14.1=h0510ff6_4
+  - vs2015_runtime=14.16.27012=hf0eaf9b_3
+  - wcwidth=0.2.5=py_0
+  - werkzeug=1.0.1=py_0
+  - wheel=0.35.1=py_0
+  - wincertstore=0.2=py38_0
+  - zeromq=4.3.2=ha925a31_2
+  - zlib=1.2.11=h62dcd97_4
+  - pip:
+    - chardet==3.0.4
+    - filelock==3.0.12
+    - idna==2.10
+    - packaging==20.4
+    - pyparsing==2.4.7
+    - regex==2020.7.14
+    - requests==2.24.0
+    - sacremoses==0.0.43
+    - sentencepiece==0.1.91
+    - tokenizers==0.8.0rc4
+    - tqdm==4.48.2
+    - transformers==3.0.1
+    - urllib3==1.25.10
+prefix: E:\programfiles\Anaconda3\envs\e20200909
+
+(e20200909) C:\Users\Ashish Jain> </i>
+
+Next, we run the 'analyser' code:
+
+(e20200909) C:\SentimentAnalysis-master><i style="color: blue">python analyze.py </i>
+<i style="color: green">Please wait while the analyser is being prepared.
+Input sentiment to analyze: I am feeling good.
+Positive with probability 99%.
+Input sentiment to analyze: I am feeling bad.
+Negative with probability 99%.
+Input sentiment to analyze: I am Ashish.
+Positive with probability 81%.
+Input sentiment to analyze: </i>
+
+Next, we run it in browser:
+
+We pass the same sentences as above.
+
+Here are server logs:
+
+(e20200909) C:\SentimentAnalysis-master><i style="color: blue">python server.py </i>
+<i style="color: green"> * Serving Flask app "server" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [09/Sep/2020 21:35:48] "GET / HTTP/1.1" 400 -
+127.0.0.1 - - [09/Sep/2020 21:35:48] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [09/Sep/2020 21:36:02] "GET /?text=hello HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2020 21:36:38] "GET /?text=shut%20up HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2020 21:36:50] "GET /?text=i%20am%20feeling%20good HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2020 21:36:54] "GET /?text=i%20am%20feeling%20bad HTTP/1.1" 200 -
+127.0.0.1 - - [09/Sep/2020 21:37:00] "GET /?text=i%20am%20ashish HTTP/1.1" 200 - </i>
+
+The browser screens:
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-EGV64G6YCCA/X1kDU3AaVaI/AAAAAAAAFdk/UkMYgZ4IgYsDfGwac0xI09_p0vH0Ig_vwCLcBGAsYHQ/s0/Browser%2BScreens.png" style="display: block; padding: 1em 0; text-align: center;"><img alt="" border="0" data-original-height="526" data-original-width="580" src="https://1.bp.blogspot.com/-EGV64G6YCCA/X1kDU3AaVaI/AAAAAAAAFdk/UkMYgZ4IgYsDfGwac0xI09_p0vH0Ig_vwCLcBGAsYHQ/s0/Browser%2BScreens.png"/></a></div>
+
+</pre>

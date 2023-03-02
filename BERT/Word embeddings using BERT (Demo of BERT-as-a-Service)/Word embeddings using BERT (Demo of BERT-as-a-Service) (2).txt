@@ -1,0 +1,187 @@
+<pre>
+
+Contents of: bert_as_a_service.yaml
+
+<i style="color: blue;">name: bert_aas
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - termcolor
+  - numpy
+  - pyzmq
+  - GPUtil
+  - sphinx-argparse
+  - pip:
+    - tensorflow==1.14.0
+    - bert-serving-server
+    - bert-serving-client </i>
+
+To remove a Conda environment:
+
+(base) CMD>conda remove -n bert_as_a_service --all
+
+(base) CMD>conda env remove -n bert_as_a_service
+
+To view installed Conda environments:
+
+CMD> conda env list
+
+~ ~ ~ ~ ~
+
+(base) E:\e25\files_2>conda env create -f bert_as_a_service.yaml
+Warning: you have pip-installed dependencies in your environment file, but you do not list pip itself as one of your conda dependencies.  Conda may not use the correct pip to install your packages, and they may end up in the wrong place.  Please add an explicit pip dependency.  I'm adding one for you, but still nagging you.
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+Downloading and Extracting Packages
+intel-openmp-2020.1  | 2.0 MB    | ################################### | 100%
+libblas-3.8.0        | 3.6 MB    | ################################### | 100%
+mkl-2020.1           | 156.9 MB  | ################################### | 100%
+liblapack-3.8.0      | 3.6 MB    | ################################### | 100%
+libcblas-3.8.0       | 3.6 MB    | ################################### | 100%
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+Installing pip dependencies: / Ran pip subprocess with arguments:
+['E:\\programfiles\\Anaconda3\\envs\\bert_aas\\python.exe', '-m', 'pip', 'install', '-U', '-r', 'E:\\Workspace\\Jupyter\\e25_bert_for_sent_an\\files_2\\condaenv.muu1aidu.requirements.txt']
+Pip subprocess output:
+Collecting tensorflow==1.14.0
+  Downloading tensorflow-1.14.0-cp37-cp37m-win_amd64.whl (68.3 MB)
+Collecting bert-serving-server
+  Using cached bert_serving_server-1.10.0-py3-none-any.whl (61 kB)
+Collecting bert-serving-client
+  Using cached bert_serving_client-1.10.0-py2.py3-none-any.whl (28 kB)
+Collecting astor>=0.6.0
+  Downloading astor-0.8.1-py2.py3-none-any.whl (27 kB)
+...
+Installing collected packages: astor, tensorflow-estimator, protobuf, werkzeug, tensorboard, keras-applications, tensorflow, bert-serving-server, bert-serving-client, zipp, importlib-metadata
+  Attempting uninstall: tensorflow-estimator
+    Found existing installation: tensorflow-estimator 2.3.0
+    Uninstalling tensorflow-estimator-2.3.0:
+      Successfully uninstalled tensorflow-estimator-2.3.0
+  Attempting uninstall: tensorboard
+    Found existing installation: tensorboard 2.3.0
+    Uninstalling tensorboard-2.3.0:
+      Successfully uninstalled tensorboard-2.3.0
+  Attempting uninstall: tensorflow
+    Found existing installation: tensorflow 2.3.0
+    Uninstalling tensorflow-2.3.0:
+      Successfully uninstalled tensorflow-2.3.0
+Successfully installed astor-0.8.1 bert-serving-client-1.10.0 bert-serving-server-1.10.0 importlib-metadata-2.0.0 keras-applications-1.0.8 protobuf-3.13.0 tensorboard-1.14.0 tensorflow-1.14.0 tensorflow-estimator-1.14.0 werkzeug-1.0.1 zipp-3.3.0
+
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate bert_aas
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+
+(base) E:\e25\files_2>
+
+~ ~ ~ ~ ~
+
+
+(base) E:\e25\files_2>conda activate bert_aas
+
+(bert_aas) E:\e25\files_2>pip show tensorflow
+Name: tensorflow
+Version: 1.14.0
+Summary: TensorFlow is an open source machine learning framework for everyone.
+Home-page: https://www.tensorflow.org/
+Author: Google Inc.
+Author-email: packages@tensorflow.org
+License: Apache 2.0
+Location: e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages
+Requires: numpy, protobuf, keras-applications, tensorflow-estimator, grpcio, wrapt, keras-preprocessing, termcolor, gast, absl-py, astor, google-pasta, six, tensorboard, wheel
+Required-by:
+
+(bert_aas) E:\Workspace\Jupyter\e25_bert_f
+
+~ ~ ~ ~ ~
+
+(bert_aas) E:\e25\files_2>bert-serving-start -model_dir E:\Workspace\Jupyter\e25_bert_for_sent_an/files_2/uncased_L-12_H-768_A-12 -num_worker=1
+...
+usage: E:\programfiles\Anaconda3\envs\bert_aas\Scripts\bert-serving-start -model_dir E:\Workspace\Jupyter\e25_bert_for_sent_an/files_2/uncased_L-12_H-768_A-12 -num_worker=1
+                  ARG   VALUE
+__________________________________________________
+            ckpt_name = bert_model.ckpt
+          config_name = bert_config.json
+                cors = *
+                  cpu = False
+          device_map = []
+        do_lower_case = True
+  fixed_embed_length = False
+                fp16 = False
+  gpu_memory_fraction = 0.5
+        graph_tmp_dir = None
+    http_max_connect = 10
+            http_port = None
+        mask_cls_sep = False
+      max_batch_size = 256
+          max_seq_len = 25
+            model_dir = E:\e25/files_2/uncased_L-12_H-768_A-12
+no_position_embeddings = False
+    no_special_token = False
+          num_worker = 1
+        pooling_layer = [-2]
+    pooling_strategy = REDUCE_MEAN
+                port = 5555
+            port_out = 5556
+        prefetch_size = 10
+  priority_batch_size = 16
+show_tokens_to_client = False
+      tuned_model_dir = None
+              verbose = False
+                  xla = False
+
+I: [35mVENTILATOR [0m:freeze, optimize and export graph, could take a while...
+...
+WARNING:tensorflow:From e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages\bert_serving\server\helper.py:186: The name tf.logging.ERROR is deprecated. Please use tf.compat.v1.logging.ERROR instead.
+
+I: [36mGRAPHOPT [0m:model config: E:\e25/files_2/uncased_L-12_H-768_A-12\bert_config.json
+I: [36mGRAPHOPT [0m:checkpoint: E:\e25/files_2/uncased_L-12_H-768_A-12\bert_model.ckpt
+I: [36mGRAPHOPT [0m:build graph...
+I: [36mGRAPHOPT [0m:load parameters from checkpoint...
+I: [36mGRAPHOPT [0m:optimize...
+I: [36mGRAPHOPT [0m:freeze...
+I: [36mGRAPHOPT [0m:write graph to a tmp file: C:\Users\ASHISH~1\AppData\Local\Temp\tmphqecbium
+I: [35mVENTILATOR [0m:optimized graph is stored at: C:\Users\ASHISH~1\AppData\Local\Temp\tmphqecbium
+I: [35mVENTILATOR [0m:bind all sockets
+I: [35mVENTILATOR [0m:open 8 ventilator-worker sockets
+I: [35mVENTILATOR [0m:start the sink
+...
+I: [32mSINK [0m:ready
+I: [35mVENTILATOR [0m:get devices
+W: [35mVENTILATOR [0m:no GPU available, fall back to CPU
+I: [35mVENTILATOR [0m:device map:
+                worker  0 -> cpu
+...
+I: [33mWORKER-0 [0m:use device cpu, load graph from C:\Users\ASHISH~1\AppData\Local\Temp\tmphqecbium
+WARNING:tensorflow:From e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages\bert_serving\server\helper.py:186: The name tf.logging.set_verbosity is deprecated. Please use tf.compat.v1.logging.set_verbosity instead.
+...
+I: [33mWORKER-0 [0m:ready and listening!
+I: [35mVENTILATOR [0m:all set, ready to serve request!
+
+~ ~ ~ ~ ~
+
+SUCCESSFUL OUTPUT LOGS:
+
+I: [33mWORKER-0 [0m:ready and listening!
+I: [35mVENTILATOR [0m:all set, ready to serve request!
+I: [35mVENTILATOR [0m:new config request        req id: 1       client: b'fe492b28-fc81-4bca-aa63-e78a42d149a4'
+I: [32mSINK [0m:send config     client b'fe492b28-fc81-4bca-aa63-e78a42d149a4'
+I: [35mVENTILATOR [0m:new encode request        req id: 2       size: 3 client: b'fe492b28-fc81-4bca-aa63-e78a42d149a4'
+I: [32mSINK [0m:job register    size: 3 job id: b'fe492b28-fc81-4bca-aa63-e78a42d149a4#2'
+I: [33mWORKER-0 [0m:new job     socket: 0       size: 3 client: b'fe492b28-fc81-4bca-aa63-e78a42d149a4#2'
+I: [33mWORKER-0 [0m:job done    size: (3, 768)  client: b'fe492b28-fc81-4bca-aa63-e78a42d149a4#2'
+I: [32mSINK [0m:collect b'EMBEDDINGS' b'fe492b28-fc81-4bca-aa63-e78a42d149a4#2' (E:3/T:0/A:3)
+I: [32mSINK [0m:send back       size: 3 job id: b'fe492b28-fc81-4bca-aa63-e78a42d149a4#2'
+
+
+~ ~ ~ ~ ~
+</pre>

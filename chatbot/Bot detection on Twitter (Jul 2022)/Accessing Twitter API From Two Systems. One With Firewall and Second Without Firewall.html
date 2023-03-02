@@ -1,0 +1,298 @@
+<head>
+      <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+      <!-- Google AdSense Using Machine Learning Code -->
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                  google_ad_client: "ca-pub-3071098372371409",
+                  enable_page_level_ads: true
+            });
+      </script>
+      <style>
+            pre {
+                  white-space: pre-wrap;
+                  white-space: -moz-pre-wrap;
+                  white-space: -pre-wrap;
+                  white-space: -o-pre-wrap;
+                  word-wrap: break-word;
+            }
+
+            .dot {
+                  height: 12px;
+                  width: 12px;
+                  background-color: #bbb;
+                  border-radius: 50%;
+                  display: inline-block;
+            }
+      </style>
+
+      <style>
+            .arrow {
+                  border: solid black;
+                  border-width: 0 3px 3px 0;
+                  display: inline-block;
+                  padding: 3px;
+            }
+
+            .right {
+                  transform: rotate(-45deg);
+                  -webkit-transform: rotate(-45deg);
+            }
+
+            .left {
+                  transform: rotate(135deg);
+                  -webkit-transform: rotate(135deg);
+            }
+
+            .up {
+                  transform: rotate(-135deg);
+                  -webkit-transform: rotate(-135deg);
+            }
+
+            .down {
+                  transform: rotate(45deg);
+                  -webkit-transform: rotate(45deg);
+            }
+      </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>
+This note is less about accessing Twitter API but more about Cyber Security where you run a curl command and based on the output from that command you try to figure out the firewall settings of the system.
+
+<b>System 1 Configuration With Strict Firewall Where Our Curl Command For Accessing Twitter API is Not Working:</b>
+
+<i>(base) C:\Users\ash\Desktop>systeminfo
+OS Name:                   Microsoft Windows 10 Enterprise
+OS Version:                10.0.19042 N/A Build 19042
+
+Processor(s):              1 Processor(s) Installed.
+                              [01]: AMD64 Family 23 Model 24 Stepping 1 AuthenticAMD ~2100 Mhz
+BIOS Version:              HP R79 Ver. 01.10.03, 3/24/2020
+
+Network Card(s):           4 NIC(s) Installed.
+                              [01]: Realtek RTL8822BE 802.11ac PCIe Adapter
+                                    Connection Name: Wi-Fi
+                                    DHCP Enabled:    Yes
+                                    DHCP Server:     192.168.1.1
+                                    IP address(es)
+                                    [01]: 192.168.1.100
+                                    [02]: fe80::b1b2:6d59:f669:1b96
+                                    [03]: 2401:4900:47f1:b174:70f4:de28:6287:b1c9
+                                    [04]: 2401:4900:47f1:b174:b1b2:6d59:f669:1b96
+                              [02]: Realtek PCIe GbE Family Controller
+                                    Connection Name: Ethernet
+                                    Status:          Media disconnected
+                              [03]: Bluetooth Device (Personal Area Network)
+                                    Connection Name: Bluetooth Network Connection
+                                    Status:          Media disconnected
+                              [04]: Check Point Virtual Network Adapter For Endpoint VPN Client
+                                    Connection Name: Ethernet 2
+                                    DHCP Enabled:    Yes
+                                    DHCP Server:     10.79.251.145
+                                    IP address(es)
+                                    [01]: 10.79.251.146
+                                    [02]: fe80::3df2:2a4:b2e1:cb0
+Hyper-V Requirements:      VM Monitor Mode Extensions: Yes
+                              Virtualization Enabled In Firmware: Yes
+                              Second Level Address Translation: Yes
+                              Data Execution Prevention Available: Yes   
+</i>
+
+<b>System 2 Without Strict Firewall Where Curl Command is Working:</b>
+
+<i>
+C:\Users\Ashish Jain>systeminfo
+
+Host Name:                 LAPTOP-79RV456R
+OS Name:                   Microsoft Windows 10 Home Single Language
+OS Version:                10.0.19043 N/A Build 19043
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Workstation
+OS Build Type:             Multiprocessor Free
+Registered Owner:          Ashish Jain
+Registered Organization:
+Product ID:                00327-35105-52167-AAOEM
+Original Install Date:     3/14/2021, 6:33:25 AM
+System Boot Time:          7/14/2022, 5:34:13 PM
+System Manufacturer:       LENOVO
+System Model:              81H7
+System Type:               x64-based PC
+Processor(s):              1 Processor(s) Installed.
+                              [01]: Intel64 Family 6 Model 78 Stepping 3 GenuineIntel ~2000 Mhz
+BIOS Version:              LENOVO 8QCN26WW(V1.14), 12/29/2020
+Windows Directory:         C:\WINDOWS
+System Directory:          C:\WINDOWS\system32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-us;English (United States)
+Input Locale:              00004009
+Time Zone:                 (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi
+Total Physical Memory:     12,154 MB
+Available Physical Memory: 7,634 MB
+Virtual Memory: Max Size:  14,010 MB
+Virtual Memory: Available: 8,057 MB
+Virtual Memory: In Use:    5,953 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    WORKGROUP
+Logon Server:              \\LAPTOP-79RV456R
+Hotfix(s):                 15 Hotfix(s) Installed.
+                              [01]: KB5013887
+                              [02]: KB4562830
+                              [03]: KB4577586
+                              [04]: KB4580325
+                              [05]: KB4589212
+                              [06]: KB5000736
+                              [07]: KB5015807
+                              [08]: KB5006753
+                              [09]: KB5007273
+                              [10]: KB5011352
+                              [11]: KB5011651
+                              [12]: KB5014032
+                              [13]: KB5014035
+                              [14]: KB5014671
+                              [15]: KB5005699
+Network Card(s):           4 NIC(s) Installed.
+                              [01]: VirtualBox Host-Only Ethernet Adapter
+                                    Connection Name: VirtualBox Host-Only Network
+                                    DHCP Enabled:    No
+                                    IP address(es)
+                                    [01]: 192.168.56.1
+                                    [02]: fe80::f839:dc84:9a7b:3087
+                              [02]: Realtek 8821CE Wireless LAN 802.11ac PCI-E NIC
+                                    Connection Name: Wi-Fi
+                                    Status:          Media disconnected
+                              [03]: Realtek PCIe FE Family Controller
+                                    Connection Name: Ethernet
+                                    Status:          Media disconnected
+                              [04]: Bluetooth Device (Personal Area Network)
+                                    Connection Name: Bluetooth Network Connection
+                                    Status:          Media disconnected
+Hyper-V Requirements:      VM Monitor Mode Extensions: Yes
+                              Virtualization Enabled In Firmware: Yes
+                              Second Level Address Translation: Yes
+                              Data Execution Prevention Available: Yes
+
+C:\Users\Ashish Jain>
+</i>
+    
+<b>I was able to make a successful request from System 2:</b>
+
+<i>
+(base) C:\Users\Ashish Jain>curl "https://api.twitter.com/2/users/by/username/vantagepoint21" -H "Authorization: Bearer A***V"
+
+{"data":{"id":"96529689","name":"Ashish Jain","username":"vantagepoint21"}}
+
+(base) C:\Users\Ashish Jain>curl "https://api.twitter.com/2/users/by/username/elonmusk" -H "Authorization: Bearer A***V"
+
+{"data":{"id":"44196397","name":"Elon Musk","username":"elonmusk"}}      
+</i>
+
+<b>The curl command is not working on the System 1.</b>
+
+I think there is some issue being created by Network Firewall settings in my office laptop. From which I was not able to get a response from Twitter API.
+
+(base) C:\Users\ash\Desktop\twitter_api>curl "https://api.twitter.com/2/users/by/username/vantagepoint21" -H "Authorization: Bearer 9***2"
+
+<i style="color: red"><b>curl: (35) schannel: next InitializeSecurityContext failed: Unknown error (0x80092012) - The revocation function was unable to check revocation for the certificate.</b></i>
+
+<b>On further testing the "curl" command on 'System 1' for URLs with "http" and "https" protocols:</b>
+
+(base) C:\Users\ash\Desktop>curl www.survival8.blogspot.com
+&lt;HTML>
+&lt;HEAD>
+&lt;TITLE>Moved Permanently&lt;/TITLE>
+&lt;/HEAD>
+&lt;BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+&lt;H1>Moved Permanently&lt;/H1>
+The document has moved &lt;A HREF="http://survival8.blogspot.com/">here&lt;/A>.
+&lt;/BODY>
+&lt;/HTML>
+
+<h2>Success for HTTP based URL</h2>
+
+---
+
+(base) C:\Users\ash\Desktop>curl https://survival8.blogspot.com
+curl: (35) schannel: next InitializeSecurityContext failed: Unknown error (0x80092012) - The revocation function was unable to check revocation for the certificate.
+
+(base) C:\Users\ash\Desktop>curl https://survival8.blogspot.com/2022/08/lets-talk-about-whataboutery.html
+curl: (35) schannel: next InitializeSecurityContext failed: Unknown error (0x80092012) - The revocation function was unable to check revocation for the certificate.
+
+<h2>Failure for HTTPS based URL.</h2>
+
+--- 
+
+<h2>Successful Testing With Another HTTP based URL:</h2>
+
+(base) C:\Users\ash\Desktop>curl http://survival8.blogspot.com/2022/08/lets-talk-about-whataboutery.html
+
+<i style="color: green"><b>
+&lt;!DOCTYPE html>
+&lt;html class='v2' dir='ltr' lang='en'>
+&lt;head>
+&lt;link href='https://www.blogger.com/static/v1/widgets/2975350028-css_bundle_v2.css' rel='stylesheet' type='text/css'/>
+&lt;meta content='width=1100' name='viewport'/>
+&lt;meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+&lt;meta content='blogger' name='generator'/>
+&lt;link href='http://survival8.blogspot.com/favicon.ico' rel='icon' type='image/x-icon'/>
+&lt;link href='http://survival8.blogspot.com/2022/08/lets-talk-about-whataboutery.html' rel='canonical'/>
+&lt;link rel="alternate" type="application/atom+xml" title="survival8 - Atom" href="http://survival8.blogspot.com/feeds/posts/default" />
+&lt;link rel="alternate" type="application/rss+xml" title="survival8 - RSS" href="http://survival8.blogspot.com/feeds/posts/default?alt=rss" />
+&lt;link rel="service.post" type="application/atom+xml" title="survival8 - Atom" href="https://draft.blogger.com/feeds/7823701911930369175/posts/default" />
+
+&lt;link rel="alternate" type="application/atom+xml" title="survival8 - Atom" href="http://survival8.blogspot.com/feeds/1169952638388485943/comments/default" />
+&lt;!--Can't find substitution for tag [blog.ieCssRetrofitLinks]-->
+&lt;meta content='http://survival8.blogspot.com/2022/08/lets-talk-about-whataboutery.html' property='og:url'/>
+&lt;meta content='Let’s talk about ‘Whataboutery’' property='og:title'/>
+&lt;meta content='                                 what·about·ery [ˌwɒtəˈbaʊtəri] NOUN BRITISH the technique or practice of responding to an accusation or dif...' property='og:description'/>
+&lt;title>survival8: Let&#8217;s talk about &#8216;Whataboutery&#8217;&lt;/title>
+&lt;style id='page-skin-1' type='text/css'>&lt;!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Simple
+Designer: Blogger
+URL:      www.blogger.com
+----------------------------------------------- */
+/* Content
+----------------------------------------------- */
+body { ...      
+</b></i>
+
+<h2>Also, note that if that was Authorization failure from Twitter API, then the output would still be a JSON format informative message:</h2>
+
+(base) C:\Users\Ashish Jain>curl "https://api.twitter.com/2/users/by/username/elonmusk" -H "Authorization: Bearer 9***INCORRECT_BEARER_TOKEN***2"
+
+<i style="color: red"><b>
+{
+  "title": "Unauthorized",
+  "type": "about:blank",
+  "status": 401,
+  "detail": "Unauthorized"
+}
+</b></i>
+
+<h2>On a Side Note: Take a look at another error message from Twitter API:</h2>
+
+(base) C:\Users\Ashish Jain>curl "https://api.twitter.com/2/users/by/username/elonmusj" -H "Authorization: Bearer A***V"
+
+<i style="color: red"><b>
+{  "errors":
+      [
+        {
+          "parameter":"username",
+          "resource_id":"elonmusj",
+          "value":"elonmusj",
+          "detail":"User has been suspended: [elonmusj].",
+          "title":"Forbidden",
+          "resource_type":"user",
+          "type":"https://api.twitter.com/2/problems/resource-not-found"
+        }
+      ]
+}
+</b></i>
+
+<b>Notice the typo in Elon Musk's user handle we provided in query: elonmusj</b>
+</pre>

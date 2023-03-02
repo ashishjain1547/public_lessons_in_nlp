@@ -1,0 +1,184 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        }); 
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div>
+
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>
+SYSTEM INFORMATION:
+
+1: The Edge as of this article (Dec 2019) is EdgeHTML based.
+
+EdgeHTML is a proprietary browser engine from Microsoft, originally used in the Edge web browser first introduced in Windows 10 released in 2014. In December 2018, Microsoft announced plans to release Edge rebuilt as a Chromium-based browser, using the Blink engine.
+
+2: The "Creative" mode on the Quillbot.com site requires you to sign in, so sign in with Google or Facebook account. For this experiment, I have using Google account.
+
+If you are not signed in, you will get this error:
+<i style="color: red">WebDriverException                        Traceback (most recent call last)
+[ipython-input-23-44d878b22d3e] in [module]
+     11         driver.find_element_by_xpath("//div[@class='strength-tag' and contains(text(),'" + i + "')]").click()
+     12         for j in range(0, 4):
+---> 13             driver.find_element_by_id('paraphraseBtn').click()
+     14             for k in range(0, 10):
+     15                 try:
+...
+WebDriverException: Message: Element is obscured </i>
+
+3: Make sure you do not have any instances of Edge browser open at the time of execution of the following line or else you get an error.
+
+<i style="color: red">WebDriverException                        Traceback (most recent call last)
+[ipython-input-4-fe814791c533] in [module]
+----> 1 driver = webdriver.Edge(r'D:\workspace\Jupyter\(Installations)\edgehtmldriver\MicrosoftWebDriver.exe'.replace('\\', '/'))
+
+...
+
+WebDriverException: Message: Unknown error </i>
+
+4: Make sure you have multiple internet connections so that you can make enough quillbot requests or else you get this error on the site:
+
+<i style="color: red">"Too many paraphrasing requests (exceeding 400 requests) within 15 minutes." </i>
+
+5: The version of QuillBot mentioned on the site: v3.-997
+
+6: All the necessary files can be downloaded from here: <a href="https://drive.google.com/open?id=1LzP_QUBgqrWmsBR0vWRliKOB4oCdb_7u" target="_blank">Google Drive</a>
+
+***
+
+SETUP:
+
+(env_for_python_36) C:\Users\ashish>pip install selenium
+<i style="color: green">Collecting selenium
+... Successfully installed selenium-3.141.0 </i>
+
+For Pandas to read from XLSX file:
+(env_for_python_36) C:\Users\ashish>pip install xlrd
+<i style="color: green">Collecting xlrd
+... Successfully installed xlrd-1.2.0 </i>
+
+***
+
+CONTENTS OF EXCEL FILE:
+
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-DrLIhEWowSk/XfyLKwt301I/AAAAAAAAEK8/EtZXbOtvsz8gb6b-AqMsR4SJ6KwXFJE2QCK4BGAYYCw/s1600/1.PNG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="https://1.bp.blogspot.com/-DrLIhEWowSk/XfyLKwt301I/AAAAAAAAEK8/EtZXbOtvsz8gb6b-AqMsR4SJ6KwXFJE2QCK4BGAYYCw/s400/1.PNG" /></a></div>
+
+***
+
+CODE:
+
+<i style="color: blue">from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+from selenium.common.exceptions import NoSuchElementException 
+from selenium.webdriver.common.keys import Keys
+
+import pandas as pd
+from time import time
+
+df = pd.read_excel('files_1/MyQuestions.xlsx')
+
+ques_list = df['Questions'].tolist()
+
+driver = webdriver.Edge(r'D:\workspace\Jupyter\(Installations)\edgehtmldriver\MicrosoftWebDriver.exe'.replace('\\', '/'))
+
+driver.implicitly_wait(100)
+
+driver.get('https://quillbot.com/')
+
+lines = []
+with open('files_1/output_already_asked.txt') as f:
+    lines_1 = f.read().splitlines()
+    lines += lines_1
+	
+rtnVal = []
+for q in ques_list:
+    if q in lines:
+        continue
+    driver.find_element_by_id('inputText').clear()
+    driver.find_element_by_id('inputText').send_keys(q)
+    rtnVal.append(q)
+    phrases = []
+    quill_modes = ['Fluency', 'Standard', 'Creative']
+    for i in quill_modes:
+        driver.find_element_by_xpath("//div[@class='strength-tag' and contains(text(),'" + i + "')]").click()
+        for j in range(0, 4):
+            driver.find_element_by_id('paraphraseBtn').click()
+            for k in range(0, 10):
+                try:
+                    phrases.append(driver.find_element_by_id('outputSegs').text)
+                except:
+                    #print("outputSegs. " + str(i) + ", " + str(j) + ", " + str(k))
+                    pass
+
+                try:
+                    driver.find_element_by_xpath("//div[@class='redo-btn' and (contains(text(),'ReQuill') or contains(text(),'Next Quill'))]").click()
+                except:
+                    # Not apparing after this fix "driver.implicitly_wait(100)"
+                    #print("redo-btn. " + str(i) + ", " + str(j) + ", " + str(k))
+                    pass
+
+            driver.find_element_by_id('myRange').send_keys(Keys.RIGHT)
+        [driver.find_element_by_id('myRange').send_keys(Keys.LEFT) for j in range(0, 4)]
+    rtnVal += list(set(phrases))
+    rtnVal.append('---')
+	
+outfile = open('files_1/output_' + str(round(time(), 2)) + '.txt', 'w')
+outfile.write("\n".join(rtnVal))
+outfile.close() </i>
+
+BUGS:
+
+The order of utterances is not ordered properly in the output file.
+</pre>

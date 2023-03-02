@@ -1,0 +1,132 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        });
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        i.ib {
+            color: blue;
+        }
+
+        i.ig {
+            color: green;
+        }
+
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div> <br />
+
+<pre class=""><i class="ig">
+import os
+import docx # pip install python-docx # Does not support .pdf and .doc
+import PyPDF2
+
+from docx import Document
+
+SUPPORTED_FORMATS = ['pdf', 'doc', 'docx']
+WORD_FORMATS = ['doc', 'docx']
+
+<h3>For DOCX</h3>
+
+f_list = []
+for dirpath, subdirs, files in os.walk("."):
+    for f in files:
+        if f.split(".")[1] == "docx" and f[0] != "~":
+            
+            f_list.append(os.path.join(dirpath, f))
+
+d_list = []
+for f in f_list:
+    d_list.append(Document(f))
+    
+t_list = []
+for d in d_list:
+    para_text = ""
+    for para in d.paragraphs:
+        para_text = para_text + " " + para.text
+    t_list.append(para_text) </i>
+    
+<h3>FOR PDF</h3>
+<i class="ig">f_list = []
+for dirpath, subdirs, files in os.walk("."):
+    for f in files:
+        if f.split(".")[1] == "pdf" and f[0] != "~":
+            #print(f, dirpath)
+            f_list.append(os.path.join(dirpath, f))
+
+d_list = []
+t_list = []
+
+for f in f_list:
+    pdfFileObj = open(f, 'rb')
+    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+    d_list.append(pdfReader)
+    
+    text = ""
+    for pageObj in pdfReader.pages:
+        text = text + " " + pageObj.extractText()
+
+    t_list.append(text)
+    
+    pdfFileObj.close()
+</i>
+
+<h3>For DOC</h3>
+<i class="ig">
+import win32com.client
+
+word = win32com.client.Dispatch("Word.Application")
+word.visible = False
+wb = word.Documents.Open(r'D:\xyz.doc')
+doc = word.ActiveDocument
+print(doc.Range().Text) </i>
+<span class="" style="display: none;">Tags: Technology,Python,Natural Language Processing,</span>
+</pre>

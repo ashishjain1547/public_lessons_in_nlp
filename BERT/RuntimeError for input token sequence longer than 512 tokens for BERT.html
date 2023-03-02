@@ -1,0 +1,194 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<style>
+    i.black {
+        display: block;
+        background-color: black;
+        color: white;
+    }
+
+    i.red {
+        display: block;
+        background-color: red;
+        color: white
+    }
+
+    i.green {
+        display: block;
+        background-color: green;
+        color: white
+    }
+</style>
+
+<pre>
+
+<i class="black">
+import transformers as ppb
+import torch
+import numpy as np
+print(ppb.__version__)
+</i>
+
+<i class="green">
+4.19.2
+</i>
+
+<i class="black">
+input_sentence_1 = "In recent years, a lot of hype has developed around the promise of neural networks and their ability to classify and identify input data, and more recently the ability of certain network architectures to generate original content. Companies large and small are using them for everything from image captioning and self-driving car navigation to identifying solar panels from satellite images and recognizing faces in security camera videos. And luckily for us, many NLP applications of neural nets exist as well. While deep neural networks have inspired a lot of hype and hyperbole, our robot overlords are probably further off than any clickbait cares to admit. Neural networks are, however, quite powerful tools, and you can easily use them in an NLP chatbot pipeline to classify input text, summarize documents, and even generate novel works. This chapter is intended as a primer for those with no experience in neural networks. We don’t cover anything specific to NLP in this chapter, but gaining a basic understanding of what is going on under the hood in a neural network is important for the upcoming chapters. If you’re familiar with the basics of a neural network, you can rest easy in skipping ahead to the next chapter, where you dive back into processing text with the various flavors of neural nets. Although the mathematics of the underlying algorithm, backpropagation, are outside this book’s scope, a high-level grasp of its basic functionality will help you understand language and the patterns hidden within. As the availability of processing power and memory has exploded over the course of the decade, an old technology has come into its own again. First proposed in the 1950s by Frank Rosenblatt, the perceptron1 offered a novel algorithm for finding patterns in data. The basic concept lies in a rough mimicry of the operation of a living neuron cell. As electrical signals flow into the cell through the dendrites (see figure 5.1) into the nucleus, an electric charge begins to build up. When the cell reaches a certain level of charge, it fires, sending an electrical signal out through the axon. However, the dendrites aren’t all created equal. The cell is more “sensitive” to signals through certain dendrites than others, so it takes less of a signal in those paths to fire the axon."
+print(input_sentence_1)
+print("Char count", len(input_sentence_1))
+print("Word Count:", len(input_sentence_1.split(" ")))
+</i>
+
+<i class="green">
+In recent years, a lot of hype has developed around the promise of neural networks and their ability to classify and identify input data, and more recently the ability of certain network architectures to generate original content. Companies large and small are using them for everything from image captioning and self-driving car navigation to identifying solar panels from satellite images and recognizing faces in security camera videos. And luckily for us, many NLP applications of neural nets exist as well. While deep neural networks have inspired a lot of hype and hyperbole, our robot overlords are probably further off than any clickbait cares to admit. Neural networks are, however, quite powerful tools, and you can easily use them in an NLP chatbot pipeline to classify input text, summarize documents, and even generate novel works. This chapter is intended as a primer for those with no experience in neural networks. We don’t cover anything specific to NLP in this chapter, but gaining a basic understanding of what is going on under the hood in a neural network is important for the upcoming chapters. If you’re familiar with the basics of a neural network, you can rest easy in skipping ahead to the next chapter, where you dive back into processing text with the various flavors of neural nets. Although the mathematics of the underlying algorithm, backpropagation, are outside this book’s scope, a high-level grasp of its basic functionality will help you understand language and the patterns hidden within. As the availability of processing power and memory has exploded over the course of the decade, an old technology has come into its own again. First proposed in the 1950s by Frank Rosenblatt, the perceptron1 offered a novel algorithm for finding patterns in data. The basic concept lies in a rough mimicry of the operation of a living neuron cell. As electrical signals flow into the cell through the dendrites (see figure 5.1) into the nucleus, an electric charge begins to build up. When the cell reaches a certain level of charge, it fires, sending an electrical signal out through the axon. However, the dendrites aren’t all created equal. The cell is more “sensitive” to signals through certain dendrites than others, so it takes less of a signal in those paths to fire the axon.
+Char count 2309
+Word Count: 382
+</i>
+
+<i class="black">
+input_sentence_2 = "The biology that controls these relationships is most certainly beyond the scope of this book, but the key concept to notice here is the way the cell weights incoming signals when deciding when to fire. The neuron will dynamically change those weights in the decision making process over the course of its life. You are going to mimic that process. Rosenblatt’s original project was to teach a machine to recognize images. The original perceptron was a conglomeration of photo-receptors and potentiometers, not a computer in the current sense. But implementation specifics aside, Rosenblatt’s concept was to take the features of an image and assign a weight, a measure of importance, to each one. The features of the input image were each a small subsection of the image. A grid of photo-receptors would be exposed to the image. Each receptor would see one small piece of the image. The brightness of the image that a particular photoreceptor could see would determine the strength of the signal that it would send to the associated “dendrite.” Each dendrite had an associated weight in the form of a potentiometer. Once enough signal came in, it would pass the signal into the main body of the “nucleus” of the “cell.” Once enough of those signals from all the potentiometers passed a certain threshold, the perceptron would fire down its axon, indicating a positive match on the image it was presented with. If it didn’t fire for a given image, that was a negative classification match. Think “hot dog, not hot dog” or “iris setosa, not iris setosa.” So far there has been a lot of hand waving about biology and electric current and photo-receptors. Let’s pause for a second and peel out the most important parts of this concept. Basically, you’d like to take an example from a dataset, show it to an algorithm, and have the algorithm say yes or no. That’s all you’re doing so far. The first piece you need is a way to determine the features of the sample. Choosing appropriate features turns out to be a surprisingly challenging part of machine learning. In “normal” machine learning problems, like predicting home prices, your features might be square footage, last sold price, and ZIP code. Or perhaps you’d like to predict the species of a certain flower using the Iris dataset.2 In that case your features would be petal length, petal width, sepal length, and sepal width. In Rosenblatt’s experiment, the features were the intensity values of each pixel (subsections of the image), one pixel per photo receptor."
+print(input_sentence_2)
+print("Char count", len(input_sentence_2))
+print("Word Count:", len(input_sentence_2.split(" ")))
+</i>
+
+<i class="green">
+The biology that controls these relationships is most certainly beyond the scope of this book, but the key concept to notice here is the way the cell weights incoming signals when deciding when to fire. The neuron will dynamically change those weights in the decision making process over the course of its life. You are going to mimic that process. Rosenblatt’s original project was to teach a machine to recognize images. The original perceptron was a conglomeration of photo-receptors and potentiometers, not a computer in the current sense. But implementation specifics aside, Rosenblatt’s concept was to take the features of an image and assign a weight, a measure of importance, to each one. The features of the input image were each a small subsection of the image. A grid of photo-receptors would be exposed to the image. Each receptor would see one small piece of the image. The brightness of the image that a particular photoreceptor could see would determine the strength of the signal that it would send to the associated “dendrite.” Each dendrite had an associated weight in the form of a potentiometer. Once enough signal came in, it would pass the signal into the main body of the “nucleus” of the “cell.” Once enough of those signals from all the potentiometers passed a certain threshold, the perceptron would fire down its axon, indicating a positive match on the image it was presented with. If it didn’t fire for a given image, that was a negative classification match. Think “hot dog, not hot dog” or “iris setosa, not iris setosa.” So far there has been a lot of hand waving about biology and electric current and photo-receptors. Let’s pause for a second and peel out the most important parts of this concept. Basically, you’d like to take an example from a dataset, show it to an algorithm, and have the algorithm say yes or no. That’s all you’re doing so far. The first piece you need is a way to determine the features of the sample. Choosing appropriate features turns out to be a surprisingly challenging part of machine learning. In “normal” machine learning problems, like predicting home prices, your features might be square footage, last sold price, and ZIP code. Or perhaps you’d like to predict the species of a certain flower using the Iris dataset.2 In that case your features would be petal length, petal width, sepal length, and sepal width. In Rosenblatt’s experiment, the features were the intensity values of each pixel (subsections of the image), one pixel per photo receptor.
+Char count 2518
+Word Count: 426
+</i>
+
+<i class="black">
+model_class, tokenizer_class, pretrained_weights = (ppb.BertModel, ppb.BertTokenizer, 'bert-base-uncased') 
+tokenizer = tokenizer_class.from_pretrained(pretrained_weights)
+model = model_class.from_pretrained(pretrained_weights)
+</i>
+
+<i class="red">
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertModel: ['cls.seq_relationship.weight', 'cls.predictions.decoder.weight', 'cls.predictions.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.dense.bias', 'cls.seq_relationship.bias', 'cls.predictions.transform.LayerNorm.bias', 'cls.predictions.transform.dense.weight']
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+</i>
+
+<i class="black">
+def get_embedding(in_list):
+    tokenized = [tokenizer.encode(x, add_special_tokens=True) for x in in_list]
+    
+    max_len = 0
+    for i in tokenized:
+        if len(i) > max_len:
+            max_len = len(i)
+
+    padded = np.array([i + [0]*(max_len-len(i)) for i in tokenized])
+    
+    attention_mask = np.where(padded != 0, 1, 0)
+    
+    input_ids = torch.LongTensor(padded)
+    attention_mask = torch.tensor(attention_mask)
+
+    with torch.no_grad():
+        last_hidden_states = model(input_ids = input_ids, attention_mask = attention_mask)
+        
+    features = last_hidden_states[0][:,0,:].numpy()
+    return features 
+
+string_embeddings = get_embedding([input_sentence_1, input_sentence_2])   
+</i>
+
+<b><i class="red">
+Token indices sequence length is longer than the specified maximum sequence length for this model (560 > 512). Running this sequence through the model will result in indexing errors
+
+---------------------------------------------------------------------------
+RuntimeError                              Traceback (most recent call last)
+Input In [12], in &lt;cell line: 1>()
+----> 1 string_embeddings = get_embedding([input_sentence_1, input_sentence_2])
+
+Input In [11], in get_embedding(in_list)
+        14 attention_mask = torch.tensor(attention_mask)
+        16 with torch.no_grad():
+---> 17     last_hidden_states = model(input_ids = input_ids, attention_mask = attention_mask)
+        19 features = last_hidden_states[0][:,0,:].numpy()
+        20 return features
+
+File E:\programfiles\Anaconda3\envs\transformers\lib\site-packages\torch\nn\modules\module.py:1102, in Module._call_impl(self, *input, **kwargs)
+    1098 # If we don't have any hooks, we want to skip the rest of the logic in
+    1099 # this function, and just call forward.
+    1100 if not (self._backward_hooks or self._forward_hooks or self._forward_pre_hooks or _global_backward_hooks
+    1101         or _global_forward_hooks or _global_forward_pre_hooks):
+-> 1102     return forward_call(*input, **kwargs)
+    1103 # Do not call functions when jit is used
+    1104 full_backward_hooks, non_full_backward_hooks = [], []
+
+File E:\programfiles\Anaconda3\envs\transformers\lib\site-packages\transformers\models\bert\modeling_bert.py:983, in BertModel.forward(self, input_ids, attention_mask, token_type_ids, position_ids, head_mask, inputs_embeds, encoder_hidden_states, encoder_attention_mask, past_key_values, use_cache, output_attentions, output_hidden_states, return_dict)
+    981 if hasattr(self.embeddings, "token_type_ids"):
+    982     buffered_token_type_ids = self.embeddings.token_type_ids[:, :seq_length]
+--> 983     buffered_token_type_ids_expanded = buffered_token_type_ids.expand(batch_size, seq_length)
+    984     token_type_ids = buffered_token_type_ids_expanded
+    985 else:
+
+RuntimeError: The expanded size of the tensor (560) must match the existing size (512) at non-singleton dimension 1.  Target sizes: [2, 560].  Tensor sizes: [1, 512]
+</i></b>
+
+
+</pre>
+<span style="display: none">Tags: Machine Learning, Natural Language Processing, Python, Technology</span>

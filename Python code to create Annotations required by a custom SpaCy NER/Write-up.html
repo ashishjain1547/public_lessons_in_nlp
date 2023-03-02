@@ -1,0 +1,266 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        }); 
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div> <br />
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>First, we show the version of SpaCy we are using:
+(e20200909) CMD>pip show spacy
+<i style="color: green;">Name: spacy
+Version: 2.3.2
+Summary: Industrial-strength Natural Language Processing (NLP) in Python
+Home-page: https://spacy.io
+Author: Explosion
+Author-email: contact@explosion.ai
+License: MIT
+Location: c:\anaconda3\envs\e20200909\lib\site-packages
+Requires: numpy, cymem, preshed, blis, tqdm, catalogue, thinc, wasabi, srsly, setuptools, murmurhash, plac, requests
+Required-by: en-core-web-sm, aspect-based-sentiment-analysis </i>
+
+Before we dive into code, here are few points to note:
+1. The execution of code starts from the 'main.py'
+
+2. The first input file is "list_of_entity_names.txt" that has the entities to be detected in the input text. The entities are written all in one line separated by a semi-colon.
+
+3. The second input file is "test_input_strings.txt" that contains the strings we want the entities to be detected in.
+
+<b>Filename: .\main.py </b>
+
+<i style="color: blue;">from get_annotations import getAnnotatedStrings
+
+with open('test_input_strings.txt') as f:
+    lines = f.readlines()
+
+#print(lines)
+
+annotations = []
+for i in lines:
+    annotations.append(getAnnotatedStrings(i))
+
+with open('output.txt', mode="a") as f:
+    for i in annotations:
+        f.write(str(i) + "\n") </i>
+    
+<b>Filename: .\list_of_entity_names.txt </b>
+
+<i style="color: blue;">apple;apple cider vinegar;banana;Apple</i>
+
+<b>Filename: .\get_annotations.py </b>
+
+import copy
+
+with open('list_of_entity_names.txt') as f:
+    entity_names = f.read()
+entity_names = list(set(entity_names.split(";")))
+
+#print(entity_names)
+
+
+def getAnnotatedStrings(textStr, entity_label = 'MY_ENTITY'):
+    textStr = textStr.replace("'", "").replace("^ ", "") # Cleaning of text from Wikipedia
+    haveMoreEntities = True
+    
+    entity_position = []
+    entity_titles = []
+    for entityStr in entity_names:
+        start = textStr.find(entityStr)
+        end = start + len(entityStr)
+        if start != -1 and (not textStr[start - 1].isalnum()):
+            # By the condition (not textStr[start - 1].isalnum()) we check that the match found is not in the middle of another word.
+            try:
+                if (not textStr[end].isalnum()):
+                    entity_position += [(start, end, entity_label)]
+                    entity_titles += [entityStr]
+            except:
+                entity_position += [(start, end, entity_label)]
+                entity_titles += [entityStr]
+    
+
+    print("Initial discovery of entities: ", entity_position)
+    print("Initial discovery of entity titles: ", entity_titles)
+    print()
+
+    # This "if" block was used for an activity with data related to 'pragramming languages'.
+    # entity_titles.index('C') Throws "ValueError: element is not in list"
+    if 'C' in entity_titles:
+        c_variants = []
+        if 'C#' in entity_titles:
+            c_variants.append('C#')
+        if 'C++' in entity_titles:
+            c_variants.append('C++')
+        if 'Objective-C' in entity_titles:
+            c_variants.append('Objective-C')
+        if len(c_variants) > 0:
+            for i in c_variants:
+                try:
+                    c_start = entity_position[entity_titles.index('C')][0]
+                except:
+                    break
+                i_start = entity_position[entity_titles.index(i)][0]
+                i_end = entity_position[entity_titles.index(i)][1]
+                if c_start >= i_start and c_start <= i_end:
+                    del entity_position[entity_titles.index('C')]
+                    entity_titles.remove('C') # First 'C' removed.
+
+    overlap_detection_arr = []
+    entity_position_out = copy.deepcopy(entity_position)
+    
+    for i in entity_position:
+        temp_arr = []
+        for j in entity_position:
+            # This "i[1] < j[1] and i[1] > j[0]" is the overlap of kind: 
+            # 'ashish', 'ishleen' being picked from a hypothetical word 'ashishleen'.
+            if i[1] < j[1] and i[1] > j[0]:
+                len1 = i[1] - i[0]
+                len2 = j[1] - j[0]
+                if len1 > len2:
+                    try:
+                        entity_position_out.remove(j)
+                        del entity_titles[entity_position.index(j)]
+                    except:
+                        #print("Element not found.")
+                        pass
+                else:
+                    try:
+                        entity_position_out.remove(i)
+                        del entity_titles[entity_position.index(i)]
+                    except:
+                        #print("Element not found.")
+                        pass
+                print("Overlap detected.")  
+            else:
+                temp_arr.append(False)
+
+            # This "i[0] > j[0] and i[0] < j[1]" is the overlap of kind: jean (denoted by 'i'), greyjean (denoted by 'j')
+            if i[0] > j[0] and i[0] < j[1]:
+                len1 = i[1] - i[0]
+                len2 = j[1] - j[0]
+                if len1 > len2:
+                    try:
+                        entity_position_out.remove(j)
+                        del entity_titles[entity_position.index(j)]
+                    except:
+                        #print("Element not found.")
+                        pass
+                else:
+                    try:
+                        entity_position_out.remove(i)
+                        del entity_titles[entity_position.index(i)]
+                    except:
+                        #print("Element not found.")
+                        pass
+                print("Overlap detected.")  
+            else:
+                temp_arr.append(False)
+        overlap_detection_arr.append(temp_arr)
+
+    if len(entity_titles) > 0:
+        rv = (str(textStr), {'entities': entity_position_out})
+        print(rv)
+        print()
+        return rv
+		
+<b>Filename: .\output.txt </b>
+
+('An apple a day, keeps the doctor away.\n', {'entities': [(3, 8, 'MY_ENTITY')]})
+('Dont add apple cider vinegar to everything.\n', {'entities': [(9, 28, 'MY_ENTITY')]})
+('Apple is a fruit and so is banana.', {'entities': [(27, 33, 'MY_ENTITY'), (0, 5, 'MY_ENTITY')]})
+
+
+
+<b>Filename: .\test_input_strings.txt  </b>
+
+An apple a day, keeps the doctor away.
+Don't add apple cider vinegar to everything.
+Apple is a fruit and so is banana.
+
+
+
+<b>When we run the code in Command Prompt, it runs like this:</b>
+
+(e20200909) C:\Users\ashish\code>python main.py
+Initial discovery of entities:  [(3, 8, 'MY_ENTITY')]
+Initial discovery of entity titles:  ['apple']
+
+('An apple a day, keeps the doctor away.\n', {'entities': [(3, 8, 'MY_ENTITY')]})
+
+Initial discovery of entities:  [(9, 14, 'MY_ENTITY'), (9, 28, 'MY_ENTITY')]
+Initial discovery of entity titles:  ['apple', 'apple cider vinegar']
+
+Overlap detected.
+('Dont add apple cider vinegar to everything.\n', {'entities': [(9, 28, 'MY_ENTITY')]})
+
+Initial discovery of entities:  [(27, 33, 'MY_ENTITY'), (0, 5, 'MY_ENTITY')]
+Initial discovery of entity titles:  ['banana', 'Apple']
+
+('Apple is a fruit and so is banana.', {'entities': [(27, 33, 'MY_ENTITY'), (0, 5, 'MY_ENTITY')]})
+
+--- --- --- --- ---
+
+Note How to Remove Unused Imports:
+
+(e20200909) >>>conda install autoflake -c conda-forge
+
+(e20200909) >>>autoflake -i --remove-all-unused-imports main.py
+
+(e20200909) >>>autoflake -i --remove-all-unused-imports get_annotations.py
+
+Here:
+-i, --in-place: make changes to files instead of printing diffs
+
+--- --- --- --- ---
+
+
+</pre>

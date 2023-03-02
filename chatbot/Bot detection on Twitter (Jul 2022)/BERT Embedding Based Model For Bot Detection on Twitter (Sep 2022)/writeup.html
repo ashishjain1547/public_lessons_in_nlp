@@ -1,0 +1,177 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .ib {
+            color: blue
+        }
+
+        .ig {
+            color: green
+        }
+
+        .ir {
+            color: red
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/pubML/blob/main/e8_bot_detection_on_twitter/p7.2%20-%20English%20lang%20only%20-%20VADER%2C%20BERT%20for%20embedding%20and%20sentiment%2C%20and%20RandomForestClassifier.ipynb" target="_blank">Download Code</a>
+
+<pre>
+<i class="ib">
+import pandas as pd
+import numpy as np
+import re
+from time import time
+import seaborn as sns
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from sklearn.decomposition import PCA
+
+from sentence_transformers import SentenceTransformer
+
+nltk.download('vader_lexicon')
+
+df = pd.read_csv('tweets_f234_users_vader_bert_url_len_lang.csv')
+
+df = df[df['lang'] == 'en']
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3F0jBflIqZK69GDPPpPNI2UsU8vbOdCDDIKXDUQuU-jY1oZySsMGOf0KBhBVws_z338wOtMMzCMTsheVxLIOOw81Hx1iFpjRX5-bChXW3pQDRJ7k7DF9RYhyYiMH7ron7qHBhL8KWiUSg5qyEwnI6qLsBFYxWRSA7HlYb5xDW4-jWT5iyE1yryx5ZJg/s937/1.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="326" data-original-width="937" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3F0jBflIqZK69GDPPpPNI2UsU8vbOdCDDIKXDUQuU-jY1oZySsMGOf0KBhBVws_z338wOtMMzCMTsheVxLIOOw81Hx1iFpjRX5-bChXW3pQDRJ7k7DF9RYhyYiMH7ron7qHBhL8KWiUSg5qyEwnI6qLsBFYxWRSA7HlYb5xDW4-jWT5iyE1yryx5ZJg/s600/1.png"/></a></div>
+
+<i class="ib">
+sbert_model = SentenceTransformer('bert-base-nli-mean-tokens')
+</i>
+
+We are not encoding tweets again and again. For practical purpose, we encoded once and saved the embeddings on the disk.
+
+%%time
+nparray = sbert_model.encode(df['clean_tweet'].values)
+df_embeddings = pd.DataFrame(nparray)
+
+# CPU times: user 18h 28s, sys: 9min 51s, total: 18h 10min 19s
+# Wall time: 9h 7min 48s
+
+Then for this demo, we read them from the disk.
+
+<i class="ib">
+%%time
+df_embeddings = pd.read_csv('tweet_embeddings_using_bert_f234_1664047300.csv')
+
+# CPU times: user 1min 8s, sys: 7.25 s, total: 1min 15s
+# Wall time: 1min 24s
+
+print(df_embeddings.shape)
+</i>
+
+<i class="ig">(334679, 768)</i>
+
+<i class="ib">X_original_features = df[['vader_sentiment', 'url_flag', 'len', 'bert_clear_expression_conf']]
+y = df['account_type']
+
+# CPU times: user 28 s, sys: 6.76 s, total: 34.8 s
+# Wall time: 14.1 s
+
+pca = PCA(n_components=8) 
+
+# Data with n_components=64 takes infinite time (> 3 mins) to train a RandomForestClassifier.
+# Data with n_components=32 takes infinite time (> 3 mins) to train a RandomForestClassifier.
+# Data with n_components=16 takes infinite time (> 3 mins) to train a RandomForestClassifier.
+
+df_embeddings_pca = pca.fit_transform(df_embeddings)
+
+print(type(df_embeddings_pca))
+df_embeddings_pca = pd.DataFrame(df_embeddings_pca)
+print(df_embeddings_pca.shape)
+print(X_original_features.shape)
+</i>
+
+<i class="ig">
+&lt;class 'numpy.ndarray'>
+(334679, 8)
+(334679, 4)    
+</i>
+
+<i class="ib">
+for i in X_original_features.columns:
+    df_embeddings_pca[i] = X_original_features[i].values
+
+print(df_embeddings_pca.shape)
+</i>
+
+<i class="ig">
+(334679, 12)
+</i>
+
+<i class="ib">
+X_train, X_test, y_train, y_test = train_test_split(df_embeddings_pca, y, test_size=0.33, random_state=42)
+%%time
+clf = RandomForestClassifier(random_state=0)
+clf = clf.fit(X_train, y_train)
+
+# With PCA(n_components=8) 
+# Wall time: 2min 4s
+
+pred = clf.predict(X_test)
+
+labels = ['bot', 'human']
+
+print(classification_report(y_test, y_pred = pred, labels = labels))
+</i>
+
+<i class="ig">
+              precision    recall  f1-score   support
+ 
+bot              0.85      0.54      0.66     23603
+human            0.89      0.97      0.93     86842
+
+accuracy                             0.88    110445
+macro avg        0.87      0.76      0.79    110445
+weighted avg     0.88      0.88      0.87    110445
+</i>
+</pre>
+<span style="display: none">Tags: Technology,Natural Language Processing,</span>

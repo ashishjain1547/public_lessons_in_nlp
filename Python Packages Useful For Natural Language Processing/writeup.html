@@ -1,0 +1,428 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .ib {
+            color: blue
+        }
+
+        .ig {
+            color: green
+        }
+
+        .ir {
+            color: red
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre><h2>1. nltk</h2>
+
+The Natural Language Toolkit (NLTK) is a Python package for natural language processing. NLTK requires Python 3.7, 3.8, 3.9 or 3.10.
+
+As in:
+
+1.1. <i class="ib">from nltk.sentiment.vader import SentimentIntensityAnalyzer</i>
+1.2. <i class="ib">from nltk.stem import WordNetLemmatizer</i>
+1.3. <i class="ib">from nltk.corpus import stopwords</i>
+1.4. <i class="ib">from nltk.tokenize import word_tokenize</i>
+
+<h2>2. scikit-learn </h2>
+
+One of its most popular usages in NLP:
+
+2.1. <i class="ib">from sklearn.feature_extraction.text import TfidfVectorizer</i>
+2.2. <i class="ib">from sklearn.metrics.pairwise import cosine_similarity</i>
+2.3. <i class="ib">from sklearn.manifold import TSNE</i>
+2.4. <i class="ib">from sklearn.decomposition import LatentDirichletAllocation, PCA</i>
+2.5. <i class="ib">from sklearn.cluster import AgglomerativeClustering</i>
+
+Ref: <a href="https://survival8.blogspot.com/2022/01/math-with-words-lesson-in-natural.html" target="_blank">Math with words</a> 
+
+<h2>3. spaCy: Industrial-strength NLP</h2>
+
+spaCy is a library for advanced Natural Language Processing in Python and Cython. It's built on the very latest research, and was designed from day one to be used in real products.
+
+spaCy comes with pretrained pipelines and currently supports tokenization and training for 60+ languages. It features state-of-the-art speed and neural network models for tagging, parsing, named entity recognition, text classification and more, multi-task learning with pretrained transformers like BERT, as well as a production-ready training system and easy model packaging, deployment and workflow management. spaCy is commercial open-source software, released under the MIT license.
+
+Our use case involved NER capability of spaCy:
+
+Ref: 
+% <a href="https://survival8.blogspot.com/p/exploring-word2vec-to-find-closest.html" target="_blank">Exploring Word2Vec</a> 
+% <a href="https://survival8.blogspot.com/2021/01/python-code-to-create-annotations.html" target="_blank">Python Code to Create Annotations For SpaCy NER</a> 
+
+<h2>4. gensim</h2>
+
+Gensim is a Python library for topic modelling, document indexing and similarity retrieval with large corpora. Target audience is the natural language processing (NLP) and information retrieval (IR) community.
+
+Ref: <a href="https://pypi.org/project/gensim/">PyPI</a> 
+
+Our usecase involved:
+4.1. <i class="ib">from gensim.models import Word2Vec</i>
+4.2. <i class="ib">from gensim.corpora.dictionary import Dictionary</i>
+4.3. <i class="ib">from gensim.models.lsimodel import LsiModel, stochastic_svd</i>
+4.4. <i class="ib">from gensim.models.coherencemodel import CoherenceModel</i>
+4.5. <i class="ib">from gensim.models.ldamodel import LdaModel # Latent Dirichlet Allocation and not 'Latent Discriminant Analysis'</i>
+4.6. <i class="ib">from gensim.models import RpModel</i>
+4.7. <i class="ib">from gensim.matutils import corpus2dense, Dense2Corpus</i>
+4.8. <i class="ib">from gensim.test.utils import common_texts</i>
+
+<h2>5. word2vec</h2>
+
+Python interface to Google word2vec.
+
+Training is done using the original C code, other functionality is pure Python with numpy.
+
+<h2>6. GloVe</h2>
+
+Cython general implementation of the Glove multi-threaded training.
+
+GloVe is an unsupervised learning algorithm for generating vector representations for words.
+Training is done using a co-occcurence matrix from a corpus. The resulting representations contain structure useful for many other tasks.
+
+The paper describing the model is <a href="http://nlp.stanford.edu/projects/glove/glove.pdf" target="_blank">[here]</a>.
+
+The original implementation for this Machine Learning model can be <a href="http://nlp.stanford.edu/projects/glove/" target="_blank">[found here]</a>.
+
+<h2>7. fastText</h2>
+
+fastText is a library for efficient learning of word representations and sentence classification.
+
+Ref:
+% <a href="https://pypi.org/project/fasttext/" target="_blank">PyPI</a> 
+% <a href="https://survival8.blogspot.com/2022/06/reasoning-with-word-vectors-word2vec.html">Reasoning with Word Vectors</a>
+
+<h2>8. TextWiser: Text Featurization Library</h2>
+
+TextWiser (AAAI'21) is a research library that provides a unified framework for text featurization based on a rich set of methods while taking advantage of pretrained models provided by the state-of-the-art libraries.
+
+The main contributions include:
+
+Rich Set of Embeddings: A wide range of available embeddings and transformations to choose from.
+
+Fine-Tuning: Designed to support a PyTorch backend, and hence, retains the ability to fine-tune featurizations for downstream tasks. That means, if you pass the resulting fine-tunable embeddings to a training method, the features will be optimized automatically for your application.
+
+Parameter Optimization: Interoperable with the standard scikit-learn pipeline for hyper-parameter tuning and rapid experimentation. All underlying parameters are exposed to the user.
+
+Grammar of Embeddings: Introduces a novel approach to design embeddings from components. The compound embedding allows forming arbitrarily complex embeddings in accordance with a context-free grammar that defines a formal language for valid text featurization.
+
+GPU Native: Built with GPUs in mind. If it detects available hardware, the relevant models are automatically placed on the GPU.
+
+TextWiser is developed by the Artificial Intelligence Center of Excellence at Fidelity Investments. Documentation is available at fidelity.github.io/textwiser. Here is the video of the paper presentation at AAAI 2021.
+
+Our Usecase Involved:
+Document Embeddings (Doc2Vec): Supported by gensim
+% Defaults to training from scratch
+
+Ref: <a href="https://pypi.org/project/textwiser/" target="_blank">PyPI</a> 
+
+<h2>9. BERT-As-a-Service </h2>
+
+pip install bert-serving-server  # server
+pip install bert-serving-client  # client, independent of `bert-serving-server` 
+
+Ref: 
+% <a href="https://survival8.blogspot.com/2020/10/getting-started-with-word-embedding.html" target="_blank">Getting Started with BERT-As-a-Service</a> 
+% <a href="https://survival8.blogspot.com/2020/10/word-embeddings-using-bert-demo-of-bert.html" target="_blank">Word Embeddings Using BERT (Demo of BERT-As-a-Service)</a>
+
+<h2>10. transformers</h2>
+
+State-of-the-art Machine Learning for JAX, PyTorch and TensorFlow:
+Transformers provides thousands of pretrained models to perform tasks on different modalities such as text, vision, and audio.
+
+These models can be applied on:
+
+- Text, for tasks like text classification, information extraction, question answering, summarization, translation, text generation, in over 100 languages.
+- Images, for tasks like image classification, object detection, and segmentation.
+- Audio, for tasks like speech recognition and audio classification.
+
+Transformer models can also perform tasks on several modalities combined, such as table question answering, optical character recognition, information extraction from scanned documents, video classification, and visual question answering.
+
+Transformers provides APIs to quickly download and use those pretrained models on a given text, fine-tune them on your own datasets and then share them with the community on our model hub. At the same time, each python module defining an architecture is fully standalone and can be modified to enable quick research experiments.
+
+Transformers is backed by the three most popular deep learning libraries — Jax, PyTorch and TensorFlow — with a seamless integration between them. It's straightforward to train your models with one before loading them for inference with the other.
+
+Ref: 
+% <a href="https://survival8.blogspot.com/2020/10/word-embeddings-using-bert-and-testing.html" target="_blank">Word Embeddings using BERT and testing using Word Analogies, Nearest Words, 1D Spectrum</a> 
+% <a href="https://pypi.org/project/transformers/" target="_blank">PyPI</a> 
+% <a href="https://anaconda.org/conda-forge/transformers" target="_blank">conda-forge</a> 
+
+<h2>11. torch</h2>
+
+PyTorch is a Python package that provides two high-level features:
+
+% Tensor computation (like NumPy) with strong GPU acceleration
+% Deep neural networks built on a tape-based autograd system
+
+You can reuse your favorite Python packages such as NumPy, SciPy, and Cython to extend PyTorch when needed.
+
+Ref: <a href="https://pypi.org/project/torch/" target="_blank">PyPI</a> 
+
+<h2>12. sentence-transformers</h2>
+
+Sentence Transformers: Multilingual Sentence, Paragraph, and Image Embeddings using BERT & Co.
+
+This framework provides an easy method to compute dense vector representations for sentences, paragraphs, and images. The models are based on transformer networks like BERT / RoBERTa / XLM-RoBERTa etc. and achieve state-of-the-art performance in various task. Text is embedding in vector space such that similar text is close and can efficiently be found using cosine similarity.
+
+We provide an increasing number of state-of-the-art pretrained models for more than 100 languages, fine-tuned for various use-cases.
+
+Further, this framework allows an easy fine-tuning of custom embeddings models, to achieve maximal performance on your specific task.
+
+For the full documentation, see www.SBERT.net.
+
+The following publications are integrated in this framework:
+
+Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks (EMNLP 2019)
+
+Making Monolingual Sentence Embeddings Multilingual using Knowledge Distillation (EMNLP 2020)
+
+Augmented SBERT: Data Augmentation Method for Improving Bi-Encoders for Pairwise Sentence Scoring Tasks (NAACL 2021)
+    
+The Curse of Dense Low-Dimensional Information Retrieval for Large Index Sizes (arXiv 2020)
+    
+TSDAE: Using Transformer-based Sequential Denoising Auto-Encoder for Unsupervised Sentence Embedding Learning (arXiv 2021)
+    
+BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models (arXiv 2021)
+
+Ref: 
+
+% <a href="https://pypi.org/project/sentence-transformers/" target="_blank">PyPI</a> 
+% <a href="https://anaconda.org/conda-forge/sentence-transformers" target="_blank">conda-forge</a> 
+
+<h2>13. Scrapy</h2>
+
+Scrapy is a fast high-level web crawling and web scraping framework, used to crawl websites and extract structured data from their pages. It can be used for a wide range of purposes, from data mining to monitoring and automated testing.
+
+Scrapy is maintained by Zyte (formerly Scrapinghub) and many other contributors.
+
+Check the Scrapy homepage at https://scrapy.org for more information, including a list of features.
+
+Requirements:
+
+% Python 3.6+
+% Works on Linux, Windows, macOS, BSD
+
+<h2>14. Rasa</h2>
+
+% Open source machine learning framework to automate text- and voice-based conversations: NLU, dialogue management, connect to Slack, Facebook, and more
+% Create chatbots and voice assistants
+
+Ref: <a href="https://pypi.org/project/rasa/" target="_blank">Rasa</a> 
+
+<h2>15. Sentiment Analysis using BERT, DistilBERT and ALBERT</h2>
+
+Sentiment analysis neural network trained by fine-tuning BERT, ALBERT, or DistilBERT on the Stanford Sentiment Treebank. 
+
+Ref: 
+% <a href="https://github.com/barissayil/SentimentAnalysis" target="_blank">barissayil/SentimentAnalysis</a>
+% <a href="https://survival8.blogspot.com/2022/09/sentiment-analysis-using-bert.html" target="_blank">Sentiment Analysis Using BERT</a> 
+
+<h2>16. pyLDAvis</h2>
+
+Python library for interactive topic model visualization. This is a port of the fabulous R package by Carson Sievert and Kenny Shirley.
+
+pyLDAvis is designed to help users interpret the topics in a topic model that has been fit to a corpus of text data. The package extracts information from a fitted LDA topic model to inform an interactive web-based visualization.
+
+The visualization is intended to be used within an IPython notebook but can also be saved to a stand-alone HTML file for easy sharing.
+
+Note: LDA stands for latent Dirichlet allocation.
+
+Ref:
+% <a href="https://pypi.org/project/pyLDAvis/" target="_blank">PyPI</a> 
+% <a href="https://survival8.blogspot.com/2022/06/creating-taxonomy-for-bbc-news-articles_29.html" target="_blank">Creating taxonomy for BBC news articles</a> 
+
+<h2>17. scipy</h2>
+
+As in for cosine distance calculation:
+
+<i class="ib">from scipy.spatial.distance import cosine</i>
+
+Note:
+from sklearn.metrics.pairwise import cosine_similarity 
+# Expects 2D arrays as input
+
+from scipy.spatial.distance import cosine 
+# Works with 1D vectors
+
+<h2>18. twitter</h2>
+
+The Minimalist Twitter API for Python is a Python API for Twitter, everyone's favorite Web 2.0 Facebook-style status updater for people on the go.
+
+Also included is a Twitter command-line tool for getting your friends' tweets and setting your own tweet from the safety and security of your favorite shell and an IRC bot that can announce Twitter updates to an IRC channel.
+
+Ref:
+% https://pypi.org/project/twitter/
+% https://survival8.blogspot.com/2022/09/using-twitter-api-to-fetch-trending.html
+
+<h2>19. spark-nlp</h2>
+
+Spark NLP is a state-of-the-art Natural Language Processing library built on top of Apache Spark. It provides simple, performant & accurate NLP annotations for machine learning pipelines that scale easily in a distributed environment. Spark NLP comes with 11000+ pretrained pipelines and models in more than 200+ languages. It also offers tasks such as Tokenization, Word Segmentation, Part-of-Speech Tagging, Word and Sentence Embeddings, Named Entity Recognition, Dependency Parsing, Spell Checking, Text Classification, Sentiment Analysis, Token Classification, Machine Translation (+180 languages), Summarization, Question Answering, Table Question Answering, Text Generation, Image Classification, Automatic Speech Recognition, and many more NLP tasks.
+
+Spark NLP is the only open-source NLP library in production that offers state-of-the-art transformers such as BERT, CamemBERT, ALBERT, ELECTRA, XLNet, DistilBERT, RoBERTa, DeBERTa, XLM-RoBERTa, Longformer, ELMO, Universal Sentence Encoder, Google T5, MarianMT, GPT2, and Vision Transformers (ViT) not only to Python and R, but also to JVM ecosystem (Java, Scala, and Kotlin) at scale by extending Apache Spark natively.
+
+Ref: https://pypi.org/project/spark-nlp/
+
+<h2>20. keras-transformer</h2>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtKC9aMSQIFaKBAI5oB88iCcNxh4nAHyBzgoZazFZSz0rpYMMAfZTZ1VIZ8MXA-CVK4OtZn-CVxSYdBSt93fTpKQuY66wTSFTlSE8ronHt2SstDG8CAdqj-wVFOjNuMFufaKbfoYyI1VVImJzM_ldXtFFa-xjWSI0E6LsUok3XiVPgTNXCU4ZIN5iy-A/s964/keras-transformer.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="964" data-original-width="706" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtKC9aMSQIFaKBAI5oB88iCcNxh4nAHyBzgoZazFZSz0rpYMMAfZTZ1VIZ8MXA-CVK4OtZn-CVxSYdBSt93fTpKQuY66wTSFTlSE8ronHt2SstDG8CAdqj-wVFOjNuMFufaKbfoYyI1VVImJzM_ldXtFFa-xjWSI0E6LsUok3XiVPgTNXCU4ZIN5iy-A/s600/keras-transformer.png"/></a></div>
+
+Popular Usage: Machine Translation
+
+Ref:
+# <a href="https://pypi.org/project/keras-transformer/" target="_blank">PyPI</a>
+# <a href="https://github.com/CyberZHG/keras-transformer" target="_blank">GitHub</a>
+
+<h2>21. pronouncing</h2>
+
+Pronouncing is a simple interface for the CMU Pronouncing Dictionary. It’s easy to use and has no external dependencies. For example, here’s how to find rhymes for a given word:
+
+>>> import pronouncing
+>>> pronouncing.rhymes("climbing")
+['diming', 'liming', 'priming', 'rhyming', 'timing']
+
+Ref: https://pypi.org/project/pronouncing/
+
+<h2>22. random-word</h2>
+
+This is a simple python package to generate random English words. 
+
+<h2>23. langdetect</h2>
+
+Port of Nakatani Shuyo's language-detection library (version from 03/03/2014) to Python.
+
+langdetect supports 55 languages out of the box (ISO 639-1 codes):
+
+af, ar, bg, bn, ca, cs, cy, da, de, el, en (English), es, et, fa, fi, fr, gu, he, hi (Hindi), hr, hu, id, it, ja, kn, ko, lt, lv, mk, ml, mr, ne, nl, no, pa, pl, pt, ro, ru, sk, sl, so, sq, sv, sw, ta, te, th, tl, tr, uk, ur, vi, zh-cn, zh-tw
+
+Ref: https://pypi.org/project/langdetect/
+
+<h2>24. PyPDF2</h2>
+
+PyPDF2 is a free and open-source pure-python PDF library capable of splitting, merging, cropping, and transforming the pages of PDF files. It can also add custom data, viewing options, and passwords to PDF files. PyPDF2 can retrieve text and metadata from PDFs as well.
+
+<h2>25. python-docx</h2>
+
+python-docx is a Python library for creating and updating Microsoft Word (.docx) files.
+
+Installation:
+$ pip install python-docx 
+
+Usage:
+import docx 
+
+Note: Does not support .pdf and .doc
+
+Ref: 
+% <a href="https://github.com/python-openxml/python-docx" target="_blank">github</a> 
+% <a href="https://survival8.blogspot.com/2021/09/convert-ms-word-files-into-pdf-format.html" target="_blank">Convert MS Word files into PDF format</a> 
+
+<h2>26. emoji</h2>
+
+Emoji for Python. This project was inspired by kyokomi.
+
+The entire set of Emoji codes as defined by the Unicode consortium is supported in addition to a bunch of aliases. By default, only the official list is enabled but doing emoji.emojize(language='alias') enables both the full list and aliases.
+
+Ref:
+% <a href="https://pypi.org/project/emoji/" target="_blank">PyPI</a>
+% <a href="https://anaconda.org/conda-forge/emoji" target="_blank">conda-forge</a>
+% <a href="https://survival8.blogspot.com/p/social-analysis-soan-using-python-3.html" target="_blank">Social Analysis (SOAN using Python 3) Report</a>
+
+<h2>27. pattern</h2>
+
+Web mining module for Python.
+
+Ref:
+% <a href="https://pypi.org/project/Pattern/" target="_blank">PyPI</a>
+% <a href="https://anaconda.org/conda-forge/pattern" target="_blank">conda-forge</a>
+
+<h2>28. wordcloud</h2>
+
+A little word cloud generator in Python. Read more about it on the blog post or the website.
+The code is tested against Python 2.7, 3.4, 3.5, 3.6 and 3.7. [Dated: 20221005]
+
+<h3>Installation with pip3</h3>
+
+<i class="ib">$ pip3 install wordcloud</i>
+<i class="ig">
+Collecting wordcloud
+Downloading wordcloud-1.8.2.2-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+    |████████████████████████████████| 458 kB 13 kB/s 
+Requirement already satisfied: numpy>=1.6.1 in /home/ashish/anaconda3/lib/python3.9/site-packages (from wordcloud) (1.21.5)
+Requirement already satisfied: matplotlib in /home/ashish/anaconda3/lib/python3.9/site-packages (from wordcloud) (3.5.1)
+Requirement already satisfied: pillow in /home/ashish/anaconda3/lib/python3.9/site-packages (from wordcloud) (9.0.1)
+Requirement already satisfied: cycler>=0.10 in /home/ashish/anaconda3/lib/python3.9/site-packages (from matplotlib->wordcloud) (0.11.0)
+Requirement already satisfied: fonttools>=4.22.0 in /home/ashish/anaconda3/lib/python3.9/site-packages (from matplotlib->wordcloud) (4.25.0)
+Requirement already satisfied: packaging>=20.0 in /home/ashish/anaconda3/lib/python3.9/site-packages (from matplotlib->wordcloud) (21.3)
+Requirement already satisfied: python-dateutil>=2.7 in /home/ashish/anaconda3/lib/python3.9/site-packages (from matplotlib->wordcloud) (2.8.2)
+Requirement already satisfied: kiwisolver>=1.0.1 in /home/ashish/anaconda3/lib/python3.9/site-packages (from matplotlib->wordcloud) (1.3.2)
+Requirement already satisfied: pyparsing>=2.2.1 in /home/ashish/anaconda3/lib/python3.9/site-packages (from matplotlib->wordcloud) (3.0.4)
+Requirement already satisfied: six>=1.5 in /home/ashish/anaconda3/lib/python3.9/site-packages (from python-dateutil>=2.7->matplotlib->wordcloud) (1.16.0)
+Installing collected packages: wordcloud
+Successfully installed wordcloud-1.8.2.2  
+</i>
+
+Ref:
+% <a href="https://pypi.org/project/wordcloud/" target="_blank">PyPI</a>
+% <a href="https://anaconda.org/conda-forge/wordcloud" target="_blank">conda-forge</a>
+
+<h2>29. Social Analysis (SOAN)</h2>
+
+Social Analysis based on Whatsapp data 
+
+Ref: <a href="https://github.com/MaartenGr/soan" target="_blank">GitHub</a>
+
+</pre>
+<span style="display: none">Tags: Technology,Natural Language Processing,</span>

@@ -1,0 +1,306 @@
+<head>
+  <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $.ajax({
+        url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+        success: function (result) {
+          $("div.customTemporaryCodeHolder").html(result);
+          $("nav.customDynamicNav").html(
+            $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+          );
+        }
+      });
+
+      $.ajax({
+        url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+        success: function (result) {
+          $("span.customTempCodeHolderForSocialMedia").html(result);
+          $("div.customSocialMediaBtnsWrapper").html(
+            $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+          );
+        }
+
+      });
+    }); 
+  </script>
+  <!-- Google AdSense Using Machine Learning Code -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3071098372371409",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <style>
+    .customTempCodeHolderForSocialMedia {
+      display: none;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -pre-wrap;
+      white-space: -o-pre-wrap;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>For installation we use a YAML file.
+File: D:\f25\files_2\bert_aas.yaml
+
+<i style="color: blue;">name: bert_aas
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - termcolor
+  - numpy
+  - pyzmq
+  - tensorflow==1.14.0
+  - GPUtil
+  - sphinx-argparse
+  - pip:
+    - bert-serving-server
+    - bert-serving-client </i>
+
+==========
+
+(base) CMD>conda env list
+<i style="color: green;"># conda environments:
+#
+base                  *  D:\programfiles\Anaconda3
+e20200909                D:\programfiles\Anaconda3\envs\e20200909
+py38                     D:\programfiles\Anaconda3\envs\py38
+... </i>
+
+(base) CMD>jupyter kernelspec list
+<i style="color: green;">Available kernels:
+  tf         C:\Users\aj\AppData\Roaming\jupyter\kernels\tf
+  python3    D:\programfiles\Anaconda3\share\jupyter\kernels\python3
+  py38       C:\ProgramData\jupyter\kernels\py38 </i>
+  
+==========
+
+==> WARNING: A newer version of conda exists.
+  current version: 4.8.4
+  latest version: 4.8.5
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+==========
+
+CMD> conda env create -f bert_aas_1.yaml
+
+(base) CMD>conda activate bert_aas
+
+==========
+
+<b>Checking TensorFlow installation</b>
+
+(bert_aas) CMD>pip freeze | find "tensorflow"
+tensorflow @ file:///D:/bld/tensorflow_1594833538462/work/tensorflow-1.14.0-cp37-cp37m-win_amd64.whl
+tensorflow-estimator==1.14.0
+
+(bert_aas) CMD>python
+Python 3.7.8 | packaged by conda-forge | (default, Jul 31 2020, 01:53:57) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import tensorflow as tf
+...
+<i style="color: red;">D:\programfiles\Anaconda3\envs\bert_aas\lib\site-packages\tensorboard\compat\tensorflow_stub\dtypes.py:550: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)]) </i>
+>>> tf.__version__
+<i style="color: green;">'1.14.0' </i>
+>>>
+>>> hello = tf.constant('Hello, TensorFlow!')
+>>> sess = tf.Session()
+2020-10-05 14:47:48.399686: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2
+>>> print(sess.run(hello))
+b'Hello, TensorFlow!'
+>>>   
+
+==========
+
+<b>Setting up "model_dir" </b>
+
+This directory is passed as an input argument to "bert-serving-start" program from Command Prompt.
+
+Model can be downloaded from here: <a href="https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip" target="_blank">storage.googleapis.com: BERT-Base, Uncased: 12-layer, 768-hidden, 12-heads, 110M parameters</a>
+
+We also have these options for models (among others):
+
+1. BERT-Large, Uncased (Whole Word Masking): 24-layer, 1024-hidden, 16-heads, 340M parameters
+2. BERT-Large, Cased (Whole Word Masking): 24-layer, 1024-hidden, 16-heads, 340M parameters
+3. BERT-Base, Uncased: 12-layer, 768-hidden, 12-heads, 110M parameters
+4. BERT-Large, Uncased: 24-layer, 1024-hidden, 16-heads, 340M parameters
+5. BERT-Base, Cased: 12-layer, 768-hidden, 12-heads , 110M parameters
+6. BERT-Large, Cased: 24-layer, 1024-hidden, 16-heads, 340M parameters
+
+Additional Note:
+
+<b>Fine-tuning with BERT </b>
+Important: All results on the paper were fine-tuned on a single Cloud TPU, which has 64GB of RAM. It is currently not possible to re-produce most of the BERT-Large results on the paper using a GPU with 12GB - 16GB of RAM, because the maximum batch size that can fit in memory is too small. We are working on adding code to this repository which allows for much larger effective batch size on the GPU. See the section on out-of-memory issues for more details.
+
+This code was tested with TensorFlow 1.11.0. It was tested with Python2 and Python3 (but more thoroughly with Python2, since this is what's used internally in Google).
+
+The fine-tuning examples which use BERT-Base should be able to run on a GPU that has at least 12GB of RAM using the hyperparameters given.
+
+Ref: <a href="https://github.com/google-research/bert#pre-trained-models" target="_blank">bert#pre-trained-models</a>
+
+==========
+
+<b>Issues with newer versions of TensorFlow and Bert-as-a-service </b>
+
+CMD> <i style="color: blue">bert-serving-start -model_dir E:\e25/files_2/uncased_L-12_H-768_A-12 -num_worker=1</i>
+
+<i style="color: blue">(bert_aas) E:\e25\files_2>bert-serving-start -model_dir E:\e25/files_2/uncased_L-12_H-768_A-12 -num_worker=1</i>
+
+<i style="color: red">2020-10-04 23:14:02.505211: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'cudart64_101.dll'; dlerror: cudart64_101.dll not found
+2020-10-04 23:14:02.515231: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages\bert_serving\server\helper.py:176: UserWarning: Tensorflow 2.3.0 is not tested! It may or may not work. Feel free to submit an issue at https://github.com/hanxiao/bert-as-service/issues/
+  'Feel free to submit an issue at https://github.com/hanxiao/bert-as-service/issues/' % tf.__version__)
+usage: E:\programfiles\Anaconda3\envs\bert_aas\Scripts\bert-serving-start -model_dir E:\e25/files_2/uncased_L-12_H-768_A-12 -num_worker=1
+                  ARG   VALUE
+__________________________________________________
+            ckpt_name = bert_model.ckpt
+          config_name = bert_config.json
+                cors = *
+                  cpu = False
+          device_map = []
+        do_lower_case = True
+  fixed_embed_length = False
+                fp16 = False
+  gpu_memory_fraction = 0.5
+        graph_tmp_dir = None
+    http_max_connect = 10
+            http_port = None
+        mask_cls_sep = False
+      max_batch_size = 256
+          max_seq_len = 25
+            model_dir = E:\e25/files_2/uncased_L-12_H-768_A-12
+no_position_embeddings = False
+    no_special_token = False
+          num_worker = 1
+        pooling_layer = [-2]
+    pooling_strategy = REDUCE_MEAN
+                port = 5555
+            port_out = 5556
+        prefetch_size = 10
+  priority_batch_size = 16
+show_tokens_to_client = False
+      tuned_model_dir = None
+              verbose = False
+                  xla = False
+
+I: [35mVENTILATOR [0m:freeze, optimize and export graph, could take a while...
+
+e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages\bert_serving\server\helper.py:176: <b>UserWarning: Tensorflow 2.3.0 is not tested! It may or may not work.</b> Feel free to submit an issue at https://github.com/hanxiao/bert-as-service/issues/
+  'Feel free to submit an issue at https://github.com/hanxiao/bert-as-service/issues/' % tf.__version__)
+E: [36mGRAPHOPT [0m:fail to optimize the graph!
+Traceback (most recent call last):
+  File "e:\programfiles\anaconda3\envs\bert_aas\lib\runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "e:\programfiles\anaconda3\envs\bert_aas\lib\runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "E:\programfiles\Anaconda3\envs\bert_aas\Scripts\bert-serving-start.exe\__main__.py", line 7, in <module>
+  File "e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages\bert_serving\server\cli\__init__.py", line 4, in main
+    with BertServer(get_run_args()) as server:
+  File "e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages\bert_serving\server\__init__.py", line 71, in __init__
+    self.graph_path, self.bert_config = pool.apply(optimize_graph, (self.args,))
+<b>TypeError: cannot unpack non-iterable NoneType object </b></i>
+
+FROM HELPER.PY:
+Path: e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages\bert_serving\server\helper.py
+
+<i style="color: blue">import tensorflow as tf
+tf_ver = tf.__version__.split('.')
+if int(tf_ver[0]) <= 1 and int(tf_ver[1]) < 10:
+    raise ModuleNotFoundError('Tensorflow >=1.10 (one-point-ten) is required!')
+elif int(tf_ver[0]) > 1:
+    warnings.warn('Tensorflow %s is not tested! It may or may not work. '
+                  'Feel free to submit an issue at https://github.com/hanxiao/bert-as-service/issues/' % tf.__version__)
+return tf_ver </i>
+
+~   ~   ~   ~   ~
+
+<b>Removing Conda Environment in Case of Failure</b>
+(bert_aas) CMD>conda deactivate
+(base) CMD>conda env remove -n bert_aas
+Remove all packages in environment E:\programfiles\Anaconda3\envs\bert_aas: y
+
+<b>Checking installation</b>
+
+<i style="color: blue">(bert_aas) CMD>pip freeze | findstr "GPUtil"</i>
+
+<i style="color: green">GPUtil @ file:///home/conda/feedstock_root/build_artifacts/gputil_1590646865081/work </i>
+
+<i style="color: blue">(bert_aas) CMD>pip freeze | findstr /C:"tensorflow" /C:"numpy" /C:"GPUtil" </i>
+
+<i style="color: green">GPUtil @ file:///home/conda/feedstock_root/build_artifacts/gputil_1590646865081/work
+numpy==1.18.5
+tensorflow==1.14.0
+tensorflow-estimator==1.14.0 </i>
+
+==========
+
+Starting the server:
+
+CMD> <i style="color: blue">bert-serving-start -model_dir D:\ws\jupyter\f25_bert_for_sent_an\files_2\uncased_L-12_H-768_A-12 -num_worker=1</i>
+
+Logs:
+<i style="color: green">                 ARG   VALUE
+__________________________________________________
+            ckpt_name = bert_model.ckpt
+          config_name = bert_config.json
+            model_dir = D:\ws\jupyter\f25_bert_for_sent_an\files_2\uncased_L-12_H-768_A-12
+...
+I: [36mGRAPHOPT [0m:model config: D:\ws\jupyter\f25_bert_for_sent_an\files_2\uncased_L-12_H-768_A-12\bert_config.json
+I: [36mGRAPHOPT [0m:checkpoint: D:\ws\jupyter\f25_bert_for_sent_an\files_2\uncased_L-12_H-768_A-12\bert_model.ckpt
+I: [36mGRAPHOPT [0m:build graph...
+I: [36mGRAPHOPT [0m:load parameters from checkpoint...
+I: [36mGRAPHOPT [0m:optimize...
+I: [36mGRAPHOPT [0m:freeze...
+I: [36mGRAPHOPT [0m:write graph to a tmp file: C:\Users\aj\AppData\Local\Temp\tmpxyxaq_b3
+I: [35mVENTILATOR [0m:optimized graph is stored at: C:\Users\aj\AppData\Local\Temp\tmpxyxaq_b3
+I: [35mVENTILATOR [0m:bind all sockets
+I: [35mVENTILATOR [0m:open 8 ventilator-worker sockets
+I: [35mVENTILATOR [0m:start the sink
+...
+I: [33mWORKER-0 [0m:ready and listening!
+I: [35mVENTILATOR [0m:all set, ready to serve request! </i>
+
+==========
+
+<b>Running the client</b>
+
+(base) C:\Users\aj>conda activate bert_aas
+
+(bert_aas) C:\Users\aj>python
+
+<i style="color: green">>>> from bert_serving.client import BertClient
+>>> bc = BertClient()
+>>> enc_values = bc.encode(['First do it', 'then do it right', 'then do it better'])
+>>> enc_values.shape
+(3, 768)
+>>> enc_values
+array([[ 0.13186528,  0.3240411 , -0.82704353, ..., -0.37119573,
+        -0.39250126, -0.31721842],
+        [ 0.24873482, -0.12334437, -0.38933888, ..., -0.4475625 ,
+        -0.55913603, -0.11345193],
+        [ 0.2862734 , -0.18580128, -0.3090687 , ..., -0.29593647,
+        -0.39310572,  0.0764024 ]], dtype=float32)
+>>> </i>
+
+</pre>

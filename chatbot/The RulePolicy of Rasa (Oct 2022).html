@@ -1,0 +1,388 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .ib {
+            color: blue
+        }
+
+        .ig {
+            color: green
+        }
+
+        .ir {
+            color: red
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>
+You would come across the RulePolicy configuration of Rasa if you ever land up on this Rasa documentation page: https://rasa.com/docs/rasa/policies/
+
+The page for Forms says:
+
+<i><h2>Usage</h2>
+
+To use forms with Rasa Open Source you need to make sure that the Rule Policy is added to your policy configuration. For example:</i>
+
+<i class="ib"></i>
+policies:
+- name: RulePolicy    
+</i>
+
+To find out the lack of proper logging and getting to understand the erroneous situation that this policy can land you in, do the following.
+
+Do a "$ rasa init" to initialize a project.
+
+Add the following code to the "config.yml":
+
+<i class="ib">
+policies:
+ - name: RulePolicy    
+</i>
+
+Next, do:
+
+<i class="ib">
+$ rasa train 
+$ rasa interactive
+</i>
+
+<h2>Next we are going to show chat logs 'with the RulePolicy configuration' and 'without the RulePolicy configuration'</h2>
+
+<h3>Without the RulePolicy configuration (this is the default setting you get from '$ rasa init')</h3>
+
+<i class="ig">
+(base) ashish@ashish-Lenovo-ideapad-130-15IKB:~/Desktop/ws/jupyter/rasa/project2$ rasa interactive
+2022-10-04 00:09:02 INFO     numexpr.utils  - NumExpr defaulting to 4 threads.
+The configuration for policies and pipeline was chosen automatically. It was written into the config file at 'config.yml'.
+/home/ashish/.local/lib/python3.8/site-packages/matplotlib/__init__.py:169: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(module.__version__) &lt; minver:
+/home/ashish/anaconda3/envs/rasa_py38/lib/python3.8/site-packages/setuptools/_distutils/version.py:346: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    other = LooseVersion(other)
+/home/ashish/.local/lib/python3.8/site-packages/tensorflow_addons/utils/ensure_tf_install.py:47: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    min_version = LooseVersion(INCLUSIVE_MIN_TF_VERSION)
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'CountVectorsFeaturizer' from cache.
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'CountVectorsFeaturizer' from cache.
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'DIETClassifier' from cache.
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'EntitySynonymMapper' from cache.
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'LexicalSyntacticFeaturizer' from cache.
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'MemoizationPolicy' from cache.
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'RegexFeaturizer' from cache.
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'ResponseSelector' from cache.
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'RulePolicy' from cache.
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'TEDPolicy' from cache.
+2022-10-04 00:09:09 INFO     rasa.engine.training.hooks  - Restored component 'UnexpecTEDIntentPolicy' from cache.
+Your Rasa model is trained and saved at 'models/20221004-000906-cream-hoops.tar.gz'.
+/home/ashish/.local/lib/python3.8/site-packages/colorclass/codes.py:5: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+    from collections import Mapping
+/home/ashish/.local/lib/python3.8/site-packages/sanic_cors/extension.py:39: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    SANIC_VERSION = LooseVersion(sanic_version)
+2022-10-04 00:09:24 INFO     rasa.core.processor  - Loading model models/20221004-000906-cream-hoops.tar.gz...
+2022-10-04 00:09:51 WARNING  rasa.shared.utils.common  - The UnexpecTED Intent Policy is currently experimental and might change or be removed in the future 🔬 Please share your feedback on it in the forum (https://forum.rasa.com) to help us make this feature ready for production.
+2022-10-04 00:10:04 INFO     root  - Rasa server is up and running.
+Processed story blocks: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00&lt;00:00, 1446.98it/s, # trackers=1]
+Processed rules: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 2095.58it/s, # trackers=1]
+Bot loaded. Visualisation at http://localhost:5006/visualization.html .
+Type a message and press enter (press 'Ctrl-c' to exit).
+? Your input -> hi
+? Your NLU model classified 'hi' with intent 'greet' and there are no entities, is this correct? Yes
+------
+Chat History
+
+    #    Bot                        You        
+────────────────────────────────────────────
+    1    action_listen                         
+────────────────────────────────────────────
+    2                                       hi 
+                            intent: greet 1.00 
+
+
+Current slots: 
+    session_started_metadata: None
+
+------
+? The bot wants to run 'utter_greet', correct? Yes
+/home/ashish/.local/lib/python3.8/site-packages/rasa/server.py:860: FutureWarning: The "POST /conversations/&lt;conversation_id>/execute" endpoint is deprecated. Inserting actions to the tracker externally should be avoided. Actions should be predicted by the policies only.
+    rasa.shared.utils.io.raise_warning(
+------
+Chat History
+
+
+
+    #    Bot                            You        
+────────────────────────────────────────────────
+    1    action_listen                             
+────────────────────────────────────────────────
+    2                                           hi 
+                                intent: greet 1.00 
+────────────────────────────────────────────────
+    3    utter_greet 1.00                          
+        Hey! How are you?                         
+------
+Current slots: 
+    session_started_metadata: None
+
+? The bot wants to run 'action_listen', correct? Yes
+? Your input -> great
+? Your NLU model classified 'great' with intent 'mood_great' and there are no entities, is this correct? Yes
+------
+Chat History
+
+
+
+------
+    #    Bot                                  You        
+──────────────────────────────────────────────────────
+    1    action_listen                                   
+──────────────────────────────────────────────────────
+    2                                                 hi 
+                                    intent: greet 1.00 
+──────────────────────────────────────────────────────
+    3    utter_greet 1.00                                
+        Hey! How are you?                               
+        action_listen 1.00                              
+──────────────────────────────────────────────────────
+    4                                              great 
+                                intent: mood_great 1.00 
+Current slots: 
+    session_started_metadata: None
+
+? The bot wants to run 'utter_happy', correct? Yes
+------
+Chat History
+
+
+
+    #    Bot                                  You        
+──────────────────────────────────────────────────────
+    1    action_listen                                   
+──────────────────────────────────────────────────────
+    2                                                 hi 
+                                    intent: greet 1.00 
+──────────────────────────────────────────────────────
+    3    utter_greet 1.00                                
+        Hey! How are you?                               
+        action_listen 1.00                              
+──────────────────────────────────────────────────────
+    4                                              great 
+                                intent: mood_great 1.00 
+──────────────────────────────────────────────────────
+    5    utter_happy 1.00                                
+        Great, carry on!                                
+------
+Current slots: 
+    session_started_metadata: None
+
+? The bot wants to run 'action_listen', correct? Yes
+? Your input ->
+</i>
+
+<h3>Logs with the RulePolicy configuration</h3>
+<h3>Erroneous Logs (Part 1)</h3>
+
+<i class="ir">
+(base) ashish@ashish-Lenovo-ideapad-130-15IKB:~/Desktop/ws/jupyter/rasa/project2$ rasa interactive
+2022-10-03 23:35:00 INFO     numexpr.utils  - NumExpr defaulting to 4 threads.
+The configuration for pipeline was chosen automatically. It was written into the config file at 'config.yml'.
+/home/ashish/.local/lib/python3.8/site-packages/matplotlib/__init__.py:169: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    if LooseVersion(module.__version__) &lt; minver:
+/home/ashish/anaconda3/envs/rasa_py38/lib/python3.8/site-packages/setuptools/_distutils/version.py:346: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    other = LooseVersion(other)
+/home/ashish/.local/lib/python3.8/site-packages/tensorflow_addons/utils/ensure_tf_install.py:47: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    min_version = LooseVersion(INCLUSIVE_MIN_TF_VERSION)
+2022-10-03 23:35:08 INFO     rasa.engine.training.hooks  - Restored component 'CountVectorsFeaturizer' from cache.
+2022-10-03 23:35:08 INFO     rasa.engine.training.hooks  - Restored component 'CountVectorsFeaturizer' from cache.
+2022-10-03 23:35:08 INFO     rasa.engine.training.hooks  - Restored component 'DIETClassifier' from cache.
+2022-10-03 23:35:08 INFO     rasa.engine.training.hooks  - Restored component 'EntitySynonymMapper' from cache.
+2022-10-03 23:35:08 INFO     rasa.engine.training.hooks  - Restored component 'LexicalSyntacticFeaturizer' from cache.
+2022-10-03 23:35:08 INFO     rasa.engine.training.hooks  - Restored component 'RegexFeaturizer' from cache.
+2022-10-03 23:35:08 INFO     rasa.engine.training.hooks  - Restored component 'ResponseSelector' from cache.
+2022-10-03 23:35:08 INFO     rasa.engine.training.hooks  - Restored component 'RulePolicy' from cache.
+Your Rasa model is trained and saved at 'models/20221003-233504-energetic-palace.tar.gz'.
+/home/ashish/.local/lib/python3.8/site-packages/colorclass/codes.py:5: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.10 it will stop working
+    from collections import Mapping
+/home/ashish/.local/lib/python3.8/site-packages/sanic_cors/extension.py:39: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+    SANIC_VERSION = LooseVersion(sanic_version)
+2022-10-03 23:35:20 INFO     rasa.core.processor  - Loading model models/20221003-233504-energetic-palace.tar.gz...
+2022-10-03 23:35:33 INFO     root  - Rasa server is up and running.
+Processed story blocks: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00&lt;00:00, 1607.63it/s, # trackers=1]
+Processed rules: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:00&lt;00:00, 2113.53it/s, # trackers=1]
+Bot loaded. Visualisation at http://localhost:5006/visualization.html .
+Type a message and press enter (press 'Ctrl-c' to exit).
+? Your input -> hi
+? Your NLU model classified 'hi' with intent 'greet' and there are no entities, is this correct? Yes
+------
+Chat History
+
+    #    Bot                        You        
+────────────────────────────────────────────
+    1    action_listen                         
+────────────────────────────────────────────
+    2                                       hi 
+                            intent: greet 1.00 
+
+
+------
+Current slots: 
+    session_started_metadata: None
+
+? The bot wants to run 'action_default_fallback', correct? (Y/n)                                                                                                                                           
+
+Cancelled by user
+
+? Do you want to stop? (Use arrow keys)                                                                                                                                                                    
+
+Cancelled by user
+
+? Export stories to (if file exists, this will append the stories) data/stories.yml                                                                                                                        
+
+Cancelled by user
+
+2022-10-03 23:36:09 INFO     rasa.core.training.interactive  - Killing Sanic server now.
+</i>
+
+<h3>Erroneous Logs (Part 2)</h3>
+
+<i class="ir">
+? Your input -> hi
+? Your NLU model classified 'hi' with intent 'greet' and there are no entities, is this correct? Yes
+------
+Chat History
+
+    #    Bot                        You        
+────────────────────────────────────────────
+    1    action_listen                         
+────────────────────────────────────────────
+    2                                       hi 
+                            intent: greet 1.00 
+
+
+Current slots: 
+    session_started_metadata: None
+
+------
+? The bot wants to run 'action_default_fallback', correct? Yes
+/home/ashish/.local/lib/python3.8/site-packages/rasa/server.py:860: FutureWarning: The "POST /conversations/&lt;conversation_id>/execute" endpoint is deprecated. Inserting actions to the tracker externally should be avoided. Actions should be predicted by the policies only.
+    rasa.shared.utils.io.raise_warning(
+------
+Chat History
+
+
+
+    #    Bot                You        
+────────────────────────────────────
+    1    action_listen                 
+------
+Current slots: 
+    session_started_metadata: None
+
+? The bot wants to run 'action_default_fallback', correct? Yes
+------
+Chat History
+
+
+
+------
+    #    Bot                You        
+────────────────────────────────────
+    1    action_listen                 
+Current slots: 
+    session_started_metadata: None  
+
+? The bot wants to run 'action_default_fallback', correct? Yes
+------    
+</i>
+
+<h2>What is this "action_default_fallback"?</h2>
+
+The answer comes from Rasa Documentation:
+
+<h3>Policy Priority</h3>
+
+In the case that two policies predict with equal confidence (for example, the Memoization and Rule Policies might both predict with confidence 1), the priority of the policies is considered. Rasa Open Source policies have default priorities that are set to ensure the expected outcome in the case of a tie. They look like this, where higher numbers have higher priority:
+
+    6 - RulePolicy
+
+    3 - MemoizationPolicy or AugmentedMemoizationPolicy
+
+    2 - UnexpecTEDIntentPolicy
+
+    1 - TEDPolicy
+
+
+<h3>Rule Policy</h3>
+
+The RulePolicy is a policy that handles conversation parts that follow a fixed behavior (e.g. business logic). It makes predictions based on any rules you have in your training data. See the Rules documentation for further information on how to define rules.
+
+The RulePolicy has the following configuration options:
+
+File: config.yml
+
+<i class="ib">
+policies:
+  - name: "RulePolicy"
+    core_fallback_threshold: 0.3
+    core_fallback_action_name: action_default_fallback
+    enable_fallback_prediction: true
+    restrict_rules: true
+    check_for_contradictions: true
+</i>
+The values shown above are the default settings.
+
+Ref: https://rasa.com/docs/rasa/policies
+</pre>
+<span style="display: none">Tags: Technology,Natural Language Processing,Rasa,</span>

@@ -1,0 +1,206 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        }); 
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre><i style="color: blue;">import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics.pairwise import cosine_similarity
+import torch
+import transformers as ppb
+import warnings
+warnings.filterwarnings('ignore')
+
+from joblib import load, dump
+import json
+import re 
+
+print(ppb.__version__)</i>
+
+<i style="color: green;">'3.0.1'</i>
+
+<b>Loading the Pre-trained BERT model</b>
+
+<i style="color: blue;">model_class, tokenizer_class, pretrained_weights = (ppb.BertModel, ppb.BertTokenizer, 'bert-base-uncased')
+
+# Load pretrained model/tokenizer
+tokenizer = tokenizer_class.from_pretrained(pretrained_weights)
+model = model_class.from_pretrained(pretrained_weights) </i>
+
+When run first time, the above statements loads a model of 440MB in size.
+
+<b>Word Ambiguities </b>
+
+<i style="color: blue;">def get_embedding(in_list):
+    tokenized = [tokenizer.encode(x, add_special_tokens=True) for x in in_list]
+    
+    max_len = 0
+    for i in tokenized:
+        if len(i) > max_len:
+            max_len = len(i)
+
+    padded = np.array([i + [0]*(max_len-len(i)) for i in tokenized])
+    
+    attention_mask = np.where(padded != 0, 1, 0)
+    
+    input_ids = torch.LongTensor(padded)
+    attention_mask = torch.tensor(attention_mask)
+
+    with torch.no_grad():
+        last_hidden_states = model(input_ids = input_ids, attention_mask = attention_mask)
+        
+    features = last_hidden_states[0][:,0,:].numpy()
+    return features 
+
+python_strings = [
+    'I love coding in Python language.',
+    'Python is more readable than Java.',
+    'Pythons are famous for their very long body.',
+    'Python is famous for its very long body.',
+    'All six continents have a python species.',
+    'Python is a programming language.',
+    'Python is a reptile.',
+    'The python ate a mouse.',
+    'python ate a mouse'
+]
+
+string_embeddings = get_embedding(python_strings)   
+
+print(string_embeddings.shape) </i>
+
+<i style="color: green;">(9, 768)</i>
+
+<i style="color: blue;">csm = cosine_similarity(X = string_embeddings, Y=None, dense_output=True)
+print(csm.round(2)) </i>
+
+In the picture below, if we ignore the diagnol (that is similarity of a sentence to itself), we are able to see which sentence is closer to which.
+
+<i style="color: green;">
+[[1.   0.83 0.8  0.79 0.8  0.84 0.84 0.81 0.81]
+ [0.83 1.   0.79 0.76 0.8  0.87 0.79 0.8  0.79]
+ [0.8  0.79 1.   0.96 0.86 0.77 0.88 0.77 0.78]
+ [0.79 0.76 0.96 1.   0.82 0.77 0.9  0.75 0.77]
+ [0.8  0.8  0.86 0.82 1.   0.78 0.85 0.8  0.8 ]
+ [0.84 0.87 0.77 0.77 0.78 1.   0.81 0.76 0.78]
+ [0.84 0.79 0.88 0.9  0.85 0.81 1.   0.81 0.86]
+ [0.81 0.8  0.77 0.75 0.8  0.76 0.81 1.   0.9 ]
+ [0.81 0.79 0.78 0.77 0.8  0.78 0.86 0.9  1.  ]] </i>
+
+<i style="color: blue;">for i in range(len(csm)):
+    ord_indx = np.argsort(csm[i])[::-1]
+    print(python_strings[ord_indx[0]])
+    print([python_strings[j] for j in ord_indx[1:]])
+    print()</i>
+
+<i style="color: green;"><b>I love coding in Python language.</b>
+['Python is a reptile.', 'Python is a programming language.', 'Python is more readable than Java.', 'python ate a mouse', 'The python ate a mouse.', 'All six continents have a python species.', 'Pythons are famous for their very long body.', 'Python is famous for its very long body.']
+
+<b>Python is more readable than Java.</b>
+['Python is a programming language.', 'I love coding in Python language.', 'All six continents have a python species.', 'The python ate a mouse.', 'Python is a reptile.', 'python ate a mouse', 'Pythons are famous for their very long body.', 'Python is famous for its very long body.']
+
+<b>Pythons are famous for their very long body.</b>
+['Python is famous for its very long body.', 'Python is a reptile.', 'All six continents have a python species.', 'I love coding in Python language.', 'Python is more readable than Java.', 'python ate a mouse', 'Python is a programming language.', 'The python ate a mouse.']
+
+<b>Python is famous for its very long body.</b>
+['Pythons are famous for their very long body.', 'Python is a reptile.', 'All six continents have a python species.', 'I love coding in Python language.', 'python ate a mouse', 'Python is a programming language.', 'Python is more readable than Java.', 'The python ate a mouse.']
+
+<b>All six continents have a python species.</b>
+['Pythons are famous for their very long body.', 'Python is a reptile.', 'Python is famous for its very long body.', 'I love coding in Python language.', 'Python is more readable than Java.', 'The python ate a mouse.', 'python ate a mouse', 'Python is a programming language.']
+
+<b>Python is a programming language.</b>
+['Python is more readable than Java.', 'I love coding in Python language.', 'Python is a reptile.', 'All six continents have a python species.', 'python ate a mouse', 'Pythons are famous for their very long body.', 'Python is famous for its very long body.', 'The python ate a mouse.']
+
+<b>Python is a reptile.</b>
+['Python is famous for its very long body.', 'Pythons are famous for their very long body.', 'python ate a mouse', 'All six continents have a python species.', 'I love coding in Python language.', 'Python is a programming language.', 'The python ate a mouse.', 'Python is more readable than Java.']
+
+<b>The python ate a mouse. </b>
+['python ate a mouse', 'I love coding in Python language.', 'Python is a reptile.', 'All six continents have a python species.', 'Python is more readable than Java.', 'Pythons are famous for their very long body.', 'Python is a programming language.', 'Python is famous for its very long body.']
+
+<b>python ate a mouse </b>
+['The python ate a mouse.', 'Python is a reptile.', 'I love coding in Python language.', 'All six continents have a python species.', 'Python is more readable than Java.', 'Python is a programming language.', 'Pythons are famous for their very long body.', 'Python is famous for its very long body.'] </i>
+
+<b>Few observations</b>
+
+1. "python ate a mouse" is more closer to "Python is a reptile." than "The python ate a mouse."
+For closeness of these sentences to "Python is a reptile" shows "python ate a mouse" at number 3 while "The python ate a mouse" appears at number 7.
+
+2. The model we are using is "uncased" so capitalization does not matter.
+
+3. Sentences about Python language are similar to each other, and sentences about Python reptile are similar to each other.
+
+4. Word "python" or "Python" alone is closest to 'I love coding in Python language.' then to 'Python is a reptile.', see code snippet below.
+
+<i style="color: blue;">from scipy.spatial import distance
+python_embedding = get_embedding('python')
+csm = [1 - distance.cosine(u = python_embedding[0], v = i) for i in string_embeddings]
+print([python_strings[j] for j in np.argsort(csm)[::-1]]) </i>
+
+<i style="color: green;">['I love coding in Python language.', 
+'Python is a reptile.', 
+'python ate a mouse', 
+'The python ate a mouse.', 
+'All six continents have a python species.', 
+'Python is a programming language.', 
+'Python is more readable than Java.', 
+'Python is famous for its very long body.', 
+'Pythons are famous for their very long body.'] </i>
+
+</pre>

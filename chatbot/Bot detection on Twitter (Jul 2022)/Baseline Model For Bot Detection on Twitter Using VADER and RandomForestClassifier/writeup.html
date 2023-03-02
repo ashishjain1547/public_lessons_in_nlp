@@ -1,0 +1,243 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .ib {
+            color: blue
+        }
+
+        .ig {
+            color: green
+        }
+
+        .ir {
+            color: red
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/pubML/blob/main/e8_bot_detection_on_twitter/p3%20-%20VADER%20and%20RandomForestClassifier.ipynb" target="_blank">Download Code</a>
+
+<pre>
+<i class="ib">
+import pandas as pd
+import numpy as np
+import re
+import seaborn as sns
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+
+nltk.download('vader_lexicon')
+</i>
+
+<i class="ig">
+[nltk_data] Downloading package vader_lexicon to
+[nltk_data]     /home/ashish/nltk_data...
+[nltk_data]   Package vader_lexicon is already up-to-date!
+
+True
+</i>
+
+<i class="ib">df = pd.read_csv('input/tweets_of_f234_users_1663839312.csv')</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8BCwm1uz3fmtfP9383EoetqWreqYpbtObbR1hthufDRzq4TpkEET5fLJxbDF-C0Il2FhYyYQpZK6Y5j08UescTPLy2PeYfayinqu0Pe7BiBZ0R8GZuO5qoRv3jCwAVl9ylCHIvD8_56yv9cDeFU6HsjeXN73n4BsLi_4jFk57qKcGe1kXI9v5VhIOFw/s576/1.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="358" data-original-width="576" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8BCwm1uz3fmtfP9383EoetqWreqYpbtObbR1hthufDRzq4TpkEET5fLJxbDF-C0Il2FhYyYQpZK6Y5j08UescTPLy2PeYfayinqu0Pe7BiBZ0R8GZuO5qoRv3jCwAVl9ylCHIvD8_56yv9cDeFU6HsjeXN73n4BsLi_4jFk57qKcGe1kXI9v5VhIOFw/s600/1.png"/></a></div>
+
+<i class="ib">userid_accountype = df[['userid', 'account_type']].drop_duplicates()
+userid_accountype['account_type'].value_counts()
+</i>
+<i class="ig">
+human    146
+bot       71
+Name: account_type, dtype: int64
+</i>
+
+<i class="ib">%%time
+# Wall time: 1min 41s
+pred = []
+vader_label = []
+sid = SentimentIntensityAnalyzer()
+for sentence in df['clean_tweet'].values:
+        
+    ss = sid.polarity_scores(sentence)
+    
+    pred.append(ss['compound'])
+    
+    if(ss['compound'] < 0.05 and ss['compound'] > -0.05):
+        vader_label.append('neutral')
+    elif(ss['compound'] >= 0.05):
+        vader_label.append('positive')
+    elif(ss['compound'] <= -0.05):
+        vader_label.append('negative')</i>
+
+<i class="ig">CPU times: user 2min 40s, sys: 2 s, total: 2min 42s
+Wall time: 2min 42s</i>
+
+<i class="ib">df['vader_sentiment'] = pred
+df['vader_label'] = vader_label</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgI3vpOP8N4DjAfOusT7sL1IcwMzWwffyByrJ7ZpHy6O4QnVvia__w8XAryjD4oWNf_mdkCA8ryUCQgz3kKaXg239IDY58UMc9uaheHSgEs8_TnnGXHVEKJar4coc0s5P4aJl9pPY_IFOtmrhkQ32OqEli3635kFw7Cdj5rDzrh9tVQKnP5AFxE1gBp4w/s752/2.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="353" data-original-width="752" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgI3vpOP8N4DjAfOusT7sL1IcwMzWwffyByrJ7ZpHy6O4QnVvia__w8XAryjD4oWNf_mdkCA8ryUCQgz3kKaXg239IDY58UMc9uaheHSgEs8_TnnGXHVEKJar4coc0s5P4aJl9pPY_IFOtmrhkQ32OqEli3635kFw7Cdj5rDzrh9tVQKnP5AFxE1gBp4w/s600/2.png"/></a></div>
+
+<i class="ib">
+df_mean_sentiment = df.groupby(['userid', 'vader_label']).mean().reset_index()
+df_mean_sentiment.rename({'vader_sentiment': 'mean_sentiment'}, axis='columns', inplace = True)
+df_mean_sentiment
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRv9RG3uIcpBtohVVaCDbg-i32epukGcZfE2oyfEqc8sDhC7KQvoBGEjkPDjCzvNjYUhdobvA1aciKCpiPYh3HpwLVxJpz01SHQSOrP15b6Mf8TG98SdrLqmRdD4jaWXvGKkOP7BnkK-24JaC4jKCI-1MNAvblRNF9Y3RjWUZJL5EhsAlYg76Q1QcR7w/s373/3.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="348" data-original-width="373" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRv9RG3uIcpBtohVVaCDbg-i32epukGcZfE2oyfEqc8sDhC7KQvoBGEjkPDjCzvNjYUhdobvA1aciKCpiPYh3HpwLVxJpz01SHQSOrP15b6Mf8TG98SdrLqmRdD4jaWXvGKkOP7BnkK-24JaC4jKCI-1MNAvblRNF9Y3RjWUZJL5EhsAlYg76Q1QcR7w/s600/3.png"/></a></div>
+
+<i class="ib">
+df_var_sentiment = df.groupby(['userid']).var().reset_index()
+df_var_sentiment.rename({'vader_sentiment': 'variance_sentiment'}, axis='columns', inplace = True)
+df_var_sentiment
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcvgOvtNVVhy6zDciQa5vlx-7eTFBSthi5xvYaWMccYBWZDAe-0NRUqoEGYCJvcp9W6owbhk0iAHkoa6eRCoyN2nhpJaiHaYNrB_WDTvxZORMiqEAZ-qh0Tdza7yg8CQOzK0sOaIF70FWoU0ILgHWSuWTDJS9q-AAjQdR_Estm4PHuPVBkw4OJ1y-7QA/s345/4.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="345" data-original-width="301" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjcvgOvtNVVhy6zDciQa5vlx-7eTFBSthi5xvYaWMccYBWZDAe-0NRUqoEGYCJvcp9W6owbhk0iAHkoa6eRCoyN2nhpJaiHaYNrB_WDTvxZORMiqEAZ-qh0Tdza7yg8CQOzK0sOaIF70FWoU0ILgHWSuWTDJS9q-AAjQdR_Estm4PHuPVBkw4OJ1y-7QA/s600/4.png"/></a></div>
+
+<i class="ib">
+df_mean_var = df_mean_sentiment.merge(df_var_sentiment, on=['userid'], how = 'inner')
+df_mean_var
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixpOV_z5dDGXD1TpIJMsio8-9cW6BHvz3ovzv_UbyBVomSaHdy1eunC7wV4-IWMw43SkSzKLbWyMLwFjMDuZDLc948eNWwJSVwvcH_vTHUnHNiGDI-jILXO7z88kBNurkSYRQ8CS2joAcHaePWJ9oTcYJF9W_uGSv3P1s0FxF6_fv9LxAZf73FO443Yw/s485/5.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="347" data-original-width="485" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixpOV_z5dDGXD1TpIJMsio8-9cW6BHvz3ovzv_UbyBVomSaHdy1eunC7wV4-IWMw43SkSzKLbWyMLwFjMDuZDLc948eNWwJSVwvcH_vTHUnHNiGDI-jILXO7z88kBNurkSYRQ8CS2joAcHaePWJ9oTcYJF9W_uGSv3P1s0FxF6_fv9LxAZf73FO443Yw/s600/5.png"/></a></div>
+
+<i class="ib">df_mean_var_w_label = df_mean_var.merge(userid_accountype, on = 'userid', how = 'inner')
+df_mean_var_w_label
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWt1gqT-z90BZSTP3fpsBRQQXQUjMMCrqu0OkM9IWaZC4SoyYNgSW9XNIzqVX6xUl2n1v3QzE65LHNc0g3zk-8wMTNbAzTVLp3cSxkhgT2Qtl1WUkd0QldriN3AA46u9kf0tPkKTfiRRVHwdRRtlruid0OceDAwCMrp7RKSnQveNnnjEXjhSfPDbWIQA/s574/6.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="349" data-original-width="574" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWt1gqT-z90BZSTP3fpsBRQQXQUjMMCrqu0OkM9IWaZC4SoyYNgSW9XNIzqVX6xUl2n1v3QzE65LHNc0g3zk-8wMTNbAzTVLp3cSxkhgT2Qtl1WUkd0QldriN3AA46u9kf0tPkKTfiRRVHwdRRtlruid0OceDAwCMrp7RKSnQveNnnjEXjhSfPDbWIQA/s600/6.png"/></a></div>
+
+<i class="ib">df_mean_var_w_label['account_type'].value_counts()</i>
+
+<i class="ig">
+human    435
+bot      205
+Name: account_type, dtype: int64
+</i>
+
+<i class="ib">sns.scatterplot(data = df_mean_var_w_label, x = "mean_sentiment", y = "variance_sentiment", hue = "account_type", style = "account_type")</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqWx4zQTCQ5ZzAsRz-IjSN7VSpVX0lFwLnNywjDoH_aeihJ8xF5g_-XlLlsV4lJQKwyyeJ7sEsu9zSNEGTb3rJE89k15GLv1IO291BxReVV7BA5rB3xIjoOffQbmtyDvkvM6r9wR8Zrw3SytepDtUc6LW2uIY4babKYOTyJ2igvx09SNdCcsoCJv8Hsw/s578/7.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="422" data-original-width="578" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqWx4zQTCQ5ZzAsRz-IjSN7VSpVX0lFwLnNywjDoH_aeihJ8xF5g_-XlLlsV4lJQKwyyeJ7sEsu9zSNEGTb3rJE89k15GLv1IO291BxReVV7BA5rB3xIjoOffQbmtyDvkvM6r9wR8Zrw3SytepDtUc6LW2uIY4babKYOTyJ2igvx09SNdCcsoCJv8Hsw/s600/7.png"/></a></div>
+
+<i class="ib">sns.scatterplot(data = df_mean_var_w_label, x = "account_type", y = "mean_sentiment", hue = "account_type", style = "account_type")</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAwFxwv0y2wVFszvfPrYRzHJ2QL8_9KdJDbHVFjhBs2-rAKDZEOqO8DWpFHjIZUmpv6INt_0DAV89R3kgxMwlgLjY65pI7jD3xQi0lb-i4sWIXT3-IzjrPH2BoxALSx-b6Z0SVcikq1UJfU19jVjiN6W9PXpyAhi-LLqhl6IJXAS87zMLYp6C4suwGAA/s578/8.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="422" data-original-width="578" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAwFxwv0y2wVFszvfPrYRzHJ2QL8_9KdJDbHVFjhBs2-rAKDZEOqO8DWpFHjIZUmpv6INt_0DAV89R3kgxMwlgLjY65pI7jD3xQi0lb-i4sWIXT3-IzjrPH2BoxALSx-b6Z0SVcikq1UJfU19jVjiN6W9PXpyAhi-LLqhl6IJXAS87zMLYp6C4suwGAA/s600/8.png"/></a></div>
+
+<i class="ib">sns.scatterplot(data = df_mean_var_w_label, x = "account_type", y = "variance_sentiment", hue = "account_type", style = "account_type")</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHHEFmYzit2NBLTpMLL5EalDJLFVkuazAhWEP56qQjLFdzQv--ToNjROLHr7ZeUJo7ZiBr9PZuFC5gaBpsiasw2r-ux8mqdyYmYGoGJJNHdb-le9gBInSCqTxYMWedW8rdLakO7QxMFEv41lz5KCuhr9cP95SUX_akCDg-JPgzlEyl8Fd28oz5DE1hQg/s578/9.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="422" data-original-width="578" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHHEFmYzit2NBLTpMLL5EalDJLFVkuazAhWEP56qQjLFdzQv--ToNjROLHr7ZeUJo7ZiBr9PZuFC5gaBpsiasw2r-ux8mqdyYmYGoGJJNHdb-le9gBInSCqTxYMWedW8rdLakO7QxMFEv41lz5KCuhr9cP95SUX_akCDg-JPgzlEyl8Fd28oz5DE1hQg/s600/9.png"/></a></div>
+
+<i class="ib">
+def get_url_flag(in_tweet):
+    m = re.search(r"http[a-zA-Z0-9/\-.:%]+", in_tweet)
+    rtn = False
+    if m:
+        rtn = True
+    return rtn
+
+df['url_flag'] = df['clean_tweet'].apply(get_url_flag)
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQaCoSGv69NoWm_do-2zwZ7t1j6FrER_eGUBJ_rGILaZrUK7wsm6BpFSqQBzu4BAPy4CoX5P5DejEraNMyLziYaBY6WABfKoeQM9F-Ci75MHBQpCLI4TkoLbrS7n7Dhy2iLQvyxPaw4KrMHzesVWi8_Nj72mbd3jU9dOGV_9u2XVuwoNEeKDPaxqc19g/s803/10.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="351" data-original-width="803" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQaCoSGv69NoWm_do-2zwZ7t1j6FrER_eGUBJ_rGILaZrUK7wsm6BpFSqQBzu4BAPy4CoX5P5DejEraNMyLziYaBY6WABfKoeQM9F-Ci75MHBQpCLI4TkoLbrS7n7Dhy2iLQvyxPaw4KrMHzesVWi8_Nj72mbd3jU9dOGV_9u2XVuwoNEeKDPaxqc19g/s600/10.png"/></a></div>
+
+<i class="ib">df.groupby(['account_type'])['url_flag'].value_counts()</i>
+
+<i class="ig">account_type  url_flag
+bot           True         68899
+                False        47947
+human         False       202148
+                True        169643
+Name: url_flag, dtype: int64</i>
+
+<i class="ib">print(68899 / (68899+47947))
+print(169643 / (169643 + 202148))</i>
+
+<i class="ig">
+0.5896564709104292
+0.4562859240810025
+</i>
+
+<i class="ib">df['len'] = df['clean_tweet'].apply(len)
+df.groupby(['account_type'])['len'].mean()
+</i>
+
+<i class="ig">
+account_type
+bot      111.761455
+human    109.129188
+Name: len, dtype: float64
+</i>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJMK8Eeovy0H6msw5L_4W8x-TdnYWhZv9Ktqiw6i_bMGEDy2jSoVCOdjTMjqsapDXMcB8ECyMFtPdhExnY1tYdLjrsA9Jadrdndmn0AVmpi12BlVsZaQfzlCcPiemaPGxeCz-C4ojdMBX211WzUfxhsc0qqKLXSZfTZ7CB4jwQP_yxDg8UlanqL4LpQw/s834/11.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="348" data-original-width="834" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjJMK8Eeovy0H6msw5L_4W8x-TdnYWhZv9Ktqiw6i_bMGEDy2jSoVCOdjTMjqsapDXMcB8ECyMFtPdhExnY1tYdLjrsA9Jadrdndmn0AVmpi12BlVsZaQfzlCcPiemaPGxeCz-C4ojdMBX211WzUfxhsc0qqKLXSZfTZ7CB4jwQP_yxDg8UlanqL4LpQw/s600/11.png"/></a></div>
+
+<i class="ib">
+clf = RandomForestClassifier(random_state=0)
+X = df[['vader_sentiment', 'url_flag', 'len']]
+y = df['account_type']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+
+clf = clf.fit(X_train, y_train)
+
+pred = clf.predict(X_test)
+
+labels = ['bot', 'human']
+
+print(classification_report(y_test, y_pred = pred, labels = labels))
+</i>
+
+<i class="ig">
+             precision    recall  f1-score   support
+bot             0.54      0.24      0.33     38217
+human           0.80      0.93      0.86    123034
+
+accuracy                            0.77    161251
+macro avg       0.67      0.59      0.60    161251
+weighted avg    0.74      0.77      0.74    161251
+</i>
+
+<h2>Accuracy of: 0.77</h2>
+</pre>
+<span style="display: none">Tags: Technology,Natural Language Processing,</span>

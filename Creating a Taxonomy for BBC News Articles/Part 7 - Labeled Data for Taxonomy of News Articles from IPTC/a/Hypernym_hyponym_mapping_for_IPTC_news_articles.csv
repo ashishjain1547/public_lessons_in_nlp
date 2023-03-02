@@ -1,0 +1,892 @@
+hypernym,hyponym,cosine_similarity,low_high
+"arts, culture, entertainment and media",arts and entertainment,0.8925744,HIGH
+arts and entertainment,animation,0.6617222,HIGH
+arts and entertainment,art exhibition,0.64174104,HIGH
+arts and entertainment,cartoon,0.63527596,HIGH
+arts and entertainment,movies,0.6149125,HIGH
+arts and entertainment,dance,0.7219819,HIGH
+dance,ballet,0.79928404,HIGH
+dance,modern dance,0.7144233,HIGH
+dance,traditional dance,0.82193875,HIGH
+fashion,cosmetics,0.7790191,HIGH
+fashion,hairstyles,0.7004442,HIGH
+fashion,jewelry,0.73689646,HIGH
+festival,film festival,0.68232864,HIGH
+literature,drama (literature),0.7981798,HIGH
+literature,fiction,0.7683704,HIGH
+literature,non-fiction,0.6653481,HIGH
+literature,poetry,0.81366545,HIGH
+music,musical genre,0.9271661,HIGH
+musical genre,children's music,0.71493965,HIGH
+musical genre,classical music,0.55925274,HIGH
+musical genre,country music,0.44526476,LOW
+musical genre,dance band music,0.64281964,HIGH
+musical genre,electronic dance music,0.5791793,HIGH
+musical genre,folk music,0.62946194,HIGH
+musical genre,heavy metal,0.52152616,HIGH
+musical genre,hip hop,0.5449814,HIGH
+musical genre,jazz music,0.51651895,HIGH
+musical genre,popular music,0.72557724,HIGH
+musical genre,r&b,0.58473516,HIGH
+musical genre,rock and roll music,0.60404104,HIGH
+theater,cabaret,0.7646557,HIGH
+theater,drama (theatre),0.86300206,HIGH
+theater,music theater,0.7885761,HIGH
+theater,musical,0.7638544,HIGH
+theater,opera,0.6919954,HIGH
+theater,operetta,0.7208648,HIGH
+theater,stand-up comedy,0.56685895,HIGH
+visual arts,architecture,0.80063915,HIGH
+visual arts,design (visual arts),0.9201032,HIGH
+visual arts,drawing,0.6958608,HIGH
+visual arts,forging,0.68766993,HIGH
+visual arts,painting,0.7368988,HIGH
+visual arts,photography,0.7851453,HIGH
+visual arts,sculpture,0.68848395,HIGH
+visual arts,textile arts,0.7954359,HIGH
+visual arts,woodworking,0.5949829,HIGH
+culture,cultural development,0.857949,HIGH
+culture,customs and tradition,0.7803265,HIGH
+culture,festive event (culture),0.8041072,HIGH
+culture,language,0.7950881,HIGH
+culture,library and museum,0.46533644,LOW
+culture,monument and heritage site,0.72520834,HIGH
+mass media,disinformation and misinformation,0.43603536,LOW
+mass media,news media,0.8579606,HIGH
+mass media,newspaper,0.67448854,HIGH
+mass media,online media outlet,0.7147715,HIGH
+mass media,periodical,0.5267453,HIGH
+mass media,radio,0.4830974,LOW
+mass media,social media,0.72775793,HIGH
+social media,influencers,0.6411392,HIGH
+"conflict, war and peace",act of terror,0.41674215,LOW
+act of terror,act of bioterrorism,0.51506436,HIGH
+act of terror,bombings,0.7711134,HIGH
+armed conflict,guerrilla activity,0.71045446,HIGH
+armed conflict,international military intervention,0.70719457,HIGH
+international military intervention,peacekeeping force,0.7261529,HIGH
+war,civil war,0.7299361,HIGH
+war,war crime action,0.7642091,HIGH
+civil unrest,demonstration,0.4724712,LOW
+civil unrest,rebellion,0.71827364,HIGH
+civil unrest,revolution,0.49079257,LOW
+civil unrest,riot,0.74164546,HIGH
+massacre,genocide,0.8843943,HIGH
+peace process,peace envoy,0.9558798,HIGH
+peace process,peace plan,0.9702611,HIGH
+peace process,peace talks,0.9786917,HIGH
+post-war reconstruction,disarmament,0.57682025,HIGH
+post-war reconstruction,ordnance clearance,0.5710615,HIGH
+"crime, law and justice",crime,0.75472677,HIGH
+crime,animal abuse,0.60763454,HIGH
+crime,arson,0.70259905,HIGH
+crime,assault,0.7813748,HIGH
+assault,sex crime,0.66066676,HIGH
+corporate crime,accounting crime,0.7675098,HIGH
+corporate crime,anti-trust crime,0.6713556,HIGH
+corporate crime,breach of contract,0.55980414,HIGH
+corporate crime,embezzlement,0.6735831,HIGH
+corporate crime,insider trading,0.58659494,HIGH
+corporate crime,restraint of trade,0.4870863,LOW
+corruption,bribery,0.8923931,HIGH
+drug related crimes,drug trafficking,0.9139551,HIGH
+fraud,tax evasion,0.58624303,HIGH
+organized crime,gang activity,0.751384,HIGH
+judiciary,court,0.8338233,HIGH
+court,appeal (court),0.8327073,HIGH
+court,court administration,0.87092495,HIGH
+court,judge,0.84426117,HIGH
+court,supreme and high court,0.7497647,HIGH
+court,trial (court),0.7733927,HIGH
+trial (court),defendant,0.78434116,HIGH
+trial (court),litigation,0.79344773,HIGH
+trial (court),pre-trial,0.64795554,HIGH
+trial (court),sentencing (criminal),0.7607509,HIGH
+sentencing (criminal),capital punishment,0.79275614,HIGH
+sentencing (criminal),court-ordered psychiatric treatment,0.61080074,HIGH
+sentencing (criminal),fine (penalty),0.72414947,HIGH
+sentencing (criminal),prison,0.72574866,HIGH
+sentencing (criminal),suspended sentence,0.64224875,HIGH
+out of court procedures,arbitration and mediation,0.6161133,HIGH
+law,administrative law,0.82313174,HIGH
+law,civil law,0.8696709,HIGH
+civil law,regulations,0.6576417,HIGH
+regulations,antitrust regulations,0.71606034,HIGH
+international law,extradition,0.5633663,HIGH
+international law,international court and tribunal,0.8575772,HIGH
+law enforcement,arrest,0.63803935,HIGH
+law enforcement,investigation (criminal),0.70055443,HIGH
+investigation (criminal),dropped criminal investigation,0.63889056,HIGH
+investigation (criminal),missing person,0.53520316,HIGH
+"disaster, accident and emergency incident",accident and emergency incident,0.9688573,HIGH
+accident and emergency incident,drowning,0.53692365,HIGH
+accident and emergency incident,explosion accident and incident,0.80860806,HIGH
+accident and emergency incident,industrial accident and incident,0.76732016,HIGH
+industrial accident and incident,nuclear accident and incident,0.71376145,HIGH
+transportation accident and incident,air and space accident and incident,0.6118492,HIGH
+transportation accident and incident,maritime accident and incident,0.79828274,HIGH
+transportation accident and incident,railway accident and incident,0.81241596,HIGH
+transportation accident and incident,road accident and incident,0.88101804,HIGH
+road accident and incident,wildlife traffic accident,0.7304493,HIGH
+disaster,famine,0.7500042,HIGH
+disaster,fire,0.71187466,HIGH
+fire,wildfire,0.80555403,HIGH
+natural disaster,drought,0.6722933,HIGH
+natural disaster,earthquake,0.716167,HIGH
+natural disaster,flood,0.7149498,HIGH
+natural disaster,landslide,0.6544856,HIGH
+landslide,avalanche,0.7780944,HIGH
+meteorological disaster,hurricane,0.7889915,HIGH
+meteorological disaster,windstorms,0.79011446,HIGH
+emergency incident,transport incident,0.7600637,HIGH
+transport incident,air and space incident,0.5262986,HIGH
+transport incident,maritime incident,0.7126645,HIGH
+transport incident,railway incident,0.70282656,HIGH
+transport incident,road incident,0.8055376,HIGH
+"economy, business and finance",business information,0.78008926,HIGH
+business information,business finance,0.88723993,HIGH
+business finance,accounting and audit,0.7280693,HIGH
+business finance,analysts comment,0.51927423,HIGH
+business finance,bankruptcy,0.5310452,HIGH
+business finance,corporate financing,0.8578818,HIGH
+corporate financing,buyback,0.53878665,HIGH
+corporate financing,restructuring and recapitalization,0.40515444,LOW
+corporate financing,stock activity,0.68442214,HIGH
+corporate financing,stock flotation,0.6799159,HIGH
+financial statement,proxy filing,0.636474,HIGH
+human resources,layoffs and downsizing,0.41454214,LOW
+human resources,management,0.84632325,HIGH
+human resources,stock option,0.5341092,HIGH
+strategy and marketing,annual and special corporate meeting,0.33774522,LOW
+strategy and marketing,annual report,0.44789782,LOW
+strategy and marketing,board of directors,0.644629,HIGH
+strategy and marketing,business governance,0.7073404,HIGH
+strategy and marketing,commercial contract,0.7319467,HIGH
+strategy and marketing,company spin-off,0.626768,HIGH
+strategy and marketing,economic globalization,0.6132816,HIGH
+strategy and marketing,joint venture,0.6590263,HIGH
+strategy and marketing,leveraged buyout,0.66006273,HIGH
+strategy and marketing,licensing agreement,0.651741,HIGH
+strategy and marketing,management buyout,0.6362169,HIGH
+strategy and marketing,merger or acquisition,0.6575396,HIGH
+strategy and marketing,new product or service,0.5852572,HIGH
+strategy and marketing,outsourcing,0.59092516,HIGH
+strategy and marketing,"patent, copyright and trademark",0.5602787,HIGH
+strategy and marketing,product recall,0.7625832,HIGH
+strategy and marketing,public contract,0.6726067,HIGH
+strategy and marketing,research and development,0.66571945,HIGH
+economic sector,agriculture,0.65882134,HIGH
+agriculture,aquaculture,0.52856445,HIGH
+agriculture,arable farming,0.9227973,HIGH
+agriculture,fishing industry,0.50744736,HIGH
+agriculture,forestry and timber,0.6281091,HIGH
+agriculture,livestock farming,0.81857157,HIGH
+agriculture,viniculture,0.64274985,HIGH
+chemicals,biotechnology business,0.39796448,LOW
+chemicals,fertilizer,0.6796519,HIGH
+chemicals,health and beauty product,0.4810945,LOW
+chemicals,inorganic chemical,0.7145161,HIGH
+chemicals,organic chemical,0.6996167,HIGH
+chemicals,pharmaceutical,0.73316246,HIGH
+chemicals,synthetic and plastic chemicals,0.6849214,HIGH
+computing and information technology,Internet of Things,0.6965461,HIGH
+computing and information technology,computer networking,0.81424254,HIGH
+computing and information technology,computer security,0.7068678,HIGH
+computing and information technology,hardware,0.7681234,HIGH
+computing and information technology,satellite technology,0.586555,HIGH
+computing and information technology,semiconductors and active components,0.8129823,HIGH
+computing and information technology,software,0.7134594,HIGH
+computing and information technology,telecommunication equipment,0.7578082,HIGH
+computing and information technology,telecommunication service,0.6990038,HIGH
+computing and information technology,wireless technology,0.62719023,HIGH
+construction and property,commercial building,0.6769861,HIGH
+construction and property,design and engineering,0.6836269,HIGH
+construction and property,farms,0.65742517,HIGH
+construction and property,heavy construction,0.62832683,HIGH
+construction and property,house building,0.7474718,HIGH
+construction and property,infrastructure projects,0.7903097,HIGH
+construction and property,land price,0.7253563,HIGH
+construction and property,real estate,0.74339616,HIGH
+construction and property,renovation,0.6586964,HIGH
+consumer goods,beverage,0.75176334,HIGH
+consumer goods,clothing,0.804911,HIGH
+consumer goods,consumer electronics,0.798119,HIGH
+consumer goods,grocery,0.7339232,HIGH
+consumer goods,luxury good,0.53695995,HIGH
+consumer goods,non-durable good,0.45829237,LOW
+consumer goods,sales channels,0.79811573,HIGH
+consumer goods,toy,0.7040324,HIGH
+consumer goods,wholesale,0.7662178,HIGH
+energy and resource,alternative energy,0.837421,HIGH
+energy and resource,biofuel,0.6926007,HIGH
+energy and resource,coal,0.6640153,HIGH
+energy and resource,electricity production and distribution,0.79377043,HIGH
+energy and resource,energy industry,0.85825974,HIGH
+energy and resource,geothermal power,0.67075324,HIGH
+energy and resource,hydroelectric power,0.63296086,HIGH
+energy and resource,nuclear power,0.5625283,HIGH
+energy and resource,oil and gas - downstream activities,0.6720732,HIGH
+energy and resource,oil and gas - upstream activities,0.68603337,HIGH
+energy and resource,oil and gas industry,0.6465212,HIGH
+oil and gas industry,diesel fuel,0.6189725,HIGH
+oil and gas industry,kerosene/paraffin,0.50959027,HIGH
+oil and gas industry,natural gas,0.8306999,HIGH
+oil and gas industry,gasoline,0.65128005,HIGH
+financial and business service,accountancy and auditing,0.8594868,HIGH
+financial and business service,asset management,0.7618799,HIGH
+financial and business service,auction service,0.5959804,HIGH
+financial and business service,banking,0.82088494,HIGH
+financial and business service,client relationship management,0.6948936,HIGH
+financial and business service,consultancy service,0.6672802,HIGH
+financial and business service,crowdfunding,0.43489152,LOW
+financial and business service,employment agency,0.63587135,HIGH
+financial and business service,funeral home and crematorium,0.39283898,LOW
+financial and business service,healthcare provider,0.568806,HIGH
+financial and business service,insurance,0.6234146,HIGH
+financial and business service,investment service,0.8056134,HIGH
+financial and business service,janitorial service,0.40753537,LOW
+financial and business service,legal service,0.71195936,HIGH
+financial and business service,market research,0.702477,HIGH
+financial and business service,market trend,0.62844896,HIGH
+financial and business service,payment service,0.71505654,HIGH
+financial and business service,personal finance,0.76013553,HIGH
+financial and business service,personal income,0.56495696,HIGH
+financial and business service,personal investing,0.6956454,HIGH
+financial and business service,personal service,0.6046661,HIGH
+financial and business service,printing service,0.6241174,HIGH
+financial and business service,rental service,0.58357066,HIGH
+financial and business service,shipping service,0.66024977,HIGH
+financial and business service,stock broking,0.7072824,HIGH
+financial and business service,trade show or expo,0.58549476,HIGH
+financial and business service,wedding service,0.40168107,LOW
+manufacturing and engineering,aerospace,0.66203195,HIGH
+manufacturing and engineering,automotive,0.6317055,HIGH
+manufacturing and engineering,capital goods,0.64136595,HIGH
+manufacturing and engineering,defense equipment,0.68669856,HIGH
+manufacturing and engineering,electrical appliance,0.71633273,HIGH
+manufacturing and engineering,heavy engineering,0.73665136,HIGH
+manufacturing and engineering,industrial component,0.8458386,HIGH
+manufacturing and engineering,instrument engineering,0.834728,HIGH
+manufacturing and engineering,machine manufacturing,0.89087164,HIGH
+manufacturing and engineering,railway manufacturing,0.75156033,HIGH
+manufacturing and engineering,shipbuilding,0.7631308,HIGH
+media,advertising,0.8191777,HIGH
+media,book industry,0.6488035,HIGH
+media,motion picture industry,0.62300265,HIGH
+media,music industry,0.6178383,HIGH
+media,news agency,0.82126725,HIGH
+media,newspaper and magazine,0.7513336,HIGH
+media,online media industry,0.6668291,HIGH
+media,public relations,0.7786618,HIGH
+media,radio industry,0.70704746,HIGH
+media,satellite and cable service,0.6102575,HIGH
+media,streaming service,0.717324,HIGH
+media,television industry,0.62316805,HIGH
+metal and mineral,building material,0.58562994,HIGH
+metal and mineral,gold and precious material,0.70660675,HIGH
+metal and mineral,iron and steel,0.7881529,HIGH
+metal and mineral,mining,0.79986644,HIGH
+metal and mineral,non-ferrous metal,0.6437103,HIGH
+process industry,distiller and brewer,0.5876261,HIGH
+process industry,e-cigarette,0.45068002,LOW
+process industry,food industry,0.5585818,HIGH
+process industry,furnishings and furniture,0.67860407,HIGH
+process industry,medical equipment,0.66375124,HIGH
+process industry,paper and packaging product,0.7005333,HIGH
+process industry,pet product and service,0.39649463,LOW
+process industry,rubber product,0.59377766,HIGH
+process industry,soft drinks,0.3968069,LOW
+process industry,textile and clothing,0.69047487,HIGH
+process industry,tobacco,0.49547964,LOW
+retail,department store,0.787029,HIGH
+retail,electronic commerce,0.70848423,HIGH
+retail,mail order,0.7499249,HIGH
+retail,shopping district and high street,0.74962765,HIGH
+retail,shopping mall,0.7659382,HIGH
+retail,specialty store,0.8308148,HIGH
+tourism and leisure industry,casino and gambling,0.6392437,HIGH
+tourism and leisure industry,hotel and accommodation,0.7303959,HIGH
+tourism and leisure industry,recreational and sporting goods,0.69431627,HIGH
+tourism and leisure industry,restaurant and catering,0.56962967,HIGH
+tourism and leisure industry,tour operator,0.73595655,HIGH
+transport,air transport,0.7556963,HIGH
+transport,railway transport,0.77535087,HIGH
+transport,road transport,0.88645774,HIGH
+transport,traffic,0.75269926,HIGH
+transport,waterway and maritime transport,0.8115634,HIGH
+utilities,"heating, ventilation, and air conditioning",0.6760714,HIGH
+utilities,waste management industry,0.6069504,HIGH
+utilities,water supply,0.81400394,HIGH
+economy,macro economics,0.78446466,HIGH
+macro economics,bonds,0.49020642,LOW
+macro economics,budgets and budgeting,0.65575427,HIGH
+macro economics,business enterprise,0.7078316,HIGH
+business enterprise,cooperative,0.570029,HIGH
+business enterprise,entrepreneurship,0.7208376,HIGH
+business enterprise,small and medium enterprise,0.63726985,HIGH
+consumers,consumer confidence,0.80953753,HIGH
+consumers,consumer issue,0.8330145,HIGH
+currency,cryptocurrency,0.62650514,HIGH
+economic indicator,gross domestic product,0.67027307,HIGH
+economic indicator,industrial production,0.65247995,HIGH
+economic indicator,inventories,0.65770394,HIGH
+economic indicator,productivity,0.62373126,HIGH
+international trade,trade agreements,0.87109536,HIGH
+international trade,trade balance,0.73526585,HIGH
+international trade,trade dispute,0.7907288,HIGH
+international trade,trade policy,0.8310759,HIGH
+market and exchange,commodity market,0.84591264,HIGH
+commodity market,energy market,0.7214661,HIGH
+commodity market,metal,0.54104376,HIGH
+commodity market,soft commodity,0.5348193,HIGH
+loan market,loans,0.8953724,HIGH
+securities,derivative securities,0.921812,HIGH
+stocks,hot stock,0.5797898,HIGH
+stocks,stock recommendation,0.84355474,HIGH
+stock recommendation,buy recommendation,0.7253509,HIGH
+stock recommendation,hold recommendation,0.70257103,HIGH
+stock recommendation,sell recommendation,0.7774515,HIGH
+education,curriculum,0.89730155,HIGH
+education,education policy,0.8654498,HIGH
+education,educational grading,0.8869285,HIGH
+education,educational testing and examinations,0.78359413,HIGH
+education,entrance examination,0.74954855,HIGH
+education,online and remote learning,0.44418722,LOW
+education,parents group,0.53325796,HIGH
+education,religious education,0.6737247,HIGH
+education,school,0.87555635,HIGH
+school,adult and continuing education,0.53972775,HIGH
+school,college and university,0.6059055,HIGH
+college and university,college,0.85927635,HIGH
+college and university,university,0.92334056,HIGH
+environment,climate change,0.50431156,HIGH
+climate change,global warming,0.81691355,HIGH
+conservation,energy saving,0.71801746,HIGH
+conservation,parks,0.6825443,HIGH
+environmental pollution,air pollution,0.8022834,HIGH
+environmental pollution,environmental clean-up,0.7230896,HIGH
+environmental pollution,hazardous materials,0.6910079,HIGH
+environmental pollution,waste materials,0.7169386,HIGH
+environmental pollution,water pollution,0.81090707,HIGH
+natural resources,energy resources,0.6742861,HIGH
+natural resources,land resources,0.7502043,HIGH
+land resources,forests,0.63445675,HIGH
+land resources,mountains,0.6002779,HIGH
+water,oceans,0.70265234,HIGH
+water,rivers,0.85736823,HIGH
+water,wetlands,0.70206475,HIGH
+nature,ecosystem,0.84427065,HIGH
+nature,endangered species,0.56981945,HIGH
+nature,invasive species,0.3924663,LOW
+nature,pests,0.5841588,HIGH
+health,diseases and conditions,0.6150794,HIGH
+diseases and conditions,cancer,0.5824952,HIGH
+diseases and conditions,communicable disease,0.86535144,HIGH
+communicable disease,epidemic,0.7696308,HIGH
+epidemic,pandemic,0.83678174,HIGH
+epidemic,plague (disease),0.8236735,HIGH
+virus disease,AIDS,0.5574293,HIGH
+virus disease,retrovirus,0.71635675,HIGH
+mental health,eating disorder,0.44213822,LOW
+government health care,Medicaid,0.7917367,HIGH
+government health care,Medicare,0.72007847,HIGH
+health facility,healthcare clinic,0.82360095,HIGH
+health facility,hospital,0.85741466,HIGH
+health treatment,diet,0.5744846,HIGH
+diet,dietary supplements,0.79204977,HIGH
+medical drugs,prescription drugs,0.78986627,HIGH
+medicine,herbal medicine,0.7873183,HIGH
+medicine,holistic medicine,0.7914033,HIGH
+medicine,traditional Chinese medicine,0.58733433,HIGH
+medicine,western medicine,0.6222283,HIGH
+preventative medicine,vaccines,0.59014773,HIGH
+medical profession,medical service,0.94402325,HIGH
+medical profession,medical specialization,0.9362891,HIGH
+medical specialization,dentistry,0.7202804,HIGH
+medical specialization,general practice,0.57061595,HIGH
+medical specialization,geriatric medicine,0.74230635,HIGH
+medical specialization,obstetrics/gynecology,0.6660377,HIGH
+medical specialization,oncology,0.7960058,HIGH
+medical specialization,ophthalmology,0.7670575,HIGH
+medical specialization,orthopedics,0.79501116,HIGH
+medical specialization,pediatrics,0.67417574,HIGH
+medical specialization,pharmacology,0.67327034,HIGH
+medical specialization,psychiatry,0.7177861,HIGH
+medical specialization,radiology,0.745319,HIGH
+medical specialization,reproductive medicine,0.6939889,HIGH
+medical specialization,surgical medicine,0.8746734,HIGH
+medical specialization,veterinary medicine,0.6780698,HIGH
+non-human diseases,animal disease,0.555297,HIGH
+non-human diseases,plant disease,0.44608748,LOW
+human interest,accomplishment,0.7998405,HIGH
+human interest,animal,0.8424367,HIGH
+human interest,anniversary,0.59213966,HIGH
+human interest,award and prize,0.71523714,HIGH
+human interest,birthday,0.48587108,LOW
+human interest,celebrity,0.6793092,HIGH
+human interest,ceremony,0.7347542,HIGH
+ceremony,funeral and memorial service,0.57819414,HIGH
+ceremony,graduation,0.7440449,HIGH
+ceremony,name ceremony,0.75536406,HIGH
+ceremony,wedding,0.8467781,HIGH
+high society,royalty,0.74465036,HIGH
+labor,employment,0.88347733,HIGH
+employment,apprenticeship,0.86214316,HIGH
+employment,child labor,0.66326493,HIGH
+employment,commuting,0.73341084,HIGH
+employment,employee,0.9185964,HIGH
+employment,employer,0.9160779,HIGH
+employment,employment training,0.8784268,HIGH
+employment training,advanced training,0.7246616,HIGH
+employment training,retraining,0.7694416,HIGH
+wages and benefits,employee benefits,0.8313718,HIGH
+wages and benefits,social security,0.5845532,HIGH
+employment legislation,workplace health and safety,0.6859855,HIGH
+labor market,gig economy,0.7741878,HIGH
+labor relations,collective agreements,0.654819,HIGH
+collective agreements,contract issue-healthcare,0.48888916,LOW
+collective agreements,contract issue-wages,0.5798266,HIGH
+collective agreements,contract issue-work rules,0.6801614,HIGH
+labor dispute,labor strike,0.90339535,HIGH
+retirement,pension,0.821065,HIGH
+unemployment,job layoffs,0.6856349,HIGH
+unemployment,unemployment benefits,0.74212015,HIGH
+lifestyle and leisure,leisure,0.94435173,HIGH
+leisure,club and association,0.658753,HIGH
+leisure,game,0.7228358,HIGH
+game,board game,0.824572,HIGH
+game,card game,0.74784315,HIGH
+game,children's game,0.75993204,HIGH
+game,dice game,0.7386102,HIGH
+game,outdoor game,0.6903744,HIGH
+game,puzzle,0.7533946,HIGH
+game,tile game,0.74142283,HIGH
+game,video game,0.6899533,HIGH
+hobby,automobile enthusiasm,0.47975528,LOW
+hobby,bicycle enthusiasm,0.41385365,LOW
+hobby,collecting,0.83133066,HIGH
+hobby,food and drink enthusiasm,0.468962,LOW
+food and drink enthusiasm,"beer, wine and spirits",0.64632016,HIGH
+food and drink enthusiasm,cooking and baking,0.5479891,HIGH
+vacation,Halloween,0.6144668,HIGH
+vacation,public holiday,0.6637106,HIGH
+public holiday,Midsummer,0.5740179,HIGH
+public holiday,National day,0.68480515,HIGH
+public holiday,New year,0.5505463,HIGH
+leisure venue,amusement park,0.7548065,HIGH
+leisure venue,bar,0.7151955,HIGH
+leisure venue,cafe,0.63355535,HIGH
+leisure venue,nightclub,0.758361,HIGH
+leisure venue,restaurant,0.6435094,HIGH
+leisure venue,sports facilities,0.8006286,HIGH
+leisure venue,zoo,0.5125699,HIGH
+outdoor recreational activities,fishing,0.5388025,HIGH
+outdoor recreational activities,horseback riding,0.5973985,HIGH
+outdoor recreational activities,hunting,0.58616745,HIGH
+outdoor recreational activities,recreational mountaineering,0.671625,HIGH
+outdoor recreational activities,scuba diving,0.40340945,LOW
+travel and tourism,tourism,0.9318702,HIGH
+lifestyle,house and home,0.59639,HIGH
+house and home,gardening,0.5174737,HIGH
+house and home,home renovation,0.8162786,HIGH
+house and home,interior decoration,0.6901568,HIGH
+trend,body modification,0.6656968,HIGH
+body modification,piercing,0.7092169,HIGH
+body modification,tattooing,0.77322334,HIGH
+wellness,exercise and fitness,0.70087737,HIGH
+wellness,mental wellbeing,0.8472317,HIGH
+politics,election,0.76466334,HIGH
+election,church elections,0.69874173,HIGH
+election,citizens' initiative and recall,0.6124788,HIGH
+election,electoral system,0.8537855,HIGH
+election,intergovernmental elections,0.77585495,HIGH
+election,local elections,0.70454955,HIGH
+election,national elections,0.84607494,HIGH
+election,political campaigns,0.7915122,HIGH
+political campaigns,campaign finance,0.8060978,HIGH
+fundamental rights,censorship and freedom of speech,0.51448095,HIGH
+fundamental rights,civil rights,0.8448278,HIGH
+fundamental rights,freedom of religion,0.6490925,HIGH
+fundamental rights,freedom of the press,0.6109662,HIGH
+fundamental rights,human rights,0.86392844,HIGH
+fundamental rights,privacy,0.5794865,HIGH
+fundamental rights,women's rights,0.6261909,HIGH
+government,civil and public service,0.79614246,HIGH
+civil and public service,civilian service,0.8170638,HIGH
+civil and public service,public employees,0.8179598,HIGH
+civil and public service,public officials,0.8670719,HIGH
+defense,armed forces,0.7422519,HIGH
+armed forces,military service,0.8705247,HIGH
+armed forces,veterans' affairs,0.65477765,HIGH
+military equipment,military weaponry,0.9486971,HIGH
+security measures (defense),national security,0.8467932,HIGH
+government budget,public finance,0.8157297,HIGH
+legislative body,lower house (legislature),0.7284943,HIGH
+legislative body,upper house (legislature),0.76936805,HIGH
+government policy,cultural policies,0.6609647,HIGH
+government policy,economic policy,0.7104373,HIGH
+economic policy,economic development incentive,0.8609969,HIGH
+economic policy,nationalization,0.5865417,HIGH
+economic policy,privatization,0.6651294,HIGH
+economic policy,state-owned enterprise,0.5620659,HIGH
+interior policy,data protection policy,0.59981745,HIGH
+interior policy,housing and urban planning policy,0.6114669,HIGH
+interior policy,infrastructure policy,0.6391432,HIGH
+interior policy,integration policy,0.66203797,HIGH
+interior policy,pension and welfare policy,0.5624992,HIGH
+interior policy,personal data collection policy,0.5892366,HIGH
+interior policy,personal weapon control policy,0.6329614,HIGH
+interior policy,planning inquiries,0.6716048,HIGH
+interior policy,policy towards indigenous people,0.55520666,HIGH
+interior policy,regional development policy,0.62154037,HIGH
+regulation of industry,food and drink regulations,0.5535053,HIGH
+international relations,border disputes,0.6316014,HIGH
+international relations,diplomacy,0.75919145,HIGH
+diplomacy,summit meetings,0.6640905,HIGH
+diplomacy,treaty,0.7461432,HIGH
+political process,lobbying,0.8109857,HIGH
+political process,political development,0.930485,HIGH
+political process,political parties and movements,0.8607297,HIGH
+political parties and movements,political leadership,0.85190606,HIGH
+political system,democracy,0.6996017,HIGH
+political system,dictatorship,0.6703737,HIGH
+religion and belief,belief systems,0.8124102,HIGH
+belief systems,Buddhism,0.5375131,HIGH
+belief systems,Christianity,0.6292113,HIGH
+Christianity,Catholicism,0.77863735,HIGH
+Christianity,Christian Orthodoxy,0.9049088,HIGH
+Christianity,Mormonism,0.62995446,HIGH
+Christianity,Old Catholic,0.6475923,HIGH
+Christianity,Protestantism,0.8277046,HIGH
+Protestantism,Anglican,0.7411336,HIGH
+Protestantism,Baptist,0.7830144,HIGH
+Protestantism,Lutheran,0.7728482,HIGH
+Protestantism,Mennonite,0.5655119,HIGH
+Protestantism,Methodist,0.7411151,HIGH
+Protestantism,Reformed,0.57584417,HIGH
+Roman Catholic,concordat,0.4929714,LOW
+Islam,Shia Islam,0.84652966,HIGH
+Islam,Sunni Islam,0.8871689,HIGH
+Judaism,Hasidism,0.85504425,HIGH
+religious facilities,church,0.8417883,HIGH
+religious facilities,mosque,0.6926396,HIGH
+religious facilities,synagogue,0.5995201,HIGH
+religious facilities,temple,0.74568284,HIGH
+religious festival and holiday,All Saints Day,0.55991435,HIGH
+religious festival and holiday,Christmas,0.5037759,HIGH
+religious festival and holiday,Easter,0.48522207,LOW
+religious festival and holiday,Eid al-Adha,0.4727481,LOW
+religious festival and holiday,Hanukkah,0.3716516,LOW
+religious festival and holiday,Pentecost,0.4757203,LOW
+religious festival and holiday,Ramadan,0.6392734,HIGH
+religious festival and holiday,Walpurgis night,0.51417226,HIGH
+religious festival and holiday,Yom Kippur,0.4470839,LOW
+religious leader,pope,0.66145575,HIGH
+religious ritual,baptism,0.60499287,HIGH
+religious ritual,bar and bat mitzvah,0.49821025,LOW
+religious ritual,canonization,0.658095,HIGH
+religious text,Bible,0.77265674,HIGH
+religious text,Qur'an,0.7230398,HIGH
+religious text,Torah,0.5991874,HIGH
+science and technology,biomedical science,0.74459755,HIGH
+biomedical science,biotechnology,0.8373076,HIGH
+natural science,astronomy,0.5177872,HIGH
+natural science,biology,0.70444965,HIGH
+biology,botany,0.7300929,HIGH
+biology,genetics,0.7447296,HIGH
+biology,paleontology,0.53905034,HIGH
+biology,physiology,0.7007957,HIGH
+biology,zoology,0.7929787,HIGH
+physics,electromagnetism,0.7316481,HIGH
+physics,nuclear physics,0.8678037,HIGH
+nuclear physics,particle physics,0.8536043,HIGH
+scientific research,medical research,0.73615116,HIGH
+scientific research,scientific exploration,0.9043945,HIGH
+scientific exploration,space exploration,0.5447252,HIGH
+social sciences,anthropology,0.7176754,HIGH
+social sciences,archeology,0.69911015,HIGH
+social sciences,economics,0.7068179,HIGH
+social sciences,geography,0.58193946,HIGH
+social sciences,history,0.6503751,HIGH
+social sciences,information science,0.73392105,HIGH
+social sciences,linguistics,0.5024631,HIGH
+social sciences,philosophy,0.6351381,HIGH
+social sciences,political science,0.6881425,HIGH
+social sciences,psychology,0.6105368,HIGH
+social sciences,sociology,0.8147663,HIGH
+social sciences,study of law,0.6786862,HIGH
+technology and engineering,aerospace engineering,0.6885507,HIGH
+aerospace engineering,rocketry,0.64893705,HIGH
+information technology and computer science,artificial intelligence,0.6650977,HIGH
+micro science,nanotechnology,0.7527245,HIGH
+society,communities,0.8002745,HIGH
+communities,social networking,0.56384534,HIGH
+demographics,population and census,0.7724097,HIGH
+discrimination,ageism,0.664137,HIGH
+discrimination,racism,0.8969319,HIGH
+discrimination,religious discrimination,0.7532338,HIGH
+discrimination,sexism,0.8365185,HIGH
+family,Dating and Relationships,0.6035799,HIGH
+family,adoption,0.6609935,HIGH
+family,divorce,0.56092215,HIGH
+family,family planning,0.8058135,HIGH
+family planning,abortion,0.46161956,LOW
+family planning,contraception,0.48769462,LOW
+immigration,illegal immigration,0.60689354,HIGH
+mankind,LGBTQ,0.5812452,HIGH
+mankind,adults,0.5754262,HIGH
+mankind,children,0.68551886,HIGH
+mankind,disabilities,0.58791745,HIGH
+mankind,gender,0.69686794,HIGH
+mankind,indigenous people,0.6161647,HIGH
+mankind,infants,0.6536497,HIGH
+mankind,men,0.6500069,HIGH
+mankind,national or ethnic minority,0.5927207,HIGH
+mankind,nuclear radiation victims,0.3565417,LOW
+mankind,senior citizens,0.41792774,LOW
+mankind,teenagers,0.65189385,HIGH
+mankind,women,0.58318263,HIGH
+social condition,homelessness,0.65379083,HIGH
+social condition,poverty,0.6377405,HIGH
+social problem,abusive behavior,0.78197926,HIGH
+social problem,addiction,0.72340655,HIGH
+social problem,bullying,0.7269796,HIGH
+social problem,juvenile delinquency,0.57694036,HIGH
+social problem,prostitution,0.6954433,HIGH
+social problem,sexual misconduct,0.66138005,HIGH
+social problem,slavery,0.6624119,HIGH
+values,corrupt practices,0.48078278,LOW
+values,death and dying,0.39570934,LOW
+death and dying,euthanasia,0.70340395,HIGH
+euthanasia,assisted suicide,0.61180055,HIGH
+welfare,charity,0.7243298,HIGH
+welfare,child care,0.7255829,HIGH
+welfare,elderly care,0.5878632,HIGH
+welfare,long-term care,0.6480664,HIGH
+welfare,public housing,0.68879056,HIGH
+welfare,social services,0.68498504,HIGH
+sport,competition discipline,0.74492085,HIGH
+competition discipline,3x3 basketball,0.21535605,LOW
+competition discipline,American football,0.22872499,LOW
+competition discipline,Australian rules football,0.25999996,LOW
+competition discipline,Canadian football,0.24586156,LOW
+competition discipline,Gaelic football,0.37018067,LOW
+competition discipline,Jai Alai (Pelota),0.33215493,LOW
+competition discipline,archery,0.4099728,LOW
+archery,crossbow shooting,0.76112646,HIGH
+archery,longbow,0.66350126,HIGH
+synchronized swimming,synchronized free routine,0.7354909,HIGH
+synchronized swimming,synchronized technical routine,0.6616212,HIGH
+track and field,cross-country run,0.74533904,HIGH
+track and field,decathlon,0.48418155,LOW
+track and field,discus throw,0.64965856,HIGH
+track and field,hammer throw,0.6825503,HIGH
+track and field,heptathlon,0.57763135,HIGH
+track and field,high jump,0.58927774,HIGH
+track and field,hurdles,0.64706564,HIGH
+track and field,javelin throw,0.6479573,HIGH
+track and field,long distance run,0.7114952,HIGH
+track and field,long jump,0.6147015,HIGH
+track and field,middle distance run,0.7609614,HIGH
+track and field,pentathlon,0.7071751,HIGH
+track and field,pole vault,0.590032,HIGH
+track and field,race walking,0.55729556,HIGH
+track and field,relay run,0.7517357,HIGH
+track and field,shot put,0.677413,HIGH
+track and field,sprint run,0.762807,HIGH
+track and field,steeplechase (athletics),0.7052661,HIGH
+track and field,triple jump,0.6869238,HIGH
+baseball,rubberball baseball,0.81392014,HIGH
+boxing,bantamweight (boxing),0.852748,HIGH
+boxing,cruiserweight (boxing),0.8561553,HIGH
+boxing,featherweight (boxing),0.8061944,HIGH
+boxing,flyweight (boxing),0.82614964,HIGH
+boxing,heavyweight (boxing),0.8384663,HIGH
+boxing,light flyweight (boxing),0.68651676,HIGH
+boxing,light-heavyweight (boxing),0.80107373,HIGH
+boxing,light-middleweight (boxing),0.78401184,HIGH
+boxing,light-welterweight (boxing),0.80614376,HIGH
+boxing,lightweight (boxing),0.81188166,HIGH
+boxing,middleweight (boxing),0.8328661,HIGH
+boxing,straw weight (boxing),0.8035557,HIGH
+boxing,super-bantamweight (boxing),0.8142842,HIGH
+boxing,super-featherweight (boxing),0.7578971,HIGH
+boxing,super-flyweight (boxing),0.77777314,HIGH
+boxing,super-heavyweight (boxing),0.77986884,HIGH
+boxing,super-middleweight (boxing),0.773245,HIGH
+boxing,welterweight (boxing),0.84944797,HIGH
+canoeing,C1 (canoeing),0.8412548,HIGH
+canoeing,C2 (canoeing),0.81036353,HIGH
+canoeing,C4 (canoeing),0.80350155,HIGH
+canoeing,canoe sailing,0.9078008,HIGH
+canoeing,pontoniering,0.6677128,HIGH
+curling,icestock sport,0.66281694,HIGH
+cycling,Keirin,0.49978518,LOW
+cycling,Madison race,0.51962423,HIGH
+cycling,artistic cycling,0.92382157,HIGH
+cycling,bi-crossing,0.72121245,HIGH
+cycling,bmx racing,0.6814195,HIGH
+cycling,cycle ball,0.8501727,HIGH
+cycling,cycle sprint race,0.7642541,HIGH
+cycling,cycling staging race,0.77079564,HIGH
+cycling,cyclo-cross,0.7825724,HIGH
+cycling,individual pursuit (cycling),0.88728523,HIGH
+cycling,individual time trial (cycling),0.8222112,HIGH
+cycling,mountain biking,0.82833457,HIGH
+cycling,points race (cycling),0.749011,HIGH
+cycling,road cycling,0.9439015,HIGH
+cycling,road cycling team pursuit,0.70377636,HIGH
+cycling,team cycle sprint,0.7418219,HIGH
+cycling,team time trial (cycling),0.7362708,HIGH
+cycling,track race (cycling),0.76163554,HIGH
+diving,platform diving,0.91037166,HIGH
+diving,springboard diving,0.85054755,HIGH
+diving,synchronized diving,0.91160357,HIGH
+dog racing,dog sled racing,0.88671654,HIGH
+dog racing,oval track dog racing,0.8891609,HIGH
+equestrian,cross-country horse riding,0.69235206,HIGH
+equestrian,dressage,0.74894726,HIGH
+equestrian,horse driving,0.74630255,HIGH
+equestrian,horse jumping,0.7983463,HIGH
+equestrian,three day eventing,0.5167567,HIGH
+fencing,epee,0.71322644,HIGH
+fencing,foil,0.7330472,HIGH
+fencing,sabre,0.7951935,HIGH
+figure skating,ice dance,0.83740747,HIGH
+golf,mini golf,0.75941706,HIGH
+gymnastics,artistic gymnastics,0.94916326,HIGH
+artistic gymnastics,beam (artistic gymnastics),0.8671076,HIGH
+artistic gymnastics,floor exercise (artistic gymnastics),0.7871233,HIGH
+artistic gymnastics,horizontal bar (artistic gymnastics),0.8557952,HIGH
+artistic gymnastics,parallel bars (artistic gymnastics),0.81500447,HIGH
+artistic gymnastics,pommel horse (artistic gymnastics),0.75560415,HIGH
+artistic gymnastics,rings (artistic gymnastics),0.84703165,HIGH
+artistic gymnastics,uneven bars (artistic gymnastics),0.7727403,HIGH
+artistic gymnastics,vault (artistic gymnastics),0.86041236,HIGH
+rhythmic gymnastics,ball (rhythmic gymnastics),0.90988296,HIGH
+rhythmic gymnastics,clubs (rhythmic gymnastics),0.88912153,HIGH
+rhythmic gymnastics,hoop (rhythmic gymnastics),0.9260858,HIGH
+rhythmic gymnastics,ribbon (rhythmic gymnastics),0.8663148,HIGH
+rhythmic gymnastics,rope (rhythmic gymnastics),0.85236704,HIGH
+horse racing,flat racing,0.5426227,HIGH
+horse racing,harness racing,0.8815208,HIGH
+horse racing,steeple chase,0.7062213,HIGH
+ice hockey,sledge hockey,0.7949482,HIGH
+kayaking,K1 (kayaking),0.7987173,HIGH
+kayaking,K2 (kayaking),0.7666112,HIGH
+kayaking,K4 (kayaking),0.8141199,HIGH
+martial arts,Taekwon-Do,0.5482892,HIGH
+martial arts,judo,0.6088664,HIGH
+judo,extra lightweight (judo),0.82481456,HIGH
+judo,half-heavyweight (judo),0.80089384,HIGH
+judo,half-lightweight (judo),0.8185338,HIGH
+judo,half-middleweight (judo),0.7887584,HIGH
+judo,heavyweight (judo),0.8339023,HIGH
+judo,lightweight (judo),0.85874337,HIGH
+judo,middleweight (judo),0.8188056,HIGH
+motor car racing,F3000,0.4003759,LOW
+motor car racing,Formula One,0.7267095,HIGH
+motor car racing,Indy Racing,0.85504425,HIGH
+motor car racing,endurance race,0.706428,HIGH
+motor car racing,motor car rallycross,0.9187113,HIGH
+motor car racing,motor car rallying,0.9177933,HIGH
+motorcycling,enduro,0.584437,HIGH
+motorcycling,grass-track,0.4827216,LOW
+motorcycling,moto-ball,0.7483442,HIGH
+motorcycling,moto-cross,0.7948797,HIGH
+motorcycling,motoGP,0.75166214,HIGH
+motorcycling,motorcycle endurance,0.7731923,HIGH
+motorcycling,motorcycle rallying,0.76799834,HIGH
+motorcycling,motorcycling trial,0.7954016,HIGH
+motorcycling,side-cars,0.6247951,HIGH
+motorcycling,speedway,0.6982572,HIGH
+mountain climbing,ice climbing,0.7708149,HIGH
+mountain climbing,mountaineering,0.9463659,HIGH
+orienteering,ski orienteering,0.82978714,HIGH
+rodeo,bareback bronc,0.49413425,LOW
+rodeo,barrel racing,0.71818244,HIGH
+rodeo,bull riding,0.59451675,HIGH
+rodeo,bulldogging,0.5025003,HIGH
+rodeo,calf roping,0.67184734,HIGH
+rodeo,goat roping,0.5839696,HIGH
+rodeo,saddle bronc,0.6179824,HIGH
+roller sports,roller hockey,0.8595515,HIGH
+roller sports,skateboarding,0.6521189,HIGH
+rowing,coxed eight,0.7534831,HIGH
+rowing,coxed four,0.79762906,HIGH
+rowing,coxed pair,0.8197907,HIGH
+rowing,coxless four,0.6071199,HIGH
+rowing,coxless pair,0.5089365,HIGH
+rowing,double sculls,0.72973454,HIGH
+rowing,quadruple sculls,0.7739523,HIGH
+rowing,single sculls,0.6485717,HIGH
+rugby,rugby league,0.8376321,HIGH
+rugby,rugby sevens,0.8518554,HIGH
+rugby,rugby union,0.9452771,HIGH
+sailing,dinghy,0.7708818,HIGH
+sailing,keelboat,0.83064634,HIGH
+sailing,multihull,0.6325029,HIGH
+sailing,non-stop solo race,0.47604454,LOW
+sailing,ocean sailing,0.83701265,HIGH
+sailing,round the world race,0.5868703,HIGH
+sailing,sailing regatta,0.8607963,HIGH
+sailing,solo ocean sailing,0.7015145,HIGH
+skiing,Nordic combined,0.68794453,HIGH
+skiing,Nordic skiing,0.8705518,HIGH
+skiing,Telemark skiing,0.8628153,HIGH
+skiing,alpine skiing,0.9161398,HIGH
+skiing,cross-country skiing,0.9106184,HIGH
+skiing,freestyle skiing,0.88476324,HIGH
+skiing,grass skiing,0.77732706,HIGH
+skiing,ski jumping,0.941155,HIGH
+sport shooting,clay pigeon shooting,0.5480366,HIGH
+sport shooting,pistol shooting,0.78366035,HIGH
+sport shooting,rifle shooting,0.8223602,HIGH
+sport shooting,running target shooting,0.8065008,HIGH
+sport shooting,shotgun shooting,0.72618675,HIGH
+swimming,backstroke,0.8553979,HIGH
+swimming,breaststroke,0.86454016,HIGH
+swimming,butterfly swimming,0.8640466,HIGH
+swimming,freestyle swimming,0.88604426,HIGH
+swimming,marathon swimming,0.6927096,HIGH
+swimming,medley swimming,0.90161836,HIGH
+swimming,relay freestyle swimming,0.82424915,HIGH
+swimming,relay medley swimming,0.81727016,HIGH
+swimming,short course swimming,0.80803704,HIGH
+volleyball,beach volleyball,0.8478409,HIGH
+weightlifting and powerlifting,clean and jerk (weightlifting),0.6846772,HIGH
+weightlifting and powerlifting,powerlifting,0.8878012,HIGH
+weightlifting and powerlifting,snatch (weightlifting),0.86971796,HIGH
+wrestling,Swiss wrestling,0.73248124,HIGH
+wrestling,freestyle wrestling,0.88986033,HIGH
+wrestling,greco-roman,0.6514109,HIGH
+drug use in sport,drug abuse in sport,0.9386286,HIGH
+drug use in sport,drug testing in sport,0.89476943,HIGH
+drug use in sport,medical drug use in sport,0.899707,HIGH
+sport achievement,sports award,0.8080696,HIGH
+sport achievement,sports medal,0.88838667,HIGH
+sport achievement,sports record,0.8189839,HIGH
+sport event,Olympic Games,0.59411913,HIGH
+sport event,Paralympic Games,0.57228297,HIGH
+sport event,continental championship,0.5417452,HIGH
+sport event,continental cup,0.58145,HIGH
+sport event,continental games,0.6739708,HIGH
+sport event,final game,0.48411193,LOW
+sport event,international championship,0.5948024,HIGH
+sport event,international cup,0.6061179,HIGH
+sport event,international games,0.68402576,HIGH
+sport event,national championship,0.5748066,HIGH
+sport event,national cup,0.6326049,HIGH
+sport event,national games,0.7678844,HIGH
+sport event,playoff championship,0.4221377,LOW
+sport event,regional championship,0.5446509,HIGH
+sport event,regional cup,0.56605786,HIGH
+sport event,regional games,0.6741946,HIGH
+sport event,regular competition,0.56302416,HIGH
+sport event,world championship,0.5129712,HIGH
+sport event,world cup,0.5078884,HIGH
+sport event,world games,0.6048248,HIGH
+weather,weather forecast,0.81567144,HIGH
+weather,weather phenomena,0.93046784,HIGH
+weather,weather statistic,0.7991165,HIGH
+weather,weather warning,0.83119726,HIGH

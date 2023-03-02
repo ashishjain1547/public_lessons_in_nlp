@@ -1,0 +1,397 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        }); 
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre><i style="color: blue">import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics.pairwise import cosine_similarity
+from joblib import load, dump
+import torch
+import transformers as ppb
+
+import warnings
+warnings.filterwarnings('ignore')
+
+ppb.__version__ </i>
+<i style="color: green">'3.0.1'</i>
+
+<i style="color: blue">model_class, tokenizer_class, pretrained_weights = (ppb.BertModel, ppb.BertTokenizer, 'bert-base-uncased') </i>
+
+<b>Load pretrained model/tokenizer</b>
+
+<i style="color: blue">tokenizer = tokenizer_class.from_pretrained(pretrained_weights)
+model = model_class.from_pretrained(pretrained_weights) </i>
+
+The above code downloads three files when it runs for the first time:
+
+<i style="color: green">HBox(children=(FloatProgress(value=0.0, description='Downloading', max=433.0, style=ProgressStyle(description_…
+HBox(children=(FloatProgress(value=0.0, description='Downloading', max=231508.0, style=ProgressStyle(descripti…
+HBox(children=(FloatProgress(value=0.0, description='Downloading', max=440473133.0, style=ProgressStyle(descri… </i>
+
+The third file is the model with size 440MB.
+
+<b>Our first step is to tokenize the sentences -- break them up into word and subwords in the format BERT is comfortable with. </b>
+
+<i style="color: blue">sentences = ['First do it', 'then do it right', 'then do it better']
+sentences_df = pd.DataFrame({"sentences": sentences})
+tokenized = sentences_df['sentences'].apply((lambda x: tokenizer.encode(x, add_special_tokens=True))) </i>
+
+<b>Padding</b>
+After tokenization, `tokenized` is a list of sentences -- each sentences is represented as a list of tokens. We want BERT to process our examples all at once (as one batch). It's just faster that way. For that reason, we need to pad all lists to the same size, so we can represent the input as one 2-d array, rather than a list of lists (of different lengths).
+
+<i style="color: blue">max_len = 0
+for i in tokenized.values:
+    if len(i) > max_len:
+        max_len = len(i)
+
+padded = np.array([i + [0]*(max_len-len(i)) for i in tokenized.values]) </i>
+
+<b>Masking </b>
+If we directly send `padded` to BERT, that would slightly confuse it. We need to create another variable to tell it to ignore (mask) the padding we've added when it's processing its input. That's what attention_mask is:
+
+<i style="color: blue">attention_mask = np.where(padded != 0, 1, 0) 
+
+%%time
+input_ids = torch.LongTensor(padded)
+attention_mask = torch.tensor(attention_mask)
+
+with torch.no_grad():
+    last_hidden_states = model(input_ids = input_ids, attention_mask = attention_mask) 
+	
+features = last_hidden_states[0][:,0,:].numpy() </i>
+	
+Let's slice only the part of the output that we need. That is the output corresponding the first token of each sentence. The way BERT does sentence classification, is that it adds a token called `[CLS]` (for classification) at the beginning of every sentence. Last token is representing [SEP]. The output corresponding to that token can be thought of as an embedding for the entire sentence.
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-3BZoHI_VXsU/X33qdw-5g9I/AAAAAAAAFnE/RHi2RHMS79IoyBS7BhjDX0smFReNJMHIwCLcBGAsYHQ/s1423/bert-output-tensor-selection.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="535" data-original-width="1423" src="https://1.bp.blogspot.com/-3BZoHI_VXsU/X33qdw-5g9I/AAAAAAAAFnE/RHi2RHMS79IoyBS7BhjDX0smFReNJMHIwCLcBGAsYHQ/s600/bert-output-tensor-selection.png"/></a></div>
+
+We'll save those in the `features` variable, as they'll serve as the features to our logitics regression model.
+
+<h3>Testing </h3>
+<b>Word Analogies </b>
+
+<i style="color: blue">def get_embedding(in_list):
+    tokenized = [tokenizer.encode(x, add_special_tokens=True) for x in in_list]
+    
+    max_len = 0
+    for i in tokenized:
+        if len(i) > max_len:
+            max_len = len(i)
+
+    padded = np.array([i + [0]*(max_len-len(i)) for i in tokenized])
+    
+    attention_mask = np.where(padded != 0, 1, 0)
+    
+    input_ids = torch.LongTensor(padded)
+    attention_mask = torch.tensor(attention_mask)
+
+    with torch.no_grad():
+        last_hidden_states = model(input_ids = input_ids, attention_mask = attention_mask)
+        
+    features = last_hidden_states[0][:,0,:].numpy()
+    return features
+	
+analogies = [['king', 'man', 'queen', 'woman'],
+  ['king', 'prince', 'queen', 'princess'],
+  ['miami', 'florida', 'dallas', 'texas'],
+  ['einstein', 'scientist', 'picasso', 'painter'],
+  ['japan', 'sushi', 'germany', 'bratwurst'],
+  ['man', 'woman', 'he', 'she'],
+  ['man', 'woman', 'uncle', 'aunt'],
+  ['man', 'woman', 'brother', 'sister'],
+  ['man', 'woman', 'husband', 'wife'],
+  ['man', 'woman', 'actor', 'actress'],
+  ['man', 'woman', 'father', 'mother'],
+  ['heir', 'heiress', 'prince', 'princess'],
+  ['nephew', 'niece', 'uncle', 'aunt'],
+  ['france', 'paris', 'japan', 'tokyo'],
+  ['france', 'paris', 'china', 'beijing'],
+  ['february', 'january', 'december', 'november'],
+  ['france', 'paris', 'germany', 'berlin'],
+  ['week', 'day', 'year', 'month'],
+  ['week', 'day', 'hour', 'minute'],
+  ['france', 'paris', 'italy', 'rome'],
+  ['paris', 'france', 'rome', 'italy'],
+  ['france', 'french', 'england', 'english'],
+  ['japan', 'japanese', 'china', 'chinese'],
+  ['china', 'chinese', 'america', 'american'],
+  ['japan', 'japanese', 'italy', 'italian'],
+  ['japan', 'japanese', 'australia', 'australian'],
+  ['walk', 'walking', 'swim', 'swimming']]
+
+for i in analogies:
+    king = get_embedding([i[0]])
+    queen = get_embedding([i[2]])
+    man = get_embedding([i[1]])
+    woman = get_embedding([i[3]])
+    q = king - man + woman
+    print(i[0], '-', i[1], '+', i[3], 'and', i[2], cosine_similarity(queen, q)) </i>
+	
+<i style="color: green">king - man + woman and queen [[0.95728725]]
+king - prince + princess and queen [[0.9805071]]
+miami - florida + texas and dallas [[0.93608725]]
+einstein - scientist + painter and picasso [[0.9021458]]
+japan - sushi + bratwurst and germany [[0.8383053]]
+man - woman + she and he [[0.97603536]]
+man - woman + aunt and uncle [[0.9624729]]
+man - woman + sister and brother [[0.970188]]
+man - woman + wife and husband [[0.9585104]]
+man - woman + actress and actor [[0.95233154]]
+man - woman + mother and father [[0.9783108]]
+heir - heiress + princess and prince [[0.9558885]]
+nephew - niece + aunt and uncle [[0.9844531]]
+france - paris + tokyo and japan [[0.95287836]]
+france - paris + beijing and china [[0.94868445]]
+february - january + november and december [[0.89765096]]
+france - paris + berlin and germany [[0.9586985]]
+week - day + month and year [[0.9131064]]
+week - day + minute and hour [[0.9280644]]
+france - paris + rome and italy [[0.92742187]]
+paris - france + italy and rome [[0.9252609]]
+france - french + english and england [[0.9143828]]
+japan - japanese + chinese and china [[0.9681916]]
+china - chinese + american and america [[0.9371264]]
+japan - japanese + italian and italy [[0.97318065]]
+japan - japanese + australian and australia [[0.96878356]]
+walk - walking + swimming and swim [[0.90309924]] </i>
+
+<b>Nearest Words </b>
+We have retrieved nouns from the 'BERT Base Uncased' vocabulary. There are 15269 nouns in this vocabulary.
+You can download "vocab.txt" from here: <a href="https://github.com/ashishjain1547/PublicDatasets/blob/master/bert_base_uncased_L-12_H-768_A-12%20Vocab.txt" target="_blank">GitHub</a>
+We have used to SpaCy to identify the nouns.
+
+<i style="color: blue">nouns = load('files_5_p3/list_of_nouns_from_bert_base_uncased_vocab.joblib')
+
+%%time
+noun_embeddings = [get_embedding([i]) for i in nouns]
+dump(noun_embeddings, 'files_2_p2/list_of_noun_embeddings.joblib') </i>
+
+<i style="color: green">Wall time: 20min 8s </i>
+
+<i style="color: blue">noun_embeddings = load('files_2_p2/list_of_noun_embeddings.joblib')
+noun_embeddings = [n[0] for n in noun_embeddings]
+
+from scipy.spatial import distance
+
+def get_nn_of_words(in_list):
+    for k in in_list:
+        input_word = k
+
+        if k not in nouns:
+            continue
+        p = noun_embeddings[nouns.index(input_word)]
+
+        closest_embedding_indices = distance.cdist(np.array(p).reshape(1, -1), 
+                                            np.array(noun_embeddings).reshape(len(noun_embeddings),-1))[0].argsort()[1:11]
+        
+        closest_nouns = [nouns[i] for i in closest_embedding_indices]
+        print("For", k, closest_nouns)
+		
+get_nn_of_words(set(pd.core.common.flatten(analogies))) </i>
+
+<i style="color: green">For germany ['austria', 'bavaria', 'berlin', 'luxembourg', 'europe', 'japan', 'britain', 'wurttemberg', 'dresden', 'sweden']
+For niece ['nephew', 'granddaughter', 'fiancee', 'daughter', 'grandparents', 'grandson', 'stepmother', 'aunt', 'cousins', 'wife']
+
+For aunt ['grandmother', 'grandfather', 'uncle', 'cousin', 'sister', 'mother', 'miriam', 'vicki', 'uncles', 'cousins']
+
+For february ['january', 'april', 'june', 'november', 'march', 'july', 'august', 'december', 'october', 'spring']
+
+For england ['britain', 'wales', 'australia', 'ireland', 'barbados', 'stoke', 'brentford', 'lancashire', 'cuba', 'luxembourg']
+
+For america ['planet', 'dakota', 'hawaii', 'britain', 'hemisphere', 'coral', 'virginia', 'nina', 'columbia', 'victoria']
+
+For italian ['italy', 'russian', 'catalan', 'portuguese', 'french', 'azerbaijani', 'indonesian', 'austrian', 'japanese', 'irish']
+
+For uncle ['aunt', 'cousin', 'grandfather', 'brother', 'grandmother', 'uncles', 'doc', 'bobby', 'mother', 'kid']
+
+For miami ['tampa', 'seattle', 'vancouver', 'portland', 'arizona', 'vegas', 'sydney', 'florida', 'houston', 'orlando']
+
+For italy ['austria', 'germany', 'luxembourg', 'europe', 'rico', 'japan', 'africa', 'indonesia', 'florence', 'tuscany']
+
+For woman ['teenager', 'girl', 'spouse', 'brother', 'partner', 'daughter', 'mother', 'consort', 'wife', 'stallion']
+
+For english ['afrikaans', 'hindi', 'latin', 'portuguese', 'sanskrit', 'french', 'italian', 'hebrew', 'azerbaijani', 'lithuanian']
+
+For king ['duke', 'prince', 'queen', 'princess', 'throne', 'consort', 'deity', 'queens', 'abbot', 'lords']
+
+For dallas ['jasmine', 'travis', 'savannah', 'eden', 'lucas', 'mia', 'lexi', 'jack', 'hunter', 'penny']
+
+For mother ['grandmother', 'brother', 'mothers', 'parents', 'daughter', 'mom', 'father', 'grandfather', 'sister', 'mary']
+
+For heiress ['landowner', 'heir', 'daughters', 'heirs', 'daughter', 'granddaughter', 'siblings', 'grandson', 'childless', 'clerk']
+
+For japanese ['korean', 'japan', 'thai', 'russian', 'hawaiian', 'malaysian', 'indonesian', 'khmer', 'taiwanese', 'bengali']
+
+For heir ['heirs', 'consort', 'spouse', 'prince', 'womb', 'attendants', 'fulfillment', 'duke', 'daughter', 'keeper']
+
+For january ['november', 'april', 'august', 'february', 'december', 'summer', 'july', 'spring', 'october', 'june']
+
+For brother ['sister', 'grandfather', 'cousin', 'grandmother', 'mother', 'daughter', 'partner', 'bowl', 'mentor', 'beau']
+
+For wife ['husbands', 'daughter', 'spouse', 'husband', 'woman', 'girlfriend', 'household', 'supporter', 'boyfriend', 'granddaughter']
+
+For minute ['moments', 'hour', 'dozen', 'mile', 'cycles', 'millennia', 'moment', 'sizes', 'clocks', 'twenties']
+
+For picasso ['goldsmith', 'michelangelo', 'fresco', 'carousel', 'chopin', 'verdi', 'hercules', 'palette', 'canvas', 'britten']
+
+For week ['month', 'series', 'replacement', 'primetime', 'position', 'highlight', 'zone', 'slot', 'office', 'showcase']
+
+For japan ['america', 'ceylon', 'hawaii', 'malaysia', 'australia', 'taiwan', 'osaka', 'fukuoka', 'indonesia', 'korea']
+
+For einstein ['aristotle', 'nobel', 'beckett', 'wiener', 'relativity', 'abel', 'strauss', 'skinner', 'clifford', 'bernstein']
+
+For australian ['australia', 'canadian', 'canada', 'fremantle', 'oceania', 'america', 'brazil', 'nepal', 'jakarta', 'hawaii']
+
+For painter ['musician', 'painting', 'paintings', 'designer', 'dancer', 'filmmaker', 'illustrator', 'teacher', 'soldier', 'boxer']
+
+For man ['lump', 'woman', 'boss', 'bear', 'scratch', 'intruder', 'alpha', 'rat', 'touch', 'condo']
+
+For florida ['maine', 'louisiana', 'arizona', 'virginia', 'charleston', 'indiana', 'tampa', 'colorado', 'alabama', 'connecticut']
+
+For year ['season', 'month', 'eligibility', 'seasons', 'name', 'calendar', 'date', 'colour', 'highlight', 'divisional']
+
+For tokyo ['osaka', 'kyoto', 'fukuoka', 'nagoya', 'seoul', 'kobe', 'moscow', 'honolulu', 'japan', 'nippon']
+
+For november ['october', 'january', 'december', 'winter', 'spring', 'august', 'april', 'monday', 'halloween', 'wednesday']
+
+For rome ['titan', 'vulcan', 'mesopotamia', 'damascus', 'alexandria', 'egypt', 'baghdad', 'orion', 'denver', 'nevada']
+
+For china ['taiwan', 'fujian', 'indonesia', 'japan', 'asia', 'sichuan', 'malawi', 'lebanon', 'russia', 'zimbabwe']
+
+For hour ['minute', 'hours', 'moments', 'dozen', 'weeks', 'inning', 'day', 'cycles', 'midnight', 'minutes']
+
+For texas ['oregon', 'alabama', 'florida', 'colorado', 'ohio', 'indiana', 'georgia', 'houston', 'arkansas', 'arizona']
+
+For sister ['brother', 'daughter', 'mother', 'grandmother', 'grandfather', 'cousin', 'aunt', 'padre', 'sisters', 'blossom']
+
+For berlin ['vienna', 'stuttgart', 'hannover', 'hamburg', 'bonn', 'dresden', 'dusseldorf', 'gottingen', 'mannheim', 'rosenthal']
+
+For actress ['actor', 'musician', 'singer', 'novelist', 'teacher', 'dancer', 'magician', 'poet', 'painter', 'actors']
+
+For beijing ['tianjin', 'guangzhou', 'singapore', 'honolulu', 'taipei', 'ankara', 'osaka', 'manila', 'durban', 'jakarta']
+
+For princess ['prince', 'madam', 'papa', 'kira', 'sweetie', 'witch', 'ruby', 'wedding', 'tasha', 'marta']
+
+For nephew ['niece', 'grandson', 'granddaughter', 'daughter', 'fiancee', 'girlfriend', 'son', 'brother', 'sidekick', 'wife']
+
+For month ['week', 'summers', 'evening', 'calendar', 'decade', 'semester', 'term', 'position', 'seasonal', 'occasion']
+
+For swimming ['diving', 'weightlifting', 'judo', 'badminton', 'tennis', 'gymnastics', 'archery', 'swimmers', 'breaststroke', 'hockey']
+
+For queen ['princess', 'queens', 'maid', 'king', 'prince', 'duke', 'consort', 'crown', 'stallion', 'madam']
+
+For actor ['actress', 'actors', 'poet', 'television', 'singer', 'novelist', 'comedian', 'musician', 'screenwriter', 'painter']
+
+For december ['november', 'january', 'october', 'april', 'march', 'june', 'july', 'september', 'august', 'autumn']
+
+For american ['british', 'americans', 'america', 'britain', 'african', 'haitian', 'kenyan', 'bangladeshi', 'resident', 'canadian']
+
+For french ['italian', 'portuguese', 'dutch', 'english', 'spanish', 'afrikaans', 'filipino', 'romanian', 'france', 'greek']
+
+For prince ['princess', 'duke', 'consort', 'king', 'benedict', 'commander', 'papa', 'dean', 'throne', 'kevin']
+
+For scientist ['physician', 'archaeologist', 'golfer', 'inventor', 'chef', 'consultant', 'investigator', 'teenager', 'astronaut', 'technician']
+
+For paris ['bonn', 'laval', 'provence', 'dublin', 'geneva', 'eugene', 'michel', 'koln', 'benoit', 'ville']
+
+For father ['mother', 'fathers', 'brother', 'daddy', 'uncles', 'son', 'sister', 'homeland', 'dad', 'protector']
+
+For husband ['wife', 'spouse', 'lover', 'boyfriend', 'husbands', 'woman', 'daughter', 'son', 'fiance', 'mother']
+
+For france ['martinique', 'luxembourg', 'marseille', 'geneva', 'bordeaux', 'lyon', 'paris', 'clermont', 'alsace', 'switzerland']
+
+For australia ['australian', 'america', 'canada', 'tasmania', 'sydney', 'britain', 'japan', 'fremantle', 'malaysia', 'hawaii']
+
+For day ['evening', 'nightfall', 'midnight', 'night', 'dawn', 'morning', 'moments', 'afternoon', 'epoch', 'sunrise'] </i>
+
+<b>1D Spectrum </b>
+
+<i style="color: blue">for i in analogies:
+    king = get_embedding([i[0]])
+    queen = get_embedding([i[2]])
+    man = get_embedding([i[1]])
+    woman = get_embedding([i[3]])
+    q = king - man + woman
+    
+    print(i[0], i[1], i[2], i[3], cosine_similarity(queen, q))
+    
+    for j in i:
+        print(j, ":")
+        np.random.seed(1)
+        plt.rcParams["figure.figsize"] = 8, 2
+
+        x = np.linspace(0, 768, num=768)
+        y = get_embedding([j])
+
+        fig, (ax,ax2) = plt.subplots(nrows=2, sharex=True)
+
+        extent = [x[0]-(x[1]-x[0])/2., x[-1]+(x[1]-x[0])/2.,0,1]
+        ax.imshow(y, cmap="plasma", aspect="auto", extent=extent)
+        ax.set_yticks([])
+        ax.set_xlim(extent[0], extent[1])
+
+        ax2.plot(x, y.ravel())
+
+        plt.tight_layout()
+        plt.show() </i>
+		
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-pzT9gd2y6Lg/X33qd8j0GCI/AAAAAAAAFnI/Iu2rCpWHhEo7WJK9ZE7yN_N0NwOyETPtACLcBGAsYHQ/s577/1D%2BSpectrum.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="577" data-original-width="517" src="https://1.bp.blogspot.com/-pzT9gd2y6Lg/X33qd8j0GCI/AAAAAAAAFnI/Iu2rCpWHhEo7WJK9ZE7yN_N0NwOyETPtACLcBGAsYHQ/s600/1D%2BSpectrum.png"/></a></div>
+</pre>

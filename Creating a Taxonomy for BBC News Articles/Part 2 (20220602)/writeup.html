@@ -1,0 +1,240 @@
+<!-- Title: Creating a Taxonomy for BBC News Articles (Part 2) -->
+
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<style>
+    i.black {
+        display: block;
+        background-color: black;
+        color: white;
+    }
+
+    i.red {
+        display: block;
+        background-color: red;
+        color: white;
+    }
+
+    i.green {
+        display: block;
+        background-color: green;
+        color: white;
+    }
+</style>
+
+<pre>
+<h2>Note</h2>
+In this part, we cheat a little bit, look at the data set for number of categories that have been already defined for the news articles and then we apply SentenceTransformer to encode and AgglomerativeClustering to identify hierarchical groups for these articles.
+
+<i class="black">
+import pandas as pd
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+from sentence_transformers import SentenceTransformer
+
+from collections import Counter
+import warnings
+warnings.filterwarnings('ignore')
+
+from matplotlib import pyplot as plt
+from scipy.cluster.hierarchy import dendrogram
+
+from sklearn.cluster import AgglomerativeClustering
+</i>
+
+<i class="black">
+df1 = pd.read_csv('bbc_news_train.csv')
+</i>
+
+<i class="black">
+df1.columns
+</i>
+
+<i class="green">
+Index(['ArticleId', 'Text', 'Category'], dtype='object')
+</i>
+
+<h2>Peeking into the data set</h2>
+
+<i class="black">
+Counter(df1['Category'])
+</i>
+
+<i class="green">
+Counter({'business': 336,
+'tech': 261,
+'politics': 274,
+'sport': 346,
+'entertainment': 273})
+</i>
+
+<i class="black">
+model = SentenceTransformer('distilbert-base-nli-mean-tokens')
+</i>
+
+<i class="black">
+%%time
+sentences = df1['Text'].values.tolist()
+
+sentences_df = pd.DataFrame({"sentences": sentences})
+tokenized = sentences_df['sentences'].apply(lambda x: model.encode([x])[0])
+</i>
+
+<i class="green">
+CPU times: total: 10min 56s
+Wall time: 5min 29s
+</i>
+
+<i class="black">
+tokenized_list = tokenized.values.tolist()
+cols = ["feature_" + str(i) for i in range(768)]
+tokenized_df = pd.DataFrame(columns = cols, data = tokenized_list)
+</i>
+
+<i class="black">
+X = tokenized_df
+</i>
+
+# setting distance_threshold=0 ensures we compute the full tree.
+# model = AgglomerativeClustering(distance_threshold=0, n_clusters=None)
+
+# Setting number of clusters to 5 as per the categories present in the training data set.
+# model = AgglomerativeClustering(distance_threshold=0, n_clusters=5)
+# ValueError: Exactly one of n_clusters and distance_threshold has to be set, and the other needs to be None.
+
+# By default, parameter "compute_distances" is False and in such case, we would not be able to produce Dendrogram so we set this parameter to True.
+
+<i class="black">
+model = AgglomerativeClustering(distance_threshold=None, n_clusters=5, compute_distances=True)
+
+pred = model.fit_predict(X)
+
+print(pred)
+print(len(pred))
+print(len(Counter(pred).keys()))
+</i>
+
+<i class="green">
+[0 1 3 ... 1 3 3]
+1490
+5
+</i>
+
+<i class="black">
+def plot_dendrogram(model, **kwargs):
+    # Create linkage matrix and then plot the dendrogram
+
+    # create the counts of samples under each node
+    counts = np.zeros(model.children_.shape[0])
+    n_samples = len(model.labels_)
+    for i, merge in enumerate(model.children_):
+        current_count = 0
+        for child_idx in merge:
+            if child_idx < n_samples:
+                current_count += 1  # leaf node
+            else:
+                current_count += counts[child_idx - n_samples]
+        counts[i] = current_count
+
+    linkage_matrix = np.column_stack(
+        [model.children_, model.distances_, counts]
+    ).astype(float)
+
+    # Plot the corresponding dendrogram
+    dendrogram(linkage_matrix, **kwargs)
+    return linkage_matrix
+
+df1['pred'] = pred
+df1.to_csv('output_' + str(round(time())) + ".csv", index = False)
+
+plt.title("Hierarchical Clustering Dendrogram")
+# plot the top three levels of the dendrogram
+linkage_matrix = plot_dendrogram(model, truncate_mode="level", p=3)
+plt.xlabel("Number of points in node (or index of point if no parenthesis).")
+plt.show()
+</i>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyNy6hciIQIu9IN1tjLdJaJbrzn2ACA_MI3hekb15UglnW4PoRblR3-3SVUu1O7ihPQMv3RQlkq8Z5zCom_O5NnbDus1HQ0AbA5bWKZ7v_AcTtY8YlaoxdAoY7RpYitVpgbvjk5rFI26JoVfrpE5ExlDGwKnr_Ktx56POeqExR7Cxe935nQfYcS9RR2Q/s476/img%20dendrogram.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="351" data-original-width="476"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyNy6hciIQIu9IN1tjLdJaJbrzn2ACA_MI3hekb15UglnW4PoRblR3-3SVUu1O7ihPQMv3RQlkq8Z5zCom_O5NnbDus1HQ0AbA5bWKZ7v_AcTtY8YlaoxdAoY7RpYitVpgbvjk5rFI26JoVfrpE5ExlDGwKnr_Ktx56POeqExR7Cxe935nQfYcS9RR2Q/s600/img%20dendrogram.png" /></a>
+</div>
+
+<h2>Analyzing the output in Excel</h2>
+
+<h3>Table View</h3>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjybOw_MNCScB5K0satoGMHJ9gBNguUL9-yesGgXVTNhyIaKixNkzlhk-WoSqviAZnwv_4SPEQyoEGegCzGGZ3PzKUVYmUaQd6NNeFdM2tRGcmPwZg1hzs5I4_3cW2MaoLzyIQ1UTEppk4s2xvi-YmHLnDR_c2wDJOg6VRDWa215W2xfXS14KaOZE3nGg/s606/output%20in%20excel.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="389" data-original-width="606"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjybOw_MNCScB5K0satoGMHJ9gBNguUL9-yesGgXVTNhyIaKixNkzlhk-WoSqviAZnwv_4SPEQyoEGegCzGGZ3PzKUVYmUaQd6NNeFdM2tRGcmPwZg1hzs5I4_3cW2MaoLzyIQ1UTEppk4s2xvi-YmHLnDR_c2wDJOg6VRDWa215W2xfXS14KaOZE3nGg/s600/output%20in%20excel.png" /></a>
+</div>
+
+<h3>Now in Pivot Table</h3>
+
+<div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgeBAaSkCpdI_yQNeWnkuMSMJaPDg2OIS7dqPEY4p9UBcKxMEoCHQ0ckhTu2rvZEPDFxy59HY0QfgKLSz66Fg3gvsF0LoTKstJlUl0IR4RTA0sxFpJqdX2LBAKYmouv_ODLuv5Y47oJkMotoLsnTHjeha6gjT5tbzLOQAQ6Jy0Qn60O_uomuYPLz_80Sw/s533/pivot%20table.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="215" data-original-width="533" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgeBAaSkCpdI_yQNeWnkuMSMJaPDg2OIS7dqPEY4p9UBcKxMEoCHQ0ckhTu2rvZEPDFxy59HY0QfgKLSz66Fg3gvsF0LoTKstJlUl0IR4RTA0sxFpJqdX2LBAKYmouv_ODLuv5Y47oJkMotoLsnTHjeha6gjT5tbzLOQAQ6Jy0Qn60O_uomuYPLz_80Sw/s600/pivot%20table.png"/></a></div>
+
+</pre>
+<span style="display: none">Tags: Technology,Natural Language Processing,Machine Learning,Python,</span>
+

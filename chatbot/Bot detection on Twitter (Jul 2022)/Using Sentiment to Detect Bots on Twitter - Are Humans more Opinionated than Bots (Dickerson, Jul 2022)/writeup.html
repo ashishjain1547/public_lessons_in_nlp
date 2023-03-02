@@ -1,0 +1,135 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/PublicResearchPapers/blob/master/Identification%20of%20Bot%20Accounts%20on%20Twitter%20(Jul%202022)/Using%20Sentiment%20to%20Detect%20Bots%20on%20Twitter%20Are%20Humans%20more%20Opinionated%20than%20Bots%20(Dickerson).pdf" target="_blank">Download Research Paper</a>
+
+<pre>
+<h2>Abstract</h2>
+
+In many Twitter applications, developers collect only a limited sample of tweets and a local portion of the Twitter network. Given such Twitter applications with limited data, how can we classify Twitter users as either bots or humans? We develop a collection of network-, linguistic-, and application oriented variables that could be used as possible features, and identify specific features that distinguish well between humans and bots. In particular, by analyzing a large dataset relating to the 2014 Indian election, we show that a number of sentiment related factors are key to the identification of bots, significantly increasing the Area under the ROC Curve (AUROC). The same method may be used for other applications as well.
+
+<h2>A. Previous Work</h2>
+
+There has been recent interest in the detection of malicious and/or fake users from both the online social networks and computer networking communities. 
+
+# For instance, Wang [4] looks at graph-based features to identify bots on Twitter, while Yang, Harkreader, and 
+[4] A. H. Wang, “Detecting spam bots in online social networking sites: A machine learning approach,” in Conference on Data and Applications Security and Privacy. ACM, 2010, pp. 335–342.
+
+# Gu [5] combine similar graphbased features with syntactic metrics to build their classifiers.
+[5] C. Yang, R. C. Harkreader, and G. Gu, “Die free or live hard? Empirical evaluation and new design for fighting evolving Twitter spammers,” in Recent Advances in Intrusion Detection. Springer, 2011, pp. 318–337.
+
+# Thomas et al. [6] use a similar set of features to provide a retrospective analysis of a large set of recently-suspended Twitter accounts. 
+[6] K. Thomas, C. Grier, D. Song, and V. Paxson, “Suspended accounts in retrospect: An analysis of Twitter spam,” in Internet Measurement Conference (IMC). ACM, 2011, pp. 243–258.
+
+# Boshmaf et al. [7] instead create bots (rather than detecting them), claiming that 80% of bots are undetectable and that Facebook’s Immune system [8] was unable to detect their bots. 
+[7] Y. Boshmaf, I. Muslukhov, K. Beznosov, and M. Ripeanu, “The socialbot network: When bots socialize for fame and money,” in Annual Computer Security Applications Conference (ACSAC). ACM, 2011, pp. 93–102.
+[8] T. Stein, E. Chen, and K. Mangla, “Facebook immune system,” in Workshop on Social Network Systems (SNS). ACM, 2011.
+
+# Lee, Caverlee, and Webb [9] create “honeypot” accounts to lure both humans and spammers into the open, then provide a statistical analysis of the malicious accounts they identified. 
+[9] K. Lee, J. Caverlee, and S. Webb, “Uncovering social spammers: Social honeypots + machine learning,” in Annual ACM SIGIR Conference on Research and Development in Information Retrieval. ACM, 2010, pp. 435–442.
+
+# In computer networks research, the detection of Sybil accounts in computer networks has been applied to social network data; these techniques tend to rely on the “fast mixing” property of a network—which may not exist in social networks [10]—and do not scale to the size of present-day social networks (e.g., SybilInfer [3] runs in time O(|V|^2 . log |V|), which is intractable for networks with millions users).
+[10] A. Mohaisen, A. Yun, and Y. Kim, “Measuring the mixing time of social graphs,” in Internet Measurement Conference (IMC). ACM, 2010, pp. 383–389.
+
+
+<h2>V. CONCLUSION</h2>
+
+In many real-world applications, developers are only able to collect tweets from the Twitter API that directly address a set of topics of interest (TOI) relevant to the application. Moreover, in such applications, developers also typically only collect a local portion of the Twitter network. As a consequence, many traditional primarily network-based methods for detecting bots are less or not effective (e.g., if the topics are quite specific, not discussed by very popular people, or not retweeted much), since a sparse subset of the global network and tweet database based on a set TOI is insufficient.
+
+The SentiBot framework presented in this paper addresses the classification of users as human versus bot in such applications.
+
+In order to achieve this, SentiBot relies on four classes of variables (or features) related to tweet syntax, tweet semantics, user behavior, and network-centric user properties.
+
+In particular, we introduce a large set of sentiment variables, including combinations of sentiment and network variables— to our knowledge, this is the first time such sentiment-based features have been used in bot detection. In addition, we introduce variables related to topics of interest. We apply a suite of classical machine learning algorithms to identify: 
+(i) users who are bots and 
+(ii) TOI-independent features that are particularly important in distinguishing between bots and humans. 
+
+Based on an analysis of over 7.7 million tweets and 550,000 users associated with the recently concluded 2014 Indian election (where there were reports of social media campaigns), we were able to show that the use of sentiment variables significantly improved the accuracy of our classification. In particular, the Area under the ROC Curve (AUROC) increased from 0.65 to 0.73. As an AUROC of 0.5 represents random guessing, this reflects 53% improvement in accuracy. In addition, we discovered that (in our dataset):
+
+1) Bots flip-flop much less frequently than humans in terms of sentiment;
+
+2) When humans express positive sentiment, they tend to express stronger positive sentiment than bots;
+
+3) A similar (but slightly more nuanced) trend holds in terms of expression of negative sentiments by humans; and
+
+4) Humans disagree more with the general sentiment of the application's Twitter population than bots.
+
+Our results can feed into many applications. For instance, when assessing which Twitter users are influential on a given topic, we must discount for bots—which requires methods like those presented in this paper to identify bots. When identifying the expected spread of a sentiment through Twitter, we again must discount for bots. The paper presents a general framework within which applications can identify bots using the relatively limited local data they have.
+
+</pre>
+<span style="display: none">Tags: Natural Language Processing</span>

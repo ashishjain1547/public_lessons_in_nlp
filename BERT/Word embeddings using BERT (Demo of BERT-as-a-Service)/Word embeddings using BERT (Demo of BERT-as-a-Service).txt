@@ -1,0 +1,508 @@
+
+
+
+(e20200909) C:\Users\Ashish Jain>pip install bert-serving-server
+Collecting bert-serving-server
+  Downloading bert_serving_server-1.10.0-py3-none-any.whl (61 kB)
+     |████████████████████████████████| 61 kB 54 kB/s
+Collecting GPUtil>=1.3.0
+  Downloading GPUtil-1.4.0.tar.gz (5.5 kB)
+Requirement already satisfied: six in e:\programfiles\anaconda3\envs\e20200909\lib\site-packages (from bert-serving-server) (1.15.0)
+Requirement already satisfied: numpy in e:\programfiles\anaconda3\envs\e20200909\lib\site-packages (from bert-serving-server) (1.19.1)
+Collecting termcolor>=1.1
+  Using cached termcolor-1.1.0.tar.gz (3.9 kB)
+Requirement already satisfied: pyzmq>=17.1.0 in e:\programfiles\anaconda3\envs\e20200909\lib\site-packages (from bert-serving-server) (19.0.1)
+Building wheels for collected packages: GPUtil, termcolor
+  Building wheel for GPUtil (setup.py) ... done
+  Created wheel for GPUtil: filename=GPUtil-1.4.0-py3-none-any.whl size=7413 sha256=19f506cdc1505215277fc8f936ad40821e77eacdc2e6949498c2cb84a7fc2943
+  Stored in directory: c:\users\ashish jain\appdata\local\pip\cache\wheels\ba\03\bb\7a97840eb54479b328672e15a536e49dc60da200fb21564d53
+  Building wheel for termcolor (setup.py) ... done
+  Created wheel for termcolor: filename=termcolor-1.1.0-py3-none-any.whl size=4835 sha256=c1b7c816b26757fb012446a916f05156686410ced4ab467bc8aa9c73a79f6a9e
+  Stored in directory: c:\users\ashish jain\appdata\local\pip\cache\wheels\a0\16\9c\5473df82468f958445479c59e784896fa24f4a5fc024b0f501
+Successfully built GPUtil termcolor
+Installing collected packages: GPUtil, termcolor, bert-serving-server
+Successfully installed GPUtil-1.4.0 bert-serving-server-1.10.0 termcolor-1.1.0
+
+.. .. .. .. ..
+
+(e20200909) C:\Users\Ashish Jain>pip install bert-serving-client
+Collecting bert-serving-client
+  Downloading bert_serving_client-1.10.0-py2.py3-none-any.whl (28 kB)
+Requirement already satisfied: pyzmq>=17.1.0 in e:\programfiles\anaconda3\envs\e20200909\lib\site-packages (from bert-serving-client) (19.0.1)
+Requirement already satisfied: numpy in e:\programfiles\anaconda3\envs\e20200909\lib\site-packages (from bert-serving-client) (1.19.1)
+Installing collected packages: bert-serving-client
+Successfully installed bert-serving-client-1.10.0
+
+~ ~ ~ ~ ~
+
+
+
+(e20200909) C:\Users\Ashish Jain>conda install tensorflow -c conda-forge
+Collecting package metadata (repodata.json): done
+Solving environment: failed with initial frozen solve. Retrying with flexible solve.
+Solving environment: -
+Found conflicts! Looking for incompatible packages.
+This can take several minutes.  Press CTRL-C to abort.
+Examining python=3.8:  50%|█████████████████████████████████████████████████████████                                                         | 1/2 [00:03<00:03,  3.41s/it]-failed
+
+UnsatisfiableError: The following specifications were found
+to be incompatible with the existing python installation in your environment:
+
+Specifications:
+
+  - tensorflow -> python[version='3.5.*|3.6.*|>=3.5,<3.6.0a0|>=3.6,<3.7.0a0|>=3.7,<3.8.0a0|3.7.*']
+
+Your python: python=3.8
+
+If python is on the left-most side of the chain, that's the version you've asked for.
+When python appears to the right, that indicates that the thing on the left is somehow
+not available for the python version you are constrained to. Note that conda will not
+change your python version to a different minor version unless you explicitly specify
+that.
+
+
+~ ~ ~ ~ ~
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>dir
+
+10/04/2020  10:53 PM    <DIR>          .ipynb_checkpoints
+10/04/2020  10:51 PM             3,620 BERT-AS-A-SERVICE Setup.txt
+10/04/2020  10:54 PM               156 bert_as_a_service.yaml
+10/04/2020  10:46 PM    <DIR>          uncased_L-12_H-768_A-12
+10/04/2020  10:45 PM       407,727,028 uncased_L-12_H-768_A-12.zip
+               3 File(s)    407,730,804 bytes
+               4 Dir(s)  534,369,976,320 bytes free
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>cd
+E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>
+
+~ ~ ~ ~ ~
+
+Contents of: bert_as_a_service.yaml
+
+name: bert_as_a_service
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - termcolor
+  - numpy
+  - pyzmq
+  - tensorflow
+  - GPUtil
+  - sphinx-argparse
+    
+~ ~ ~ ~ ~
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda env create -f bert_as_a_service.yaml
+Collecting package metadata (repodata.json): done
+...
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda activate bert_as_a_service
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>
+
+~ ~ ~ ~ ~
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>pip install bert-serving-server
+Collecting bert-serving-server
+  Using cached bert_serving_server-1.10.0-py3-none-any.whl (61 kB)
+Requirement already satisfied: pyzmq>=17.1.0 in e:\programfiles\anaconda3\envs\bert_as_a_service\lib\site-packages (from bert-serving-server) (19.0.2)
+Requirement already satisfied: termcolor>=1.1 in e:\programfiles\anaconda3\envs\bert_as_a_service\lib\site-packages (from bert-serving-server) (1.1.0)
+Requirement already satisfied: numpy in c:\users\ashish jain\appdata\roaming\python\python37\site-packages (from bert-serving-server) (1.18.5)
+Requirement already satisfied: six in e:\programfiles\anaconda3\envs\bert_as_a_service\lib\site-packages (from bert-serving-server) (1.15.0)
+Requirement already satisfied: GPUtil>=1.3.0 in e:\programfiles\anaconda3\envs\bert_as_a_service\lib\site-packages (from bert-serving-server) (1.4.0)
+Installing collected packages: bert-serving-server
+Successfully installed bert-serving-server-1.10.0
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>pip install bert-serving-client
+Collecting bert-serving-client
+  Using cached bert_serving_client-1.10.0-py2.py3-none-any.whl (28 kB)
+Requirement already satisfied: pyzmq>=17.1.0 in e:\programfiles\anaconda3\envs\bert_as_a_service\lib\site-packages (from bert-serving-client) (19.0.2)
+Requirement already satisfied: numpy in c:\users\ashish jain\appdata\roaming\python\python37\site-packages (from bert-serving-client) (1.18.5)
+Installing collected packages: bert-serving-client
+Successfully installed bert-serving-client-1.10.0
+
+~ ~ ~ ~ ~
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>pip install tensorflow==
+ERROR: Could not find a version that satisfies the requirement tensorflow== (from versions: 1.13.0rc1, 1.13.0rc2, 1.13.1, 1.13.2, 1.14.0rc0, 1.14.0rc1, 1.14.0, 1.15.0rc0, 1.15.0rc1, 1.15.0rc2, 1.15.0rc3, 1.15.0, 1.15.2, 1.15.3, 1.15.4, 2.0.0a0, 2.0.0b0, 2.0.0b1, 2.0.0rc0, 2.0.0rc1, 2.0.0rc2, 2.0.0, 2.0.1, 2.0.2, 2.0.3, 2.1.0rc0, 2.1.0rc1, 2.1.0rc2, 2.1.0, 2.1.1, 2.1.2, 2.2.0rc0, 2.2.0rc1, 2.2.0rc2, 2.2.0rc3, 2.2.0rc4, 2.2.0, 2.2.1, 2.3.0rc0, 2.3.0rc1, 2.3.0rc2, 2.3.0, 2.3.1)
+ERROR: No matching distribution found for tensorflow==
+
+~ ~ ~ ~ ~
+
+CHANGES TO YAML FILE: bert_as_a_service.yaml
+
+name: bert_as_a_service
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - termcolor
+  - numpy
+  - pyzmq
+  - tensorflow=1.15.4
+  - GPUtil
+  - sphinx-argparse
+  - pip:
+    - bert-serving-server
+    - bert-serving-client
+
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda env create -f bert_as_a_service.yaml
+Warning: you have pip-installed dependencies in your environment file, but you do not list pip itself as one of your conda dependencies.  Conda may not use the correct pip to install your packages, and they may end up in the wrong place.  Please add an explicit pip dependency.  I'm adding one for you, but still nagging you.
+Collecting package metadata (repodata.json): done
+Solving environment: failed
+
+ResolvePackageNotFound:
+  - tensorflow=1.15.4
+
+~ ~ ~ ~ ~
+
+name: bert_as_a_service
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - termcolor
+  - numpy
+  - pyzmq
+  - tensorflow=1.14
+  - GPUtil
+  - sphinx-argparse
+  - pip:
+    - bert-serving-server
+    - bert-serving-client
+
+~ ~ ~ ~ ~
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda env create -f bert_as_a_service.yaml
+Warning: you have pip-installed dependencies in your environment file, but you do not list pip itself as one of your conda dependencies.  Conda may not use the correct pip to install your packages, and they may end up in the wrong place.  Please add an explicit pip dependency.  I'm adding one for you, but still nagging you.
+Collecting package metadata (repodata.json): done
+Solving environment: done
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+Installing pip dependencies: | Ran pip subprocess with arguments:
+['E:\\programfiles\\Anaconda3\\envs\\bert_as_a_service\\python.exe', '-m', 'pip', 'install', '-U', '-r', 'E:\\Workspace\\Jupyter\\e25_bert_for_sent_an\\files_2\\condaenv.g1al8qcw.requirements.txt']
+Pip subprocess output:
+Collecting bert-serving-server
+  Using cached bert_serving_server-1.10.0-py3-none-any.whl (61 kB)
+Collecting bert-serving-client
+  Using cached bert_serving_client-1.10.0-py2.py3-none-any.whl (28 kB)
+Requirement already satisfied, skipping upgrade: termcolor>=1.1 in e:\programfiles\anaconda3\envs\bert_as_a_service\lib\site-packages (from bert-serving-server->-r E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2\condaenv.g1al8qcw.requirements.txt (line 1)) (1.1.0)
+Requirement already satisfied, skipping upgrade: six in e:\programfiles\anaconda3\envs\bert_as_a_service\lib\site-packages (from bert-serving-server->-r E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2\condaenv.g1al8qcw.requirements.txt (line 1)) (1.15.0)
+Requirement already satisfied, skipping upgrade: pyzmq>=17.1.0 in e:\programfiles\anaconda3\envs\bert_as_a_service\lib\site-packages (from bert-serving-server->-r E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2\condaenv.g1al8qcw.requirements.txt (line 1)) (19.0.2)
+Requirement already satisfied, skipping upgrade: numpy in c:\users\ashish jain\appdata\roaming\python\python37\site-packages (from bert-serving-server->-r E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2\condaenv.g1al8qcw.requirements.txt (line 1)) (1.18.5)
+Requirement already satisfied, skipping upgrade: GPUtil>=1.3.0 in e:\programfiles\anaconda3\envs\bert_as_a_service\lib\site-packages (from bert-serving-server->-r E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2\condaenv.g1al8qcw.requirements.txt (line 1)) (1.4.0)
+Installing collected packages: bert-serving-server, bert-serving-client
+Successfully installed bert-serving-client-1.10.0 bert-serving-server-1.10.0
+
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate bert_as_a_service
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+~ ~ ~ ~ ~
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda activate bert_as_a_service
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda list tensorflow
+# packages in environment at E:\programfiles\Anaconda3\envs\bert_as_a_service:
+#
+# Name                    Version                   Build  Channel
+tensorflow                1.14.0               h1f41ff6_0    conda-forge
+tensorflow-base           1.14.0           py37hc8dfbb8_0    conda-forge
+tensorflow-estimator      1.14.0           py37h5ca1d4c_0    conda-forge
+
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>python
+Python 3.7.8 | packaged by conda-forge | (default, Jul 31 2020, 01:53:57) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import tensorflow as tf
+2020-10-04 23:28:02.014214: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'cudart64_101.dll'; dlerror: cudart64_101.dll not found
+2020-10-04 23:28:02.023675: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+>>> print(tf.__version__)
+2.3.0
+>>>       
+
+~ ~ ~ ~ ~
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>pip freeze | find "tensorflow"
+tensorflow==2.3.0
+tensorflow-estimator==2.3.0
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>pip freeze | findstr "tensorflow"
+tensorflow==2.3.0
+tensorflow-estimator==2.3.0
+
+~ ~ ~ ~ ~
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda remove -n bert_as_a_service --all
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda env list
+# conda environments:
+#
+base                  *  E:\programfiles\Anaconda3
+e20200909                E:\programfiles\Anaconda3\envs\e20200909
+env_py_36                E:\programfiles\Anaconda3\envs\env_py_36
+pegasus                  E:\programfiles\Anaconda3\envs\pegasus
+selenium                 E:\programfiles\Anaconda3\envs\selenium
+temp                     E:\programfiles\Anaconda3\envs\temp
+temp202009               E:\programfiles\Anaconda3\envs\temp202009
+tf                       E:\programfiles\Anaconda3\envs\tf
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda env remove -n bert_as_a_service
+
+~ ~ ~ ~ ~
+
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda env create -f bert_as_a_service.yaml
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda activate bert_as_a_service
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>pip freeze | find "tensorflow"
+tensorflow==2.3.0
+tensorflow-estimator==2.3.0
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda deactivate
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda remove -n bert_as_a_service --all
+
+
+~ ~ ~ ~ ~
+
+name: bert_as_a_service
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - termcolor
+  - numpy
+  - pyzmq
+  - tensorflow==1.14.0
+  - GPUtil
+  - sphinx-argparse
+  - pip:
+    - bert-serving-server
+    - bert-serving-client
+
++ + + + +
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda activate bert_as_a_service
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>pip freeze | find "tensorflow"
+tensorflow==2.3.0
+tensorflow-estimator==2.3.0
+
++ + + + +
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>pip show tensorflow
+Name: tensorflow
+Version: 2.3.0
+Summary: TensorFlow is an open source machine learning framework for everyone.
+Home-page: https://www.tensorflow.org/
+Author: Google Inc.
+Author-email: packages@tensorflow.org
+License: Apache 2.0
+Location: c:\users\ashish jain\appdata\roaming\python\python37\site-packages
+Requires: wheel, astunparse, numpy, protobuf, wrapt, gast, six, tensorflow-estimator, scipy, grpcio, termcolor, tensorboard, opt-einsum, absl-py, keras-preprocessing, h5py, google-pasta
+Required-by:
+
++ + + + +
+
+(bert_as_a_service) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>python
+Python 3.7.8 | packaged by conda-forge | (default, Jul 31 2020, 01:53:57) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import tensorflow as tf
+2020-10-04 23:46:31.501139: W tensorflow/stream_executor/platform/default/dso_loader.cc:59] Could not load dynamic library 'cudart64_101.dll'; dlerror: cudart64_101.dll not found
+2020-10-04 23:46:31.509866: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+>>> print(tf.__version__)
+2.3.0
+
+~ ~ ~ ~ ~
+
+CMD> conda remove -n bert_as_a_service --all
+
+CHANGES TO YAML:
+
+name: bert_aas
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - termcolor
+  - numpy
+  - pyzmq
+  - GPUtil
+  - sphinx-argparse
+  - pip:
+    - tensorflow==1.14.0
+    - bert-serving-server
+    - bert-serving-client
+    
+
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda env create -f bert_as_a_service.yaml
+Warning: you have pip-installed dependencies in your environment file, but you do not list pip itself as one of your conda dependencies.  Conda may not use the correct pip to install your packages, and they may end up in the wrong place.  Please add an explicit pip dependency.  I'm adding one for you, but still nagging you.
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+Downloading and Extracting Packages
+intel-openmp-2020.1  | 2.0 MB    | ################################### | 100%
+libblas-3.8.0        | 3.6 MB    | ################################### | 100%
+mkl-2020.1           | 156.9 MB  | ################################### | 100%
+liblapack-3.8.0      | 3.6 MB    | ################################### | 100%
+libcblas-3.8.0       | 3.6 MB    | ################################### | 100%
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+Installing pip dependencies: / Ran pip subprocess with arguments:
+['E:\\programfiles\\Anaconda3\\envs\\bert_aas\\python.exe', '-m', 'pip', 'install', '-U', '-r', 'E:\\Workspace\\Jupyter\\e25_bert_for_sent_an\\files_2\\condaenv.muu1aidu.requirements.txt']
+Pip subprocess output:
+Collecting tensorflow==1.14.0
+  Downloading tensorflow-1.14.0-cp37-cp37m-win_amd64.whl (68.3 MB)
+Collecting bert-serving-server
+  Using cached bert_serving_server-1.10.0-py3-none-any.whl (61 kB)
+Collecting bert-serving-client
+  Using cached bert_serving_client-1.10.0-py2.py3-none-any.whl (28 kB)
+Collecting astor>=0.6.0
+  Downloading astor-0.8.1-py2.py3-none-any.whl (27 kB)
+...
+Installing collected packages: astor, tensorflow-estimator, protobuf, werkzeug, tensorboard, keras-applications, tensorflow, bert-serving-server, bert-serving-client, zipp, importlib-metadata
+  Attempting uninstall: tensorflow-estimator
+    Found existing installation: tensorflow-estimator 2.3.0
+    Uninstalling tensorflow-estimator-2.3.0:
+      Successfully uninstalled tensorflow-estimator-2.3.0
+  Attempting uninstall: tensorboard
+    Found existing installation: tensorboard 2.3.0
+    Uninstalling tensorboard-2.3.0:
+      Successfully uninstalled tensorboard-2.3.0
+  Attempting uninstall: tensorflow
+    Found existing installation: tensorflow 2.3.0
+    Uninstalling tensorflow-2.3.0:
+      Successfully uninstalled tensorflow-2.3.0
+Successfully installed astor-0.8.1 bert-serving-client-1.10.0 bert-serving-server-1.10.0 importlib-metadata-2.0.0 keras-applications-1.0.8 protobuf-3.13.0 tensorboard-1.14.0 tensorflow-1.14.0 tensorflow-estimator-1.14.0 werkzeug-1.0.1 zipp-3.3.0
+
+done
+#
+# To activate this environment, use
+#
+#     $ conda activate bert_aas
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>
+
+~ ~ ~ ~ ~
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>pip show tensorflow
+WARNING: Package(s) not found: tensorflow
+
+(base) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>conda activate bert_aas
+
+(bert_aas) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>pip show tensorflow
+Name: tensorflow
+Version: 1.14.0
+Summary: TensorFlow is an open source machine learning framework for everyone.
+Home-page: https://www.tensorflow.org/
+Author: Google Inc.
+Author-email: packages@tensorflow.org
+License: Apache 2.0
+Location: e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages
+Requires: numpy, protobuf, keras-applications, tensorflow-estimator, grpcio, wrapt, keras-preprocessing, termcolor, gast, absl-py, astor, google-pasta, six, tensorboard, wheel
+Required-by:
+
+(bert_aas) E:\Workspace\Jupyter\e25_bert_f
+
+~ ~ ~ ~ ~
+
+(bert_aas) E:\Workspace\Jupyter\e25_bert_for_sent_an\files_2>bert-serving-start -model_dir E:\Workspace\Jupyter\e25_bert_for_sent_an/files_2/uncased_L-12_H-768_A-12 -num_worker=1
+...
+usage: E:\programfiles\Anaconda3\envs\bert_aas\Scripts\bert-serving-start -model_dir E:\Workspace\Jupyter\e25_bert_for_sent_an/files_2/uncased_L-12_H-768_A-12 -num_worker=1
+                 ARG   VALUE
+__________________________________________________
+           ckpt_name = bert_model.ckpt
+         config_name = bert_config.json
+                cors = *
+                 cpu = False
+          device_map = []
+       do_lower_case = True
+  fixed_embed_length = False
+                fp16 = False
+ gpu_memory_fraction = 0.5
+       graph_tmp_dir = None
+    http_max_connect = 10
+           http_port = None
+        mask_cls_sep = False
+      max_batch_size = 256
+         max_seq_len = 25
+           model_dir = E:\Workspace\Jupyter\e25_bert_for_sent_an/files_2/uncased_L-12_H-768_A-12
+no_position_embeddings = False
+    no_special_token = False
+          num_worker = 1
+       pooling_layer = [-2]
+    pooling_strategy = REDUCE_MEAN
+                port = 5555
+            port_out = 5556
+       prefetch_size = 10
+ priority_batch_size = 16
+show_tokens_to_client = False
+     tuned_model_dir = None
+             verbose = False
+                 xla = False
+
+I: [35mVENTILATOR [0m:freeze, optimize and export graph, could take a while...
+...
+WARNING:tensorflow:From e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages\bert_serving\server\helper.py:186: The name tf.logging.ERROR is deprecated. Please use tf.compat.v1.logging.ERROR instead.
+
+I: [36mGRAPHOPT [0m:model config: E:\Workspace\Jupyter\e25_bert_for_sent_an/files_2/uncased_L-12_H-768_A-12\bert_config.json
+I: [36mGRAPHOPT [0m:checkpoint: E:\Workspace\Jupyter\e25_bert_for_sent_an/files_2/uncased_L-12_H-768_A-12\bert_model.ckpt
+I: [36mGRAPHOPT [0m:build graph...
+I: [36mGRAPHOPT [0m:load parameters from checkpoint...
+I: [36mGRAPHOPT [0m:optimize...
+I: [36mGRAPHOPT [0m:freeze...
+I: [36mGRAPHOPT [0m:write graph to a tmp file: C:\Users\ASHISH~1\AppData\Local\Temp\tmphqecbium
+I: [35mVENTILATOR [0m:optimized graph is stored at: C:\Users\ASHISH~1\AppData\Local\Temp\tmphqecbium
+I: [35mVENTILATOR [0m:bind all sockets
+I: [35mVENTILATOR [0m:open 8 ventilator-worker sockets
+I: [35mVENTILATOR [0m:start the sink
+...
+I: [32mSINK [0m:ready
+I: [35mVENTILATOR [0m:get devices
+W: [35mVENTILATOR [0m:no GPU available, fall back to CPU
+I: [35mVENTILATOR [0m:device map:
+                worker  0 -> cpu
+...
+I: [33mWORKER-0 [0m:use device cpu, load graph from C:\Users\ASHISH~1\AppData\Local\Temp\tmphqecbium
+WARNING:tensorflow:From e:\programfiles\anaconda3\envs\bert_aas\lib\site-packages\bert_serving\server\helper.py:186: The name tf.logging.set_verbosity is deprecated. Please use tf.compat.v1.logging.set_verbosity instead.
+...
+I: [33mWORKER-0 [0m:ready and listening!
+I: [35mVENTILATOR [0m:all set, ready to serve request!
+
+~ ~ ~ ~ ~
+
+SUCCESSFUL OUTPUT LOGS:
+
+I: [33mWORKER-0 [0m:ready and listening!
+I: [35mVENTILATOR [0m:all set, ready to serve request!
+I: [35mVENTILATOR [0m:new config request        req id: 1       client: b'fe492b28-fc81-4bca-aa63-e78a42d149a4'
+I: [32mSINK [0m:send config     client b'fe492b28-fc81-4bca-aa63-e78a42d149a4'
+I: [35mVENTILATOR [0m:new encode request        req id: 2       size: 3 client: b'fe492b28-fc81-4bca-aa63-e78a42d149a4'
+I: [32mSINK [0m:job register    size: 3 job id: b'fe492b28-fc81-4bca-aa63-e78a42d149a4#2'
+I: [33mWORKER-0 [0m:new job     socket: 0       size: 3 client: b'fe492b28-fc81-4bca-aa63-e78a42d149a4#2'
+I: [33mWORKER-0 [0m:job done    size: (3, 768)  client: b'fe492b28-fc81-4bca-aa63-e78a42d149a4#2'
+I: [32mSINK [0m:collect b'EMBEDDINGS' b'fe492b28-fc81-4bca-aa63-e78a42d149a4#2' (E:3/T:0/A:3)
+I: [32mSINK [0m:send back       size: 3 job id: b'fe492b28-fc81-4bca-aa63-e78a42d149a4#2'
+
+
+~ ~ ~ ~ ~

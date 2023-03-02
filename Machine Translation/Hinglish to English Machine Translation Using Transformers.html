@@ -1,0 +1,298 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+        
+        i.ib {
+            color: blue;
+        }
+
+        i.ig {
+            color: green;
+        }
+
+        i.ir {
+            color: red;
+        }
+
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/pubML/blob/main/e12_transformer_based_translation/Code/Hinglish%20to%20english%20translation.ipynb" target="_blank">Download Code and Data</a>
+
+<pre><i class="ib">import numpy as np
+from keras_transformer import get_model, decode</i>
+
+<i class="ib">
+with open('../Dataset/English_Hindi_Hinglish.txt', mode = 'r') as f:
+    data = f.readlines()
+
+data = data[0:195] # 195 Because we have that many labeled data points for Hinglish to English translation.
+
+source_tokens = [i.split(',')[1].strip().split(' ') for i in data]
+target_tokens = [i.split('	')[0].strip().split(' ') for i in data]
+</i>
+
+<i class="ib">
+# Generate dictionaries
+def build_token_dict(token_list):
+    token_dict = {
+        '&lt;PAD>': 0,
+        '&lt;START>': 1,
+        '&lt;END>': 2,
+    }
+    for tokens in token_list:
+        for token in tokens:
+            if token not in token_dict:
+                token_dict[token] = len(token_dict)
+    return token_dict
+
+source_token_dict = build_token_dict(source_tokens)
+target_token_dict = build_token_dict(target_tokens)
+target_token_dict_inv = {v: k for k, v in target_token_dict.items()}
+
+# Add special tokens
+encode_tokens = [['&lt;START>'] + tokens + ['&lt;END>'] for tokens in source_tokens]
+decode_tokens = [['&lt;START>'] + tokens + ['&lt;END>'] for tokens in target_tokens]
+output_tokens = [tokens + ['&lt;END>', '&lt;PAD>'] for tokens in target_tokens]
+
+# Padding
+source_max_len = max(map(len, encode_tokens))
+target_max_len = max(map(len, decode_tokens))
+
+encode_tokens = [tokens + ['&lt;PAD>'] * (source_max_len - len(tokens)) for tokens in encode_tokens]
+decode_tokens = [tokens + ['&lt;PAD>'] * (target_max_len - len(tokens)) for tokens in decode_tokens]
+output_tokens = [tokens + ['&lt;PAD>'] * (target_max_len - len(tokens)) for tokens in output_tokens]
+
+encode_input = [list(map(lambda x: source_token_dict[x], tokens)) for tokens in encode_tokens]
+decode_input = [list(map(lambda x: target_token_dict[x], tokens)) for tokens in decode_tokens]
+decode_output = [list(map(lambda x: [target_token_dict[x]], tokens)) for tokens in output_tokens]
+
+# Build & fit model
+model = get_model(
+    token_num=max(len(source_token_dict), len(target_token_dict)),
+    embed_dim=32,
+    encoder_num=2,
+    decoder_num=2,
+    head_num=4,
+    hidden_dim=128,
+    dropout_rate=0.05,
+    use_same_embed=False,  # Use different embeddings for different languages
+)
+model.compile('adam', 'sparse_categorical_crossentropy')
+model.summary()
+</i>
+
+<h1>Number of Parameters to Train When There Are a Certain Number of Lines in Input</h1>
+
+<h2>Number of Lines is 55</h2>
+<i class="ig">Model: "model_1"
+... 
+Total params: 65,827
+Trainable params: 65,827
+Non-trainable params: 0</i>
+
+<h2>Number of Lines is 115</h2>
+<i class="ig">
+Total params: 72,002
+Trainable params: 72,002
+Non-trainable params: 0
+</i>
+
+<h2>Number of Lines is 165</h2>
+<i class="ig">
+Total params: 77,787
+Trainable params: 77,787
+Non-trainable params: 0
+</i>
+
+<h2>Number of Lines is 195</h2>
+<i class="ig">
+Total params: 80,777
+Trainable params: 80,777
+Non-trainable params: 0
+</i>
+<i class="ib">
+%%time
+model.fit(
+    x=[np.array(encode_input * 1024), np.array(decode_input * 1024)],
+    y=np.array(decode_output * 1024),
+    epochs=10,
+    batch_size=32,
+)
+</i>
+
+<h1>Training Logs When There is a Certain Number of Lines in Input</h1>
+<h2># Number of Lines in Input is 55</h2>
+<i class="ig">
+Number of Epochs: 10
+CPU times: user 11min 31s, sys: 56 s, total: 12min 27s
+Wall time: 5min 48s
+
+&lt;keras.callbacks.History at 0x7f8f347f69d0>
+</i>
+
+<h2># Number of Lines in Input is 115</h2>
+
+<i class="ig">
+Number of Epochs: 10
+CPU times: user 26min 55s, sys: 2min 7s, total: 29min 2s
+Wall time: 13min 33s
+</i>
+
+<h2># Number of Lines in Input is 150</h2>
+
+<i class="ig">Number of Epochs: 10
+CPU times: user 41min 26s, sys: 3min 12s, total: 44min 39s
+Wall time: 21min 1s
+</i>
+
+<h2># Number of Lines in Input is 195</h2>
+<i class="ig">Number of Epochs: 10
+
+Epoch 1/10
+6240/6240 [==============================] - 165s 25ms/step - loss: 0.1641
+Epoch 2/10
+6240/6240 [==============================] - 163s 26ms/step - loss: 0.0049
+Epoch 3/10
+6240/6240 [==============================] - 151s 24ms/step - loss: 0.0043
+Epoch 4/10
+6240/6240 [==============================] - 150s 24ms/step - loss: 0.0038
+Epoch 5/10
+6240/6240 [==============================] - 150s 24ms/step - loss: 0.0043
+Epoch 6/10
+6240/6240 [==============================] - 153s 24ms/step - loss: 0.0036
+Epoch 7/10
+6240/6240 [==============================] - 153s 24ms/step - loss: 0.0036
+Epoch 8/10
+6240/6240 [==============================] - 151s 24ms/step - loss: 0.0036
+Epoch 9/10
+6240/6240 [==============================] - 150s 24ms/step - loss: 0.0038
+Epoch 10/10
+6240/6240 [==============================] - 152s 24ms/step - loss: 0.0037
+CPU times: user 51min 23s, sys: 3min 52s, total: 55min 16s
+Wall time: 25min 39s</i>
+    
+<h1># Validation</h1>
+
+<i class="ib">
+decoded = decode(
+    model,
+    encode_input,
+    start_token=target_token_dict['&lt;START>'],
+    end_token=target_token_dict['&lt;END>'],
+    pad_token=target_token_dict['&lt;PAD>'],
+)
+for i in decoded:
+    print(' '.join(map(lambda x: target_token_dict_inv[x], i[1:-1])))
+</i>
+
+<i class="ig">
+...
+Follow him.
+I am tired.
+I can swim.
+I can swim.
+I love you.
+</i>
+
+<h2># Testing</h2>
+
+<i class="ib">test_sents = [
+    'kaise ho?',
+    'kya tum mujhse pyar karte ho?',
+    'kya tum mujhe pyar karte ho?'
+]
+
+test_tokens = [i.split() for i in test_sents]
+
+test_token_dict = build_token_dict(test_tokens)
+
+test_token_dict_inv = {v: k for k, v in test_token_dict.items()}
+
+test_enc_tokens = [['&lt;START>'] + tokens + ['&lt;END>'] for tokens in test_tokens]
+test_enc_tokens = [tokens + ['&lt;PAD>'] * (target_max_len - len(tokens)) for tokens in test_enc_tokens]
+test_input = [list(map(lambda x: test_token_dict[x], tokens)) for tokens in test_enc_tokens]
+
+decoded = decode(
+    model,
+    test_input,
+    start_token=test_token_dict['&lt;START>'],
+    end_token=test_token_dict['&lt;END>'],
+    pad_token=test_token_dict['&lt;PAD>'],
+)
+for i in decoded:
+    print(' '.join(map(lambda x: target_token_dict_inv[x], i[1:-1])))
+</i>
+</pre>
+
+<span style="display: none">Tags: Technology,Natural Language Processing,</span>

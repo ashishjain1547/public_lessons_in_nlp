@@ -1,0 +1,163 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+                success: function (result) {
+                    $("div.customTemporaryCodeHolder").html(result);
+                    $("nav.customDynamicNav").html(
+                        $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+                    );
+                }
+            });
+
+            $.ajax({
+                url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+                success: function (result) {
+                    $("span.customTempCodeHolderForSocialMedia").html(result);
+                    $("div.customSocialMediaBtnsWrapper").html(
+                        $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+                    );
+                }
+
+            });
+        }); 
+    </script>
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+
+    <style>
+        .customTempCodeHolderForSocialMedia {
+            display: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div> <br />
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>BERT, or Bidirectional Encoder Representations from Transformers, is a new method of pre-training language representations which obtains state-of-the-art results on a wide array of Natural Language Processing (NLP) tasks.
+
+Our academic paper which describes BERT in detail and provides full results on a number of tasks can be found here: <a href="https://arxiv.org/abs/1810.04805" target="_blank">arxiv: BERT</a>.
+
+Ref: <a href="https://github.com/google-research/bert#pre-trained-models" target="_blank">bert#pre-trained-models</a>
+
+URL to code for this post: <a href="https://github.com/hanxiao/bert-as-service" target="_blank">GitHub: bert-as-service</a>
+
+STEP 1:
+Installation of BERT as a server:
+
+<i style="color: blue;">pip install bert-serving-server  # server
+pip install bert-serving-client  # client, independent of `bert-serving-server` </i>
+
+STEP 2:
+Download a PRE-Trained BERT model.
+The one we have using is "BERT-Base, Uncased	12-layer, 768-hidden, 12-heads, 110M parameters":
+
+<a href="https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip" target="_blank">storage.googleapis.com: uncased_L-12_H-768_A-12.zip</a>
+
+STEP 3:
+After installation of the server, start it in Python shell as follows:
+<i style="color: blue;">$ bert-serving-start -model_dir D:\workspace\Jupyter\exp_42_bert\uncased_L-12_H-768_A-12 -num_worker=1</i>
+
+LOGS:
+
+(env_for_python_36) C:\Users\ashish><i style="color: blue;">bert-serving-start -model_dir D:\workspace\Jupyter\exp_42_bert\uncased_L-12_H-768_A-12 -num_worker=1</i>
+
+<i style="color: green;">usage: C:\Users\ashish\AppData\Local\Continuum\anaconda3\envs\env_for_python_36\Scripts\bert-serving-start -model_dir D:\workspace\Jupyter\exp_42_bert\uncased_L-12_H-768_A-12 -num_worker=1
+                 ARG   VALUE
+__________________________________________________
+           ckpt_name = bert_model.ckpt
+         config_name = bert_config.json
+                cors = *
+                 cpu = False
+          device_map = []
+       do_lower_case = True
+  fixed_embed_length = False
+                fp16 = False
+ gpu_memory_fraction = 0.5
+       graph_tmp_dir = None
+    http_max_connect = 10
+           http_port = None
+        mask_cls_sep = False
+      max_batch_size = 256
+         max_seq_len = 25
+           model_dir = D:\workspace\Jupyter\exp_42_bert\uncased_L-12_H-768_A-12
+no_position_embeddings = False
+    no_special_token = False
+          num_worker = 1
+       pooling_layer = [-2]
+    pooling_strategy = REDUCE_MEAN
+                port = 5555
+            port_out = 5556
+       prefetch_size = 10
+ priority_batch_size = 16
+show_tokens_to_client = False
+     tuned_model_dir = None
+             verbose = False
+                 xla = False
+
+I:[35mVENTILATOR[0m:freeze, optimize and export graph, could take a while...
+I:[36mGRAPHOPT[0m:model config: D:\workspace\Jupyter\exp_42_bert\uncased_L-12_H-768_A-12\bert_config.json
+I:[36mGRAPHOPT[0m:checkpoint: D:\workspace\Jupyter\exp_42_bert\uncased_L-12_H-768_A-12\bert_model.ckpt
+I:[36mGRAPHOPT[0m:build graph...
+I:[36mGRAPHOPT[0m:load parameters from checkpoint...
+I:[36mGRAPHOPT[0m:optimize...
+I:[36mGRAPHOPT[0m:freeze...
+I:[36mGRAPHOPT[0m:write graph to a tmp file: C:\Users\ashish\AppData\Local\Temp\tmpy8lsjd5y
+I:[35mVENTILATOR[0m:optimized graph is stored at: C:\Users\ashish\AppData\Local\Temp\tmpy8lsjd5y
+I:[35mVENTILATOR[0m:bind all sockets
+I:[35mVENTILATOR[0m:open 8 ventilator-worker sockets
+I:[35mVENTILATOR[0m:start the sink
+I:[32mSINK[0m:ready
+I:[35mVENTILATOR[0m:get devices
+W:[35mVENTILATOR[0m:no GPU available, fall back to CPU
+I:[35mVENTILATOR[0m:device map:
+                worker  0 -> cpu
+I:[33mWORKER-0[0m:use device cpu, load graph from C:\Users\ashish\AppData\Local\Temp\tmpy8lsjd5y
+I:[33mWORKER-0[0m:ready and listening!
+I:[35mVENTILATOR[0m:all set, ready to serve request! </i>
+
+STEP 4:
+Then to use the client in a different console:
+
+<i style="color: blue;">from bert_serving.client import BertClient
+bc = BertClient()
+bc.encode(['First do it', 'then do it right', 'then do it better']) </i>
+
+Logs:
+<i style="color: green;">(env_for_python_36) C:\Users\ashish>python
+Python 3.6.8 |Anaconda, Inc.| (default, Feb 21 2019, 18:30:04) [MSC v.1916 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from bert_serving.client import BertClient
+>>> bc = BertClient()
+>>> bc.encode(['First do it', 'then do it right', 'then do it better'])
+array([[ 0.13186511,  0.32404116, -0.8270434 , ..., -0.37119645,
+        -0.39250118, -0.3172187 ],
+       [ 0.24873514, -0.12334443, -0.38933924, ..., -0.4475621 ,
+        -0.559136  , -0.1134515 ],
+       [ 0.28627324, -0.18580206, -0.30906808, ..., -0.2959365 ,
+        -0.39310536,  0.07640218]], dtype=float32)
+>>> </i>
+Dated: 19-Dec-2019
+</pre>

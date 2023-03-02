@@ -1,0 +1,162 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+
+<style>
+    i.grey {
+        display: block;
+        background-color: rgb(50, 50, 50);
+        color: white
+    }
+
+    i.black {
+        display: block;
+        background-color: rgb(0, 0, 0);
+        color: white
+    }
+
+    i.red {
+        display: block;
+        background-color: rgb(255, 0, 0);
+        color: white
+    }
+
+    i.green {
+        display: block;
+        background-color: rgb(0, 255, 0);
+        color: rgb(255, 255, 255);
+    }
+</style>
+
+<pre>
+
+<i class="black">
+import transformers as ppb
+import torch
+import numpy as np
+
+print(ppb.__version__)
+</i>
+
+
+<i class="green">
+4.19.2
+</i>
+
+<i class="black">
+input_sentence_1 = "In recent years, a lot of hype has developed around the promise of neural networks and their ability to classify and identify input data, and more recently the ability of certain network architectures to generate original content. Companies large and small are using them for everything from image captioning and self-driving car navigation to identifying solar panels from satellite images and recognizing faces in security camera videos. And luckily for us, many NLP applications of neural nets exist as well. While deep neural networks have inspired a lot of hype and hyperbole, our robot overlords are probably further off than any clickbait cares to admit. Neural networks are, however, quite powerful tools, and you can easily use them in an NLP chatbot pipeline to classify input text, summarize documents, and even generate novel works. This chapter is intended as a primer for those with no experience in neural networks. We don’t cover anything specific to NLP in this chapter, but gaining a basic understanding of what is going on under the hood in a neural network is important for the upcoming chapters. If you’re familiar with the basics of a neural network, you can rest easy in skipping ahead to the next chapter, where you dive back into processing text with the various flavors of neural nets. Although the mathematics of the underlying algorithm, backpropagation, are outside this book’s scope, a high-level grasp of its basic functionality will help you understand language and the patterns hidden within. As the availability of processing power and memory has exploded over the course of the decade, an old technology has come into its own again. First proposed in the 1950s by Frank Rosenblatt, the perceptron1 offered a novel algorithm for finding patterns in data. The basic concept lies in a rough mimicry of the operation of a living neuron cell. As electrical signals flow into the cell through the dendrites (see figure 5.1) into the nucleus, an electric charge begins to build up. When the cell reaches a certain level of charge, it fires, sending an electrical signal out through the axon. However, the dendrites aren’t all created equal. The cell is more “sensitive” to signals through certain dendrites than others, so it takes less of a signal in those paths to fire the axon. The biology that controls these relationships is most certainly beyond the scope of this book, but the key concept to notice here is the way the cell weights incoming signals when deciding when to fire. The neuron will dynamically change those weights in the decision making process over the course of its life. You are going to mimic that process."
+print(input_sentence_1)
+print("Char count", len(input_sentence_1))
+print("Word Count:", len(input_sentence_1.split(" ")))
+</i>
+
+<i class="green">
+In recent years, a lot of hype has developed around the promise of neural networks and their ability to classify and identify input data, and more recently the ability of certain network architectures to generate original content. Companies large and small are using them for everything from image captioning and self-driving car navigation to identifying solar panels from satellite images and recognizing faces in security camera videos. And luckily for us, many NLP applications of neural nets exist as well. While deep neural networks have inspired a lot of hype and hyperbole, our robot overlords are probably further off than any clickbait cares to admit. Neural networks are, however, quite powerful tools, and you can easily use them in an NLP chatbot pipeline to classify input text, summarize documents, and even generate novel works. This chapter is intended as a primer for those with no experience in neural networks. We don’t cover anything specific to NLP in this chapter, but gaining a basic understanding of what is going on under the hood in a neural network is important for the upcoming chapters. If you’re familiar with the basics of a neural network, you can rest easy in skipping ahead to the next chapter, where you dive back into processing text with the various flavors of neural nets. Although the mathematics of the underlying algorithm, backpropagation, are outside this book’s scope, a high-level grasp of its basic functionality will help you understand language and the patterns hidden within. As the availability of processing power and memory has exploded over the course of the decade, an old technology has come into its own again. First proposed in the 1950s by Frank Rosenblatt, the perceptron1 offered a novel algorithm for finding patterns in data. The basic concept lies in a rough mimicry of the operation of a living neuron cell. As electrical signals flow into the cell through the dendrites (see figure 5.1) into the nucleus, an electric charge begins to build up. When the cell reaches a certain level of charge, it fires, sending an electrical signal out through the axon. However, the dendrites aren’t all created equal. The cell is more “sensitive” to signals through certain dendrites than others, so it takes less of a signal in those paths to fire the axon. The biology that controls these relationships is most certainly beyond the scope of this book, but the key concept to notice here is the way the cell weights incoming signals when deciding when to fire. The neuron will dynamically change those weights in the decision making process over the course of its life. You are going to mimic that process.
+Char count 2658
+Word Count: 442
+</i>
+
+<i class="black">
+model_class, tokenizer_class, pretrained_weights = (ppb.BertModel, ppb.BertTokenizer, 'bert-base-uncased') 
+</i>
+
+<i class="black">
+tokenizer = tokenizer_class.from_pretrained(pretrained_weights)
+model = model_class.from_pretrained(pretrained_weights)
+</i>
+
+<i class="red">
+Some weights of the model checkpoint at bert-base-uncased were not used when initializing BertModel: [
+'cls.predictions.transform.LayerNorm.bias', 
+'cls.seq_relationship.bias', 
+'cls.seq_relationship.weight', 
+'cls.predictions.transform.dense.bias', 
+'cls.predictions.bias', 
+'cls.predictions.decoder.weight', 
+'cls.predictions.transform.LayerNorm.weight', 
+'cls.predictions.transform.dense.weight'
+]
+
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+</i>
+
+<i class="black">
+tokenized = tokenizer.encode(input_sentence_1, add_special_tokens=True)
+</i>
+
+<i class="red">
+Token indices sequence length is longer than the specified maximum sequence length for this model (543 > 512). Running this sequence through the model will result in indexing errors
+</i>
+
+<i class="black">
+print("First ten tokens:", tokenized[:10])
+print("Number of tokens:", len(tokenized))
+</i>
+
+<i class="green">
+First ten tokens: [101, 1999, 3522, 2086, 1010, 1037, 2843, 1997, 1044, 18863]
+Number of tokens: 543
+</i>
+</pre>
+
+<span style="display: none">Tags: Technology,Machine Learning,Natural Language Processing,Python,</span>

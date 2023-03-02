@@ -1,0 +1,191 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<a class="customLink toggleBtn" href="https://github.com/ashishjain1547/PublicResearchPapers/blob/master/Identification%20of%20Bot%20Accounts%20on%20Twitter%20(Jul%202022)/Classification%20of%20Twitter%20Accounts%20into%20Automated%20Agents%20and%20Human%20Users%20(Zafar%20Gilani).pdf" target="_blank">Download Research Paper</a>
+
+<pre>
+<h2>Abstract</h2>
+
+Online social networks (OSNs) have seen a remarkable rise in the presence of surreptitious automated accounts. Massive human user-base and business-supportive operating model of social networks (such as Twitter) facilitates the creation of automated agents. 
+
+In this paper we outline a systematic methodology and train a classifier to categorise Twitter accounts into ‘automated’ and ‘human’ users. To improve classification accuracy we employ a set of novel steps. 
+
+First, we divide the dataset into four popularity bands to compensate for differences in types of accounts. 
+
+Second, we create a large ground truth dataset using human annotations and extract relevant features from raw tweets. To judge accuracy of the procedure we calculate agreement among human annotators as well as with a bot detection research tool. We then apply a Random Forests classifier that achieves an accuracy close to human agreement. Finally, as a concluding step we perform tests to measure the efficacy of our results.
+
+<h2>Index Terms</h2>
+
+Social network analysis; account classification; automated agents; bot detection
+
+<h2>Our work has the following contributions: </h2>
+
+(i) Use of raw historical data (60 million tweets) for attribute collection and account classification (722; 109 tweets) to cater for stealthier agents that are harder to discern from humans; 
+
+(ii) A Twitter dataset divided into user popularity bands, further partitioned into lists of agents and humans (for reasons refer to xIV) using a human annotation task. This serves as a large ground truth dataset; 
+
+(iii) 14 novel features from a total feature-set of 21 attributes (see xIV); 
+
+(iv) Performance evaluation of current state of the art in bot detection by calculating agreement between human annotators and BOTORNOT; 
+
+(v) Application of supervised learning approach – Random Forests classifier – for non-partisan account categorisation; 
+
+(vi) Identification of a distinct group of features (using ablation tests) that are most informative for classifying automated agents within each popularity band (cf. Table VIII); and 
+
+(vii) Hypotheses (cf. Table I) verification against our findings using t-tests (see xVI).
+
+<h2>Infotainment</h2>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9XOkKYNra2Focq_C9HvzKQ-DMi4uCMvtfQ2FOmXG6XvDdymUZwuseDH1Een2_ZiFo91dPvNUBmsf6RWy_uaMpHObXMERiF0Yxo1Wj5BLBzidLVYpY8dKoN766NUDe40Q5fwr4h2PQg0MApUZz61w-GGulsVmW5F6NNlQahmb2tuki13zqCLxuN0fGsw/s497/1%20-%20bot%20activity%20is%20an%20uptrend.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="469" data-original-width="497"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9XOkKYNra2Focq_C9HvzKQ-DMi4uCMvtfQ2FOmXG6XvDdymUZwuseDH1Een2_ZiFo91dPvNUBmsf6RWy_uaMpHObXMERiF0Yxo1Wj5BLBzidLVYpY8dKoN766NUDe40Q5fwr4h2PQg0MApUZz61w-GGulsVmW5F6NNlQahmb2tuki13zqCLxuN0fGsw/s600/1%20-%20bot%20activity%20is%20an%20uptrend.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYYTRixrAhv40my8AwV2XHwx_5S-iB1Iq50KObo1DbsoJDaVkn_BGqeAbv3Tjlhf5YysHLCk1w13X56MuRlJOZf4x6Px-_Gyom0VqVOeD__CSj7yUJ-ur8ehDlZD79r5epI2MJL1xgShEPmhmpfKXmnLuhDqKtWZ13oGTkO-H39-6xODbuA6xFA72crw/s446/2%20-%20good%20bots%20and%20bad%20bots.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="443" data-original-width="446"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYYTRixrAhv40my8AwV2XHwx_5S-iB1Iq50KObo1DbsoJDaVkn_BGqeAbv3Tjlhf5YysHLCk1w13X56MuRlJOZf4x6Px-_Gyom0VqVOeD__CSj7yUJ-ur8ehDlZD79r5epI2MJL1xgShEPmhmpfKXmnLuhDqKtWZ13oGTkO-H39-6xODbuA6xFA72crw/s600/2%20-%20good%20bots%20and%20bad%20bots.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwGao3Zi5YKfd2A2hK7qEzXv_FGIQCfyI_DMDPrRKbTnhAF8Y1qpjZKUY4eMQ-qyvoovjTajf379k6RArXb70E6tA21ef5RWbAVffF34x0gIq1ptKGzIJxuz3wqCfIJbrYrzAomf_ZYGy75Xh2DzBI2xPVEePl5-Q90W1Q1nGRuVBZhmxYMbpCMQNxSw/s415/3%20-%20increase%20in%20good%20bots.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="412" data-original-width="415"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwGao3Zi5YKfd2A2hK7qEzXv_FGIQCfyI_DMDPrRKbTnhAF8Y1qpjZKUY4eMQ-qyvoovjTajf379k6RArXb70E6tA21ef5RWbAVffF34x0gIq1ptKGzIJxuz3wqCfIJbrYrzAomf_ZYGy75Xh2DzBI2xPVEePl5-Q90W1Q1nGRuVBZhmxYMbpCMQNxSw/s600/3%20-%20increase%20in%20good%20bots.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIyvKGC9ABBa5MrpmqzOSQqPvVjp2q5cDEGQBSOGf2cINS-0OtpT9eoEcdyySnrgJj2efansYgKXhGHcsAqE1t8FT7hiLN3RdRZL5WmIxYhGd9p8yXC5CqbkN9bmaAc5gk-pkmshqP9nniRGTFjQYsfIYrMEJMLxrK0JUjtbQqC1Dy1w2CU_5xiAYtmQ/s1410/4%20-%20bot%20classification.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="369" data-original-width="1410"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjIyvKGC9ABBa5MrpmqzOSQqPvVjp2q5cDEGQBSOGf2cINS-0OtpT9eoEcdyySnrgJj2efansYgKXhGHcsAqE1t8FT7hiLN3RdRZL5WmIxYhGd9p8yXC5CqbkN9bmaAc5gk-pkmshqP9nniRGTFjQYsfIYrMEJMLxrK0JUjtbQqC1Dy1w2CU_5xiAYtmQ/s600/4%20-%20bot%20classification.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfhS75ViL72t65LXomldx02avqvbQUIIYsQPdWT8Bk1MbqoWiwyZKZLMH-m8G1_s1mCSTxfLWJQ19fiOeL7rcKaNrvpXKb1nXQLinuxAGZ7D_l4i4yKhRrYO-IB5UwPuH_Vs7V2XsGcIycpGVHXtM9eK9cvUCFlJli2bNB_4Im13Myvv9Q3PiQlpuNQA/s1377/5%20-%20good%20bots.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="474" data-original-width="1377"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfhS75ViL72t65LXomldx02avqvbQUIIYsQPdWT8Bk1MbqoWiwyZKZLMH-m8G1_s1mCSTxfLWJQ19fiOeL7rcKaNrvpXKb1nXQLinuxAGZ7D_l4i4yKhRrYO-IB5UwPuH_Vs7V2XsGcIycpGVHXtM9eK9cvUCFlJli2bNB_4Im13Myvv9Q3PiQlpuNQA/s600/5%20-%20good%20bots.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgv6cEKBcUrdmcZ145q5Db5_ZWs_3qpVQu_cSnETDoVHMaF6wjZf09nN_1z1VI_bHyjHT1u4Y-J1uE-mkXyHdc3jyMwmYEwVF8KxyrzcJitFE-QUfp5M_KoojTLnTwgpH81sZOYK4YL_0txG9_vz94779bm7z-s3mvjciXI0HPa8heExZuybO20CdibeA/s1396/6%20-%20bad%20bots%20operate%20in%20shadows.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="380" data-original-width="1396"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgv6cEKBcUrdmcZ145q5Db5_ZWs_3qpVQu_cSnETDoVHMaF6wjZf09nN_1z1VI_bHyjHT1u4Y-J1uE-mkXyHdc3jyMwmYEwVF8KxyrzcJitFE-QUfp5M_KoojTLnTwgpH81sZOYK4YL_0txG9_vz94779bm7z-s3mvjciXI0HPa8heExZuybO20CdibeA/s600/6%20-%20bad%20bots%20operate%20in%20shadows.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFSbEcfO2n7Y0_l2i7rcXzndnmJVEepTjO-6V15bVg4Yqf10gPPBC1BqOW6QxRgSuClYotjEpYVfikIoUZcYUw2pGmiMtU_johi0flGyERpG72SiMdZy1eGDvNibwqsYCXF9WmWLEcBhKIFB6iIUe6mcrsY5JZN5Mt8M-RuHykmUlNjXMypkneRx83xw/s1384/7%20-%20whts%20your%20bot%20situation.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="428" data-original-width="1384"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFSbEcfO2n7Y0_l2i7rcXzndnmJVEepTjO-6V15bVg4Yqf10gPPBC1BqOW6QxRgSuClYotjEpYVfikIoUZcYUw2pGmiMtU_johi0flGyERpG72SiMdZy1eGDvNibwqsYCXF9WmWLEcBhKIFB6iIUe6mcrsY5JZN5Mt8M-RuHykmUlNjXMypkneRx83xw/s600/7%20-%20whts%20your%20bot%20situation.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjALD14t76YVeQVArOkxQNpGLlaJI1vYI7ioxtYfmhpHkCgz_qVL6xQQGhNQUYsaWAgWVJtB8Gvwt0x-oCx2vBpd4KFjhkiYGj0n0_h9wpb-y7-X8k_yJk0m4JJbFaqnTCTexbB_Z79fIKcy5lpnLwgQHdEE9U5Po3dJTkNyUqNmcw80HLZ12jzOTIGUw/s936/8%20-%20traffic%20breakdown%202012-2016.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="709" data-original-width="936"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjALD14t76YVeQVArOkxQNpGLlaJI1vYI7ioxtYfmhpHkCgz_qVL6xQQGhNQUYsaWAgWVJtB8Gvwt0x-oCx2vBpd4KFjhkiYGj0n0_h9wpb-y7-X8k_yJk0m4JJbFaqnTCTexbB_Z79fIKcy5lpnLwgQHdEE9U5Po3dJTkNyUqNmcw80HLZ12jzOTIGUw/s600/8%20-%20traffic%20breakdown%202012-2016.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgMK621E7veW9-Ksjqcj_pusBNCn_PbW65gdQzkqVQ4hgQXe2jaEQXvLUEvyKVTU6VpkOBy1p6VVdPxXXqI6SpF3J01O2v_4f2plxqZtXmbbfeJX5AlEkiKuWt4NsqPMqKZOSYZgVWe9oro9YaMWObjWFiI7CdVYz--hQNfV1n0CKwRSDmR472mdcxk3g/s933/9%20-%20impersonators.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="677" data-original-width="933"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgMK621E7veW9-Ksjqcj_pusBNCn_PbW65gdQzkqVQ4hgQXe2jaEQXvLUEvyKVTU6VpkOBy1p6VVdPxXXqI6SpF3J01O2v_4f2plxqZtXmbbfeJX5AlEkiKuWt4NsqPMqKZOSYZgVWe9oro9YaMWObjWFiI7CdVYz--hQNfV1n0CKwRSDmR472mdcxk3g/s600/9%20-%20impersonators.png" /></a>
+</div>
+
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5TvuKcfppoqnIHCtZtKzbeIB1Px7ZHN_2xAN8gm_DAqOOSDbNNhdZy3zDS9e-jWEONGLIY0Hf1mLf9Dl8ewIp_BkRAtBc9boMdoUX1Cn-LxgVrFRbStQGWIZ9JhSCySi7xCnYmNSMPIOoV5gOFRllHLH7yhhVWPdlXdeE0rrDBCltoYuRpGBnN1b-dA/s1093/10%20-%20traffic%20on%20bots.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="507" data-original-width="1093"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5TvuKcfppoqnIHCtZtKzbeIB1Px7ZHN_2xAN8gm_DAqOOSDbNNhdZy3zDS9e-jWEONGLIY0Hf1mLf9Dl8ewIp_BkRAtBc9boMdoUX1Cn-LxgVrFRbStQGWIZ9JhSCySi7xCnYmNSMPIOoV5gOFRllHLH7yhhVWPdlXdeE0rrDBCltoYuRpGBnN1b-dA/s600/10%20-%20traffic%20on%20bots.png" /></a>
+</div>
+
+<h2>References</h2>
+12:
+Datasets can be found here – https://goo.gl/SigsQB. Classifier is available as a part of Stweeler.
+<b>The link is forbidden for public.</b>
+
+</pre>
+
+<span style="display: none">Tags: Natural Language Processing</span>

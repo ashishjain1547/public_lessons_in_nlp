@@ -1,0 +1,92 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        .customLink {
+            background-color: #4CAF50;
+            border: none;
+            color: white !important;
+            padding: 8px 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .customLink:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>
+<h2>Challenges (a preview of stemming)</h2>
+    
+As an example of why feature extraction from text is hard, consider stemming—grouping the various inflections of a word into the same “bucket” or cluster. 
+
+Very smart people spent their careers developing algorithms for grouping inflected forms of words together based only on their spelling. Imagine how difficult that is. Imagine trying to remove verb endings like “ing” from “ending” so you’d have a stem called “end” to represent both words. And you’d like to stem the word “running” to “run,” so those two words are treated the same. And that’s tricky, because you have to remove not only the “ing” but also the extra “n.” But you want the word “sing” to stay whole. You wouldn’t want to remove the “ing” ending from “sing” or you’d end up with a single letter “s.”
+
+Or imagine trying to discriminate between a pluralizing “s” at the end of a word like “words” and a normal “s” at the end of words like “bus” and “lens.” Do isolated individual letters in a word or parts of a word provide any information at all about that word’s meaning? Can the letters be misleading? Yes and yes.
+
+In this chapter we show you how to make your NLP pipeline a bit smarter by dealing with these word spelling challenges using conventional stemming approaches.
+
+You can try for yourself statistical clustering approaches that only require you to amass a collection of natural language text containing the words you’re interested in. From that collection of text, the statistics of word usage will reveal “semantic stems” (actually, more useful clusters of words like lemmas or synonyms), without any handcrafted regular expressions or stemming rules.
+</pre>
+<span style="display: none">Tags: Natural Language Processing</span>

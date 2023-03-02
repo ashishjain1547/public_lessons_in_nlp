@@ -1,0 +1,756 @@
+<head>
+  <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $.ajax({
+        url: window.location.protocol + "//" + window.location.hostname + "/p/personal-posts-menu.html",
+        success: function (result) {
+          $("div.customTemporaryCodeHolder").html(result);
+          $("nav.customDynamicNav").html(
+            $("div.customTemporaryCodeHolder nav.customBitsWilpMenu").html()
+          );
+        }
+      });
+
+      $.ajax({
+        url: window.location.protocol + "//" + window.location.hostname + "/p/follow-us-on-social-media.html",
+
+        success: function (result) {
+          $("span.customTempCodeHolderForSocialMedia").html(result);
+          $("div.customSocialMediaBtnsWrapper").html(
+            $("span.customTempCodeHolderForSocialMedia div.customSocialMediaWrapper").html()
+          );
+        }
+
+      });
+    }); 
+  </script>
+  <!-- Google AdSense Using Machine Learning Code -->
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3071098372371409",
+      enable_page_level_ads: true
+    });
+  </script>
+
+  <style>
+    .customTempCodeHolderForSocialMedia {
+      display: none;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -pre-wrap;
+      white-space: -o-pre-wrap;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<div class="customTemporaryCodeHolder"> </div>
+<span class="customTempCodeHolderForSocialMedia"> </span>
+
+<nav class="customDynamicNav"> </nav> <br />
+<div class="customSocialMediaBtnsWrapper"> </div> <br />
+<!-- End of 'Personal Posts Menu Template For Copy-Paste'. It started from the top of the page from <HEAD> tag. -->
+
+<pre>Book Edition: 2009, 1e
+
+Lists and strings do not have exactly the same functionality. Lists have the added power that you can change their elements:
+
+>>> beatles[0] = "John Lennon"
+>>> del beatles[-1]
+
+>>> beatles
+['John Lennon', 'Paul', 'George']
+
+On the other hand, if we try to do that with a string—changing the 0th character in query to 'F'—we get:
+
+>>> query[0] = 'F'
+Traceback (most recent call last):
+File "[stdin]", line 1, in ?
+TypeError: object does not support item assignment
+
+This is because strings are immutable: you can’t change a string once you have created it. However, lists are mutable, and their contents can be modified at any time. As a result, lists support operations that modify the original value rather than producing a new value.
+
+---  ---  ---  ---  ---
+
+<b>What Is Unicode? </b>
+
+Unicode supports over a million characters. Each character is assigned a number, called a code point. In Python, code points are written in the form \uXXXX, where XXXX is the number in four-digit hexadecimal form.
+
+Within a program, we can manipulate Unicode strings just like normal strings. However, when Unicode characters are stored in files or displayed on a terminal, they must be encoded as a stream of bytes. Some encodings (such as ASCII and Latin-2) use a single byte per code point, so they can support only a small subset of Unicode, enough for a single language. Other encodings (such as UTF-8) use multiple bytes and can represent the full range of Unicode characters.
+
+Text in files will be in a particular encoding, so we need some mechanism for translating it into Unicode—translation into Unicode is called decoding. Conversely, to write out
+Unicode to a file or a terminal, we first need to translate it into a suitable encoding—this translation out of Unicode is called encoding, and is illustrated in Figure 3-3.
+
+From a Unicode perspective, characters are abstract entities that can be realized as one or more glyphs. Only glyphs can appear on a screen or be printed on paper. A font is a mapping from characters to glyphs.
+
+In Python, a Unicode string literal can be specified by preceding an ordinary string literal with a u, as in u'hello'. Arbitrary Unicode characters are defined using the \uXXXX escape sequence inside a Unicode string literal. We find the integer ordinal of a character using ord(). For example:
+
+>>> ord('a')
+97
+
+The hexadecimal four-digit notation for 97 is 0061, so we can define a Unicode string literal with the appropriate escape sequence:
+
+>>> a = u'\u0061'
+>>> a
+u'a'
+>>> print a
+a
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-vpqUo_xq51U/X3cmehU39OI/AAAAAAAAFmA/04uGBhty7rIGPLmvSKvWljJBxRjYKOscQCLcBGAsYHQ/s522/Unicode.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="275" data-original-width="522" src="https://1.bp.blogspot.com/-vpqUo_xq51U/X3cmehU39OI/AAAAAAAAFmA/04uGBhty7rIGPLmvSKvWljJBxRjYKOscQCLcBGAsYHQ/s600/Unicode.png"/></a></div>
+
+---  ---  ---  ---  ---
+
+<b>4.7 Algorithm Design </b>
+
+A major part of algorithmic problem solving is selecting or adapting an appropriate algorithm for the problem at hand. Sometimes there are several alternatives, and choosing the best one depends on knowledge about how each alternative performs as the size of the data grows. Whole books are written on this topic, and we only have space to introduce some key concepts and elaborate on the approaches that are most prevalent in natural language processing.
+
+The best-known strategy is known as divide-and-conquer. We attack a problem of size n by dividing it into two problems of size n/2, solve these problems, and combine their results into a solution of the original problem. For example, suppose that we had a pile of cards with a single word written on each card. We could sort this pile by splitting it in half and giving it to two other people to sort (they could do the same in turn). Then, when two sorted piles come back, it is an easy task to merge them into a single sorted pile. See Figure 4-3 for an illustration of this process.
+
+Another example is the process of looking up a word in a dictionary. We open the book somewhere around the middle and compare our word with the current page. If it’s earlier in the dictionary, we repeat the process on the first half; if it’s later, we use the second half. This search method is called binary search since it splits the problem in half at every step.
+
+In another approach to algorithm design, we attack a problem by transforming it into an instance of a problem we already know how to solve. For example, in order to detect duplicate entries in a list, we can pre-sort the list, then scan through it once to check whether any adjacent pairs of elements are identical.
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-BZfsS-NNpZI/X3cUPn1WMOI/AAAAAAAAFlc/y3yDj9c_3g8X5q6gQKLJxd7HDlQ98lE4QCLcBGAsYHQ/s828/merge%2Bsort.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="530" data-original-width="828" src="https://1.bp.blogspot.com/-BZfsS-NNpZI/X3cUPn1WMOI/AAAAAAAAFlc/y3yDj9c_3g8X5q6gQKLJxd7HDlQ98lE4QCLcBGAsYHQ/s600/merge%2Bsort.png"/></a></div>
+
+---  ---  ---  ---  ---
+
+<b>Stemmers </b>
+
+NLTK includes several off-the-shelf stemmers, and if you ever need a stemmer, you should use one of these in preference to crafting your own using regular expressions, since NLTK’s stemmers handle a wide range of irregular cases. The Porter and Lancaster stemmers follow their own rules for stripping affixes. Observe that the Porter stemmer correctly handles the word lying (mapping it to lie), whereas the Lancaster stemmer does not.
+
+>>> porter = nltk.PorterStemmer()
+>>> lancaster = nltk.LancasterStemmer()
+
+>>> [porter.stem(t) for t in tokens]
+['DENNI', ':', 'Listen', ',', 'strang', 'women', 'lie', 'in', 'pond', 'distribut', 'sword', 'is', 'no', 'basi', 'for', 'a', 'system', 'of', 'govern', '.', 'Suprem', 'execut', 'power', 'deriv', 'from', 'a', 'mandat', 'from', 'the', 'mass', ',', 'not', 'from', 'some', 'farcic', 'aquat', 'ceremoni', '.']
+
+>>> [lancaster.stem(t) for t in tokens]
+['den', ':', 'list', ',', 'strange', 'wom', 'lying', 'in', 'pond', 'distribut', 'sword', 'is', 'no', 'bas', 'for', 'a', 'system', 'of', 'govern', '.', 'suprem', 'execut', 'pow', 'der', 'from', 'a', 'mand', 'from', 'the', 'mass', ',', 'not', 'from', 'som', 'farc', 'aqu', 'ceremony', '.']
+
+---  ---  ---  ---  ---
+
+<b>Lemmatization </b>
+
+The WordNet lemmatizer removes affixes only if the resulting word is in its dictionary.
+
+This additional checking process makes the lemmatizer slower than the stemmers just mentioned. Notice that it doesn’t handle lying, but it converts women to woman.
+
+>>> wnl = nltk.WordNetLemmatizer()
+
+>>> [wnl.lemmatize(t) for t in tokens]
+['DENNIS', ':', 'Listen', ',', 'strange', 'woman', 'lying', 'in', 'pond', 'distributing', 'sword', 'is', 'no', 'basis', 'for', 'a', 'system', 'of', 'government', '.', 'Supreme', 'executive', 'power', 'derives', 'from', 'a', 'mandate', 'from', 'the', 'mass', ',', 'not', 'from', 'some', 'farcical', 'aquatic', 'ceremony', '.']
+
+The WordNet lemmatizer is a good choice if you want to compile the vocabulary of some texts and want a list of valid lemmas (or lexicon headwords).
+
+---  ---  ---  ---  ---
+
+<b>3.8 Segmentation </b>
+
+This section discusses more advanced concepts, which you may prefer to skip on the first time through this chapter.
+
+Tokenization is an instance of a more general problem of segmentation. In this section, we will look at two other instances of this problem, which use radically different techniques to the ones we have seen so far in this chapter.
+
+<b>Sentence Segmentation </b>
+Manipulating texts at the level of individual words often presupposes the ability to divide a text into individual sentences. As we have seen, some corpora already provide access at the sentence level. In the following example, we compute the average number of words per sentence in the Brown Corpus:
+
+>>> len(nltk.corpus.brown.words()) / len(nltk.corpus.brown.sents())
+20.250994070456922
+
+In other cases, the text is available only as a stream of characters. Before tokenizing the text into words, we need to segment it into sentences. NLTK facilitates this by including the Punkt sentence segmenter (Kiss & Strunk, 2006). Here is an example of its use in segmenting the text of a novel. (Note that if the segmenter’s internal data has been updated by the time you read this, you will see different output.)
+
+>>> sent_tokenizer=nltk.data.load('tokenizers/punkt/english.pickle')
+>>> text = nltk.corpus.gutenberg.raw('chesterton-thursday.txt')
+>>> sents = sent_tokenizer.tokenize(text)
+
+>>> pprint.pprint(sents[171:181])
+['"Nonsense!',
+'" said Gregory, who was very rational when anyone else\nattempted paradox.',
+'"Why do all the clerks and navvies in the\nrailway trains look so sad and tired,...',
+'I will\ntell you.',
+'It is because they know that the train is going right.',
+'It\nis because they know that whatever place they have taken a ticket\nfor that ...',
+'It is because after they have\npassed Sloane Square they know that the next stat...',
+'Oh, their wild rapture!',
+'oh,\ntheir eyes like stars and their souls again in Eden, if the next\nstation w...'
+'"\n\n"It is you who are unpoetical," replied the poet Syme.']
+
+---  ---  ---  ---  ---
+
+Like every other NLTK module, distance.py begins with a group of comment lines giving a one-line title of the module and identifying the authors. (Since the code is distributed, it also includes the URL where the code is available, a copyright statement, and license information.) Next is the module-level docstring, a triple-quoted multiline string containing information about the module that will be printed when someone types help(nltk.metrics.distance).
+
+# Natural Language Toolkit: Distance Metrics
+#
+# Author: Edward Loper : edloper@gradient.cis.upenn.edu
+# Steven Bird : sb@csse.unimelb.edu.au
+#
+"""
+Distance Metrics.
+Compute the distance between two items (usually strings).
+As metrics, they must satisfy the following three requirements:
+1. d(a, a) = 0
+2. d(a, b) >= 0
+3. d(a, c) <= d(a, b) + d(b, c)
+"""
+
+After this comes all the import statements required for the module, then any global variables, followed by a series of function definitions that make up most of the module. Other modules define “classes,” the main building blocks of object-oriented programming, which falls outside the scope of this book. (Most NLTK modules also include a demo() function, which can be used to see examples of the module in use.)
+
+Some module variables and functions are only used within the module.
+
+These should have names beginning with an underscore, e.g., _helper(), since this will hide the name. If another module imports this one, using the idiom: from module import *, these names will not be imported. You can optionally list the externally accessible names of a module using a special built-in variable like this: __all__ = ['edit_distance', 'jaccard_distance'].
+
+---  ---  ---  ---  ---
+
+<b>Debugging Techniques </b>
+
+Since most code errors result from the programmer making incorrect assumptions, the first thing to do when you detect a bug is to check your assumptions. Localize the problem by adding print statements to the program, showing the value of important variables, and showing how far the program has progressed.
+
+If the program produced an “exception”—a runtime error—the interpreter will print a stack trace, pinpointing the location of program execution at the time of the error. If the program depends on input data, try to reduce this to the smallest size while still producing the error.
+
+Once you have localized the problem to a particular function or to a line of code, you need to work out what is going wrong. It is often helpful to recreate the situation using the interactive command line. Define some variables, and then copy-paste the offending line of code into the session and see what happens. Check your understanding of the code by reading some documentation and examining other code samples that purport to do the same thing that you are trying to do. Try explaining your code to someone else, in case she can see where things are going wrong.
+
+Python provides a debugger which allows you to monitor the execution of your program, specify line numbers where execution will stop (i.e., breakpoints), and step through sections of code and inspect the value of variables. You can invoke the debugger on your code as follows:
+
+>>> import pdb
+>>> import mymodule
+
+>>> pdb.run('mymodule.myfunction()')
+
+It will present you with a prompt (Pdb) where you can type instructions to the debugger. Type help to see the full list of commands. Typing step (or just s) will execute the current line and stop. If the current line calls a function, it will enter the function and stop at the first line. Typing next (or just n) is similar, but it stops execution at the next line in the current function. The break (or b) command can be used to create or list breakpoints. Type continue (or c) to continue execution as far as the next breakpoint. Type the name of any variable to inspect its value. We can use the Python debugger to locate the problem in our find_words() function. Remember that the problem arose the second time the function was called. We’ll start by calling the function without using the debugger , using the smallest possible input. The second time, we’ll call it with the debugger.
+
+>>> import pdb
+
+>>> find_words(['cat'], 3)
+['cat']
+
+>>> pdb.run("find_words(['dog'], 3)")
+> [string](1)[module]()
+(Pdb) step
+--Call--
+> [stdin](1)find_words()
+(Pdb) args
+text = ['dog']
+wordlength = 3
+result = ['cat']
+
+Here we typed just two commands into the debugger: step took us inside the function, and args showed the values of its arguments (or parameters). We see immediately that result has an initial value of ['cat'], and not the empty list as expected. The debugger has helped us to localize the problem, prompting us to check our understanding of Python functions.
+
+---  ---  ---  ---  ---
+
+<b>Defensive Programming </b>
+
+In order to avoid some of the pain of debugging, it helps to adopt some defensive programming habits. Instead of writing a 20-line program and then testing it, build the program bottom-up out of small pieces that are known to work. Each time you combine these pieces to make a larger unit, test it carefully to see that it works as expected. Consider adding assert statements to your code, specifying properties of a variable, e.g., assert(isinstance(text, list)). If the value of the text variable later becomes a string when your code is used in some larger context, this will raise an AssertionError and you will get immediate notification of the problem. Once you think you’ve found the bug, view your solution as a hypothesis. Try to predict the effect of your bugfix before re-running the program. If the bug isn’t fixed, don’t fall into the trap of blindly changing the code in the hope that it will magically start working again. Instead, for each change, try to articulate a hypothesis about what is wrong and why the change will fix the problem. Then undo the change if the problem was not resolved.
+
+As you develop your program, extend its functionality, and fix any bugs, it helps to maintain a suite of test cases. This is called regression testing, since it is meant to detect situations where the code “regresses”—where a change to the code has an unintended side effect of breaking something that used to work. Python provides a simple regression-testing framework in the form of the doctest module. This module searches a file of code or documentation for blocks of text that look like an interactive Python session, of the form you have already seen many times in this book. It executes the Python commands it finds, and tests that their output matches the output supplied in the original file. Whenever there is a mismatch, it reports the expected and actual values. For details, please consult the doctest documentation at <a href="http://docs.python.org/library/doctest.html" target="_blank">DocTest Docs</a>
+
+Apart from its value for regression testing, the doctest module is useful for ensuring that your software documentation stays in sync with your code.
+
+Perhaps the most important defensive programming strategy is to set out your code clearly, choose meaningful variable and function names, and simplify the code wherever possible by decomposing it into functions and modules with well-documented interfaces.
+
+---  ---  ---  ---  ---
+
+<b>CHAPTER 5
+Categorizing and Tagging Words </b>
+
+The process of classifying words into their parts-of-speech and labeling them accordingly is known as part-of-speech tagging, POS tagging, or simply tagging. Parts-of-speech are also known as word classes or lexical categories. The collection of tags used for a particular task is known as a tagset.
+
+<b>5.1 Using a Tagger </b>
+
+A part-of-speech tagger, or POS tagger, processes a sequence of words, and attaches a part of speech tag to each word (don’t forget to import nltk):
+
+>>> text = nltk.word_tokenize("And now for something completely different")
+
+>>> nltk.pos_tag(text)
+[('And', 'CC'), ('now', 'RB'), ('for', 'IN'), ('something', 'NN'), ('completely', 'RB'), ('different', 'JJ')]
+
+<b>5.2 Tagged Corpora: Brown Corpus has been POS tagged. </b>
+
+<b>Representing Tagged Tokens </b>
+
+By convention in NLTK, a tagged token is represented using a tuple consisting of the token and the tag. We can create one of these special tuples from the standard string representation of a tagged token, using the function str2tuple():
+
+>>> tagged_token = nltk.tag.str2tuple('fly/NN')
+
+>>> tagged_token
+('fly', 'NN')
+
+>>> tagged_token[0]
+'fly'
+
+>>> tagged_token[1]
+'NN'
+
+We can construct a list of tagged tokens directly from a string. The first step is to tokenize the string to access the individual word/tag strings, and then to convert each of these into a tuple (using str2tuple()).
+
+>>> sent = '''
+... The/AT grand/JJ jury/NN commented/VBD on/IN a/AT number/NN of/IN
+... other/AP topics/NNS ,/, AMONG/IN them/PPO the/AT Atlanta/NP and/CC
+... Fulton/NP-tl County/NN-tl purchasing/VBG departments/NNS which/WDT it/PPS
+... said/VBD ``/`` ARE/BER well/QL operated/VBN and/CC follow/VB generally/RB
+... accepted/VBN practices/NNS which/WDT inure/VB to/IN the/AT best/JJT
+... interest/NN of/IN both/ABX governments/NNS ''/'' ./.
+... '''
+
+>>> [nltk.tag.str2tuple(t) for t in sent.split()]
+[('The', 'AT'), ('grand', 'JJ'), ('jury', 'NN'), ('commented', 'VBD'), ('on', 'IN'), ('a', 'AT'), ('number', 'NN'), ... ('.', '.')]
+
+<b>Reading Tagged Corpora </b>
+
+Several of the corpora included with NLTK have been tagged for their part-of-speech. Here’s an example of what you might see if you opened a file from the Brown Corpus
+with a text editor:
+
+The/at Fulton/np-tl County/nn-tl Grand/jj-tl Jury/nn-tl said/vbd Friday/nr an/at investigation/
+nn of/in Atlanta’s/np$ recent/jj primary/nn election/nn produced/vbd / no/at evidence/nn ''/'' that/cs any/dti irregularities/nns took/vbd place/nn ./.
+
+Other corpora use a variety of formats for storing part-of-speech tags. NLTK’s corpus readers provide a uniform interface so that you don’t have to be concerned with the different file formats. In contrast with the file extract just shown, the corpus reader for the Brown Corpus represents the data as shown next. Note that part-of-speech tags have been converted to uppercase; this has become standard practice since the Brown Corpus was published.
+
+>>> nltk.corpus.brown.tagged_words()
+[('The', 'AT'), ('Fulton', 'NP-TL'), ('County', 'NN-TL'), ...]
+
+>>> nltk.corpus.brown.tagged_words(simplify_tags=True)
+[('The', 'DET'), ('Fulton', 'N'), ('County', 'N'), ...]
+
+Whenever a corpus contains tagged text, the NLTK corpus interface will have a tagged_words() method. Here are some more examples, again using the output format illustrated for the Brown Corpus:
+
+>>> print nltk.corpus.nps_chat.tagged_words()
+[('now', 'RB'), ('im', 'PRP'), ('left', 'VBD'), ...]
+
+>>> nltk.corpus.conll2000.tagged_words()
+[('Confidence', 'NN'), ('in', 'IN'), ('the', 'DT'), ...]
+
+>>> nltk.corpus.treebank.tagged_words()
+[('Pierre', 'NNP'), ('Vinken', 'NNP'), (',', ','), ...]
+
+Not all corpora employ the same set of tags; see the tagset help functionality and the readme() methods mentioned earlier for documentation. Initially we want to avoid the complications of these tagsets, so we use a built-in mapping to a simplified tagset:
+
+>>> nltk.corpus.brown.tagged_words(simplify_tags=True)
+[('The', 'DET'), ('Fulton', 'NP'), ('County', 'N'), ...]
+
+>>> nltk.corpus.treebank.tagged_words(simplify_tags=True)
+[('Pierre', 'NP'), ('Vinken', 'NP'), (',', ','), ...]
+
+Tagged corpora for several other languages are distributed with NLTK, including Chinese, Hindi, Portuguese, Spanish, Dutch, and Catalan. These usually contain non-ASCII text, and Python always displays this in hexadecimal when printing a larger structure such as a list.
+
+>>> nltk.corpus.sinica_treebank.tagged_words()
+[('\xe4\xb8\x80', 'Neu'), ('\xe5\x8f\x8b\xe6\x83\x85', 'Nad'), ...]
+
+>>> nltk.corpus.indian.tagged_words()
+[('\xe0\xa6\xae\xe0\xa6\xb9\xe0\xa6\xbf\xe0\xa6\xb7\xe0\xa7\x87\xe0\xa6\xb0', 'NN'), ('\xe0\xa6\xb8\xe0\xa6\xa8\xe0\xa7\x8d\xe0\xa6\xa4\xe0\xa6\xbe\xe0\xa6\xa8', 'NN'), ...]
+
+>>> nltk.corpus.mac_morpho.tagged_words()
+[('Jersei', 'N'), ('atinge', 'V'), ('m\xe9dia', 'N'), ...]
+
+>>> nltk.corpus.conll2002.tagged_words()
+[('Sao', 'NC'), ('Paulo', 'VMI'), ('(', 'Fpa'), ...]
+
+>>> nltk.corpus.cess_cat.tagged_words()
+[('El', 'da0ms0'), ('Tribunal_Suprem', 'np0000o'), ...]
+
+If your environment is set up correctly, with appropriate editors and fonts, you should be able to display individual strings in a human-readable way. 
+
+If the corpus is also segmented into sentences, it will have a tagged_sents() method that divides up the tagged words into sentences rather than presenting them as one big list. This will be useful when we come to developing automatic taggers, as they are trained and tested on lists of sentences, not words.
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-6wkEyOgl968/X3caQavM9AI/AAAAAAAAFlo/BxUimQ_sIKYoFkDUrW5Fk-oP9rTwJTcJgCLcBGAsYHQ/s718/Simplified%2Bpart-of-speech%2Btagset.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="718" data-original-width="476" src="https://1.bp.blogspot.com/-6wkEyOgl968/X3caQavM9AI/AAAAAAAAFlo/BxUimQ_sIKYoFkDUrW5Fk-oP9rTwJTcJgCLcBGAsYHQ/s600/Simplified%2Bpart-of-speech%2Btagset.png"/></a></div>
+
+<b>5.4 Automatic Tagging </b>
+
+<b>The Default Tagger </b>
+
+The simplest possible tagger assigns the same tag to each token. This may seem to be a rather banal step, but it establishes an important baseline for tagger performance. In order to get the best result, we tag each word with the most likely tag.
+
+Let’s find out which tag is most likely (now using the unsimplified tagset):
+
+>>> tags = [tag for (word, tag) in brown.tagged_words(categories='news')]
+>>> nltk.FreqDist(tags).max()
+'NN'
+
+Now we can create a tagger that tags everything as NN.
+
+>>> raw = 'I do not like green eggs and ham, I do not like them Sam I am!'
+>>> tokens = nltk.word_tokenize(raw)
+>>> default_tagger = nltk.DefaultTagger('NN')
+
+>>> default_tagger.tag(tokens)
+[('I', 'NN'), ('do', 'NN'), ('not', 'NN'), ('like', 'NN'), ('green', 'NN'), ('eggs', 'NN'), ('and', 'NN'), ('ham', 'NN'), (',', 'NN'), ('I', 'NN'), ('do', 'NN'), ('not', 'NN'), ('like', 'NN'), ('them', 'NN'), ('Sam', 'NN'), ('I', 'NN'), ('am', 'NN'), ('!', 'NN')]
+
+Unsurprisingly, this method performs rather poorly. On a typical corpus, it will tag only about an eighth of the tokens correctly, as we see here:
+
+>>> default_tagger.evaluate(brown_tagged_sents)
+0.13089484257215028
+
+The Regular Expression Tagger
+>>> patterns = [
+... (r'.*ing$', 'VBG'), # gerunds
+... (r'.*ed$', 'VBD'), # simple past
+... (r'.*es$', 'VBZ'), # 3rd singular present
+... (r'.*ould$', 'MD'), # modals
+... (r'.*\'s$', 'NN$'), # possessive nouns
+... (r'.*s$', 'NNS'), # plural nouns
+... (r'^-?[0-9]+(.[0-9]+)?$', 'CD'), # cardinal numbers
+... (r'.*', 'NN') # nouns (default)
+... ]
+
+>>> regexp_tagger = nltk.RegexpTagger(patterns)
+
+>>> regexp_tagger.tag(brown_sents[3])
+[('``', 'NN'), ('Only', 'NN'), ('a', 'NN'), ('relative', 'NN'), ('handful', 'NN'), ('of', 'NN'), ('such', 'NN'), ('reports', 'NNS'), ('was', 'NNS'), ('received', 'VBD'), ("''", 'NN'), (',', 'NN'), ('the', 'NN'), ('jury', 'NN'), ('said', 'NN'), (',', 'NN'), ('``', 'NN'), ('considering', 'VBG'), ('the', 'NN'), ('widespread', 'NN'), ...]
+
+>>> regexp_tagger.evaluate(brown_tagged_sents)
+0.20326391789486245
+
+<b>The Lookup Tagger </b>
+A lot of high-frequency words do not have the NN tag. Let’s find the hundred most frequent words and store their most likely tag. We can then use this information as the model for a “lookup tagger” (an NLTK UnigramTagger):
+
+>>> fd = nltk.FreqDist(brown.words(categories='news'))
+>>> cfd = nltk.ConditionalFreqDist(brown.tagged_words(categories='news'))
+>>> most_freq_words = fd.keys()[:100]
+>>> likely_tags = dict((word, cfd[word].max()) for word in most_freq_words)
+>>> baseline_tagger = nltk.UnigramTagger(model=likely_tags)
+>>> baseline_tagger.evaluate(brown_tagged_sents)
+0.45578495136941344
+
+<b>5.5 N-Gram Tagging
+
+Unigram Tagging </b>
+
+Unigram taggers are based on a simple statistical algorithm: for each token, assign the tag that is most likely for that particular token. For example, it will assign the tag JJ to any occurrence of the word frequent, since frequent is used as an adjective (e.g., a frequent word) more often than it is used as a verb (e.g., I frequent this cafe). A unigram tagger behaves just like a lookup tagger (Section 5.4), except there is a more convenient technique for setting it up, called training. In the following code sample, we train a unigram tagger, use it to tag a sentence, and then evaluate:
+
+>>> from nltk.corpus import brown
+>>> brown_tagged_sents = brown.tagged_sents(categories='news')
+>>> brown_sents = brown.sents(categories='news')
+>>> unigram_tagger = nltk.UnigramTagger(brown_tagged_sents)
+
+>>> unigram_tagger.tag(brown_sents[2007])
+[('Various', 'JJ'), ('of', 'IN'), ('the', 'AT'), ('apartments', 'NNS'), ('are', 'BER'), ('of', 'IN'), ('the', 'AT'), ('terrace', 'NN'), ('type', 'NN'), (',', ','), ('being', 'BEG'), ('on', 'IN'), ('the', 'AT'), ('ground', 'NN'), ('floor', 'NN'), ('so', 'QL'), ('that', 'CS'), ('entrance', 'NN'), ('is', 'BEZ'), ('direct', 'JJ'), ('.', '.')]
+
+>>> unigram_tagger.evaluate(brown_tagged_sents)
+0.9349006503968017
+
+We train a UnigramTagger by specifying tagged sentence data as a parameter when we initialize the tagger. The training process involves inspecting the tag of each word and storing the most likely tag for any word in a dictionary that is stored inside the tagger.
+
+<b>General N-Gram Tagging </b>
+
+When we perform a language processing task based on unigrams, we are using one item of context. In the case of tagging, we consider only the current token, in isolation from any larger context. Given such a model, the best we can do is tag each word with its a priori most likely tag. This means we would tag a word such as wind with the same tag, regardless of whether it appears in the context the wind or to wind.
+
+An n-gram tagger is a generalization of a unigram tagger whose context is the current word together with the part-of-speech tags of the n-1 preceding tokens.
+
+The NgramTagger class uses a tagged training corpus to determine which part-of-speech tag is most likely for each context. Here we see a special case of an n-gram tagger, namely a bigram tagger. First we train it, then use it to tag untagged sentences:
+
+>>> bigram_tagger = nltk.BigramTagger(train_sents)
+
+>>> bigram_tagger.tag(brown_sents[2007])
+[('Various', 'JJ'), ('of', 'IN'), ('the', 'AT'), ('apartments', 'NNS'), ('are', 'BER'), ('of', 'IN'), ('the', 'AT'), ('terrace', 'NN'), ('type', 'NN'), (',', ','), ('being', 'BEG'), ('on', 'IN'), ('the', 'AT'), ('ground', 'NN'), ('floor', 'NN'), ('so', 'CS'), ('that', 'CS'), ('entrance', 'NN'), ('is', 'BEZ'), ('direct', 'JJ'), ('.', '.')]
+
+>>> unseen_sent = brown_sents[4203]
+
+>>> bigram_tagger.tag(unseen_sent)
+[('The', 'AT'), ('population', 'NN'), ('of', 'IN'), ('the', 'AT'), ('Congo', 'NP'), ('is', 'BEZ'), ('13.5', None), ('million', None), (',', None), ('divided', None), ('into', None), ('at', None), ('least', None), ('seven', None), ('major', None), ('``', None), ('culture', None), ('clusters', None), ("''", None), ('and', None), ('innumerable', None), ('tribes', None), ('speaking', None), ('400', None), ('separate', None), ('dialects', None), ('.', None)]
+
+Notice that the bigram tagger manages to tag every word in a sentence it saw during training, but does badly on an unseen sentence. As soon as it encounters a new word (i.e., 13.5), it is unable to assign a tag. It cannot tag the following word (i.e., million), even if it was seen during training, simply because it never saw it during training with a None tag on the previous word. Consequently, the tagger fails to tag the rest of the sentence. Its overall accuracy score is very low:
+
+>>> bigram_tagger.evaluate(test_sents)
+0.10276088906608193
+
+<b>Combining Taggers </b>
+One way to address the trade-off between accuracy and coverage is to use the more accurate algorithms when we can, but to fall back on algorithms with wider coverage when necessary. For example, we could combine the results of a bigram tagger, a unigram tagger, and a default tagger, as follows:
+
+1. Try tagging the token with the bigram tagger.
+2. If the bigram tagger is unable to find a tag for the token, try the unigram tagger.
+3. If the unigram tagger is also unable to find a tag, use a default tagger.
+
+Most NLTK taggers permit a backoff tagger to be specified. The backoff tagger may itself have a backoff tagger:
+
+>>> t0 = nltk.DefaultTagger('NN')
+>>> t1 = nltk.UnigramTagger(train_sents, backoff=t0)
+>>> t2 = nltk.BigramTagger(train_sents, backoff=t1)
+
+>>> t2.evaluate(test_sents)
+0.84491179108940495
+
+<b>5.6 Transformation-Based Tagging </b>
+
+A potential issue with n-gram taggers is the size of their n-gram table (or language model). If tagging is to be employed in a variety of language technologies deployed on mobile computing devices, it is important to strike a balance between model size and tagger performance. An n-gram tagger with backoff may store trigram and bigram tables, which are large, sparse arrays that may have hundreds of millions of entries.
+
+A second issue concerns context. The only information an n-gram tagger considers from prior context is tags, even though words themselves might be a useful source of information. It is simply impractical for n-gram models to be conditioned on the identities of words in the context. In this section, we examine Brill tagging, an inductive tagging method which performs very well using models that are only a tiny fraction of the size of n-gram taggers.
+
+Brill tagging is a kind of transformation-based learning, named after its inventor. The general idea is very simple: guess the tag of each word, then go back and fix the mistakes.
+
+In this way, a Brill tagger successively transforms a bad tagging of a text into a better one. As with n-gram tagging, this is a supervised learning method, since we need annotated training data to figure out whether the tagger’s guess is a mistake or not. However, unlike n-gram tagging, it does not count observations but compiles a list of transformational correction rules.
+
+The process of Brill tagging is usually explained by analogy with painting. Suppose we were painting a tree, with all its details of boughs, branches, twigs, and leaves, against a uniform sky-blue background. Instead of painting the tree first and then trying to paint blue in the gaps, it is simpler to paint the whole canvas blue, then “correct” the tree section by over-painting the blue background. In the same fashion, we might paint the trunk a uniform brown before going back to over-paint further details with even finer brushes. Brill tagging uses the same idea: begin with broad brush strokes, and then fix up the details, with successively finer changes.
+
+<b>5.7 How to Determine the Category of a Word </b>
+
+Now that we have examined word classes in detail, we turn to a more basic question: how do we decide what category a word belongs to in the first place? In general, linguists use morphological, syntactic, and semantic clues to determine the category of a word.
+
+<b>Morphological Clues </b>
+
+The internal structure of a word may give useful clues as to the word’s category. For example, -ness is a suffix that combines with an adjective to produce a noun, e.g., happy → happiness, ill → illness. So if we encounter a word that ends in -ness, this is very likely to be a noun. Similarly, -ment is a suffix that combines with some verbs to produce a noun, e.g., govern → government and establish → establishment.
+
+English verbs can also be morphologically complex. For instance, the present participle of a verb ends in -ing, and expresses the idea of ongoing, incomplete action (e.g., falling, eating). The -ing suffix also appears on nouns derived from verbs, e.g., the falling of the leaves (this is known as the gerund).
+
+<b>Syntactic Clues </b>
+
+Another source of information is the typical contexts in which a word can occur. For example, assume that we have already determined the category of nouns. Then we might say that a syntactic criterion for an adjective in English is that it can occur immediately before a noun, or immediately following the words be or very. According to these tests, near should be categorized as an adjective:
+
+(2) 
+a. the near window
+b. The end is (very) near.
+
+<b>Semantic Clues </b>
+
+Finally, the meaning of a word is a useful clue as to its lexical category. For example, the best-known definition of a noun is semantic: “the name of a person, place, or thing.” Within modern linguistics, semantic criteria for word classes are treated with suspicion, mainly because they are hard to formalize. Nevertheless, semantic criteria underpin many of our intuitions about word classes, and enable us to make a good guess about the categorization of words in languages with which we are unfamiliar. For example, if all we know about the Dutch word verjaardag is that it means the same as the English word birthday, then we can guess that verjaardag is a noun in Dutch. However, some care is needed: although we might translate zij is vandaag jarig as it’s her birthday today, the word jarig is in fact an adjective in Dutch, and has no exact equivalent in English.
+
+<b>New Words</b>
+
+All languages acquire new lexical items. A list of words recently added to the Oxford Dictionary of English includes cyberslacker, fatoush, blamestorm, SARS, cantopop, bupkis, noughties, muggle, and robata. Notice that all these new words are nouns, and this is reflected in calling nouns an open class. By contrast, prepositions are regarded as a closed class. That is, there is a limited set of words belonging to the class (e.g., above, along, at, below, beside, between, during, for, from, in, near, on, outside, over, past, through, towards, under, up, with), and membership of the set only changes very gradually over time.
+
+<b>Morphology in Part-of-Speech Tagsets </b>
+
+Common tagsets often capture some morphosyntactic information, that is, information about the kind of morphological markings that words receive by virtue of their syntactic role. Consider, for example, the selection of distinct grammatical forms of the word go illustrated in the following sentences:
+
+(3) 
+a. Go away!
+b. He sometimes goes to the cafe.
+c. All the cakes have gone.
+d. We went on the excursion.
+
+Each of these forms—go, goes, gone, and went—is morphologically distinct from the others. Consider the form goes. This occurs in a restricted set of grammatical contexts, and requires a third person singular subject. Thus, the following sentences are ungrammatical.
+
+(4) a. *They sometimes goes to the cafe.
+b. *I sometimes goes to the cafe.
+
+By contrast, gone is the past participle form; it is required after have (and cannot be replaced in this context by goes), and cannot occur as the main verb of a clause.
+
+(5) a. *All the cakes have goes.
+b. *He sometimes gone to the cafe.
+
+We can easily imagine a tagset in which the four distinct grammatical forms just discussed were all tagged as VB. Although this would be adequate for some purposes, a more fine-grained tagset provides useful information about these forms that can help other processors that try to detect patterns in tag sequences.
+
+In addition to this set of verb tags, the various forms of the verb to be have special tags:
+
+be/BE, being/BEG, am/BEM, are/BER, is/BEZ, been/BEN, were/BED, and was/BEDZ (plus extra tags for negative forms of the verb). All told, this fine-grained tagging of verbs means that an automatic tagger that uses this tagset is effectively carrying out a limited amount of morphological analysis.
+
+Most part-of-speech tagsets make use of the same basic categories, such as noun, verb, adjective, and preposition. However, tagsets differ both in how finely they divide words into categories, and in how they define their categories. For example, is might be tagged simply as a verb in one tagset, but as a distinct form of the lexeme be in another tagset (as in the Brown Corpus). This variation in tagsets is unavoidable, since part-of-speech tags are used in different ways for different tasks. In other words, there is no one “right way” to assign tags, only more or less useful ways depending on one’s goals.
+
+---  ---  ---  ---  ---
+
+<b>7.5 Named Entity Recognition </b>
+
+NLTK provides a classifier that has already been trained to recognize named entities,
+accessed with the function nltk.ne_chunk(). If we set the parameter binary=True ,
+then named entities are just tagged as NE; otherwise, the classifier adds category labels
+such as PERSON, ORGANIZATION, and GPE.
+>>> sent = nltk.corpus.treebank.tagged_sents()[22]
+>>> print nltk.ne_chunk(sent, binary=True)
+(S
+The/DT
+(NE U.S./NNP)
+is/VBZ
+one/CD
+...
+according/VBG
+to/TO
+(NE Brooke/NNP T./NNP Mossman/NNP)
+...)
+
+>>> print nltk.ne_chunk(sent)
+<i style="color: green">(S
+The/DT
+(GPE U.S./NNP)
+is/VBZ
+one/CD
+...
+according/VBG
+to/TO
+(PERSON Brooke/NNP T./NNP Mossman/NNP)
+...) </i>
+
+• Entity recognition is often performed using chunkers, which segment multitoken sequences, and label them with the appropriate entity type. Common entity types include ORGANIZATION, PERSON, LOCATION, DATE, TIME, MONEY, and GPE (geo-political entity).
+
+---  ---  ---  ---  ---
+
+<h3>Some Code </h3>
+
+(temp) C:\Users\Ashish Jain>pip install --upgrade nltk
+<i style="color: green">Processing c:\users\ashish jain\appdata\local\pip\cache\wheels\ae\8c\3f\b1fe0ba04555b08b57ab52ab7f86023639a526d8bc8d384306\nltk-3.5-cp37-none-any.whl
+Requirement already satisfied, skipping upgrade: tqdm in e:\programfiles\anaconda3\envs\temp\lib\site-packages (from nltk) (4.48.2)
+Requirement already satisfied, skipping upgrade: joblib in e:\programfiles\anaconda3\envs\temp\lib\site-packages (from nltk) (0.16.0)
+Collecting regex
+  Downloading regex-2020.9.27-cp37-cp37m-win_amd64.whl (268 kB)
+     |████████████████████████████████| 268 kB 3.3 MB/s
+Collecting click
+  Using cached click-7.1.2-py2.py3-none-any.whl (82 kB)
+Installing collected packages: regex, click, nltk
+  Attempting uninstall: nltk
+    Found existing installation: nltk 3.4.5
+    Uninstalling nltk-3.4.5:
+      Successfully uninstalled nltk-3.4.5
+Successfully installed click-7.1.2 nltk-3.5 regex-2020.9.27 </i>
+
+(temp) C:\Users\Ashish Jain>pip show nltk
+<i style="color: green">Name: nltk
+Version: 3.5
+Summary: Natural Language Toolkit
+Home-page: http://nltk.org/
+Author: Steven Bird
+Author-email: stevenbird1@gmail.com
+License: Apache License, Version 2.0
+Location: e:\programfiles\anaconda3\envs\temp\lib\site-packages
+Requires: tqdm, regex, click, joblib
+Required-by: textblob, sumy </i>
+
+import nltk
+
+print("nltk:", nltk.__version__)
+
+<i style="color: green">nltk: 3.5 </i>
+
+<i style="color: blue">import matplotlib
+import matplotlib.pyplot as plt
+# Without "%matplotlib inline", you get error "Javascript Error: IPython is not defined" in JupyterLab.
+%matplotlib inline 
+# For scrollable output image
+%matplotlib nbagg
+
+with open('files_1/Unicode.txt', mode = 'r') as f:
+    txt = f.read()
+	
+txt[:80] </i>
+<i style="color: green">'What Is Unicode?\nUnicode supports over a million characters. Each character is a' </i>
+
+<b>Tokenize</b>
+
+# Tokenize into words
+words = nltk.tokenize.word_tokenize(txt)
+
+print(words[:5])
+print("Number of words:", len(words))
+
+<i style="color: green">['What', 'Is', 'Unicode', '?', 'Unicode']
+Number of words: 302 </i>
+
+<b>Stopwords </b>
+
+from nltk.corpus import stopwords
+print("Number of English stopwords:", len(stopwords.words('english')))
+
+<i style="color: green">Number of English stopwords: 179 </i>
+
+<b>Word-Frequency Plot </b>
+
+from nltk.probability import FreqDist
+
+fdist1 = FreqDist(words)
+%matplotlib inline
+fig = plt.figure(figsize=(12,5))
+fdist1.plot(100, cumulative=True)
+
+<div class="separator" style="clear: both;"><a href="https://1.bp.blogspot.com/-c7a7cLpLRFA/X3cgr7bf16I/AAAAAAAAFl0/5eIBch1Ets8-tzad8J0Ky5K_hAjJRVwJACLcBGAsYHQ/s910/word%2Bfreq%2Bdistribution.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="467" data-original-width="910" src="https://1.bp.blogspot.com/-c7a7cLpLRFA/X3cgr7bf16I/AAAAAAAAFl0/5eIBch1Ets8-tzad8J0Ky5K_hAjJRVwJACLcBGAsYHQ/s600/word%2Bfreq%2Bdistribution.png"/></a></div>
+
+<b>Converting input text to an NLTK text </b>
+
+# text = nltk.Text(txt) # [Text: W h a t   I s  ...]
+text = nltk.Text(words)
+print(text)
+
+<i style="color: green">[Text: What Is Unicode ? Unicode supports over a...] </i>
+
+<b>Words Collocations (Bigram and Trigram)</b>
+
+text.collocation_list(5)
+
+<i style="color: green">[('string', 'literal'),
+ ('code', 'point'),
+ ('Unicode', 'characters'),
+ ('Unicode', 'string')] </i>
+ 
+from nltk.collocations import *
+trigram_measures = nltk.collocations.TrigramAssocMeasures()
+finder = TrigramCollocationFinder.from_words(text)
+finder.nbest(trigram_measures.pmi, 10) 
+
+<i style="color: green">[('abstract', 'entities', 'that'),
+ ('by', 'preceding', 'an'),
+ ('escape', 'sequence', 'inside'),
+ ('just', 'like', 'normal'),
+ ('preceding', 'an', 'ordinary'),
+ ('specified', 'by', 'preceding'),
+ ('\\uXXXX', 'escape', 'sequence'),
+ ('encodingâ€', '”', 'this'),
+ ('four-digit', 'hexadecimal', 'form'),
+ ('like', 'normal', 'strings')] </i>
+ 
+<b>Clean HTML </b>
+
+with open('files_1/tempate.html', mode = 'r') as f:
+    in_html = f.read()
+
+nltk.clean_html(in_html)
+# NotImplementedError: To remove HTML markup, use BeautifulSoup's get_text() function
+
+<b>Word Distance </b>
+
+Ref: <a href="https://www.nltk.org/_modules/nltk/metrics/distance.html">nltk.org "Word Distance"</a>
+
+import pkgutil
+for importer, modname, ispkg in pkgutil.iter_modules(nltk.__path__):
+    print("Found submodule %s (is a package: %s)" % (modname, ispkg))
+
+<i style="color: green">Found submodule app (is a package: True)
+Found submodule book (is a package: False)
+Found submodule ccg (is a package: True)
+Found submodule chat (is a package: True)
+Found submodule chunk (is a package: True)
+... </i>
+
+dir(nltk)[:5]
+
+<i style="color: green">['AbstractLazySequence',
+ 'AffixTagger',
+ 'AlignedSent',
+ 'Alignment',
+ 'AnnotationTask'] </i>
+ 
+[i for i in dir(nltk) if 'dist' in i]
+
+<i style="color: green">['binary_distance',
+ 'custom_distance',
+ 'distance',
+ 'edit_distance',
+ 'edit_distance_align',
+ 'interval_distance',
+ 'jaccard_distance',
+ 'masi_distance'] </i>
+ 
+string_distance_examples = [
+        ("rain", "shine"),
+        ("abcdef", "acbdef"),
+        ("language", "lnaguaeg"),
+        ("language", "lnaugage"),
+        ("language", "lngauage"),
+    ]
+	
+for i in string_distance_examples:
+    print(i[0], i[1], ":", nltk.binary_distance(i[0], i[1]))
+	
+<i style="color: green">rain shine : 1.0
+abcdef acbdef : 1.0
+language lnaguaeg : 1.0
+language lnaugage : 1.0
+language lngauage : 1.0 </i>
+
+for i in string_distance_examples:
+    print(i[0], i[1], ":", nltk.edit_distance(i[0], i[1]))
+	
+<i style="color: green">rain shine : 3
+abcdef acbdef : 2
+language lnaguaeg : 4
+language lnaugage : 3
+language lngauage : 2 </i>
+
+</pre>
