@@ -1,0 +1,12 @@
+name: pegasus
+channels:
+  - conda-forge
+  - defaults
+  - pytorch
+dependencies:
+  - tensorflow
+  - pytorch
+  - pip:
+    - transformers
+  - jupyterlab
+  - ipykernel 
