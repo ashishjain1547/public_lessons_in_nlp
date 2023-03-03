@@ -6,7 +6,6 @@ channels:
 dependencies:
   - tensorflow
   - pytorch
-  - pip:
-    - transformers
+  - transformers
   - jupyterlab
   - ipykernel 

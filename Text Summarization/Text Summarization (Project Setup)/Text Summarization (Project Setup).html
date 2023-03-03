@@ -68,7 +68,7 @@
     </style>
 </head>
 
-<pre><h2>pegasus.yml File</h2>
+<pre><h2>pegasus.yml File Using pip</h2>
 <i class="ib">
 name: pegasus
 channels:
@@ -79,10 +79,25 @@ dependencies:
     - tensorflow
     - pytorch
     - pip:
+        - transformers
+    - jupyterlab
+    - ipykernel 
+</i>
+
+<h2>pegasus.yml File With 'transformers' Coming From 'conda-forge</h2>
+<i class="ib">
+name: pegasus
+channels:
+    - conda-forge
+    - defaults
+    - pytorch
+dependencies:
+    - tensorflow
+    - pytorch
     - transformers
     - jupyterlab
     - ipykernel 
 </i>
-        
+    
 </pre>
 <span style="display: none;">Tags: Natural Language Processing,Technology,</span>
