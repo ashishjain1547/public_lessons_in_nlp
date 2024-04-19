@@ -1,0 +1,82 @@
+<head>
+    <script crossorigin="anonymous" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- Google AdSense Using Machine Learning Code -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-3071098372371409",
+            enable_page_level_ads: true
+        });
+    </script>
+    <style>
+       pre {
+           white-space: pre-wrap;
+           white-space: -moz-pre-wrap;
+           white-space: -pre-wrap;
+           white-space: -o-pre-wrap;
+           word-wrap: break-word;
+       }
+   </style>
+</head>
+<pre>
+CBOW stands for Continuous Bag of Words, and it is a type of word embedding model used in natural language processing (NLP). CBOW is a shallow neural network model that belongs to the family of neural network language models. The primary goal of CBOW is to predict a target word based on its context, which consists of the surrounding words in a given window.
+
+Here's a brief overview of how CBOW works:
+
+    Architecture:
+        CBOW is a feedforward neural network with a single hidden layer.
+        The input layer represents the context words (words within a specific window around the target word), and the output layer represents the target word.
+        The hidden layer processes the input context to learn the relationships between words.
+
+    Training:
+        CBOW is trained using a large corpus of text data.
+        The objective is to maximize the likelihood of predicting the target word given its context. The model is trained to minimize the cross-entropy loss between the predicted probability distribution over words and the actual distribution (one-hot encoded vector representing the target word).
+
+    Word Embeddings:
+        Once trained, the weights of the hidden layer in the CBOW model serve as word embeddings.
+        These word embeddings capture semantic relationships between words based on their co-occurrence patterns in the training data.
+        Each word in the vocabulary is represented as a dense vector in a continuous vector space.
+
+    Context Window:
+        CBOW uses a fixed-size context window around the target word. This window determines the input context for the model.
+        For example, if the context window size is 2, and the target word is in the middle of a sentence, the model is trained to predict the target word based on the two words to its left and the two words to its right.
+
+CBOW is known for its simplicity and efficiency in training compared to other more complex models. It is especially useful in scenarios where the focus is on word similarity and capturing semantic relationships in a given context. Word2Vec, a popular word embedding model, includes both CBOW and Skip-gram variants, with CBOW being one of the options for generating word embeddings.
+
+Figure 1:
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjet8_va0GJPUvGWv7lEJ6glh_JMohbH3-8WGufDaRSlEcnAoGPJPSR4Mh1tvfMnpANUU0_I3CzzdHOJ1lyR5KXpQBXywoJ-6DZhAkCK7cB8e2GeF_pvpFn4AvJg2ZQq66tDFtc0gvfJaEeYfqsZWNkxk4uvWMDoKIrMoVkm4hYjPgZcU9_t_zByVgrwkwr/s790/Screenshot%20from%202023-12-22%2011-09-22.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="435" data-original-width="790"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjet8_va0GJPUvGWv7lEJ6glh_JMohbH3-8WGufDaRSlEcnAoGPJPSR4Mh1tvfMnpANUU0_I3CzzdHOJ1lyR5KXpQBXywoJ-6DZhAkCK7cB8e2GeF_pvpFn4AvJg2ZQq66tDFtc0gvfJaEeYfqsZWNkxk4uvWMDoKIrMoVkm4hYjPgZcU9_t_zByVgrwkwr/s600/Screenshot%20from%202023-12-22%2011-09-22.png" /></a>
+</div>
+
+Figure 2: 
+A simple application of CBOW model is an article spinner.
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgntemxa_u9AKAH1tt80_MF42cYXWhpnSoOTaxmXMPGXF2UB5kUysvtKlZM-c_Qx26GwGlCEwcS3bdNG9yVH-D9k21rBV90DGL8XN_jtHtoIepNJzEvhqdAnu2oOOkv71mo74D9Ogfym-rGijIb1xX0UfdR9caka6FFKvP1-j-PB9rtK0LRurMfjlLt8Qkf/s790/Screenshot%20from%202023-12-22%2011-11-06.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="435" data-original-width="790"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgntemxa_u9AKAH1tt80_MF42cYXWhpnSoOTaxmXMPGXF2UB5kUysvtKlZM-c_Qx26GwGlCEwcS3bdNG9yVH-D9k21rBV90DGL8XN_jtHtoIepNJzEvhqdAnu2oOOkv71mo74D9Ogfym-rGijIb1xX0UfdR9caka6FFKvP1-j-PB9rtK0LRurMfjlLt8Qkf/s600/Screenshot%20from%202023-12-22%2011-11-06.png" /></a>
+</div>
+
+Figure 3:
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhNwX3UDilAgqWluAbwk3zk0uSCsIFRn06vQYiZwwRJQ-MCqhtppTMjIzZOST4uGnFbIGKKdMSu0ock36H7Fk1sfKWh2ZaGPCr4rjTCrd0hmJsULXdjS6Bx6npcF7hrk4ZfdhAiO2oc2ybqQLyl8DuN1kAwZ5xf0_w32kEU52z548jPTlpl62S8K1y8Bn-/s790/Screenshot%20from%202023-12-22%2011-12-48.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="435" data-original-width="790"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhNwX3UDilAgqWluAbwk3zk0uSCsIFRn06vQYiZwwRJQ-MCqhtppTMjIzZOST4uGnFbIGKKdMSu0ock36H7Fk1sfKWh2ZaGPCr4rjTCrd0hmJsULXdjS6Bx6npcF7hrk4ZfdhAiO2oc2ybqQLyl8DuN1kAwZ5xf0_w32kEU52z548jPTlpl62S8K1y8Bn-/s600/Screenshot%20from%202023-12-22%2011-12-48.png" /></a>
+</div>
+
+Figure 4:
+<div class="separator" style="clear: both;"><a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiorCNIcUgCpPF2BpMezZpGPeC9iK1fu8pqxGOVvqytKXYdDPsVZwaWYKOY_G89cE2S3tHMz50OCDLzEvRGUJ0itI5ukyOI8Q01a2285a4E9ibpXlpxtnvDIyTNy1vStkG4nYBYsQXZ_LpHjXRbHjABbGLuXTqALTVDqzvyKPBABSnlk3Up4OZx40z6O8V4/s790/Screenshot%20from%202023-12-22%2011-13-10.png"
+    style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600"
+        data-original-height="435" data-original-width="790"
+        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiorCNIcUgCpPF2BpMezZpGPeC9iK1fu8pqxGOVvqytKXYdDPsVZwaWYKOY_G89cE2S3tHMz50OCDLzEvRGUJ0itI5ukyOI8Q01a2285a4E9ibpXlpxtnvDIyTNy1vStkG4nYBYsQXZ_LpHjXRbHjABbGLuXTqALTVDqzvyKPBABSnlk3Up4OZx40z6O8V4/s600/Screenshot%20from%202023-12-22%2011-13-10.png" /></a>
+</div>
+</pre>
+<span style="display: none;">Tags: Natural Language Processing,Technology</span>
+
